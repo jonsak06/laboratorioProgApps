@@ -103,7 +103,7 @@ public class NewJFrame extends javax.swing.JFrame {
     int result = numA + numB;
     
     String c = result + "";
-    jLabel1.setText(c);
+    jLabel1.setText(c);//hola a todos
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
