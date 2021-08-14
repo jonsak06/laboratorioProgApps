@@ -29,15 +29,27 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        registroUsuarioFuncion = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        plataformas = new javax.swing.JMenu();
+        altaPlataformas = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jMenu1.setText("Usuarios");
+
+        registroUsuarioFuncion.setText("Registrar usuario a función");
+        registroUsuarioFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroUsuarioFuncionActionPerformed(evt);
+            }
+        });
+        jMenu1.add(registroUsuarioFuncion);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Espectáculos");
@@ -56,6 +68,18 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        plataformas.setText("Plataformas");
+
+        altaPlataformas.setText("Alta de Plataforma");
+        altaPlataformas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaPlataformasActionPerformed(evt);
+            }
+        });
+        plataformas.add(altaPlataformas);
+
+        jMenuBar1.add(plataformas);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -71,6 +95,18 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void altaPlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaPlataformasActionPerformed
+        // TODO add your handling code here:
+        AltaPlataforma altPlat = new AltaPlataforma();
+        altPlat.setVisible(true);
+    }//GEN-LAST:event_altaPlataformasActionPerformed
+
+    private void registroUsuarioFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroUsuarioFuncionActionPerformed
+        // TODO add your handling code here:
+        RegistroEspectadorFuncion rEspFunc = new RegistroEspectadorFuncion();
+        rEspFunc.setVisible(true);
+    }//GEN-LAST:event_registroUsuarioFuncionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +144,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem altaPlataformas;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -115,5 +152,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu plataformas;
+    private javax.swing.JMenuItem registroUsuarioFuncion;
     // End of variables declaration//GEN-END:variables
 }

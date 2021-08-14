@@ -8,6 +8,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Usuarios"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="registroUsuarioFuncion">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar usuario a funci&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registroUsuarioFuncionActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
@@ -33,6 +43,21 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir espect&#xe1;culo"/>
               </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="plataformas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Plataformas"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="altaPlataformas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Alta de Plataforma"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altaPlataformasActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
