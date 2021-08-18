@@ -16,7 +16,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
      */
     public ModificarUsuario() {
         initComponents();
-        tfNombre.setVisible(flase);
+        tfNombre.setVisible(false);
         tfApellido.setEnabled(true);
         tfNickname.setEnabled(true);
         tfCorreoElectronico.setEnabled(true);
