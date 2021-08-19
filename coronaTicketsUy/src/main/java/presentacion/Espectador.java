@@ -55,6 +55,17 @@ public class Espectador extends Usuario {
         int i = this.registros.size();
         this.registros.add(i+1,r);
     }
+    
+    @OneToMany
+    private List<Compra> compras;
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void addCompra(Compra c) {
+        int i = this.compras.size();
+        this.compras.add(i+1, c);
+    }
 
     @Override
     public int hashCode() {

@@ -38,7 +38,16 @@ public class Compra implements Serializable {
         this.fecha = fecha;
     }
     
-
+    @ManyToOne
+    @JoinColumn(name = "ESPECTACULO_ID")
+    private Espectaculo espectaculo;
+    public Espectaculo getEspectaculo() {
+        return espectaculo;
+    }
+    public void setEspectaculo(Espectaculo espectaculo) {
+        this.espectaculo = espectaculo;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
