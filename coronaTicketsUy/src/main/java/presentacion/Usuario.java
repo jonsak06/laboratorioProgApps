@@ -38,6 +38,7 @@ public abstract class Usuario implements Serializable {
     private String imagen;
     
     @Column(name = "FECHANACIMIENTO")
+    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
 
     public Usuario(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {

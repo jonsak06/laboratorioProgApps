@@ -49,8 +49,8 @@ public class Funcion implements Serializable {
         this.horaInicio = h;
     }
 
-    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_REG")
+    @Temporal(TemporalType.DATE)
     private Date fechaDeRegistro;
     public Date getFechaRegistro(){
         return this.fechaDeRegistro;
