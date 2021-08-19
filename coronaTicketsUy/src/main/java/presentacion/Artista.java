@@ -6,6 +6,7 @@
 package presentacion;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.*;
 
 /**
@@ -13,7 +14,7 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
-public class Artista extends Usuario implements Serializable {
+public class Artista extends Usuario {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,6 +23,10 @@ public class Artista extends Usuario implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+        super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
     }
 
     public void setId(Long id) {
