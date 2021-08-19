@@ -7,6 +7,7 @@ package presentacion;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -101,6 +102,16 @@ public class Espectaculo implements Serializable {
     }
     public void setPlataforma(Plataforma p){
         this.plataforma = p;
+    }
+    
+    @OneToMany(mappedBy = "espectaculo")
+    private List<Funcion> funciones;
+    public List<Funcion> getFunciones(){
+        return this.funciones;
+    }
+    public void addFuncion(Funcion f){
+    int i = this.funciones.size();
+    this.funciones.add(i+1, f);
     }
     
     public Long getId() {
