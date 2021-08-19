@@ -7,6 +7,7 @@ package presentacion;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -25,13 +26,61 @@ public class Artista extends Usuario {
         return id;
     }
 
-    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+        this.setBiografia(biografia);
+        this.setDescripcion(descripcion);
+        this.setLinkWeb(link);
+        
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+    
+    @OneToMany(mappedBy = "artista")
+    @Column(name="ESPECTACULOS_DE_ARTISTA")
+    private List<Espectaculo> espectaculos;
+    public List<Espectaculo> getEspectaculos() {
+        return espectaculos;
+    }
+    public void addEspectaculo(Espectaculo e){
+        int i = this.espectaculos.size();
+        this.espectaculos.add(i+1,e);
+    }
+    
+    
+    @Column(name = "DESCRIPCION")
+    private String descripcion;
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public String getLinkWeb() {
+        return linkWeb;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
+
+    public void setLinkWeb(String linkWeb) {
+        this.linkWeb = linkWeb;
+    }
+    
+    @Column(name = "BIOGRAFIA")
+    private String biografia;
+    
+    @Column(name = "LNK_WEB")
+    private String linkWeb;
+    
 
     @Override
     public int hashCode() {

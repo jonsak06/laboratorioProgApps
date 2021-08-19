@@ -8,6 +8,8 @@
     <class>presentacion.PaqueteDeEspectaculos</class>
     <class>presentacion.Registro</class>
     <class>presentacion.Artista</class>
+    <class>presentacion.Espectador</class>
+    <class>presentacion.Compra</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://raspberrypijulio.ddns.net:8457/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

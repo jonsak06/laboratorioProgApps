@@ -66,6 +66,10 @@ public class Registro implements Serializable {
     public void setFuncion(Funcion f){
         this.funcion =f;
     }
+    
+    @Column(name = "ESPECTADOR")
+    private Espectador espectador;
+    
     @Override
     public int hashCode() {
         int hash = 0;

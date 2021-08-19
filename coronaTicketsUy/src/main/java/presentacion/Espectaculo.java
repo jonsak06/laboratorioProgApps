@@ -131,6 +131,16 @@ public class Espectaculo implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    private Artista artista;
+    public Artista getArtista() {
+        return artista;
+    }
+    public void setArtista(Artista artista) {
+        this.artista = artista;
+    }
+    
+    
 
     @Override
     public int hashCode() {
