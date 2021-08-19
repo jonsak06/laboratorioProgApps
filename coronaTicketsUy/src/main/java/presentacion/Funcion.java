@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.List;
 /**
  *
  * @author julio
@@ -58,8 +59,6 @@ public class Funcion implements Serializable {
         this.fechaDeRegistro = f;
     }
     
-    
-    
     @Temporal(TemporalType.DATE)
     @Column(name="FECHA")
     private Date fecha;
@@ -83,6 +82,16 @@ public class Funcion implements Serializable {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);
         return hash;
+    }
+    
+    @OneToMany(mappedBy = "funcion")
+    private List<Registro> registros;
+    public List<Registro> getRegistros(){
+        return this.registros;
+    }
+    public void addRegistro(Registro r){
+        int i = this.registros.size();
+        this.registros.add(i+1,r);
     }
 
     @Override
