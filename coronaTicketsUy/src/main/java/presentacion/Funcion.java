@@ -29,7 +29,7 @@ public class Funcion implements Serializable {
         this.id = id;
     }
     
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE_FUNC")
     private String nombre;
     public String getNombre(){
         return this.nombre;
@@ -57,6 +57,8 @@ public class Funcion implements Serializable {
     public void setFechaRegistro(Date f){
         this.fechaDeRegistro = f;
     }
+    
+    
     
     @Temporal(TemporalType.DATE)
     @Column(name="FECHA")

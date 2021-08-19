@@ -5,6 +5,7 @@
     <class>presentacion.Plataforma</class>
     <class>presentacion.Espectaculo</class>
     <class>presentacion.Funcion</class>
+    <class>presentacion.PaqueteDeEspectaculos</class>
     <shared-cache-mode>ALL</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://raspberrypijulio.ddns.net:8457/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

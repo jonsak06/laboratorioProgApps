@@ -22,7 +22,7 @@ public class Espectaculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "NOMBRE")
+    @Column(name = "NOMBRE_ESP")
     private String nombre;
     public String getNombre(){
         return this.nombre;
@@ -31,7 +31,7 @@ public class Espectaculo implements Serializable {
         this.nombre = nombre;           
     }
     
-    @Column(name = "DESCR")
+    @Column(name = "DESCR_ESP")
     private String descripcion;
     public String getDescrp(){
         return this.descripcion;
@@ -112,6 +112,16 @@ public class Espectaculo implements Serializable {
     public void addFuncion(Funcion f){
     int i = this.funciones.size();
     this.funciones.add(i+1, f);
+    }
+    
+    @ManyToMany
+    private List<PaqueteDeEspectaculos> paquetes;
+    public List<PaqueteDeEspectaculos> getPaquetes(){
+        return this.paquetes;
+    }
+    public void addPaquete(PaqueteDeEspectaculos p){
+        int i = this.paquetes.size();
+        this.paquetes.add(i+1, p);
     }
     
     public Long getId() {
