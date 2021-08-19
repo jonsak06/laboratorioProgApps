@@ -7,6 +7,7 @@ package presentacion;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.sql.*;
 
 /**
  *
@@ -37,9 +38,9 @@ public abstract class Usuario implements Serializable {
     private String imagen;
     
     @Column(name = "FECHANACIMIENTO")
-    private date fechaNacimiento;
+    private Date fechaNacimiento;
 
-    public Usuario(String nombre, String apellido, String correo, String nickname, String imagen, date fechaNacimiento) {
+    public Usuario(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -68,7 +69,7 @@ public abstract class Usuario implements Serializable {
         this.imagen = imagen;
     }
 
-    public void setFechaNacimiento(date fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -92,7 +93,7 @@ public abstract class Usuario implements Serializable {
         return imagen;
     }
 
-    public date getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
     
