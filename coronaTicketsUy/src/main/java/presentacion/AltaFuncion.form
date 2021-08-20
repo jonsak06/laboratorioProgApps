@@ -70,27 +70,27 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="CBF1Dia" min="-2" pref="52" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="CBF1Mes" min="-2" pref="52" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="jComboBox9" min="-2" pref="51" max="-2" attributes="0"/>
-                                                  <Component id="CBHHora" min="-2" pref="52" max="-2" attributes="0"/>
+                                                  <Component id="CBFADia" min="-2" pref="80" max="-2" attributes="0"/>
+                                                  <Component id="CBHHora" min="-2" pref="80" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="CBHMin" min="-2" pref="52" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox10" min="-2" pref="51" max="-2" attributes="0"/>
+                                                  <Component id="CBHMin" min="-2" pref="80" max="-2" attributes="0"/>
+                                                  <Component id="CBFAMes" min="-2" pref="80" max="-2" attributes="0"/>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="CBF1Dia" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="CBF1Mes" min="-2" pref="80" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="CBF1Anio" min="-2" pref="52" max="-2" attributes="0"/>
-                                          <Component id="jComboBox11" alignment="0" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="CBF1Anio" min="-2" pref="80" max="-2" attributes="0"/>
+                                          <Component id="CBFAAnio" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="TextoNombre" min="-2" pref="134" max="-2" attributes="0"/>
@@ -163,9 +163,9 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox10" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBox11" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBFADia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBFAMes" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBFAAnio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -183,6 +183,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="focusCycleRoot" type="boolean" value="true"/>
       </Properties>
       <Events>
         <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ComboBoxPlatItemStateChanged"/>
@@ -197,6 +198,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -208,6 +210,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="TextoNombre">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TextoNombreActionPerformed"/>
       </Events>
@@ -258,6 +263,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -268,6 +274,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBF1MesActionPerformed"/>
@@ -281,6 +288,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CBF1AnioActionPerformed"/>
@@ -294,6 +302,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -304,6 +313,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -314,6 +324,7 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -327,6 +338,7 @@
     <Component class="javax.swing.JButton" name="BConfirArtistas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Confirmar Artista"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -334,27 +346,29 @@
         <Property name="text" type="java.lang.String" value="Fecha de Alta"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox9">
+    <Component class="javax.swing.JComboBox" name="CBFADia">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox10">
+    <Component class="javax.swing.JComboBox" name="CBFAMes">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox11">
+    <Component class="javax.swing.JComboBox" name="CBFAAnio">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="0"/>
