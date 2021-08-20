@@ -77,7 +77,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.descuento = d;
     }
     
-    @ManyToMany(mappedBy = "paquetes")
+    @ManyToMany
     private List<Espectaculo> espectaculos;
     public List<Espectaculo> getEspectaculos(){
         return this.espectaculos;

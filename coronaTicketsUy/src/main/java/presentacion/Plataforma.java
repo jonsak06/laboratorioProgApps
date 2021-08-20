@@ -14,6 +14,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Plataforma.findAll", query = "SELECT p FROM Plataforma p"),
+    @NamedQuery(name = "Plataforma.findByNombre", query = "SELECT p FROM Plataforma p WHERE p.nombre = :nombre")})
 public class Plataforma implements Serializable {
 
     private static final long serialVersionUID = 1L;
