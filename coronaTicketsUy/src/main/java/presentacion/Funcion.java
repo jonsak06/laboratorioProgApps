@@ -70,6 +70,7 @@ public class Funcion implements Serializable {
     }
     
 //    @Column(name = "ESPECTACULO")
+    @ManyToOne
     private Espectaculo espectaculo;
     public Espectaculo getEspectaculo(){
         return this.espectaculo;

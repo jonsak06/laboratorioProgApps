@@ -38,14 +38,23 @@ public class Compra implements Serializable {
         this.fecha = fecha;
     }
     
-    @ManyToOne
-    @JoinColumn(name = "ESPECTACULO_ID")
-    private Espectaculo espectaculo;
-    public Espectaculo getEspectaculo() {
-        return espectaculo;
+//    @ManyToOne
+//    @JoinColumn(name = "ESPECTACULO_ID")
+//    private Espectaculo espectaculo;
+//    public Espectaculo getEspectaculo() {
+//        return espectaculo;
+//    }
+//    public void setEspectaculo(Espectaculo espectaculo) {
+//        this.espectaculo = espectaculo;
+//    }
+    
+    @ManyToOne 
+    private PaqueteDeEspectaculos paquete;
+    public PaqueteDeEspectaculos getPaquete() {
+        return paquete;
     }
-    public void setEspectaculo(Espectaculo espectaculo) {
-        this.espectaculo = espectaculo;
+    public void setPaquete(PaqueteDeEspectaculos p) {
+        this.paquete = p;
     }
     
     @Override

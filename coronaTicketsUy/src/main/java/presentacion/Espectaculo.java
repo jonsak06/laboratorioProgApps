@@ -95,6 +95,7 @@ public class Espectaculo implements Serializable {
     }
     
 //    @Column(name = "PLATAFORMA")
+    @ManyToOne
     private Plataforma plataforma;
     public Plataforma getPlataforma(){
     return this.plataforma;
@@ -130,7 +131,7 @@ public class Espectaculo implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+    @ManyToOne
     private Artista artista;
     public Artista getArtista() {
         return artista;

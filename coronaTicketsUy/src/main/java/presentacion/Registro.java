@@ -59,6 +59,7 @@ public class Registro implements Serializable {
     }
     
 //    @Column(name = "FUNCION")
+    @ManyToOne
     private Funcion funcion;
     public Funcion getFuncion(){
         return this.funcion;
@@ -68,6 +69,7 @@ public class Registro implements Serializable {
     }
     
 //    @Column(name = "ESPECTADOR")
+    @ManyToOne
     private Espectador espectador;
     
     @Override
