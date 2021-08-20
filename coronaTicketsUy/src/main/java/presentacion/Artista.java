@@ -26,6 +26,9 @@ public class Artista extends Usuario {
         return id;
     }
 
+    public Artista() {
+    }
+    
     public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.setBiografia(biografia);
@@ -39,7 +42,7 @@ public class Artista extends Usuario {
     }
     
     @OneToMany(mappedBy = "artista")
-    @Column(name="ESPECTACULOS_DE_ARTISTA")
+//    @Column(name="ESPECTACULOS_DE_ARTISTA")
     private List<Espectaculo> espectaculos;
     public List<Espectaculo> getEspectaculos() {
         return espectaculos;

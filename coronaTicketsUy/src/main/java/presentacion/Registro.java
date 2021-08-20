@@ -29,7 +29,7 @@ public class Registro implements Serializable {
         this.id = id;
     }
     
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="FECHA")
     private java.sql.Date fecha;
     public java.sql.Date getFecha(){
@@ -58,7 +58,7 @@ public class Registro implements Serializable {
         this.estado = e;
     }
     
-    @Column(name = "FUNCION")
+//    @Column(name = "FUNCION")
     private Funcion funcion;
     public Funcion getFuncion(){
         return this.funcion;
@@ -67,7 +67,7 @@ public class Registro implements Serializable {
         this.funcion =f;
     }
     
-    @Column(name = "ESPECTADOR")
+//    @Column(name = "ESPECTADOR")
     private Espectador espectador;
     
     @Override

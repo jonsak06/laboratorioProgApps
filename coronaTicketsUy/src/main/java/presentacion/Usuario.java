@@ -38,9 +38,9 @@ public abstract class Usuario implements Serializable {
     private String imagen;
     
     @Column(name = "FECHANACIMIENTO")
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-
+    Usuario(){}
     public Usuario(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;

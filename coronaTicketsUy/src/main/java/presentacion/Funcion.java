@@ -40,7 +40,7 @@ public class Funcion implements Serializable {
     }
     
     @Column(name = "HORA_INICIO")
-    @Temporal(TemporalType.TIMESTAMP)
+//    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp horaInicio;
     public Timestamp getHoraInicio(){
         return this.horaInicio;
@@ -50,7 +50,7 @@ public class Funcion implements Serializable {
     }
 
     @Column(name="FECHA_REG")
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     private Date fechaDeRegistro;
     public Date getFechaRegistro(){
         return this.fechaDeRegistro;
@@ -59,7 +59,7 @@ public class Funcion implements Serializable {
         this.fechaDeRegistro = f;
     }
     
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="FECHA")
     private Date fecha;
     public Date getFecha(){
@@ -69,7 +69,7 @@ public class Funcion implements Serializable {
         this.fecha = f;
     }
     
-    @Column(name = "ESPECTACULO")
+//    @Column(name = "ESPECTACULO")
     private Espectaculo espectaculo;
     public Espectaculo getEspectaculo(){
         return this.espectaculo;

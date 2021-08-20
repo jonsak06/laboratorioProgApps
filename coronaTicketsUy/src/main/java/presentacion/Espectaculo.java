@@ -85,7 +85,6 @@ public class Espectaculo implements Serializable {
         this.costo = c;
     }
     
-    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_REG")
     private Date fechaDeRegistro;
     public Date getFechaRegistro(){
@@ -95,7 +94,7 @@ public class Espectaculo implements Serializable {
         this.fechaDeRegistro = f;
     }
     
-    @Column(name = "PLATAFORMA")
+//    @Column(name = "PLATAFORMA")
     private Plataforma plataforma;
     public Plataforma getPlataforma(){
     return this.plataforma;

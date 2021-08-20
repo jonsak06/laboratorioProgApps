@@ -41,10 +41,10 @@ public class Espectador extends Usuario {
         return canjeables;
     }
 
-    public Espectador(int canjeables, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
-        super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
-        this.canjeables = canjeables;
+    public Espectador() {
     }
+
+
     
     @OneToMany(mappedBy = "espectador")
     private List<Registro> registros;
@@ -62,11 +62,14 @@ public class Espectador extends Usuario {
         return compras;
     }
 
+    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+        super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+    }
+
     public void addCompra(Compra c) {
         int i = this.compras.size();
         this.compras.add(i+1, c);
     }
-
     @Override
     public int hashCode() {
         int hash = 0;

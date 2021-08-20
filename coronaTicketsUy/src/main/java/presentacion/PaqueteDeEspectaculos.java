@@ -48,7 +48,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.descripcion = desc;
     }
     
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_INICIO_PAQ")
     private Date fechaInicio;
     public Date getFechaInicio(){
@@ -58,7 +58,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.fechaInicio = f;
     }
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_FIN_PAQ")
     private Date fechaFin;
     public Date getFechaFin(){
