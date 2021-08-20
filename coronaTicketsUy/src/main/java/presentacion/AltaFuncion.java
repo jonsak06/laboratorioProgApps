@@ -17,6 +17,18 @@ public class AltaFuncion extends javax.swing.JFrame {
     public AltaFuncion() {
         initComponents();
         //Aqui voy a cargar las plataformas
+        int i=1900;
+        while(i<2100)
+        {
+            CBF1Anio.addItem(Integer.toString(i));
+            i++;
+        }
+         int i2=1900;
+        while(i2<2100)
+        {
+            CBFAAnio.addItem(Integer.toString(i2));
+            i2++;
+        }
     }
 
     /**
@@ -48,13 +60,14 @@ public class AltaFuncion extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         BConfirArtistas = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
-        jComboBox10 = new javax.swing.JComboBox<>();
-        jComboBox11 = new javax.swing.JComboBox<>();
+        CBFADia = new javax.swing.JComboBox<>();
+        CBFAMes = new javax.swing.JComboBox<>();
+        CBFAAnio = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        ComboBoxPlat.setFocusCycleRoot(true);
         ComboBoxPlat.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 ComboBoxPlatItemStateChanged(evt);
@@ -66,8 +79,11 @@ public class AltaFuncion extends javax.swing.JFrame {
             }
         });
 
+        ComboBoxEsp.setEnabled(false);
+
         jLabel1.setText("Listar Espectaculos");
 
+        TextoNombre.setEnabled(false);
         TextoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextoNombreActionPerformed(evt);
@@ -98,23 +114,38 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         jLabel6.setText("Hora inicio");
 
+        CBF1Dia.setEnabled(false);
+
+        CBF1Mes.setEnabled(false);
         CBF1Mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBF1MesActionPerformed(evt);
             }
         });
 
+        CBF1Anio.setEnabled(false);
         CBF1Anio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBF1AnioActionPerformed(evt);
             }
         });
 
+        CBHHora.setEnabled(false);
+
+        CBHMin.setEnabled(false);
+
+        CBArtInvi.setEnabled(false);
+
         jLabel7.setText("Confirmar artistas invitados");
 
         BConfirArtistas.setText("Confirmar Artista");
+        BConfirArtistas.setEnabled(false);
 
         jLabel8.setText("Fecha de Alta");
+
+        CBFADia.setEnabled(false);
+
+        CBFAMes.setEnabled(false);
 
         jLabel9.setText("Ingrese datos de la funcion:");
 
@@ -159,21 +190,21 @@ public class AltaFuncion extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CBF1Dia, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(CBF1Mes, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(CBHHora, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(CBFADia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(CBHHora, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(CBHMin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                    .addComponent(CBHMin, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(CBFAMes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(CBF1Dia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(CBF1Mes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(CBF1Anio, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(CBF1Anio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CBFAAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addComponent(TextoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,9 +259,9 @@ public class AltaFuncion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CBFADia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBFAMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CBFAAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -255,6 +286,16 @@ public class AltaFuncion extends javax.swing.JFrame {
 
     private void ComboBoxPlatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxPlatItemStateChanged
 
+        ComboBoxEsp.setEnabled(true);
+        TextoNombre.setEnabled(true);
+        CBF1Dia.setEnabled(true);
+        CBF1Mes.setEnabled(true);
+        CBF1Anio.setEnabled(true);
+        CBArtInvi.setEnabled(true);
+        CBFADia.setEnabled(true);
+        CBFAMes.setEnabled(true);
+        CBFAAnio.setEnabled(true);
+       
     }//GEN-LAST:event_ComboBoxPlatItemStateChanged
 
     private void ComboBoxPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBoxPlatActionPerformed
@@ -310,6 +351,9 @@ public class AltaFuncion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CBF1Anio;
     private javax.swing.JComboBox<String> CBF1Dia;
     private javax.swing.JComboBox<String> CBF1Mes;
+    private javax.swing.JComboBox<String> CBFAAnio;
+    private javax.swing.JComboBox<String> CBFADia;
+    private javax.swing.JComboBox<String> CBFAMes;
     private javax.swing.JComboBox<String> CBHHora;
     private javax.swing.JComboBox<String> CBHMin;
     private javax.swing.JComboBox<String> ComboBoxEsp;
@@ -317,9 +361,6 @@ public class AltaFuncion extends javax.swing.JFrame {
     private javax.swing.JTextField TextoNombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
