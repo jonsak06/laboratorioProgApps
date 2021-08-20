@@ -30,6 +30,16 @@ public class Funcion implements Serializable {
         this.id = id;
     }
     
+    @ManyToMany
+    private List<Artista> artistasInvitados;
+    public List<Artista> getInvitados(){
+        return this.artistasInvitados;
+    }
+    
+    public void addInvitado(Artista a){
+        int i = this.artistasInvitados.size();
+        this.artistasInvitados.add(i+1,a);
+    }
     @Column(name = "NOMBRE_FUNC")
     private String nombre;
     public String getNombre(){
