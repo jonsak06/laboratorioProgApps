@@ -52,6 +52,17 @@ public class Artista extends Usuario {
         this.espectaculos.add(i+1,e);
     }
     
+    @ManyToMany
+    private List<Funcion> funciones;
+
+    public List<Funcion> getFunciones() {
+        return funciones;
+    }
+    
+    public void addFuncion(Funcion f){
+        int i = this.funciones.size();
+        this.funciones.add(i+1,f);
+    }
     
     @Column(name = "DESCRIPCION")
     private String descripcion;
