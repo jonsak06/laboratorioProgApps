@@ -34,6 +34,14 @@ public class Plataforma implements Serializable {
     public void setUrl(String url){
         this.url = url;           
     }
+    
+    public Plataforma(){}
+    
+    public Plataforma(String nombre, String descripcion, String url){
+        this.setDescripcion(descripcion);
+        this.setNombre(nombre);
+        this.setUrl(url);
+    }
   
     
     @Column(name = "NOMBRE")
@@ -46,6 +54,19 @@ public class Plataforma implements Serializable {
     public void setNombre(String nombre){
         this.nombre = nombre;           
     }
+    
+    @Lob
+    @Column
+    private String descripcion;
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
     
     @OneToMany(mappedBy = "plataforma")
     private List<Espectaculo> espectaculos;

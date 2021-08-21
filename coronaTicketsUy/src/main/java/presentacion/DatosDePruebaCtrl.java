@@ -203,6 +203,23 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.getTransaction().commit();
         ///////////////////////////////FIN DE LA CARGA DE ESPECTADORES/////////////////////////////////////
         
+        //////////////////////////////CARGA DE PLATAFORMAS/////////////////////////////////
+        em.getTransaction().begin();
+        Plataforma in = new Plataforma("Instagram Live","Funcionalidad de la red social Instagram, con la que \n" +
+"los usuarios pueden transmitir vídeos en vivo.","https://www.instagram.com/liveoficial");
+        em.persist(in);
+        Plataforma fb = new Plataforma("Facebook Watch","Servicio de video bajo demanda operado por \n" +
+"Facebook.","https://www.facebook.com/watch/");
+        em.persist(fb);
+        Plataforma tl = new Plataforma("Twitter Live","Aplicación de Twitter para la transmisión de video \n" +
+"en directo (streaming).","https://twitter.com/");
+        em.persist(tl);
+        Plataforma yt = new Plataforma("Youtube","Sitio web de origen estadounidense dedicado a \n" +
+"compartir videos.","https://www.youtube.com/");
+        em.persist(yt);
+        em.getTransaction().commit();
+        //////////////////////////////FIN DE LA CARGA DE PLATAFORMAS////////////////////////
+        
         em.close();
         emf.close();       
     }
