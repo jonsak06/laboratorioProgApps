@@ -34,7 +34,7 @@ public class NewMain {
         a.setBiografia("Nacio en un deposito sucio");
         a.setCorreo("lolaRamirez@mail.com");
         a.setDescripcion("Terraja");
-        java.sql.Date fecha = new java.sql.Date(4561651);
+        java.sql.Date fecha = new java.sql.Date(1561135);
         a.setFechaNacimiento(fecha);
         a.setImagen("PATH");
         a.setLinkWeb("LINK");
