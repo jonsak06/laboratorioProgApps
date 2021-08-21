@@ -220,6 +220,27 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.getTransaction().commit();
         //////////////////////////////FIN DE LA CARGA DE PLATAFORMAS////////////////////////
         
+        /////////////////////////CARGA DE LOS ESPECTACULOS///////////////////////////////
+        em.getTransaction().begin();
+        Espectaculo e1 = new Espectaculo("Los Village Volvieron", "Espectáculo   de   retorno   de   los Village People", 90, 10, 800,"https://www.instagram.com/realvillagepeople/", 550, 31, 3, 2020,vp,in);
+        em.persist(e1);
+        Espectaculo e2 = new Espectaculo("Global Spirit","Espectáculo   donde   se   presenta el álbum Spirit.", 120,30,1300,"https://es-la.facebook.com/pechemode",750,20,4,2020,dm,fb);
+        em.persist(e2);
+        Espectaculo e3 = new Espectaculo("Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30,5,2020,cl,tl);
+        em.persist(e3);
+        Espectaculo e4 = new Espectaculo("Springsteenon Broadway","Springsteen  tocando  guitarra o\n" +
+"piano   y   relatando   anécdotas\n" +
+"recogidas   en   su   autobiografía\n" +
+"de 2016, Born to Run. ",100,100,1500,"https://www.youtube.com/BruceSpringsteen",980,7,6,2020,bs,yt);
+        em.persist(e4);
+        Espectaculo e5 = new Espectaculo("Bien de Familia","El   dúo   estará   presentando   sus\n" +
+"más   sonados   éxitos   y   también\n" +
+"nuevas canciones ", 150,10,500,"https://twitter.com/PimpinelaNet",500,8,7,2020,pi,tl);
+        em.persist(e5);
+        Espectaculo e6 = new Espectaculo("30 años","Espectáculo conmemorando los 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31,7,2020,al,tl);
+        em.persist(e6);
+        ////////////////////////////////////////CARGA DE ESPECTACULOS TERMINADA//////////////////////////////////
+        em.getTransaction().commit();
         em.close();
         emf.close();       
     }
