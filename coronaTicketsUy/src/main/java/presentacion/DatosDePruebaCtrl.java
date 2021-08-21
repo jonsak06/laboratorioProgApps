@@ -13,14 +13,10 @@ import javax.persistence.*;
  *
  * @author julio
  */
-public class NewMain {
+public class DatosDePruebaCtrl implements iDatosDePrueba {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+    public void cargarDatos(){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         Plataforma p = new Plataforma();
@@ -34,11 +30,11 @@ public class NewMain {
         a.setBiografia("Nacio en un deposito sucio");
         a.setCorreo("lolaRamirez@mail.com");
         a.setDescripcion("Terraja");
-        java.sql.Date fecha = new java.sql.Date(1561135);
+        java.sql.Date fecha = new java.sql.Date(2012-1899,12-12,15-31);
         a.setFechaNacimiento(fecha);
         a.setImagen("PATH");
         a.setLinkWeb("LINK");
-        a.setNickname("lolita");
+        a.setNickname("laLoca");
         a.setNombre("Lola");
         em.persist(a);
         em.getTransaction().commit();
@@ -57,7 +53,9 @@ public class NewMain {
         em.persist(e);
         em.getTransaction().commit();
         em.close();
-        emf.close();
+        emf.close();       
     }
-    
+
+    public DatosDePruebaCtrl() {
+    }
 }

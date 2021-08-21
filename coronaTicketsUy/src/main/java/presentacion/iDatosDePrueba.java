@@ -9,14 +9,8 @@ package presentacion;
  *
  * @author julio
  */
-public class Fabrica {
-
-    public Fabrica() {
-    }
+public interface iDatosDePrueba {
     
-    public static iDatosDePrueba getDatosDePrueba(){
-        iDatosDePrueba d = new DatosDePruebaCtrl();
-        return d;
-    }
+     void cargarDatos();
     
 }
