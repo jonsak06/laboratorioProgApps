@@ -186,7 +186,23 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(el);
         Espectador co = new Espectador("costas","Gerardo","Costas","gcostas@gmail.com",15,11,1983);
         em.persist(co);
+        Espectador ew = new Espectador("waston","Emma","Watson","e.watson@gmail.com",15,4,1990);
+        em.persist(ew);
+        Espectador gh = new Espectador("house","Gregory","House","greghouse@gmail.com",15,5,1959);
+        em.persist(gh);
+        Espectador sp = new Espectador("sergiop","Sergio","Puglia","puglia@alpanpan.com.uy",28,1,1959);
+        em.persist(sp);
+        Espectador ar = new Espectador("chino","Alvaro","Recoba","chino@trico.org.uy",17,3,1976);
+        em.persist(ar);
+        Espectador ap = new Espectador("tonyp","Antonio","Pacheco","eltony@manya.org.uy",14,2,1955);
+        em.persist(ap);
+        Espectador ml = new Espectador("lachiqui","Mirtha","Legrand","lachiqui@hotmail.com.ar",23,2,1927);
+        em.persist(ml);
+        Espectador cb = new Espectador("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",8,5,1937);
+        em.persist(cb);
         em.getTransaction().commit();
+        ///////////////////////////////FIN DE LA CARGA DE ESPECTADORES/////////////////////////////////////
+        
         em.close();
         emf.close();       
     }
