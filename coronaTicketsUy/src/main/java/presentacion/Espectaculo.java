@@ -86,11 +86,11 @@ public class Espectaculo implements Serializable {
     }
     
     @Column(name="FECHA_REG")
-    private Date fechaDeRegistro;
-    public Date getFechaRegistro(){
+    private java.sql.Date fechaDeRegistro;
+    public java.sql.Date getFechaRegistro(){
         return this.fechaDeRegistro;
     }
-    public void setFechaRegistro(Date f){
+    public void setFechaRegistro(java.sql.Date f){
         this.fechaDeRegistro = f;
     }
     
