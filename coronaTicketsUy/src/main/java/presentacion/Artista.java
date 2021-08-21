@@ -64,6 +64,7 @@ public class Artista extends Usuario {
         this.funciones.add(i+1,f);
     }
     
+    @Lob
     @Column(name = "DESCRIPCION")
     private String descripcion;
     public String getDescripcion() {
@@ -89,6 +90,7 @@ public class Artista extends Usuario {
         this.linkWeb = linkWeb;
     }
     
+    @Lob
     @Column(name = "BIOGRAFIA")
     private String biografia;
     
