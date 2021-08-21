@@ -179,6 +179,14 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(al);
         em.getTransaction().commit();
         ////////////////////////////FIN DE LA CARGA DE DATOS DE ARTISTAS///////////////////////////////
+        
+        ////////////////////////////CARGA DE ESPECTADORES//////////////////////////////////////////////
+        em.getTransaction().begin();
+        Espectador el = new Espectador("eleven11","Eleven","Ten","eleven11@gmail.com",31,12,1971);
+        em.persist(el);
+        Espectador co = new Espectador("costas","Gerardo","Costas","gcostas@gmail.com",15,11,1983);
+        em.persist(co);
+        em.getTransaction().commit();
         em.close();
         emf.close();       
     }
