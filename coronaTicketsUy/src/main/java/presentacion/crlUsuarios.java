@@ -14,28 +14,28 @@ import java.util.List;
  */
 public class crlUsuarios implements iUsuarios
 {
-    public List<DtUsuario> getDatos()
-    {
-        
-        return ManejadorUsuarios.getDatos(); 
-    }
-           
-    public List<DtEspectador> getEspectadores()
-    {
-        
-        return ManejadorUsuarios.getEspectadores(); 
-    }
-    
-    public List<DtArtista> getArtistas()
-    {
-        return ManejadorUsuarios.getArtistas(); 
-    }
-    
-    public Usuario getUsuario(String nickname)
-    {
-        return ManejadorUsuarios.getUsuario(nickname);
-    }
-    
+//    public List<DtUsuario> getDatos()
+//    {
+//        
+//        return ManejadorUsuarios.getDatos(); 
+//    }
+//           
+//    public List<DtEspectador> getEspectadores()
+//    {
+//        
+//        return ManejadorUsuarios.getEspectadores(); 
+//    }
+//    
+//    public List<DtArtista> getArtistas()
+//    {
+//        return ManejadorUsuarios.getArtistas(); 
+//    }
+//    
+//    public Usuario getUsuario(String nickname)
+//    {
+//        return ManejadorUsuarios.getUsuario(nickname);
+//    }
+//    
     public boolean existeUsuario(String nickname)
     {
         return ManejadorUsuarios.existeUsuario(nickname);
@@ -50,15 +50,15 @@ public class crlUsuarios implements iUsuarios
     {
         ManejadorUsuarios.altaEspectador(es);
     }
-    
-    public void modificarArtista(DtArtista ar)
-    {
-        ManejadorUsuarios.modificarArtista(ar);
-    }
-    
-    
-    public void modificarEspectador(DtEspectador es)
-    {
-        ManejadorUsuarios.modificarEspectador(es);
-    }
+//    
+//    public void modificarArtista(DtArtista ar)
+//    {
+//        ManejadorUsuarios.modificarArtista(ar);
+//    }
+//    
+//    
+//    public void modificarEspectador(DtEspectador es)
+//    {
+//        ManejadorUsuarios.modificarEspectador(es);
+//    }
 }

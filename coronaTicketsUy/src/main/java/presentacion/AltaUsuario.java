@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author tecnologo
@@ -67,6 +68,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         btCancelar.setText("Cancelar");
 
         btCrear.setText("Crear");
+        btCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCrearActionPerformed(evt);
+            }
+        });
 
         btImagen.setText("Imagen");
 
@@ -83,16 +89,12 @@ public class AltaUsuario extends javax.swing.JFrame {
         lbTitulo.setText("Elija el tipo de usuario");
 
         tfNombre.setText("jTextField1");
-        tfNombre.setEnabled(false);
 
         tfApellido.setText("jTextField3");
-        tfApellido.setEnabled(false);
 
         tfNickname.setText("jTextField4");
-        tfNickname.setEnabled(false);
 
         tfCorreoElectronico.setText("jTextField5");
-        tfCorreoElectronico.setEnabled(false);
 
         lbTipoUsuario.setText("Tipo de usuario:");
 
@@ -124,12 +126,8 @@ public class AltaUsuario extends javax.swing.JFrame {
         tfLinkWeb.setEnabled(false);
 
         cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        cbDia.setEnabled(false);
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-        cbMes.setEnabled(false);
-
-        cbAnio.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,6 +282,14 @@ public class AltaUsuario extends javax.swing.JFrame {
             lbTitulo.setText("Ingrese los datos del espectador");
         }
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
+
+    private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
+        // TODO add your handling code here:
+        if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Ya existe", "Mensaje en la barra de titulo", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btCrearActionPerformed
 
     /**
      * @param args the command line arguments
