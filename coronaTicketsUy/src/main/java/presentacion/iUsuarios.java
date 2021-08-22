@@ -13,13 +13,13 @@ import java.util.List;
  * @author tecnologo
  */
 public interface iUsuarios {
-    public List<DtUsuario> getDatos();
-    public List<DtEspectador> getEspectadores();
-    public List<DtArtista> getArtistas();
-    public Usuario getUsuario(String nickname);
+//    public List<DtUsuario> getDatos();
+//    public List<DtEspectador> getEspectadores();
+//    public List<DtArtista> getArtistas();
+//    public Usuario getUsuario(String nickname);
     public boolean existeUsuario(String nickname);
     public void altaArtista(DtArtista ar);
     public void altaEspectador(DtEspectador es);
-    public void modificarArtista(DtArtista ar);
-    public void modificarEspectador(DtEspectador es);
+//    public void modificarArtista(DtArtista ar);
+//    public void modificarEspectador(DtEspectador es);
 }
