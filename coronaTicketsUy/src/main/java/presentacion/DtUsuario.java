@@ -59,5 +59,10 @@ public abstract class DtUsuario
         return fechaNacimiento;
     }
 
-    
+    public DtUsuario getMyDt()
+    {
+        DtUsuario dt=null;
+        
+        return dt; 
+    }
 }

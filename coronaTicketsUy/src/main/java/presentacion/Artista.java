@@ -15,6 +15,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Artista.findAll", query = "SELECT a FROM Artista a"),
+    @NamedQuery(name = "Artista.findByNickname", query = "SELECT a FROM Artista a WHERE a.nickname = :nickname")})
 public class Artista extends Usuario {
 
     private static final long serialVersionUID = 1L;
@@ -123,4 +126,10 @@ public class Artista extends Usuario {
         return "presentacion.Artista[ id=" + id + " ]";
     }
     
+    
+    public DtUsuario getMyDt()
+    {
+        DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        return dt; 
+    }
 }

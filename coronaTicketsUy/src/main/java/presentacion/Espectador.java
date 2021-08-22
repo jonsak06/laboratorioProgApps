@@ -15,6 +15,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Espectador.findAll", query = "SELECT e FROM Espectador e"),
+    @NamedQuery(name = "Espectador.findByNickname", query = "SELECT e FROM Espectador e WHERE e.nickname = :nickname")})
 public class Espectador extends Usuario {
 
     private static final long serialVersionUID = 1L;
@@ -93,6 +96,12 @@ public class Espectador extends Usuario {
     @Override
     public String toString() {
         return "presentacion.Espectador[ id=" + id + " ]";
+    }
+    
+    public DtUsuario getMyDt()
+    {
+        DtEspectador dt = new DtEspectador(this.canjeables, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        return dt; 
     }
     
 }
