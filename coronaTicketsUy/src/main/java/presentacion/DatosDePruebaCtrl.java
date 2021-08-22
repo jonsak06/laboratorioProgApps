@@ -239,8 +239,14 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(e5);
         Espectaculo e6 = new Espectaculo("30 años","Espectáculo conmemorando los 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31,7,2020,al,tl);
         em.persist(e6);
-        ////////////////////////////////////////CARGA DE ESPECTACULOS TERMINADA//////////////////////////////////
         em.getTransaction().commit();
+        ////////////////////////////////////////CARGA DE ESPECTACULOS TERMINADA//////////////////////////////////
+
+        /////////////////////////////////CARGA DE FUNCIONES DE ESPECTACULOS/////////////////////////
+        em.getTransaction().begin();
+        
+        em.getTransaction().commit();
+        //////////////////////////////////////CARGA DE FUNCIONES TERMINADA////////////////////////
         em.close();
         emf.close();       
     }
