@@ -97,4 +97,9 @@ public class Registro implements Serializable {
         return "presentacion.Registro[ id=" + id + " ]";
     }
     
+    public DtRegistro getMyDt()
+    {
+        DtRegistro dt = new DtRegistro(this.id, this.fecha, this.costo, this.estado);
+        return dt;
+    }
 }

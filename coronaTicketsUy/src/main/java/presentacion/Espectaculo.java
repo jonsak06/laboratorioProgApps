@@ -185,4 +185,10 @@ public class Espectaculo implements Serializable {
         return "presentacion.Espectaculo[ id=" + id + " ]";
     }
     
+    public DtEspectaculo getMyDt()
+    {
+        DtEspectaculo dt = new DtEspectaculo(this.id, this.nombre, this.descripcion, this.duracion, this.cantidadMaximaEspectadores, this.cantidadMinimaEspectadores, this.url, this.costo, this.fechaDeRegistro);
+        return dt;
+    }
+    
 }

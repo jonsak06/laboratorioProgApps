@@ -82,4 +82,9 @@ public class Compra implements Serializable {
         return "presentacion.Compra[ id=" + id + " ]";
     }
     
+    public DtCompra getMyDt()
+    {
+        DtCompra dt = new DtCompra(this.id, this.fecha);
+        return dt;
+    }
 }

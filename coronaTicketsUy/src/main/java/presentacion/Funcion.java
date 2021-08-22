@@ -123,4 +123,9 @@ public class Funcion implements Serializable {
         return "presentacion.Funcion[ id=" + id + " ]";
     }
     
+    public DtFuncion getMyDt()
+    {
+        DtFuncion dt = new DtFuncion(this.id, this.nombre, this.horaInicio, this.fechaDeRegistro, this.fecha);
+        return dt;
+    }
 }

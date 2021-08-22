@@ -110,4 +110,10 @@ public class Plataforma implements Serializable {
         return "presentacion.Plataforma[ id=" + id + " ]";
     }
     
+    
+    public DtPlataforma getMyDt()
+    {
+        DtPlataforma dt = new DtPlataforma(this.id, this.url, this.nombre, this.descripcion);
+        return dt;
+    }
 }
