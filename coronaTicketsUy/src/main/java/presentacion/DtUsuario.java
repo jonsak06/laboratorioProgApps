@@ -21,6 +21,7 @@ public abstract class DtUsuario
     private String imagen;
     private Date fechaNacimiento;
 
+    public DtUsuario(){}
     public DtUsuario(Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         this.id = id;
         this.nombre = nombre;

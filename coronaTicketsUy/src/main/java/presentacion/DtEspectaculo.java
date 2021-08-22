@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author tecnologo
  */
+
 public class DtEspectaculo {
     private Long id;
     private String nombre;
@@ -22,6 +23,7 @@ public class DtEspectaculo {
     private float costo;
     private Date fechaDeRegistro;
 
+    public DtEspectaculo(){}
     public DtEspectaculo(Long id, String nombre, String descripcion, int duracion, int cantidadMaximaEspectadores, int cantidadMinimaEspectadores, String url, float costo, Date fechaDeRegistro) {
         this.id = id;
         this.nombre = nombre;

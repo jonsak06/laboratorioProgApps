@@ -8,6 +8,7 @@ package presentacion;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.*;
+import static presentacion.EstadoRegistro.*;
 
 /**
  *
@@ -27,6 +28,17 @@ public class Registro implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    public Registro(){}
+    
+    public Registro(Funcion f, Espectador e, int fd, int fm, int fy, float costo){
+        this.setFuncion(f);
+        this.setEspectador(e);
+        this.setCosto(costo);
+        java.sql.Date fecha = new java.sql.Date(fy-1899,fm-12,fd-31);
+        this.setFecha(fecha);
+        this.estado = PENDIENTE;
     }
     
 //    @Temporal(TemporalType.DATE)
@@ -71,7 +83,13 @@ public class Registro implements Serializable {
 //    @Column(name = "ESPECTADOR")
     @ManyToOne
     private Espectador espectador;
+    public Espectador getEspectador(){
+        return this.espectador;
+    }
     
+    public void setEspectador(Espectador e){
+        this.espectador = e;
+    }
     @Override
     public int hashCode() {
         int hash = 0;

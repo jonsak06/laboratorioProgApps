@@ -15,6 +15,7 @@ public class DtCompra {
     private Long id;
     private Date fecha;
 
+    public DtCompra(){}
     public DtCompra(Long id, Date fecha) {
         this.id = id;
         this.fecha = fecha;

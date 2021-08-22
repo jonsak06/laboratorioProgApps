@@ -14,6 +14,8 @@ public class DtPlataforma {
     private String url;
     private String nombre;
     private String descripcion;
+    
+    public DtPlataforma(){}
 
     public DtPlataforma(Long id, String url, String nombre, String descripcion) {
         this.id = id;

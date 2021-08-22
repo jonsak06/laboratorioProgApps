@@ -10,6 +10,7 @@ import java.util.List;
  *
  * @author tecnologo
  */
+
 public class DtArtista extends DtUsuario
 {
     private String linkWeb;
@@ -22,6 +23,8 @@ public class DtArtista extends DtUsuario
         this.biografia = biografia;
         this.descripcion = descripcion;
     }
+    
+    public DtArtista(){}
 
     public String getLinkWeb() {
         return linkWeb;

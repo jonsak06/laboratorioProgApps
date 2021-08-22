@@ -11,12 +11,16 @@ import java.util.List;
  *
  * @author tecnologo
  */
+
+
 public class DtFuncion {
     private Long id;
     private String nombre;
     private Timestamp horaInicio;
     private Date fechaDeRegistro;
     private Date fecha;
+    
+    public DtFuncion(){}
 
     public DtFuncion(Long id, String nombre, Timestamp horaInicio, Date fechaDeRegistro, Date fecha) {
         this.id = id;

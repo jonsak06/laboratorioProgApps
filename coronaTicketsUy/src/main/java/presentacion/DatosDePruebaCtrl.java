@@ -322,8 +322,19 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(f17);
         em.getTransaction().commit();
         //////////////////////////////////////CARGA DE FUNCIONES TERMINADA////////////////////////
+        
+        //////////////////////////////////////COMIENZO DE CARGA DE LOS REGISTROS////////////////
+        /////////////////////////////////////FI
+        System.out.print("CARGA TERMINADA");
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick",Artista.class);
+        consulta.setParameter("nickname", "vpeople");
+        List<Artista> a = consulta.getResultList();
+        em.getTransaction().commit();
+        System.out.print(a.size());
         em.close();
-        emf.close();       
+        emf.close();  
+        ////acceder desde mysql //// sudo mysql -h raspberrypijulio.ddns.net --port 8457 -u grupo1 -p   //pass grupo12021
     }
 
     public DatosDePruebaCtrl() {

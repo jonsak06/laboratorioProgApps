@@ -14,6 +14,8 @@ public class DtRegistro {
     private Date fecha;
     private float costo;
     private EstadoRegistro estado;
+    
+    public DtRegistro(){}
 
     public DtRegistro(Long id, Date fecha, float costo, EstadoRegistro estado) {
         this.id = id;

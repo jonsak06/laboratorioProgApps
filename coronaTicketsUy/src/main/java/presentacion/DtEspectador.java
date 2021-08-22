@@ -19,7 +19,7 @@ public class DtEspectador extends DtUsuario
         super(id, nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.canjeables = canjeables;
     }
-
+    public DtEspectador(){}
     public int getCanjeables() {
         return canjeables;
     }
