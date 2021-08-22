@@ -55,7 +55,8 @@ public class Espectador extends Usuario {
         this.setNickname(nick);
         this.setNombre(nombre);
     }
-
+    
+    
     
     @OneToMany(mappedBy = "espectador")
     private List<Registro> registros;
@@ -75,6 +76,7 @@ public class Espectador extends Usuario {
 
     public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+        this.canjeables=0;
     }
 
     public void addCompra(Compra c) {

@@ -77,16 +77,29 @@ public class ManejadorUsuarios
         Usuario us=null;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
-        List<Artista> listaArtistas = em.createNamedQuery("Artista.findByNickname").getResultList();
-        if(!listaArtistas.isEmpty())
+        
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
+        Espectador vp = null;
+        for(int i=0; i<listaEspectadores.size(); i++)
         {
-            us=listaArtistas.get(0);
+            vp=listaEspectadores.get(i);
+            if(vp.getNickname()==nickname)
+            {
+                us=vp;
+            }
         }
-        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findByNickname").getResultList();
-        if(!listaEspectadores.isEmpty())
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
+        Artista ar = null;
+        for(int i=0; i<listaArtistas.size(); i++)
         {
-            us=listaEspectadores.get(0);
+            ar=listaArtistas.get(i);
+            if(ar.getNickname()==nickname)
+            {
+                us=ar;
+            }
         }
+        
+        
         return us;
     }
     
@@ -95,18 +108,93 @@ public class ManejadorUsuarios
         boolean us=false;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
-        List<Artista> listaArtistas = em.createNamedQuery("Artista.findByNickname").getResultList();
-        if(!listaArtistas.isEmpty())
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
+        Espectador vp = null;
+        for(int i=0; i<listaEspectadores.size(); i++)
         {
-            us=true;
+            vp=listaEspectadores.get(i);
+            if(vp.getNickname()==nickname)
+            {
+                us=true;
+            }
         }
-        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findByNickname").getResultList();
-        if(!listaEspectadores.isEmpty())
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
+        Artista vc = null;
+        for(int i=0; i<listaArtistas.size(); i++)
         {
-            us=true;
+            vc=listaArtistas.get(i);
+            if(vp.getNickname()==nickname)
+            {
+                us=true;
+            }
         }
+        
         return us;
     }
     
+    public void altaArtista(DtArtista ar)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Artista vp = new Artista(ar.getNombre(), ar.getApellido(), ar.getCorreo(), ar.getNickname(), ar.getImagen(), ar.getFechaNacimiento(), ar.getDescripcion(), ar.getLinkWeb(), ar.getBiografia());
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(vp);
+    }
+    
+    public void altaEspectador(DtEspectador es)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Espectador vp = new Espectador(es.getNombre(), es.getApellido(), es.getCorreo(), es.getNickname(), es.getImagen(), es.getFechaNacimiento());
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(vp);
+    }
+    
+    public void modificarArtista(DtArtista ar)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
+        Artista vp = null;
+        for(int i=0; i<listaArtistas.size(); i++)
+        {
+            vp=listaArtistas.get(i);
+            if(vp.getNickname()==ar.getNickname())
+            {
+                vp.setApellido(ar.getApellido());
+                vp.setBiografia(ar.getBiografia());
+                vp.setCorreo(ar.getCorreo());
+                vp.setImagen(ar.getImagen());
+                vp.setNombre(ar.getNombre());
+                vp.setLinkWeb(ar.getLinkWeb());
+            }
+        }    
+    }
+    
+    
+    public void modificarEspectador(DtEspectador es)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
+        Espectador vp = null;
+        for(int i=0; i<listaEspectadores.size(); i++)
+        {
+            vp=listaEspectadores.get(i);
+            if(vp.getNickname()==es.getNickname())
+            {
+                vp.setApellido(es.getApellido());
+                vp.setCorreo(es.getCorreo());
+                vp.setImagen(es.getImagen());
+                vp.setNombre(es.getNombre());
+            }
+        }    
+    }
     
 }
