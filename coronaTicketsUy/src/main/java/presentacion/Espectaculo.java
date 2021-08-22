@@ -22,6 +22,23 @@ public class Espectaculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    public Espectaculo(){}
+    
+    public Espectaculo(String nombre, String descripcion, int duracion, int minEsp, int maxEsp, String url, float costo, int da, int ma, int ya, Artista a, Plataforma p){
+        this.setArtista(a);
+        this.setCantMaxEspectadores(maxEsp);
+        this.setCantMinEspectadores(minEsp);
+        this.setCosto(costo);
+        this.setDescrp(descripcion);
+        this.setDuracion(duracion);
+        java.sql.Date falta = new java.sql.Date(ya-1899,ma-12,da-31);
+        this.setFechaRegistro(falta);
+        this.setNombre(nombre);
+        this.setPlataforma(p);
+        this.setURL(url);
+        
+    }
+    
     @Column(name = "NOMBRE_ESP")
     private String nombre;
     public String getNombre(){
@@ -31,6 +48,7 @@ public class Espectaculo implements Serializable {
         this.nombre = nombre;           
     }
     
+    @Lob
     @Column(name = "DESCR_ESP")
     private String descripcion;
     public String getDescrp(){
@@ -41,11 +59,11 @@ public class Espectaculo implements Serializable {
     }
     
     @Column(name = "DURACION")
-    private String duracion;
-    public String getDuracion(){
+    private int duracion;
+    public int getDuracion(){
         return this.duracion;
     }
-    public void setDuracion(String dur){
+    public void setDuracion(int dur){
         this.duracion = dur;
     }
     

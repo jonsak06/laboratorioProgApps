@@ -179,6 +179,68 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(al);
         em.getTransaction().commit();
         ////////////////////////////FIN DE LA CARGA DE DATOS DE ARTISTAS///////////////////////////////
+        
+        ////////////////////////////CARGA DE ESPECTADORES//////////////////////////////////////////////
+        em.getTransaction().begin();
+        Espectador el = new Espectador("eleven11","Eleven","Ten","eleven11@gmail.com",31,12,1971);
+        em.persist(el);
+        Espectador co = new Espectador("costas","Gerardo","Costas","gcostas@gmail.com",15,11,1983);
+        em.persist(co);
+        Espectador ew = new Espectador("waston","Emma","Watson","e.watson@gmail.com",15,4,1990);
+        em.persist(ew);
+        Espectador gh = new Espectador("house","Gregory","House","greghouse@gmail.com",15,5,1959);
+        em.persist(gh);
+        Espectador sp = new Espectador("sergiop","Sergio","Puglia","puglia@alpanpan.com.uy",28,1,1959);
+        em.persist(sp);
+        Espectador ar = new Espectador("chino","Alvaro","Recoba","chino@trico.org.uy",17,3,1976);
+        em.persist(ar);
+        Espectador ap = new Espectador("tonyp","Antonio","Pacheco","eltony@manya.org.uy",14,2,1955);
+        em.persist(ap);
+        Espectador ml = new Espectador("lachiqui","Mirtha","Legrand","lachiqui@hotmail.com.ar",23,2,1927);
+        em.persist(ml);
+        Espectador cb = new Espectador("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",8,5,1937);
+        em.persist(cb);
+        em.getTransaction().commit();
+        ///////////////////////////////FIN DE LA CARGA DE ESPECTADORES/////////////////////////////////////
+        
+        //////////////////////////////CARGA DE PLATAFORMAS/////////////////////////////////
+        em.getTransaction().begin();
+        Plataforma in = new Plataforma("Instagram Live","Funcionalidad de la red social Instagram, con la que \n" +
+"los usuarios pueden transmitir vídeos en vivo.","https://www.instagram.com/liveoficial");
+        em.persist(in);
+        Plataforma fb = new Plataforma("Facebook Watch","Servicio de video bajo demanda operado por \n" +
+"Facebook.","https://www.facebook.com/watch/");
+        em.persist(fb);
+        Plataforma tl = new Plataforma("Twitter Live","Aplicación de Twitter para la transmisión de video \n" +
+"en directo (streaming).","https://twitter.com/");
+        em.persist(tl);
+        Plataforma yt = new Plataforma("Youtube","Sitio web de origen estadounidense dedicado a \n" +
+"compartir videos.","https://www.youtube.com/");
+        em.persist(yt);
+        em.getTransaction().commit();
+        //////////////////////////////FIN DE LA CARGA DE PLATAFORMAS////////////////////////
+        
+        /////////////////////////CARGA DE LOS ESPECTACULOS///////////////////////////////
+        em.getTransaction().begin();
+        Espectaculo e1 = new Espectaculo("Los Village Volvieron", "Espectáculo   de   retorno   de   los Village People", 90, 10, 800,"https://www.instagram.com/realvillagepeople/", 550, 31, 3, 2020,vp,in);
+        em.persist(e1);
+        Espectaculo e2 = new Espectaculo("Global Spirit","Espectáculo   donde   se   presenta el álbum Spirit.", 120,30,1300,"https://es-la.facebook.com/pechemode",750,20,4,2020,dm,fb);
+        em.persist(e2);
+        Espectaculo e3 = new Espectaculo("Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30,5,2020,cl,tl);
+        em.persist(e3);
+        Espectaculo e4 = new Espectaculo("Springsteenon Broadway","Springsteen  tocando  guitarra o\n" +
+"piano   y   relatando   anécdotas\n" +
+"recogidas   en   su   autobiografía\n" +
+"de 2016, Born to Run. ",100,100,1500,"https://www.youtube.com/BruceSpringsteen",980,7,6,2020,bs,yt);
+        em.persist(e4);
+        Espectaculo e5 = new Espectaculo("Bien de Familia","El   dúo   estará   presentando   sus\n" +
+"más   sonados   éxitos   y   también\n" +
+"nuevas canciones ", 150,10,500,"https://twitter.com/PimpinelaNet",500,8,7,2020,pi,tl);
+        em.persist(e5);
+        Espectaculo e6 = new Espectaculo("30 años","Espectáculo conmemorando los 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31,7,2020,al,tl);
+        em.persist(e6);
+        ////////////////////////////////////////CARGA DE ESPECTACULOS TERMINADA//////////////////////////////////
+        em.getTransaction().commit();
         em.close();
         emf.close();       
     }

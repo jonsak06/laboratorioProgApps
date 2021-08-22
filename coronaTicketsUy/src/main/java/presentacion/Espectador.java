@@ -47,6 +47,14 @@ public class Espectador extends Usuario {
     public Espectador() {
     }
 
+    public Espectador(String nick, String nombre, String apellido, String email, int dnac, int mnac, int ynac){
+        this.setApellido(apellido);
+        this.setCorreo(email);
+        java.sql.Date fnac = new java.sql.Date(ynac-1899,mnac-12,dnac-31);
+        this.setFechaNacimiento(fnac);
+        this.setNickname(nick);
+        this.setNombre(nombre);
+    }
 
     
     @OneToMany(mappedBy = "espectador")
