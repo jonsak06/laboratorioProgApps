@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -30,7 +31,9 @@ public class Funcion implements Serializable {
         this.id = id;
     }
     
-    public Funcion(){}
+    public Funcion(){
+        this.artistasInvitados = new ArrayList<Artista>();
+    }
     
     public Funcion(String nombre, int dinicio, int minicio, int yinicio, int hinicio, int mininicio, int dreg, int mreg, int yreg, Espectaculo e, List<Artista> artistasInvitados){
         
@@ -54,7 +57,7 @@ public class Funcion implements Serializable {
     
     public void addInvitado(Artista a){
         int i = this.artistasInvitados.size();
-        this.artistasInvitados.add(i+1,a);
+        this.artistasInvitados.add(a);
     }
     @Column(name = "NOMBRE_FUNC")
     private String nombre;
