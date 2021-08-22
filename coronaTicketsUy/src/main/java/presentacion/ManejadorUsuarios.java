@@ -15,6 +15,7 @@ import javax.persistence.*;
  */
 public class ManejadorUsuarios 
 {
+    //Get la lista de usuarios
     public List<DtUsuario> getDatos()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
