@@ -30,6 +30,22 @@ public class Funcion implements Serializable {
         this.id = id;
     }
     
+    public Funcion(){}
+    
+    public Funcion(String nombre, int dinicio, int minicio, int yinicio, int hinicio, int mininicio, int dreg, int mreg, int yreg, Espectaculo e, List<Artista> artistasInvitados){
+        
+        this.setNombre(nombre);
+        this.setEspectaculo(e);
+        java.sql.Timestamp fhinicio = new java.sql.Timestamp(yinicio-1899,minicio-12,dinicio-31,hinicio,mininicio,0,0);
+        this.setHoraInicio(fhinicio);
+        java.sql.Date f = new java.sql.Date(yinicio-1899,minicio-12,dinicio-31);
+        this.setFecha(f);
+        java.sql.Date freg = new java.sql.Date(yreg-1899,mreg-12,dreg-31);
+        this.setFechaRegistro(freg);
+        this.artistasInvitados = artistasInvitados;
+            
+    }
+    
     @ManyToMany
     private List<Artista> artistasInvitados;
     public List<Artista> getInvitados(){
