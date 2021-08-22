@@ -103,17 +103,36 @@ public class ManejadorUsuarios
 //        return us;
 //    }
     
-    public static boolean existeUsuario(String nickname)
+    public static boolean existeArtista(String nickname)
     {
         boolean us=false;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
         TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick",Artista.class);
-        consulta.setParameter("nickname", "vpeople");
+        consulta.setParameter("nickname", nickname);
         List<Artista> a = consulta.getResultList();
         em.getTransaction().commit();
         if(a.size()>0)
+        {
+            us=true;
+        }
+        em.close();
+        emf.close(); 
+        return us;
+    }
+    
+    public static boolean existeEspectador(String nickname)
+    {
+        boolean us=false;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        List<Espectador> e = consulta.getResultList();
+        em.getTransaction().commit();
+        if(e.size()>0)
         {
             us=true;
         }
