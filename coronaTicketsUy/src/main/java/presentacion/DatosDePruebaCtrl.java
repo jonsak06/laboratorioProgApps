@@ -452,6 +452,25 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.getTransaction().commit();
         
         /////////////////////////////////////FIN DE LA CARGA DE REGISTROS//////////////////////
+        
+        ////////////////////////////////INICIO DE CARGA DE PAQUETES///////////////////////
+        em.getTransaction().begin();
+        PaqueteDeEspectaculos p1 = new PaqueteDeEspectaculos("Paquete de Bandas","Paquete de Bandas Musicales",20,1,5,2020,31,7,2020,30,4,2020);
+        PaqueteDeEspectaculos p2 = new PaqueteDeEspectaculos("Paquete Solistas","Paquete de Solistas",30,1,8,2020,30,9,2020,15,7,2020);       
+        PaqueteDeEspectaculos p3 = new PaqueteDeEspectaculos("Paquete Latino","Paquete de espectaculos latinos",15,15,8,2020,15,11,2020,1,8,2020);
+        p1.addEspectaculo(e1);
+        p1.addEspectaculo(e2);
+        p2.addEspectaculo(e3);
+        p2.addEspectaculo(e4);
+        p3.addEspectaculo(e5);
+        p3.addEspectaculo(e6);
+        em.persist(p1);
+        em.persist(p2);
+        em.persist(p3);
+        em.getTransaction().commit();
+        /////////////////////////////////FIN DE CARGA DE PAQUETES/////////////////////////
+        
+       
         System.out.print("CARGA TERMINADA");
         em.getTransaction().begin();
         TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick",Artista.class);

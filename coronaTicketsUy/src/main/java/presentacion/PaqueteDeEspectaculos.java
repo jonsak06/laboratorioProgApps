@@ -7,6 +7,7 @@ package presentacion;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -30,6 +31,20 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.id = id;
     }
     
+    public PaqueteDeEspectaculos(String nombre, String descripcion, float descuento, int fid, int fim, int fiy, int ffd, int ffm, int ffy, int fad, int fam, int fay){
+        this.setNombre(nombre);
+        this.setDescrp(descripcion);
+        java.sql.Date finicio = new java.sql.Date(fiy-1899,fim-12,fid-31);
+        this.setFechaInicio(finicio);
+        java.sql.Date ffin = new java.sql.Date(ffy-1899,ffm-12,ffd-31);
+        this.setFechaFin(ffin);
+        java.sql.Date falta = new java.sql.Date(fay-1899,fam-12,fad-31);
+        this.setFechaAlta(falta);
+        this.espectaculos = new ArrayList<Espectaculo>();
+    }
+    
+    public PaqueteDeEspectaculos(){this.espectaculos = new ArrayList<Espectaculo>();}
+    
     @Column(name = "NOMBRE_PAQ")
     private String nombre;
     public String getNombre(){
@@ -39,7 +54,8 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.nombre = nombre;           
     }
     
-        @Column(name = "DESCR_PAQ")
+    @Lob
+    @Column(name = "DESCR_PAQ")
     private String descripcion;
     public String getDescrp(){
         return this.descripcion;
@@ -57,7 +73,16 @@ public class PaqueteDeEspectaculos implements Serializable {
     public void setFechaInicio(Date f){
         this.fechaInicio = f;
     }
-
+    
+    @Column
+    private Date fechaAlta;
+    public Date getFechaAlta(){
+        return this.fechaAlta;
+    }
+    public void setFechaAlta(Date f){
+        this.fechaAlta = f;
+    }
+    
 //    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_FIN_PAQ")
     private Date fechaFin;
@@ -83,8 +108,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         return this.espectaculos;
     }
     public void addEspectaculo(Espectaculo e){
-        int i = this.espectaculos.size();
-        this.espectaculos.add(i+1, e);
+        this.espectaculos.add(e);
     }
     @Override
     public int hashCode() {
