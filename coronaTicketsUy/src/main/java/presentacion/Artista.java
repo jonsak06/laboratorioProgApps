@@ -127,7 +127,7 @@ public class Artista extends Usuario {
     }
     
     
-    public DtUsuario getMyDt()
+    public DtArtista getMyDt()
     {
         DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
         return dt; 

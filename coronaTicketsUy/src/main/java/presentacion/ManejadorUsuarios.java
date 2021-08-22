@@ -40,5 +40,73 @@ public class ManejadorUsuarios
         return lista; 
     }
            
+    public List<DtEspectador> getEspectadores()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
+        List<DtEspectador> lista = new ArrayList<DtEspectador>();
+        
+        for(int i=0; i<listaEspectadores.size(); i++)
+        {
+            Espectador hasCurrent = listaEspectadores.get(i);
+            lista.add(hasCurrent.getMyDt());
+        }
+        
+        return lista; 
+    }
+    
+    public List<DtArtista> getArtistas()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
+        List<DtArtista> lista = new ArrayList<DtArtista>();
+        
+        for(int i=0; i<listaArtistas.size(); i++)
+        {
+            Artista hasCurrent = listaArtistas.get(i);
+            lista.add(hasCurrent.getMyDt());
+        }
+        
+        return lista; 
+    }
+    
+    public Usuario getUsuario(String nickname)
+    {
+        Usuario us=null;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findByNickname").getResultList();
+        if(!listaArtistas.isEmpty())
+        {
+            us=listaArtistas.get(0);
+        }
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findByNickname").getResultList();
+        if(!listaEspectadores.isEmpty())
+        {
+            us=listaEspectadores.get(0);
+        }
+        return us;
+    }
+    
+    public boolean existeUsuario(String nickname)
+    {
+        boolean us=false;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Artista> listaArtistas = em.createNamedQuery("Artista.findByNickname").getResultList();
+        if(!listaArtistas.isEmpty())
+        {
+            us=true;
+        }
+        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findByNickname").getResultList();
+        if(!listaEspectadores.isEmpty())
+        {
+            us=true;
+        }
+        return us;
+    }
+    
     
 }
