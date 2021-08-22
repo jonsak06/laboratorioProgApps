@@ -19,4 +19,9 @@ public class Fabrica {
         return d;
     }
     
+    public static iUsuarios getCrlUsuarios(){
+        iUsuarios u = new crlUsuarios();
+        return u;
+    }
+    
 }

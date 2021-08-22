@@ -111,4 +111,9 @@ public class PaqueteDeEspectaculos implements Serializable {
         return "presentacion.PaqueteDeEspectaculos[ id=" + id + " ]";
     }
     
+    public DtPaqueteDeEspectaculos getMyDt()
+    {
+        DtPaqueteDeEspectaculos dt = new DtPaqueteDeEspectaculos(this.id, this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.descuento);
+        return dt;
+    }
 }

@@ -15,6 +15,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Espectador.findAll", query = "SELECT e FROM Espectador e"),
+    @NamedQuery(name = "Espectador.findByNickname", query = "SELECT e FROM Espectador e WHERE e.nickname = :nickname")})
 public class Espectador extends Usuario {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +55,8 @@ public class Espectador extends Usuario {
         this.setNickname(nick);
         this.setNombre(nombre);
     }
-
+    
+    
     
     @OneToMany(mappedBy = "espectador")
     private List<Registro> registros;
@@ -72,6 +76,7 @@ public class Espectador extends Usuario {
 
     public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+        this.canjeables=0;
     }
 
     public void addCompra(Compra c) {
@@ -101,6 +106,12 @@ public class Espectador extends Usuario {
     @Override
     public String toString() {
         return "presentacion.Espectador[ id=" + id + " ]";
+    }
+    
+    public DtEspectador getMyDt()
+    {
+        DtEspectador dt = new DtEspectador(this.canjeables, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        return dt; 
     }
     
 }
