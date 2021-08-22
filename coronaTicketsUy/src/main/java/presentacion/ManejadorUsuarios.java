@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class ManejadorUsuarios 
 {
     //Get la lista de usuarios
-    public List<DtUsuario> getDatos()
+    public static List<DtUsuario> getDatos()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -40,7 +40,7 @@ public class ManejadorUsuarios
         return lista; 
     }
            
-    public List<DtEspectador> getEspectadores()
+    public static List<DtEspectador> getEspectadores()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -56,7 +56,7 @@ public class ManejadorUsuarios
         return lista; 
     }
     
-    public List<DtArtista> getArtistas()
+    public static List<DtArtista> getArtistas()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -72,7 +72,7 @@ public class ManejadorUsuarios
         return lista; 
     }
     
-    public Usuario getUsuario(String nickname)
+    public static Usuario getUsuario(String nickname)
     {
         Usuario us=null;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
@@ -103,7 +103,7 @@ public class ManejadorUsuarios
         return us;
     }
     
-    public boolean existeUsuario(String nickname)
+    public static boolean existeUsuario(String nickname)
     {
         boolean us=false;
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
@@ -132,7 +132,7 @@ public class ManejadorUsuarios
         return us;
     }
     
-    public void altaArtista(DtArtista ar)
+    public static void altaArtista(DtArtista ar)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -143,7 +143,7 @@ public class ManejadorUsuarios
         em.persist(vp);
     }
     
-    public void altaEspectador(DtEspectador es)
+    public static void altaEspectador(DtEspectador es)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -154,7 +154,7 @@ public class ManejadorUsuarios
         em.persist(vp);
     }
     
-    public void modificarArtista(DtArtista ar)
+    public static void modificarArtista(DtArtista ar)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
@@ -177,7 +177,7 @@ public class ManejadorUsuarios
     }
     
     
-    public void modificarEspectador(DtEspectador es)
+    public static void modificarEspectador(DtEspectador es)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
