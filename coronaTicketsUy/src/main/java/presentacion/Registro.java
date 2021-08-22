@@ -60,6 +60,18 @@ public class Registro implements Serializable {
         this.costo = c;
     }
     
+    
+    @OneToMany
+    private List<Registro> canjeadoPor;
+    public List<Registro> getCanjeados(){
+        return this.canjeadoPor;
+    }
+    public void setCanjeados(List<Registro> r){
+    
+        this.canjeadoPor = r;
+        
+    }
+    
     @Column(name = "ESTADO_REGISTRO")
     @Enumerated(value = EnumType.STRING)
     private EstadoRegistro estado;
