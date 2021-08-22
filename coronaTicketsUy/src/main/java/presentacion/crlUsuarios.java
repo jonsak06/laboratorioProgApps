@@ -38,7 +38,19 @@ public class crlUsuarios implements iUsuarios
 //    
     public boolean existeUsuario(String nickname)
     {
-        return ManejadorUsuarios.existeUsuario(nickname);
+        if(ManejadorUsuarios.existeArtista(nickname))
+        {
+            return true;
+        }
+        else if(ManejadorUsuarios.existeEspectador(nickname))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
     
     public void altaArtista(DtArtista ar)
