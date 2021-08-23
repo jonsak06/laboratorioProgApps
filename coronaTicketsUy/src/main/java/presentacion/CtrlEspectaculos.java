@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,5 +19,10 @@ public class CtrlEspectaculos implements IEspectaculos {
     public List<DtPlataforma> listarPlataformas(){
         return ManPlataformas.getDatos();
     }
+    
+//    public List<DtEspectaculo> listarEspectaculos(String plataforma){
+//        List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
+//        
+//    }
     
 }

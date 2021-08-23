@@ -90,6 +90,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         jLabel2.setText("Seleccione una Plataforma");
 
         listadoDePlataformas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        listadoDePlataformas.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                listadoDePlataformasItemStateChanged(evt);
+            }
+        });
         listadoDePlataformas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listadoDePlataformasActionPerformed(evt);
@@ -237,6 +242,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void listadoDePlataformasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDePlataformasItemStateChanged
+        // TODO add your handling code here:
+        String seleccion = listadoDePlataformas.getSelectedItem().toString();
+    }//GEN-LAST:event_listadoDePlataformasItemStateChanged
 
     /**
      * @param args the command line arguments

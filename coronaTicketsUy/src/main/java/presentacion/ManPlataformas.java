@@ -35,4 +35,18 @@ public class ManPlataformas {
         return dtP;
         }
     
+   public static Plataforma getPlataforma(String nombrePlataforma){
+       EntityManagerFactory emf = Persistence.createEntityManagerFactory("PLATAFORMA");
+       EntityManager em = emf.createEntityManager();
+       em.getTransaction().begin();
+       TypedQuery<Plataforma> consulta = em.createNamedQuery("Plataforma.findByNombre",Plataforma.class);
+       consulta.setParameter("nombre", nombrePlataforma);
+       List<Plataforma> lp = consulta.getResultList();
+       em.getTransaction().commit();
+       em.close();
+       emf.close();
+       return lp.get(0);
+       
+   }
+    
 }
