@@ -60,7 +60,7 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="cbAnioEspectaculo" min="-2" pref="52" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="tfNombre" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="tbNombre" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="cbDiaAlta" min="-2" pref="52" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
@@ -121,7 +121,7 @@
               <Component id="lbIngreseDatos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="tfNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="tbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbNombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -254,9 +254,9 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfNombre">
+    <Component class="javax.swing.JTextField" name="tbNombre">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNombreActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbNombreActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btCancelar">
@@ -277,7 +277,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alta Funcion"/>
+        <Property name="text" type="java.lang.String" value="Alta Espectaculo"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbListaPlataformas">

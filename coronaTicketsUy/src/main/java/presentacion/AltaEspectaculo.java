@@ -8,6 +8,7 @@ package presentacion;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,22 +22,21 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     public AltaEspectaculo() {
         initComponents();
         List<String> lPlataformas = new ArrayList<String>();
-        lPlataformas.add("--Seleccione una--");
-        IEspectaculos iEspectaculos = Fabrica.getCtrlEspectaculos();
-        List<DtPlataforma> dtPlataforma = iEspectaculos.listarPlataformas();
+        lPlataformas.add("--Seleccione Plataforma--");
+        Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataforma = Fabrica.getCtrlEspectaculos().listarPlataformas();
         for (DtPlataforma iterator :dtPlataforma){
             lPlataformas.add(iterator.getNombre());
         }
         this.cbListaPlataformas.setModel(new DefaultComboBoxModel(lPlataformas.toArray()));
         
-//        List<String> l = new ArrayList<String>();
-//        l.add("--Seleccione una--");
-//        IEspectaculos ie = Fabrica.getCtrlEspectaculos();
-//        List<DtPlataforma> dtP = ie.listarPlataformas();
-//        for (DtPlataforma i :dtP){
-//            l.add(i.getNombre());
-//        }
-//        this.cbListaPlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
+        List<String> lArtistas = new ArrayList<String>();
+        lArtistas.add("--Seleccione Artista--");
+        List<DtArtista> dtArtista = Fabrica.getCrlUsuarios().getArtistas();
+        for (DtArtista iterator :dtArtista){
+            lArtistas.add(iterator.getNickname());
+        }
+        this.cbListaArtista.setModel(new DefaultComboBoxModel(lArtistas.toArray()));
     }
 
     /**
@@ -56,7 +56,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         cbMesEspectaculo = new javax.swing.JComboBox<>();
         lbListaArtistas = new javax.swing.JLabel();
         cbAnioEspectaculo = new javax.swing.JComboBox<>();
-        tfNombre = new javax.swing.JTextField();
+        tbNombre = new javax.swing.JTextField();
         btCancelar = new javax.swing.JButton();
         btConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -108,9 +108,9 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             }
         });
 
-        tfNombre.addActionListener(new java.awt.event.ActionListener() {
+        tbNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNombreActionPerformed(evt);
+                tbNombreActionPerformed(evt);
             }
         });
 
@@ -128,7 +128,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Alta Funcion");
+        jLabel2.setText("Alta Espectaculo");
 
         lbListaPlataformas.setText("Listar Plataformas");
 
@@ -213,7 +213,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                                                 .addComponent(cbMesEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(cbAnioEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(cbDiaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,7 +257,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                 .addComponent(lbIngreseDatos)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbNombre))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -320,16 +320,25 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbAnioEspectaculoActionPerformed
 
-    private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
+    private void tbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfNombreActionPerformed
+    }//GEN-LAST:event_tbNombreActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
-        // TODO add your handling code here:
+            // TODO add your handling code here:    
+        if(Fabrica.getCtrlEspectaculos().existeEspectaculo(tbNombre.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Ya existe", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+        }
     }//GEN-LAST:event_btConfirmarActionPerformed
 
     private void tbExpectadoresMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbExpectadoresMinActionPerformed
@@ -415,6 +424,6 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JTextField tbDuracion;
     private javax.swing.JTextField tbExpectadoresMax;
     private javax.swing.JTextField tbExpectadoresMin;
-    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tbNombre;
     // End of variables declaration//GEN-END:variables
 }

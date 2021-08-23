@@ -28,5 +28,7 @@ public class CtrlEspectaculos implements IEspectaculos {
 //        List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
 //        
 //    }
-    
+    public boolean existeEspectaculo(String nombreEspectaculo){
+        return ManEspectaculo.existeEspectaculo(nombreEspectaculo);
+    }
 }
