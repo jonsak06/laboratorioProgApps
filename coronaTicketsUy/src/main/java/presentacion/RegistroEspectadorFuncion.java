@@ -5,6 +5,10 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author jsmat
@@ -16,6 +20,14 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
      */
     public RegistroEspectadorFuncion() {
         initComponents();
+        List<String> l = new ArrayList<String>();
+        l.add("--Seleccione una--");
+        IEspectaculos ie = Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtP = ie.listarPlataformas();
+        for (DtPlataforma i :dtP){
+            l.add(i.getNombre());
+        }
+        this.listadoDePlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
     }
 
     /**
