@@ -144,8 +144,10 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         jLabel6.setText("Hora inicio");
 
+        CBF1Dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", " " }));
         CBF1Dia.setEnabled(false);
 
+        CBF1Mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12", " " }));
         CBF1Mes.setEnabled(false);
         CBF1Mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,8 +180,10 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         jLabel8.setText("Fecha de Alta");
 
+        CBFADia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         CBFADia.setEnabled(false);
 
+        CBFAMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12" }));
         CBFAMes.setEnabled(false);
 
         jLabel9.setText("Ingrese datos de la funcion:");
