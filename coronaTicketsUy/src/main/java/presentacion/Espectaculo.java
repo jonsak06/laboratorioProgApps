@@ -15,6 +15,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Espectaculo.findAll", query = "SELECT e FROM Espectaculo e"),
+    @NamedQuery(name = "Espectaculo.findByNombre", query = "SELECT e FROM Espectaculo e WHERE e.nombre = :nombre")})
 public class Espectaculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
