@@ -40,37 +40,43 @@ public class ManejadorUsuarios
 //        return lista; 
 //    }
 //           
-//    public static List<DtEspectador> getEspectadores()
-//    {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-//        EntityManager em = emf.createEntityManager();
-//        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
-//        List<DtEspectador> lista = new ArrayList<DtEspectador>();
-//        
-//        for(int i=0; i<listaEspectadores.size(); i++)
-//        {
-//            Espectador hasCurrent = listaEspectadores.get(i);
-//            lista.add(hasCurrent.getMyDt());
-//        }
-//        
-//        return lista; 
-//    }
+    public static List<DtEspectador> getEspectadores()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("Espectador.findAll",Espectador.class);
+        List<Espectador> e = consulta.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtEspectador> dtE = new ArrayList<DtEspectador>();
+        for (Espectador i :e){
+            DtEspectador esteDt = i.getMyDt();
+            dtE.add(esteDt);
+        }
+        return dtE; 
+    }
 //    
-//    public static List<DtArtista> getArtistas()
-//    {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-//        EntityManager em = emf.createEntityManager();
-//        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
-//        List<DtArtista> lista = new ArrayList<DtArtista>();
-//        
-//        for(int i=0; i<listaArtistas.size(); i++)
-//        {
-//            Artista hasCurrent = listaArtistas.get(i);
-//            lista.add(hasCurrent.getMyDt());
-//        }
-//        
-//        return lista; 
-//    }
+    public static List<DtArtista> getArtistas()
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("Artista.findAll",Artista.class);
+        List<Artista> a = consulta.getResultList();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtArtista> dtA = new ArrayList<DtArtista>();
+        for (Artista i :a){
+            DtArtista esteDt = i.getMyDt();
+            dtA.add(esteDt);
+        }
+        return dtA;
+    }
+        
+    
 //    
 //    public static Usuario getUsuario(String nickname)
 //    {
@@ -151,6 +157,8 @@ public class ManejadorUsuarios
         em.getTransaction().begin();
         
         em.persist(vp);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
         em.close();
         emf.close(); 
     }
@@ -164,6 +172,8 @@ public class ManejadorUsuarios
         em.getTransaction().commit();
         em.getTransaction().begin();
         em.persist(vp);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
         em.close();
         emf.close(); 
     }

@@ -20,16 +20,16 @@ public class crlUsuarios implements iUsuarios
 //        return ManejadorUsuarios.getDatos(); 
 //    }
 //           
-//    public List<DtEspectador> getEspectadores()
-//    {
-//        
-//        return ManejadorUsuarios.getEspectadores(); 
-//    }
-//    
-//    public List<DtArtista> getArtistas()
-//    {
-//        return ManejadorUsuarios.getArtistas(); 
-//    }
+    public List<DtEspectador> getEspectadores()
+    {
+        
+        return ManejadorUsuarios.getEspectadores(); 
+    }
+    
+    public List<DtArtista> getArtistas()
+    {
+        return ManejadorUsuarios.getArtistas(); 
+    }
 //    
 //    public Usuario getUsuario(String nickname)
 //    {

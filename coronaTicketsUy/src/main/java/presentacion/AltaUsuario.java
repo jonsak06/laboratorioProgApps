@@ -6,6 +6,9 @@
 package presentacion;
 
 import javax.swing.JOptionPane;
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
 /**
  *
  * @author tecnologo
@@ -287,7 +290,25 @@ public class AltaUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Ya existe", "Mensaje en la barra de titulo", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya existe", "Error", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
+            {
+                Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
+                long id = 0;
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", fecha);
+                Fabrica.getCrlUsuarios().altaEspectador(es);
+            }
+            
+            if("Artista"==cbTipoUsuario.getSelectedItem().toString())
+            {
+                Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
+                long id = 0;
+                DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBrebeBiografia.getText(), tfDescripcionGen.getText(), id, tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", fecha);
+                Fabrica.getCrlUsuarios().altaArtista(ar);
+            }
         }
     }//GEN-LAST:event_btCrearActionPerformed
 

@@ -5,6 +5,11 @@
  */
 package presentacion;
 
+import java.util.*;
+import java.io.Serializable;
+import java.sql.Date;
+import java.util.List;
+
 /**
  *
  * @author tecnologo
@@ -267,7 +272,12 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfBrebeBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
             lbTitulo.setText("Ingrese los datos del artista");
-
+            cbUsuario.removeAllItems();
+            List<DtArtista> listaAr=Fabrica.getCrlUsuarios().getArtistas();
+            for (int i=0; i<listaAr.size(); i++)
+            {
+                cbUsuario.addItem(listaAr.get(i).getNickname());
+            }
         }
 
         if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
@@ -283,6 +293,12 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfBrebeBiografia.setEnabled(false);
             tfLinkWeb.setEnabled(false);
             lbTitulo.setText("Ingrese los datos del espectador");
+            cbUsuario.removeAllItems();
+            List<DtEspectador> listaEs=Fabrica.getCrlUsuarios().getEspectadores();
+            for (int i=0; i<listaEs.size(); i++)
+            {
+                cbUsuario.addItem(listaEs.get(i).getNickname());
+            }
         }
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
 

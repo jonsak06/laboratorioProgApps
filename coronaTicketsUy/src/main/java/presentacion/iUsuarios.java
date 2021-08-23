@@ -15,8 +15,8 @@ import java.util.List;
 
 public interface iUsuarios {
 //    public List<DtUsuario> getDatos();
-//    public List<DtEspectador> getEspectadores();
-//    public List<DtArtista> getArtistas();
+    public List<DtEspectador> getEspectadores();
+    public List<DtArtista> getArtistas();
 //    public Usuario getUsuario(String nickname);
     boolean existeUsuario(String nickname);
     void altaArtista(DtArtista ar);
