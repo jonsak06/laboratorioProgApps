@@ -15,7 +15,9 @@ import java.util.List;
  * @author tecnologo
  */
 public class ModificarUsuario extends javax.swing.JFrame {
-
+    private List<DtEspectador> espectadores=new ArrayList<DtEspectador>();
+    private List<DtArtista> artistas=new ArrayList<DtArtista>();
+    
     /**
      * Creates new form ModificarUsuario
      */
@@ -31,6 +33,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfDescripcionGen.setEnabled(true);
         tfBrebeBiografia.setEnabled(true);
         tfLinkWeb.setEnabled(true);
+        espectadores=Fabrica.getCrlUsuarios().getEspectadores();
+        for (int i=0; i<espectadores.size(); i++)
+        {
+            cbUsuario.addItem(espectadores.get(i).getNickname());
+        }
     }
 
     /**
@@ -263,7 +270,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfNickname.setEnabled(true);
             tfCorreoElectronico.setEnabled(true);
             cbDia.setEnabled(true);
             cbMes.setEnabled(true);
@@ -273,10 +279,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfLinkWeb.setEnabled(true);
             lbTitulo.setText("Ingrese los datos del artista");
             cbUsuario.removeAllItems();
-            List<DtArtista> listaAr=Fabrica.getCrlUsuarios().getArtistas();
-            for (int i=0; i<listaAr.size(); i++)
+            artistas=Fabrica.getCrlUsuarios().getArtistas();
+            for (int i=0; i<artistas.size(); i++)
             {
-                cbUsuario.addItem(listaAr.get(i).getNickname());
+                cbUsuario.addItem(artistas.get(i).getNickname());
             }
         }
 
@@ -284,7 +290,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfNickname.setEnabled(true);
             tfCorreoElectronico.setEnabled(true);
             cbDia.setEnabled(true);
             cbMes.setEnabled(true);
@@ -294,10 +299,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfLinkWeb.setEnabled(false);
             lbTitulo.setText("Ingrese los datos del espectador");
             cbUsuario.removeAllItems();
-            List<DtEspectador> listaEs=Fabrica.getCrlUsuarios().getEspectadores();
-            for (int i=0; i<listaEs.size(); i++)
+            espectadores=Fabrica.getCrlUsuarios().getEspectadores();
+            for (int i=0; i<espectadores.size(); i++)
             {
-                cbUsuario.addItem(listaEs.get(i).getNickname());
+                cbUsuario.addItem(espectadores.get(i).getNickname());
             }
         }
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
