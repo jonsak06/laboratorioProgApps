@@ -48,5 +48,25 @@ public class ManPlataformas {
        return lp.get(0);
        
    }
-    
+        
+         public static List<DtEspectaculo> getEspectaculos(String nombrePlataforma){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Plataforma> consulta = em.createNamedQuery("Plataforma.findByNombre",Plataforma.class);
+        consulta.setParameter("nombre", nombrePlataforma);
+        List<Plataforma> p = consulta.getResultList();
+        Plataforma plat = p.get(0);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
+        for (int i=0;i<plat.getEspectaculos().size();i++){
+            DtEspectaculo esteDt = plat.getEspectaculos().get(i).getMyDt();
+            dtE.add(esteDt);
+        }
+        return dtE;
+        }
+   
+   
 }

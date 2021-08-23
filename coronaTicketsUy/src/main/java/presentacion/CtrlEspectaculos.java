@@ -20,6 +20,10 @@ public class CtrlEspectaculos implements IEspectaculos {
         return ManPlataformas.getDatos();
     }
     
+       public List<DtEspectaculo> listarEspectaculos(String nombre){
+        return ManPlataformas.getEspectaculos(nombre);
+    }
+    
 //    public List<DtEspectaculo> listarEspectaculos(String plataforma){
 //        List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
 //        

@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package presentacion;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -17,6 +20,28 @@ public class AltaFuncion extends javax.swing.JFrame {
     public AltaFuncion() {
         initComponents();
         //Aqui voy a cargar las plataformas
+        
+         List<String> li= new ArrayList<String>();
+        li.add("--Seleccione una--");
+        IEspectaculos iesp = Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataformas = iesp.listarPlataformas();
+         for (DtPlataforma i :dtPlataformas){
+             li.add(i.getNombre());
+         }
+        this.ComboBoxPlat.setModel(new DefaultComboBoxModel(li.toArray()));
+        
+        List<String> liart= new ArrayList<String>();
+        liart.add("--Artista--");
+         
+        List<DtArtista> dtArtistas=Fabrica.getCrlUsuarios().getArtistas();
+         for (DtArtista i :dtArtistas){
+             liart.add(i.getNombre());
+         }
+        this.CBArtInvi.setModel(new DefaultComboBoxModel(liart.toArray()));
+        
+        
+        
+        
         int i=1900;
         while(i<2100)
         {
@@ -80,6 +105,11 @@ public class AltaFuncion extends javax.swing.JFrame {
         });
 
         ComboBoxEsp.setEnabled(false);
+        ComboBoxEsp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboBoxEspItemStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Listar Espectaculos");
 
@@ -135,6 +165,11 @@ public class AltaFuncion extends javax.swing.JFrame {
         CBHMin.setEnabled(false);
 
         CBArtInvi.setEnabled(false);
+        CBArtInvi.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBArtInviItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Confirmar artistas invitados");
 
@@ -286,15 +321,18 @@ public class AltaFuncion extends javax.swing.JFrame {
 
     private void ComboBoxPlatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxPlatItemStateChanged
 
-        ComboBoxEsp.setEnabled(true);
-        TextoNombre.setEnabled(true);
-        CBF1Dia.setEnabled(true);
-        CBF1Mes.setEnabled(true);
-        CBF1Anio.setEnabled(true);
-        CBArtInvi.setEnabled(true);
-        CBFADia.setEnabled(true);
-        CBFAMes.setEnabled(true);
-        CBFAAnio.setEnabled(true);
+      ComboBoxEsp.setEnabled(true);
+        
+        
+        List<String> liesp= new ArrayList<String>();
+        liesp.add("--Seleccione un--");
+        IEspectaculos ifu = Fabrica.getCtrlEspectaculos();
+        List<DtEspectaculo> dtEspectaculos = ifu.listarEspectaculos(ComboBoxPlat.getSelectedItem().toString());
+         for (DtEspectaculo i :dtEspectaculos){
+             liesp.add(i.getNombre());
+         }
+        this.ComboBoxEsp.setModel(new DefaultComboBoxModel(liesp.toArray()));
+
        
     }//GEN-LAST:event_ComboBoxPlatItemStateChanged
 
@@ -309,6 +347,26 @@ public class AltaFuncion extends javax.swing.JFrame {
     private void TextoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextoNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextoNombreActionPerformed
+
+    private void ComboBoxEspItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboBoxEspItemStateChanged
+        // TODO add your handling code here:
+        TextoNombre.setEnabled(true);
+        CBF1Dia.setEnabled(true);
+        CBF1Mes.setEnabled(true);
+        CBF1Anio.setEnabled(true);
+        CBHHora.setEnabled(true);
+        CBHMin.setEnabled(true);
+        CBArtInvi.setEnabled(true);
+        CBFADia.setEnabled(true);
+        CBFAMes.setEnabled(true);
+        CBFAAnio.setEnabled(true);
+        
+    }//GEN-LAST:event_ComboBoxEspItemStateChanged
+
+    private void CBArtInviItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBArtInviItemStateChanged
+        // TODO add your handling code here:
+        BConfirArtistas.setEnabled(true);
+    }//GEN-LAST:event_CBArtInviItemStateChanged
 
     /**
      * @param args the command line arguments

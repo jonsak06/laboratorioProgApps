@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface IEspectaculos {
     List<DtPlataforma> listarPlataformas();
+    List<DtEspectaculo> listarEspectaculos(String nombre);
 }
