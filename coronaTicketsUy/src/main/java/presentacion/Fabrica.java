@@ -24,4 +24,9 @@ public class Fabrica {
         return u;
     }
     
+    public static IEspectaculos getCtrlEspectaculos(){
+        IEspectaculos e = new CtrlEspectaculos();
+        return e;
+    }
+    
 }

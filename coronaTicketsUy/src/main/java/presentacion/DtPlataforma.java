@@ -18,9 +18,25 @@ public class DtPlataforma {
     public DtPlataforma(){}
 
     public DtPlataforma(Long id, String url, String nombre, String descripcion) {
+       this.setDescripcion(descripcion);
+       this.setId(id);
+       this.setNombre(nombre);
+       this.setUrl(url);
+    }
+
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setUrl(String url) {
         this.url = url;
+    }
+
+    public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 

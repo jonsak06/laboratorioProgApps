@@ -208,6 +208,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void listadoDePlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoDePlataformasActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_listadoDePlataformasActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
