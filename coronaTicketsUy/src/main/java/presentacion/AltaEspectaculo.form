@@ -41,7 +41,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbCosto" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lbFecha" min="-2" max="-2" attributes="0"/>
@@ -68,8 +68,8 @@
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Component id="cbAnioAlta" min="-2" pref="52" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="jTextField6" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
-                                          <Component id="jTextField2" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="tbDescripcion" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                          <Component id="tbDuracion" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -89,16 +89,13 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField4" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="134" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="tbCosto" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="tbExpectadoresMin" min="-2" pref="134" max="-2" attributes="0"/>
+                                  <Component id="tbExpectadoresMax" alignment="0" min="-2" pref="134" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="lbIngreseDatos" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lbIngreseDatos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -150,27 +147,27 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tbDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tbDuracion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="16" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lbExpecatdoresMinimos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tbExpectadoresMin" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tbExpectadoresMax" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbExpectadoresMaximo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbCosto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tbCosto" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
@@ -288,7 +285,7 @@
         <Property name="text" type="java.lang.String" value="Listar Plataformas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="tbDuracion">
     </Component>
     <Component class="javax.swing.JLabel" name="lbDuracion">
       <Properties>
@@ -300,14 +297,14 @@
         <Property name="text" type="java.lang.String" value="Expectadores Minimos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="tbExpectadoresMin">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbExpectadoresMinActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="tbCosto">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbCostoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbDiaAlta">
@@ -351,17 +348,17 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
+    <Component class="javax.swing.JLabel" name="lbCosto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Costo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="tbExpectadoresMax">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbExpectadoresMaxActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="tbDescripcion">
     </Component>
     <Component class="javax.swing.JLabel" name="lbDescripcion">
       <Properties>

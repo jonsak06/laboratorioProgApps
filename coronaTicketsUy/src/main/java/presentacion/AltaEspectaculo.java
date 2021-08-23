@@ -5,6 +5,10 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author tecnologo
@@ -16,6 +20,23 @@ public class AltaEspectaculo extends javax.swing.JFrame {
      */
     public AltaEspectaculo() {
         initComponents();
+        List<String> lPlataformas = new ArrayList<String>();
+        lPlataformas.add("--Seleccione una--");
+        IEspectaculos iEspectaculos = Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataforma = iEspectaculos.listarPlataformas();
+        for (DtPlataforma iterator :dtPlataforma){
+            lPlataformas.add(iterator.getNombre());
+        }
+        this.cbListaPlataformas.setModel(new DefaultComboBoxModel(lPlataformas.toArray()));
+        
+//        List<String> l = new ArrayList<String>();
+//        l.add("--Seleccione una--");
+//        IEspectaculos ie = Fabrica.getCtrlEspectaculos();
+//        List<DtPlataforma> dtP = ie.listarPlataformas();
+//        for (DtPlataforma i :dtP){
+//            l.add(i.getNombre());
+//        }
+//        this.cbListaPlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
     }
 
     /**
@@ -40,18 +61,18 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         btConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lbListaPlataformas = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        tbDuracion = new javax.swing.JTextField();
         lbDuracion = new javax.swing.JLabel();
         lbExpecatdoresMinimos = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        tbExpectadoresMin = new javax.swing.JTextField();
+        tbCosto = new javax.swing.JTextField();
         cbDiaAlta = new javax.swing.JComboBox<>();
         cbMesAlta = new javax.swing.JComboBox<>();
         lbFechaAlta = new javax.swing.JLabel();
         cbAnioAlta = new javax.swing.JComboBox<>();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        lbCosto = new javax.swing.JLabel();
+        tbExpectadoresMax = new javax.swing.JTextField();
+        tbDescripcion = new javax.swing.JTextField();
         lbDescripcion = new javax.swing.JLabel();
         lbExpectadoresMaximo = new javax.swing.JLabel();
         lbIngreseDatos = new javax.swing.JLabel();
@@ -115,15 +136,15 @@ public class AltaEspectaculo extends javax.swing.JFrame {
 
         lbExpecatdoresMinimos.setText("Expectadores Minimos");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        tbExpectadoresMin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                tbExpectadoresMinActionPerformed(evt);
             }
         });
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        tbCosto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                tbCostoActionPerformed(evt);
             }
         });
 
@@ -141,11 +162,11 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Costo");
+        lbCosto.setText("Costo");
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        tbExpectadoresMax.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                tbExpectadoresMaxActionPerformed(evt);
             }
         });
 
@@ -175,7 +196,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbNombre)
-                                    .addComponent(jLabel11)
+                                    .addComponent(lbCosto)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbFecha)
@@ -199,8 +220,8 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                                                 .addComponent(cbMesAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(cbAnioAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(0, 118, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
@@ -213,12 +234,10 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                                     .addComponent(lbExpectadoresMaximo, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbIngreseDatos)
+                                    .addComponent(tbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tbExpectadoresMin, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tbExpectadoresMax, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbIngreseDatos))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -260,23 +279,23 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDescripcion)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDuracion)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbExpecatdoresMinimos)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tbExpectadoresMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tbExpectadoresMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbExpectadoresMaximo))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbCosto)
+                            .addComponent(tbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btCancelar)))
                 .addContainerGap())
@@ -313,13 +332,13 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btConfirmarActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tbExpectadoresMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbExpectadoresMinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tbExpectadoresMinActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void tbCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCostoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_tbCostoActionPerformed
 
     private void cbMesAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesAltaActionPerformed
         // TODO add your handling code here:
@@ -329,9 +348,9 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbAnioAltaActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void tbExpectadoresMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbExpectadoresMaxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_tbExpectadoresMaxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,13 +398,8 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbListaPlataformas;
     private javax.swing.JComboBox<String> cbMesAlta;
     private javax.swing.JComboBox<String> cbMesEspectaculo;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lbCosto;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbDuracion;
     private javax.swing.JLabel lbExpecatdoresMinimos;
@@ -396,6 +410,11 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JLabel lbListaArtistas;
     private javax.swing.JLabel lbListaPlataformas;
     private javax.swing.JLabel lbNombre;
+    private javax.swing.JTextField tbCosto;
+    private javax.swing.JTextField tbDescripcion;
+    private javax.swing.JTextField tbDuracion;
+    private javax.swing.JTextField tbExpectadoresMax;
+    private javax.swing.JTextField tbExpectadoresMin;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 }
