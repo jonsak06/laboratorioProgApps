@@ -23,21 +23,21 @@ public class ModificarUsuario extends javax.swing.JFrame {
      */
     public ModificarUsuario() {
         initComponents();
-        tfNombre.setVisible(false);
+        tfNombre.setEnabled(true);
         tfApellido.setEnabled(true);
-        tfNickname.setEnabled(true);
         tfCorreoElectronico.setEnabled(true);
-        cbDia.setEnabled(true);
-        cbMes.setEnabled(true);
-        cbAnio.setEnabled(true);
-        tfDescripcionGen.setEnabled(true);
-        tfBrebeBiografia.setEnabled(true);
-        tfLinkWeb.setEnabled(true);
+        tfDescripcion.setEnabled(false);
+        tfBiografia.setEnabled(false);
+        tfLinkWeb.setEnabled(false);
         espectadores=Fabrica.getCrlUsuarios().getEspectadores();
         for (int i=0; i<espectadores.size(); i++)
         {
             cbUsuario.addItem(espectadores.get(i).getNickname());
         }
+        tfNombre.setText(espectadores.get(0).getNombre());
+        tfNickname.setText(espectadores.get(0).getNickname());
+        tfApellido.setText(espectadores.get(0).getApellido());
+        tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
     }
 
     /**
@@ -49,11 +49,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfNombre = new javax.swing.JTextField();
-        tfDescripcionGen = new javax.swing.JTextField();
-        cbMes = new javax.swing.JComboBox<>();
+        tfDescripcion = new javax.swing.JTextField();
         tfLinkWeb = new javax.swing.JTextField();
-        cbAnio = new javax.swing.JComboBox<>();
         tfApellido = new javax.swing.JTextField();
         tfNickname = new javax.swing.JTextField();
         tfCorreoElectronico = new javax.swing.JTextField();
@@ -68,29 +65,20 @@ public class ModificarUsuario extends javax.swing.JFrame {
         lbApellido = new javax.swing.JLabel();
         lbCorreoElectronico = new javax.swing.JLabel();
         lbNickname = new javax.swing.JLabel();
-        lbFechaNacimiento = new javax.swing.JLabel();
         lbLinkWeb = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JLabel();
-        tfBrebeBiografia = new javax.swing.JTextField();
-        cbDia = new javax.swing.JComboBox<>();
+        tfBiografia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cbUsuario = new javax.swing.JComboBox<>();
+        tfNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tfNombre.setText("jTextField1");
-        tfNombre.setEnabled(false);
-
-        tfDescripcionGen.setText("jTextField2");
-        tfDescripcionGen.setEnabled(false);
-
-        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-        cbMes.setEnabled(false);
+        tfDescripcion.setText("jTextField2");
+        tfDescripcion.setEnabled(false);
 
         tfLinkWeb.setText("jTextField2");
         tfLinkWeb.setEnabled(false);
-
-        cbAnio.setEnabled(false);
 
         tfApellido.setText("jTextField3");
         tfApellido.setEnabled(false);
@@ -133,19 +121,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         lbNickname.setText("Nickname:");
 
-        lbFechaNacimiento.setText("Fecha de nacimiento:");
-
         lbLinkWeb.setText("Link sitio web:");
 
         lbTitulo.setText("Elija el tipo de usuario");
 
-        tfBrebeBiografia.setText("jTextField2");
-        tfBrebeBiografia.setEnabled(false);
-
-        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
-        cbDia.setEnabled(false);
+        tfBiografia.setText("jTextField2");
+        tfBiografia.setEnabled(false);
 
         jLabel1.setText("Usuario:");
+
+        tfNombre.setText("jTextField3");
+        tfNombre.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,7 +152,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbFechaNacimiento1)
                         .addGap(48, 48, 48)
-                        .addComponent(tfBrebeBiografia))
+                        .addComponent(tfBiografia))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbLinkWeb)
                         .addGap(62, 62, 62)
@@ -178,7 +164,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
                             .addComponent(tfLinkWeb)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbFechaNacimiento)
                             .addComponent(lbNombre)
                             .addComponent(lbTipoUsuario)
                             .addComponent(lbNickname)
@@ -186,22 +171,19 @@ public class ModificarUsuario extends javax.swing.JFrame {
                             .addComponent(lbCorreoElectronico)
                             .addComponent(lbFechaNacimiento2)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNombre)
-                            .addComponent(tfApellido)
-                            .addComponent(tfNickname)
-                            .addComponent(tfCorreoElectronico)
-                            .addComponent(cbTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfDescripcionGen, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(tfApellido)
+                                    .addComponent(tfNickname)
+                                    .addComponent(tfCorreoElectronico)
+                                    .addComponent(cbTipoUsuario, 0, 248, Short.MAX_VALUE)
+                                    .addComponent(tfDescripcion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 74, Short.MAX_VALUE))
-                            .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(tfNombre)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -217,38 +199,30 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cbUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(lbNombre)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbApellido)
-                            .addComponent(tfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbNickname)
-                            .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbCorreoElectronico)
-                            .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombre)
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbFechaNacimiento)
-                    .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbApellido)
+                    .addComponent(tfApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNickname)
+                    .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCorreoElectronico)
+                    .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbFechaNacimiento2)
-                    .addComponent(tfDescripcionGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbFechaNacimiento1)
-                    .addComponent(tfBrebeBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbLinkWeb)
@@ -258,7 +232,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btModificar)
-                    .addComponent(btCancelar)))
+                    .addComponent(btCancelar))
+                .addGap(46, 46, 46))
         );
 
         pack();
@@ -271,11 +246,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
             tfCorreoElectronico.setEnabled(true);
-            cbDia.setEnabled(true);
-            cbMes.setEnabled(true);
-            cbAnio.setEnabled(true);
-            tfDescripcionGen.setEnabled(true);
-            tfBrebeBiografia.setEnabled(true);
+            tfDescripcion.setEnabled(true);
+            tfBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
             lbTitulo.setText("Ingrese los datos del artista");
             cbUsuario.removeAllItems();
@@ -284,6 +256,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 cbUsuario.addItem(artistas.get(i).getNickname());
             }
+            tfNombre.setText(artistas.get(0).getNombre());
+            tfNickname.setText(artistas.get(0).getNickname());
+            tfApellido.setText(artistas.get(0).getApellido());
+            tfCorreoElectronico.setText(artistas.get(0).getCorreo());
+            tfDescripcion.setText(artistas.get(0).getDescripcion());
+            tfBiografia.setText(artistas.get(0).getBiografia());
+            tfLinkWeb.setText(artistas.get(0).getLinkWeb());
+            
         }
 
         if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
@@ -291,11 +271,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
             tfCorreoElectronico.setEnabled(true);
-            cbDia.setEnabled(true);
-            cbMes.setEnabled(true);
-            cbAnio.setEnabled(true);
-            tfDescripcionGen.setEnabled(false);
-            tfBrebeBiografia.setEnabled(false);
+            
+            tfDescripcion.setEnabled(false);
+            tfBiografia.setEnabled(false);
             tfLinkWeb.setEnabled(false);
             lbTitulo.setText("Ingrese los datos del espectador");
             cbUsuario.removeAllItems();
@@ -304,6 +282,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 cbUsuario.addItem(espectadores.get(i).getNickname());
             }
+            tfNombre.setText(espectadores.get(0).getNombre());
+            tfNickname.setText(espectadores.get(0).getNickname());
+            tfApellido.setText(espectadores.get(0).getApellido());
+            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
         }
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
 
@@ -351,15 +333,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btImagen;
     private javax.swing.JButton btModificar;
-    private javax.swing.JComboBox<String> cbAnio;
-    private javax.swing.JComboBox<String> cbDia;
-    private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JComboBox<String> cbUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbCorreoElectronico;
-    private javax.swing.JLabel lbFechaNacimiento;
     private javax.swing.JLabel lbFechaNacimiento1;
     private javax.swing.JLabel lbFechaNacimiento2;
     private javax.swing.JLabel lbLinkWeb;
@@ -368,9 +346,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbTipoUsuario;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextField tfApellido;
-    private javax.swing.JTextField tfBrebeBiografia;
+    private javax.swing.JTextField tfBiografia;
     private javax.swing.JTextField tfCorreoElectronico;
-    private javax.swing.JTextField tfDescripcionGen;
+    private javax.swing.JTextField tfDescripcion;
     private javax.swing.JTextField tfLinkWeb;
     private javax.swing.JTextField tfNickname;
     private javax.swing.JTextField tfNombre;
