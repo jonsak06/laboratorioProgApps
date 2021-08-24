@@ -74,4 +74,8 @@ public class crlUsuarios implements iUsuarios
     {
         ManejadorUsuarios.modificarEspectador(es);
     }
+    
+    public List<DtEspectador> getNoRegistrados(String nombreFuncion){
+        return ManejadorUsuarios.getNoRegistrados(nombreFuncion);
+    }
 }

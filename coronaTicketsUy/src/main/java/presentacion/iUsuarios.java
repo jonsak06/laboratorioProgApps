@@ -23,4 +23,5 @@ public interface iUsuarios {
     void altaEspectador(DtEspectador es);
     public void modificarArtista(DtArtista ar);
     public void modificarEspectador(DtEspectador es);
+    public List<DtEspectador> getNoRegistrados(String nombreFuncion);
 }
