@@ -21,6 +21,6 @@ public interface iUsuarios {
     boolean existeUsuario(String nickname);
     void altaArtista(DtArtista ar);
     void altaEspectador(DtEspectador es);
-//    public void modificarArtista(DtArtista ar);
-//    public void modificarEspectador(DtEspectador es);
+    public void modificarArtista(DtArtista ar);
+    public void modificarEspectador(DtEspectador es);
 }
