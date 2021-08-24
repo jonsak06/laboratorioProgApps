@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -35,5 +36,21 @@ public class ManEspectaculo {
        return existe;
        
    }
+    
+    public static List<DtFuncion> listarFunciones(String nombreEsp){
+       EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+       EntityManager em = emf.createEntityManager();
+       em.getTransaction().begin();
+       TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre", Espectaculo.class);
+       consulta.setParameter("nombre", nombreEsp);
+       Espectaculo e = consulta.getSingleResult();
+       List<DtFuncion> lDtf = new ArrayList<DtFuncion>();
+       List<Funcion> funciones = e.getFunciones();
+       for (Funcion i :funciones){
+           DtFuncion esteDt = new DtFuncion(i.getId(),i.getNombre(),i.getHoraInicio(),i.getFechaRegistro(),i.getFecha());
+           lDtf.add(esteDt);
+       }
+       return lDtf;
+    }
     
 }

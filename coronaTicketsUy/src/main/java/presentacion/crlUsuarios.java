@@ -20,6 +20,7 @@ public class crlUsuarios implements iUsuarios
 //        return ManejadorUsuarios.getDatos(); 
 //    }
 //           
+    public crlUsuarios(){}
     public List<DtEspectador> getEspectadores()
     {
         

@@ -27,4 +27,8 @@ public class CtrlEspectaculos implements IEspectaculos {
     public boolean existeEspectaculo(String nombreEspectaculo){
         return ManEspectaculo.existeEspectaculo(nombreEspectaculo);
     }
+    
+    public List<DtFuncion> listarFunciones(String nombreEspectaculo){
+        return ManEspectaculo.listarFunciones(nombreEspectaculo);
+    }
 }

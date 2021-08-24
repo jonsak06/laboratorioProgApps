@@ -15,6 +15,7 @@ public interface IEspectaculos {
     List<DtPlataforma> listarPlataformas();
     
     public List<DtEspectaculo> listarEspectaculos(String nombre);
+    public List<DtFuncion> listarFunciones(String nombreEspectaculo);
     
     boolean existeEspectaculo(String nombreEspectaculo);
 }

@@ -40,6 +40,7 @@ public class ManejadorUsuarios
 //        return lista; 
 //    }
 //           
+    public ManejadorUsuarios(){}
     public static List<DtEspectador> getEspectadores()
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");

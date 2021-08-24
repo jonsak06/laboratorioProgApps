@@ -106,6 +106,12 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         jLabel3.setText("Seleccione un Espectáculo");
 
+        listadoDeEspectaculos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                listadoDeEspectaculosItemStateChanged(evt);
+            }
+        });
+
         jLabel4.setText("Seleccione una Función");
 
         jLabel7.setText("Este usuario tiene        ");
@@ -247,6 +253,25 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         }
         this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
     }//GEN-LAST:event_listadoDePlataformasItemStateChanged
+
+    private void listadoDeEspectaculosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDeEspectaculosItemStateChanged
+        // TODO add your handling code here:
+        List<String> listaFunciones = new ArrayList<String>();
+        listaFunciones.add("--Seleccione una--");
+        List<DtFuncion> lFunc = this.ie.listarFunciones(listadoDeEspectaculos.getSelectedItem().toString());
+        for (DtFuncion i :lFunc){
+            listaFunciones.add(i.getNombre());
+        }
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));
+        List<String> listaEspectadores = new ArrayList<String>();
+        listaEspectadores.add("--Seleccione uno--");
+        iUsuarios iu = Fabrica.getCrlUsuarios();
+        List<DtEspectador> lEspect = iu.getEspectadores();
+        for (DtEspectador i :lEspect){
+            listaEspectadores.add(i.getNombre()+" "+i.getApellido()+"--"+i.getNickname());
+        }
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
+    }//GEN-LAST:event_listadoDeEspectaculosItemStateChanged
 
     /**
      * @param args the command line arguments
