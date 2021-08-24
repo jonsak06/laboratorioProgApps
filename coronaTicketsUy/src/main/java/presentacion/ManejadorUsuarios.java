@@ -130,10 +130,19 @@ public class ManejadorUsuarios
             Espectador este = cons.setParameter("nickname", i).getSingleResult();
             DtEspectador esteDt = este.getMyDt();
             listaFinal.add(esteDt);
-        }        
+        }
+        List<DtEspectador> resultado = new ArrayList<DtEspectador>();
+        List<DtEspectador> listaTotal = ManejadorUsuarios.getEspectadores();
+        for (DtEspectador i :listaTotal){
+            int esta = 0;
+            for(DtEspectador j :listaFinal){
+                if(j.getId()==i.getId()){esta = esta+1;}
+                }
+            if(esta == 0){resultado.add(i);}
+        }
         em.close();
         emf.close(); 
-        return listaFinal;
+        return resultado;
     }
     
     public static boolean existeArtista(String nickname)
