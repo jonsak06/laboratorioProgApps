@@ -64,14 +64,14 @@ public class crlUsuarios implements iUsuarios
         ManejadorUsuarios.altaEspectador(es);
     }
 //    
-//    public void modificarArtista(DtArtista ar)
-//    {
-//        ManejadorUsuarios.modificarArtista(ar);
-//    }
-//    
-//    
-//    public void modificarEspectador(DtEspectador es)
-//    {
-//        ManejadorUsuarios.modificarEspectador(es);
-//    }
+    public void modificarArtista(DtArtista ar)
+    {
+        ManejadorUsuarios.modificarArtista(ar);
+    }
+    
+    
+    public void modificarEspectador(DtEspectador es)
+    {
+        ManejadorUsuarios.modificarEspectador(es);
+    }
 }
