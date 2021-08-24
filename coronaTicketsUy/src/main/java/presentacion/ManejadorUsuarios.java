@@ -110,6 +110,32 @@ public class ManejadorUsuarios
 //        return us;
 //    }
     
+    public static List<DtEspectador> getNoRegistrados(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre", Funcion.class);
+        consulta.setParameter("nombre", nombreFuncion);
+        Funcion estaFuncion = consulta.getSingleResult();
+        em.getTransaction().commit();
+        List<DtEspectador> listaFinal = new ArrayList<DtEspectador>();
+        List<Registro> regF = estaFuncion.getRegistros();
+        List<String> listadeNick = new ArrayList<String>();
+        for (Registro i :regF){
+            String nick = i.getEspectador().getNickname();
+            listadeNick.add(nick);
+        }
+        for (String i :listadeNick){
+            TypedQuery<Espectador> cons = em.createNamedQuery("EspectadorporNick", Espectador.class);
+            Espectador este = cons.setParameter("nickname", i).getSingleResult();
+            DtEspectador esteDt = este.getMyDt();
+            listaFinal.add(esteDt);
+        }        
+        em.close();
+        emf.close(); 
+        return listaFinal;
+    }
+    
     public static boolean existeArtista(String nickname)
     {
         boolean us=false;

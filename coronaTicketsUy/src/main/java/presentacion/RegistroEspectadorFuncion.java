@@ -263,14 +263,14 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             listaFunciones.add(i.getNombre());
         }
         this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));
-        List<String> listaEspectadores = new ArrayList<String>();
-        listaEspectadores.add("--Seleccione uno--");
-        iUsuarios iu = Fabrica.getCrlUsuarios();
-        List<DtEspectador> lEspect = iu.getEspectadores();
-        for (DtEspectador i :lEspect){
-            listaEspectadores.add(i.getNombre()+" "+i.getApellido()+"--"+i.getNickname());
-        }
-        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
+//        List<String> listaEspectadores = new ArrayList<String>();
+//        listaEspectadores.add("--Seleccione uno--");
+//        iUsuarios iu = Fabrica.getCrlUsuarios();
+//        List<DtEspectador> lEspect = iu.getEspectadores();
+//        for (DtEspectador i :lEspect){
+//            listaEspectadores.add(i.getNombre()+" "+i.getApellido()+"--"+i.getNickname());
+//        }
+//        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
     }//GEN-LAST:event_listadoDeEspectaculosItemStateChanged
 
     /**
