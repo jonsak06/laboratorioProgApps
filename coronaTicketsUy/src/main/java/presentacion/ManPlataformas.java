@@ -49,7 +49,7 @@ public class ManPlataformas {
        
    }
         
-         public static List<DtEspectaculo> getEspectaculos(String nombrePlataforma){
+        public static List<DtEspectaculo> getEspectaculos(String nombrePlataforma){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -62,7 +62,7 @@ public class ManPlataformas {
         emf.close();
         List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
         for (int i=0;i<plat.getEspectaculos().size();i++){
-            DtEspectaculo esteDt = plat.getEspectaculos().get(i).getMyDt();
+            DtEspectaculo esteDt = new DtEspectaculo(plat.getEspectaculos().get(i).getId(),plat.getEspectaculos().get(i).getNombre(),plat.getEspectaculos().get(i).getDescrp(),plat.getEspectaculos().get(i).getDuracion(),plat.getEspectaculos().get(i).getCantMaxEspectadores(),plat.getEspectaculos().get(i).getCantMinEspectadores(),plat.getEspectaculos().get(i).getURL(),plat.getEspectaculos().get(i).getCosto(),plat.getEspectaculos().get(i).getFechaRegistro());
             dtE.add(esteDt);
         }
         return dtE;

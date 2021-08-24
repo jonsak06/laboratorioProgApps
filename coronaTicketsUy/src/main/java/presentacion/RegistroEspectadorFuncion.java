@@ -7,6 +7,7 @@ package presentacion;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -18,6 +19,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     /**
      * Creates new form RegistroEspectadorFuncion
      */
+    private IEspectaculos ie;
     public RegistroEspectadorFuncion() {
         initComponents();
         List<String> l = new ArrayList<String>();
@@ -28,6 +30,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             l.add(i.getNombre());
         }
         this.listadoDePlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
+        this.ie = ie;
     }
 
     /**
@@ -103,11 +106,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         jLabel3.setText("Seleccione un Espectáculo");
 
-        listadoDeEspectaculos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("Seleccione una Función");
-
-        listadoFunciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel7.setText("Este usuario tiene        ");
 
@@ -127,18 +126,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             }
         });
 
-        seleccionarCanjeables.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(seleccionarCanjeables);
 
         canjearOK.setText("Canjear Registros");
 
         jLabel8.setText("Seleccione un Espectador");
-
-        listadoDeEspectadores.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -245,7 +237,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void listadoDePlataformasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDePlataformasItemStateChanged
         // TODO add your handling code here:
-        String seleccion = listadoDePlataformas.getSelectedItem().toString();
+//        String seleccion = listadoDePlataformas.getSelectedItem().toString();
+        List<String> listaEspectaculos = new ArrayList<String>();
+        listaEspectaculos.add("--Seleleccione uno--");
+//        IEspectaculos ce = Fabrica.getCtrlEspectaculos();
+         List<DtEspectaculo> lEsp = this.ie.listarEspectaculos(listadoDePlataformas.getSelectedItem().toString());
+        for (DtEspectaculo i :lEsp){
+            listaEspectaculos.add(i.getNombre());
+        }
+        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
     }//GEN-LAST:event_listadoDePlataformasItemStateChanged
 
     /**
