@@ -368,5 +368,45 @@ public class ManejadorUsuarios
         emf.close();
         return esteMen.getMyDt();
     }
+    
+    
+    public static List<DtRegistro> getRegistros(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtRegistro> lista = new ArrayList<DtRegistro>();
+        for(int i=0; i<esteMen.getRegistros().size(); i++){
+            lista.add(esteMen.getRegistros().get(i).getMyDt());
+        
+        }
+        return lista;
+    }
+    
+    public static List<DtFuncion> getFuncionesRegistros(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtFuncion> lista = new ArrayList<DtFuncion>();
+        for(int i=0; i<esteMen.getRegistros().size(); i++){
+            lista.add(esteMen.getRegistros().get(i).getFuncion().getMyDt());
+        
+        }
+        return lista;
+    }
+    
+    
+    
    //    
 }

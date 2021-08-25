@@ -114,7 +114,10 @@ public class Espectador extends Usuario {
     
     public DtEspectador getMyDt()
     {
-        DtEspectador dt = new DtEspectador(this.canjeables, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        this.calcularCanjeables();
+        
+    
+        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
         return dt; 
     }
     

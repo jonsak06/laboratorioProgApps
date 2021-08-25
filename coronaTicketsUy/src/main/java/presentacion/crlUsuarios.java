@@ -98,5 +98,13 @@ public class crlUsuarios implements iUsuarios
    public DtEspectador getDatosEspectador(String nickname){
        return ManejadorUsuarios.getDatosEspectador(nickname);
    }
-
+   
+   public List<DtRegistro> getRegistros(String nickname)
+   {
+       return ManejadorUsuarios.getRegistros(nickname);
+   }
+   public List<DtFuncion> getFuncionesRegistros(String nickname)
+   {
+       return ManejadorUsuarios.getFuncionesRegistros(nickname);
+   }
 }

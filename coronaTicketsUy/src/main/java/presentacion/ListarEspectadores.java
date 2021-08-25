@@ -52,7 +52,8 @@ public class ListarEspectadores extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tEspectadores = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tRegistros = new javax.swing.JTable();
+        nombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,39 +65,69 @@ public class ListarEspectadores extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Nickname", "Correo Electonico", "Fecha de Nacimiento", "Registros sin gastar"
+                "Nombre", "Apellido", "Nickname", "Correo Electonico", "Fecha de Nacimiento", "Cangeables"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tEspectadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEspectadoresMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tEspectadores);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Fecha de registro", "Costro", "Estado", "Nombre de la funcion", "Fecha de la funcion", "Hora de inicio"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tRegistros);
+
+        nombre.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(170, 170, 170)
+                        .addComponent(nombre)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
+                .addComponent(nombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -105,6 +136,36 @@ public class ListarEspectadores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tEspectadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEspectadoresMouseClicked
+        // TODO add your handling code here:
+        
+        int index = tEspectadores.getSelectedRow();
+        nombre.setText(espectadores.get(index).getNombre());
+        List<DtRegistro> registros=new ArrayList<DtRegistro>();
+        registros=Fabrica.getCrlUsuarios().getRegistros(espectadores.get(index).getNickname());
+        String matris[][] = new String [registros.size()][6];
+        List<DtFuncion> funciones=new ArrayList<DtFuncion>();
+        funciones=Fabrica.getCrlUsuarios().getFuncionesRegistros(espectadores.get(index).getNickname());
+        
+        for(int i=0; i<registros.size(); i++)
+        {
+            
+            matris [i][0]=registros.get(i).getFecha().toString();
+            matris [i][1]=Float.toString(registros.get(i).getCosto());
+            matris [i][2]=registros.get(i).getEstado().toString();
+            matris [i][3]=funciones.get(i).getNombre();
+            matris [i][4]=funciones.get(i).getFecha().toString();
+            matris [i][5]=funciones.get(i).getHoraInicio().toString();
+            
+        }
+        tRegistros.setModel(new javax.swing.table.DefaultTableModel(
+            matris,
+            new String [] {
+                "Fecha de registro", "Costro", "Estado", "Nombre de la funcion", "Fecha de la funcion", "Hora de inicio"
+            }
+        ));
+    }//GEN-LAST:event_tEspectadoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,7 +207,8 @@ public class ListarEspectadores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JLabel nombre;
     private javax.swing.JTable tEspectadores;
+    private javax.swing.JTable tRegistros;
     // End of variables declaration//GEN-END:variables
 }
