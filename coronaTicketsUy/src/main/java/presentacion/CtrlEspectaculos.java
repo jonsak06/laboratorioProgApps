@@ -39,4 +39,8 @@ public class CtrlEspectaculos implements IEspectaculos {
     public float getCosto(String nombreFuncion){
         return ManEspectaculo.getCosto(nombreFuncion);
     }
+    
+    public DtFuncion getDatosFuncion(String nombreFuncion){
+        return ManEspectaculo.getDatosFuncion(nombreFuncion);
+    }
 }

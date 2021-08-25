@@ -93,4 +93,15 @@ public class ManEspectaculo {
         return funcion.getEspectaculo().getCosto();
     }
     
+    public static DtFuncion getDatosFuncion(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion funcion = consultaFuncion.getSingleResult();
+        em.close();
+        emf.close();
+        return funcion.getMyDt();
+    }
+    
 }

@@ -94,5 +94,9 @@ public class crlUsuarios implements iUsuarios
    public void registrarUsuario(String nickname, String nombreFuncion, float costo){
        ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo);
    }
+   
+   public DtEspectador getDatosEspectador(String nickname){
+       return ManejadorUsuarios.getDatosEspectador(nickname);
+   }
 
 }
