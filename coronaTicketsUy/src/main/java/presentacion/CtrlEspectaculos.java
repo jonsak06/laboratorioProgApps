@@ -47,4 +47,5 @@ public class CtrlEspectaculos implements IEspectaculos {
     public boolean ingresarPlataforma(String nombre, String descripcion, String url){
         return ManPlataformas.ingresarPlataforma(nombre, descripcion, url);
     }
+    
 }

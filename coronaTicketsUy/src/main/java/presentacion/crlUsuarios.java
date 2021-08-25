@@ -107,4 +107,9 @@ public class crlUsuarios implements iUsuarios
    {
        return ManejadorUsuarios.getFuncionesRegistros(nickname);
    }
+   
+   public List<DtEspectaculo> listarEspectaculosDeArtista(String nickname)
+   {
+       return ManejadorUsuarios.listarEspectaculosDeArtista(nickname);
+   }
 }
