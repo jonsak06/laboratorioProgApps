@@ -78,6 +78,11 @@ public class ManPlataformas {
             try{estaPlataforma = consulta.getSingleResult();}catch(Exception e){System.out.print("Plataforma no encontrada");
             estaPlataforma=null;
             }
+            TypedQuery<Plataforma> consultaPorNombre = em.createNamedQuery("Plataforma.findByNombre",Plataforma.class);
+            consultaPorNombre.setParameter("nombre", nombre);
+            try{estaPlataforma = consultaPorNombre.getSingleResult();}catch(Exception e){System.out.print("Plataforma no encontrada");
+            estaPlataforma=null;
+            }
             if (estaPlataforma != null){
                 em.getTransaction().commit();
                 em.close();
