@@ -20,4 +20,5 @@ public interface IEspectaculos {
     public float getCosto(String nombreFuncion);
     boolean existeEspectaculo(String nombreEspectaculo);
     public DtFuncion getDatosFuncion(String nombreFuncion);
+    public boolean ingresarPlataforma(String nombre, String descripcion, String url);
 }

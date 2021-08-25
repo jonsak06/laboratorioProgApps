@@ -43,4 +43,8 @@ public class CtrlEspectaculos implements IEspectaculos {
     public DtFuncion getDatosFuncion(String nombreFuncion){
         return ManEspectaculo.getDatosFuncion(nombreFuncion);
     }
+    
+    public boolean ingresarPlataforma(String nombre, String descripcion, String url){
+        return ManPlataformas.ingresarPlataforma(nombre, descripcion, url);
+    }
 }

@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Plataforma.findAll", query = "SELECT p FROM Plataforma p"),
+        @NamedQuery(name = "Plataforma.findByURL", query = "SELECT p FROM Plataforma p WHERE p.url = :url"),
     @NamedQuery(name = "Plataforma.findByNombre", query = "SELECT p FROM Plataforma p WHERE p.nombre = :nombre")})
 public class Plataforma implements Serializable {
 

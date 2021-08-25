@@ -67,6 +67,33 @@ public class ManPlataformas {
         }
         return dtE;
         }
+        
+        public static boolean ingresarPlataforma(String nombre, String descripcion, String url){
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+            EntityManager em = emf.createEntityManager();
+            em.getTransaction().begin();
+            TypedQuery<Plataforma> consulta = em.createNamedQuery("Plataforma.findByURL",Plataforma.class);
+            consulta.setParameter("url", url);
+            Plataforma estaPlataforma = null;
+            try{estaPlataforma = consulta.getSingleResult();}catch(Exception e){System.out.print("Plataforma no encontrada");
+            estaPlataforma=null;
+            }
+            if (estaPlataforma != null){
+                em.getTransaction().commit();
+                em.close();
+                emf.close();
+                return false;
+            }else{
+                
+                estaPlataforma = new Plataforma(nombre,descripcion,url);
+                em.persist(estaPlataforma);
+                em.getTransaction().commit();
+                em.close();
+                emf.close();
+                return true;
+            }
+            
+        }
          
    
    
