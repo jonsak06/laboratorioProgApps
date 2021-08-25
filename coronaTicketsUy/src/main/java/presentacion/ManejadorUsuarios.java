@@ -7,6 +7,7 @@ package presentacion;
 import java.util.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -251,5 +252,102 @@ public class ManejadorUsuarios
         emf.close(); 
         
     }
-//    
+    
+    public static int getCanjeables(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        consulta.getSingleResult().calcularCanjeables();
+        int cantCanj =  consulta.getSingleResult().getCanjeables();
+        em.close();
+        emf.close();
+        return cantCanj;
+    }
+    
+    public static List<Registro> listarCanjeables(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        List<Registro> registros = esteMen.getRegistros();
+        List<Registro> canjeables = new ArrayList<Registro>();
+        for(Registro i:registros){
+            if(i.getEstado()!=EstadoRegistro.USADO){
+                canjeables.add(i);
+            }
+        }
+        em.close();
+        emf.close();
+        return canjeables;
+    }
+    
+    public static void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Registro r = new Registro();
+        r.setCosto(costo);
+        List<Registro> canjeados = new ArrayList<Registro>();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion estaFUncion = consultaFuncion.getSingleResult();
+        r.setEspectador(esteMen);
+        r.setFuncion(estaFUncion);
+        List<Registro> registros = esteMen.getRegistros();
+        for(Registro i :registros){
+            int esta = 0;
+            for(String j :canjeables){
+                if(i.getFuncion().getNombre()==j){esta++;}
+            }
+            if(esta!=0){
+                i.setEstado(EstadoRegistro.USADO);
+                canjeados.add(i);
+            }
+            }
+        r.setCanjeados(canjeados);
+        java.util.Date fecha =new java.util.Date();
+        int dia = fecha.getDate();
+        int mes = fecha.getMonth();
+        int anio = fecha.getYear();
+        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
+        r.setFecha(estaFecha);
+        r.setEstado(EstadoRegistro.PENDIENTE);
+        em.persist(r);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }            
+    
+    public static void registrarUsuario(String nickname, String nombreFuncion, float costo){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Registro r = new Registro();
+        r.setCosto(costo);
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion estaFUncion = consultaFuncion.getSingleResult();
+        r.setEspectador(esteMen);
+        r.setFuncion(estaFUncion);
+        java.util.Date fecha =new java.util.Date();
+        int dia = fecha.getDate();
+        int mes = fecha.getMonth();
+        int anio = fecha.getYear();
+        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
+        r.setFecha(estaFecha);
+        r.setEstado(EstadoRegistro.PENDIENTE);
+        em.persist(r);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
+   //    
 }
