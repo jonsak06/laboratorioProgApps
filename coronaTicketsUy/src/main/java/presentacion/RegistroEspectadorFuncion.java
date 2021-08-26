@@ -27,6 +27,22 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         initComponents();
         List<String> l = new ArrayList<String>();
         l.add("--Seleccione una--");
+        List<String> listaEspectaculos = new ArrayList<String>();
+        listaEspectaculos.add("--Seleciones uno--");
+        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
+        List<String> listaFUnciones = new ArrayList<String>();
+        listaFUnciones.add("--Seleciones una--");
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
+        List<String> listaEspectadores = new ArrayList<String>();
+        listaEspectadores.add("--Seleciones uno--");
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
+        canjeImposible.setVisible(false);
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        this.seleccionarCanjeables.setModel(modelo);
+        this.canjearOK.setSelected(false);
+        this.cantCanjeables.setVisible(false);
+        this.fechaFuncion.setVisible(false);
+        this.datosEsp.setVisible(false);
         IEspectaculos ie = Fabrica.getCtrlEspectaculos();
         List<DtPlataforma> dtP = ie.listarPlataformas();
         for (DtPlataforma i :dtP){
@@ -201,7 +217,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                         .addComponent(fechaFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
                         .addComponent(canjearOK, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
@@ -286,6 +302,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.cantCanjeables.setVisible(false);
         this.fechaFuncion.setVisible(false);
         this.datosEsp.setVisible(false);
+        List<String> listaEspectaculos = new ArrayList<String>();
+        listaEspectaculos.add("--Seleciones uno--");
+        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
+        List<String> listaFUnciones = new ArrayList<String>();
+        listaFUnciones.add("--Seleciones una--");
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
+        List<String> listaEspectadores = new ArrayList<String>();
+        listaEspectadores.add("--Seleciones uno--");
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
         JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
         }
         
@@ -310,6 +335,19 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         listaEspectaculos.add("--Seleleccione uno--");
 //        IEspectaculos ce = Fabrica.getCtrlEspectaculos();
         if (this.listadoDePlataformas.getSelectedItem().toString() != "--Seleccione una--"){
+        List<String> listaFUnciones = new ArrayList<String>();
+        listaFUnciones.add("--Seleciones una--");
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
+        List<String> listaEspectadores = new ArrayList<String>();
+        listaEspectadores.add("--Seleciones uno--");
+        canjeImposible.setVisible(false);
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        this.seleccionarCanjeables.setModel(modelo);
+        this.canjearOK.setSelected(false);
+        this.cantCanjeables.setVisible(false);
+        this.fechaFuncion.setVisible(false);
+        this.datosEsp.setVisible(false);
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
          List<DtEspectaculo> lEsp = this.ie.listarEspectaculos(listadoDePlataformas.getSelectedItem().toString());
         for (DtEspectaculo i :lEsp){
             listaEspectaculos.add(i.getNombre());
@@ -326,7 +364,17 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         for (DtFuncion i :lFunc){
             listaFunciones.add(i.getNombre());
         }
-        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));}
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));
+        List<String> listaEspectadores = new ArrayList<String>();
+        listaEspectadores.add("--Seleciones uno--");
+        canjeImposible.setVisible(false);
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        this.seleccionarCanjeables.setModel(modelo);
+        this.canjearOK.setSelected(false);
+        this.cantCanjeables.setVisible(false);
+        this.fechaFuncion.setVisible(false);
+        this.datosEsp.setVisible(false);
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));}
 //        List<String> listaEspectadores = new ArrayList<String>();
 //        listaEspectadores.add("--Seleccione uno--");
 //        iUsuarios iu = Fabrica.getCrlUsuarios();
@@ -351,6 +399,12 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
         this.fechaFuncion.setText("Fecha: "+funcion.getHoraInicio().toString());
         this.fechaFuncion.setVisible(true);
+        canjeImposible.setVisible(false);
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        this.seleccionarCanjeables.setModel(modelo);
+        this.canjearOK.setSelected(false);
+        this.cantCanjeables.setVisible(false);
+        this.datosEsp.setVisible(false);
         
         }
         

@@ -154,9 +154,13 @@ public class AltaPlataforma extends javax.swing.JFrame {
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
         // TODO add your handling code here:
         IEspectaculos ie = Fabrica.getCtrlEspectaculos();
-        if(this.url.getText().contains(" ") || this.url.getText().contains(".")==false){
+        if(this.url.getText().contains(" ") || this.url.getText().contains(".")==false || this.url.getText().length()<1 || this.url.getText().length()>254){
             JOptionPane.showMessageDialog(null, "URL invalida", "ERROR!", JOptionPane.DEFAULT_OPTION);
-        }else{
+        }else if(this.nombre.getText().length()<1 || this.nombre.getText().length()>254){
+            JOptionPane.showMessageDialog(null, "Nombre invalido", "ERROR!", JOptionPane.DEFAULT_OPTION);
+        }else if(this.descripcion.getText().length()<1){
+            JOptionPane.showMessageDialog(null, "Descripcion obligatoria", "ERROR!", JOptionPane.DEFAULT_OPTION);
+            }else{
         boolean ingresada = ie.ingresarPlataforma(this.nombre.getText(), this.descripcion.getText(), this.url.getText());
         if(ingresada==false){
         JOptionPane.showMessageDialog(null, "La plataforma ya esta registrada", "ERROR!", JOptionPane.DEFAULT_OPTION);
