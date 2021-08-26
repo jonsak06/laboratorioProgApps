@@ -459,14 +459,26 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         PaqueteDeEspectaculos p2 = new PaqueteDeEspectaculos("Paquete Solistas","Paquete de Solistas",30,1,8,2020,30,9,2020,15,7,2020);       
         PaqueteDeEspectaculos p3 = new PaqueteDeEspectaculos("Paquete Latino","Paquete de espectaculos latinos",15,15,8,2020,15,11,2020,1,8,2020);
         p1.addEspectaculo(e1);
+        e1.addPaquete(p1);
         p1.addEspectaculo(e2);
+        e2.addPaquete(p1);
         p2.addEspectaculo(e3);
+        e3.addPaquete(p2);
         p2.addEspectaculo(e4);
+        e4.addPaquete(p2);
         p3.addEspectaculo(e5);
+        e5.addPaquete(p3);
         p3.addEspectaculo(e6);
+        e6.addPaquete(p3);
         em.persist(p1);
         em.persist(p2);
         em.persist(p3);
+        em.persist(e1);
+        em.persist(e2);
+        em.persist(e3);
+        em.persist(e4);
+        em.persist(e5);
+        em.persist(e6);
         em.getTransaction().commit();
         /////////////////////////////////FIN DE CARGA DE PAQUETES/////////////////////////
         

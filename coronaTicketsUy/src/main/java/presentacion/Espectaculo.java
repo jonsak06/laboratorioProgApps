@@ -141,8 +141,7 @@ public class Espectaculo implements Serializable {
         return this.paquetes;
     }
     public void addPaquete(PaqueteDeEspectaculos p){
-        int i = this.paquetes.size();
-        this.paquetes.add(i+1, p);
+        this.paquetes.add(p);
     }
     
     public Long getId() {
