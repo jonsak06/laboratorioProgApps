@@ -121,6 +121,11 @@ public class ListarArtistas extends javax.swing.JFrame {
                 "Nombre", "Descripcion", "Esp Max", "Esp Min", "Costo", "URL", "Fecha de Registro"
             }
         ));
+        tEspectaculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tEspectaculosMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tEspectaculos);
 
         tPaquetes.setModel(new javax.swing.table.DefaultTableModel(
@@ -138,15 +143,23 @@ public class ListarArtistas extends javax.swing.JFrame {
 
         tPlataformas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Nombre", "URL"
+                "Nombre", "URL", "Descripcion"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane9.setViewportView(tPlataformas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,9 +176,9 @@ public class ListarArtistas extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,6 +224,62 @@ public class ListarArtistas extends javax.swing.JFrame {
             }
         ));
     }//GEN-LAST:event_tArtistasMouseClicked
+
+    private void tEspectaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tEspectaculosMouseClicked
+        // TODO add your handling code here:
+        int indexE = tEspectaculos.getSelectedRow();
+        int indexA = tArtistas.getSelectedRow();
+        List<DtPaqueteDeEspectaculos> paquetes=Fabrica.getCrlUsuarios().listarPaquetesEspectaculosDeArtista(artistas.get(indexA).getNickname(), espectaculos.get(indexE).getNombre());
+        List<DtFuncion> funciones=Fabrica.getCrlUsuarios().listarFuncionesEspectaculosDeArtista(artistas.get(indexA).getNickname(), espectaculos.get(indexE).getNombre());
+        DtPlataforma plataforma=Fabrica.getCrlUsuarios().plataformaEspectaculosDeArtista(artistas.get(indexA).getNickname(), espectaculos.get(indexE).getNombre());
+        String matrisP[][] = new String [paquetes.size()][5];
+        String matrisF[][] = new String [funciones.size()][2];
+        String matrisPlat[][] = new String [1][3];
+        
+        for(int i=0; i<funciones.size(); i++)
+        {
+
+            matrisF [i][0]=funciones.get(i).getNombre();
+            matrisF [i][1]=funciones.get(i).getHoraInicio().toString();
+            
+        }
+        
+        tFunciones.setModel(new javax.swing.table.DefaultTableModel(
+            matrisF,
+            new String [] {
+                "Nombre ", "Fecha y hora"
+            }
+        ));
+        
+        for(int i=0; i<paquetes.size(); i++)
+        {
+
+            matrisP [i][0]=paquetes.get(i).getNombre();
+            matrisP [i][1]=paquetes.get(i).getDescripcion();
+            matrisP [i][2]=paquetes.get(i).getFechaInicio().toString();
+            matrisP [i][3]=paquetes.get(i).getFechaFin().toString();
+            matrisP [i][4]=Float.toString(paquetes.get(i).getDescuento());
+        }
+        
+        tPaquetes.setModel(new javax.swing.table.DefaultTableModel(
+            matrisP,
+            new String [] {
+                "Nombre", "Descripcion", "Inicio", "Fin", "Descuento"
+            }
+        ));
+        
+        matrisPlat[0][0]=plataforma.getNombre();
+        matrisPlat[0][1]=plataforma.getUrl();
+        matrisPlat[0][2]=plataforma.getDescripcion();
+        
+        tPlataformas.setModel(new javax.swing.table.DefaultTableModel(
+            matrisPlat,
+            new String [] {
+                "Nombre", "URL", "Descripcion"
+            }
+        ));
+        
+    }//GEN-LAST:event_tEspectaculosMouseClicked
 
     /**
      * @param args the command line arguments
