@@ -16,6 +16,9 @@ import javax.persistence.*;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "PaqueteDeEspectaculos.findAll", query = "SELECT p FROM PaqueteDeEspectaculos p"),
+    @NamedQuery(name = "PaqueteByName", query = "SELECT p FROM PaqueteDeEspectaculos p WHERE p.nombre = :nombre")})
 public class PaqueteDeEspectaculos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,6 +44,16 @@ public class PaqueteDeEspectaculos implements Serializable {
         java.sql.Date falta = new java.sql.Date(fay-1899,fam-12,fad-31);
         this.setFechaAlta(falta);
         this.espectaculos = new ArrayList<Espectaculo>();
+    }
+    
+    public PaqueteDeEspectaculos(DtPaqueteDeEspectaculos dvPaquete) {
+        nombre = dvPaquete.getNombre();
+        descripcion = dvPaquete.getDescripcion();
+        fechaInicio = dvPaquete.getFechaInicio();
+        fechaFin = dvPaquete.getFechaFin();
+        descuento = dvPaquete.getDescuento();
+        fechaAlta = dvPaquete.getFechaAlta();
+        espectaculos = new ArrayList<Espectaculo>();
     }
     
     public PaqueteDeEspectaculos(){this.espectaculos = new ArrayList<Espectaculo>();}

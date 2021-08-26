@@ -29,4 +29,9 @@ public class Fabrica {
         return e;
     }
     
+    public static iPaquetes getCtrlPaquetes(){
+        iPaquetes cp = ctrlPaquetes.getInstance();
+        return cp;
+    }
+    
 }
