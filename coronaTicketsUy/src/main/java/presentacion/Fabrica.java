@@ -30,7 +30,7 @@ public class Fabrica {
     }
     
     public static iPaquetes getCtrlPaquetes(){
-        iPaquetes cp = ctrlPaquetes.getInstance();
+        iPaquetes cp = CtrlPaquetes.getInstance();
         return cp;
     }
     

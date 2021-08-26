@@ -11,10 +11,10 @@ import java.sql.Date;
  *
  * @author dexion
  */
-public class ctrlPaquetes implements iPaquetes {
-    private static final ctrlPaquetes instance = new ctrlPaquetes();
-    private ctrlPaquetes(){};
-    public static ctrlPaquetes getInstance() {
+public class CtrlPaquetes implements iPaquetes {
+    private static final CtrlPaquetes instance = new CtrlPaquetes();
+    private CtrlPaquetes(){};
+    public static CtrlPaquetes getInstance() {
         return instance;
     }
     
