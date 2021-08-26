@@ -45,6 +45,16 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.setFechaAlta(falta);
         this.espectaculos = new ArrayList<Espectaculo>();
     }
+
+    public PaqueteDeEspectaculos(String nombre, String descripcion, Date fechaInicio, Date fechaAlta, Date fechaFin) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaInicio = fechaInicio;
+        this.fechaAlta = fechaAlta;
+        this.fechaFin = fechaFin;
+    }
+    
+    
     
     public PaqueteDeEspectaculos(DtPaqueteDeEspectaculos dvPaquete) {
         nombre = dvPaquete.getNombre();

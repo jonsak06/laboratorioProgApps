@@ -31,4 +31,21 @@ public class CtrlEspectaculos implements IEspectaculos {
     public List<DtFuncion> listarFunciones(String nombreEspectaculo){
         return ManEspectaculo.listarFunciones(nombreEspectaculo);
     }
+    
+    public float getDescuento(String nickname, String nombreFuncion){
+        return ManEspectaculo.getDescuento(nickname, nombreFuncion);
+    }
+    
+    public float getCosto(String nombreFuncion){
+        return ManEspectaculo.getCosto(nombreFuncion);
+    }
+    
+    public DtFuncion getDatosFuncion(String nombreFuncion){
+        return ManEspectaculo.getDatosFuncion(nombreFuncion);
+    }
+    
+    public boolean ingresarPlataforma(String nombre, String descripcion, String url){
+        return ManPlataformas.ingresarPlataforma(nombre, descripcion, url);
+    }
+    
 }

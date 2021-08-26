@@ -64,14 +64,67 @@ public class crlUsuarios implements iUsuarios
         ManejadorUsuarios.altaEspectador(es);
     }
 //    
-//    public void modificarArtista(DtArtista ar)
-//    {
-//        ManejadorUsuarios.modificarArtista(ar);
-//    }
-//    
-//    
-//    public void modificarEspectador(DtEspectador es)
-//    {
-//        ManejadorUsuarios.modificarEspectador(es);
-//    }
+    public void modificarArtista(DtArtista ar)
+    {
+        ManejadorUsuarios.modificarArtista(ar);
+    }
+    
+    
+    public void modificarEspectador(DtEspectador es)
+    {
+        ManejadorUsuarios.modificarEspectador(es);
+    }
+    
+    public List<DtEspectador> getNoRegistrados(String nombreFuncion){
+        return ManejadorUsuarios.getNoRegistrados(nombreFuncion);
+    }
+    
+    public int getCanjeables(String nickname){
+        return ManejadorUsuarios.getCanjeables(nickname);
+    }
+    
+    public List<Registro> listarCanjeables(String nickname){
+        return ManejadorUsuarios.listarCanjeables(nickname);
+    }
+    
+   public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion){
+       ManejadorUsuarios.canjearRegistros(canjeables, nickname, costo, nombreFuncion);
+   }
+   
+   public void registrarUsuario(String nickname, String nombreFuncion, float costo){
+       ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo);
+   }
+   
+   public DtEspectador getDatosEspectador(String nickname){
+       return ManejadorUsuarios.getDatosEspectador(nickname);
+   }
+   
+   public List<DtRegistro> getRegistros(String nickname)
+   {
+       return ManejadorUsuarios.getRegistros(nickname);
+   }
+   public List<DtFuncion> getFuncionesRegistros(String nickname)
+   {
+       return ManejadorUsuarios.getFuncionesRegistros(nickname);
+   }
+   
+   public List<DtEspectaculo> listarEspectaculosDeArtista(String nickname)
+   {
+       return ManejadorUsuarios.listarEspectaculosDeArtista(nickname);
+   }
+   
+   public DtPlataforma plataformaEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.plataformaEspectaculos(nombre);
+   
+   }
+   public List<DtFuncion> listarFuncionesEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.listarFunciones(nombre);
+   }
+   public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.listarPaquetesEspectaculos(nombre);
+   }
+    
 }

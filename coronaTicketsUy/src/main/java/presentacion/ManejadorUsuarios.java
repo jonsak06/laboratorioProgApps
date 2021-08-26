@@ -7,6 +7,7 @@ package presentacion;
 import java.util.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 import javax.persistence.*;
 /**
@@ -110,6 +111,41 @@ public class ManejadorUsuarios
 //        return us;
 //    }
     
+    public static List<DtEspectador> getNoRegistrados(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre", Funcion.class);
+        consulta.setParameter("nombre", nombreFuncion);
+        Funcion estaFuncion = consulta.getSingleResult();
+        em.getTransaction().commit();
+        List<DtEspectador> listaFinal = new ArrayList<DtEspectador>();
+        List<Registro> regF = estaFuncion.getRegistros();
+        List<String> listadeNick = new ArrayList<String>();
+        for (Registro i :regF){
+            String nick = i.getEspectador().getNickname();
+            listadeNick.add(nick);
+        }
+        for (String i :listadeNick){
+            TypedQuery<Espectador> cons = em.createNamedQuery("EspectadorporNick", Espectador.class);
+            Espectador este = cons.setParameter("nickname", i).getSingleResult();
+            DtEspectador esteDt = este.getMyDt();
+            listaFinal.add(esteDt);
+        }
+        List<DtEspectador> resultado = new ArrayList<DtEspectador>();
+        List<DtEspectador> listaTotal = ManejadorUsuarios.getEspectadores();
+        for (DtEspectador i :listaTotal){
+            int esta = 0;
+            for(DtEspectador j :listaFinal){
+                if(j.getId()==i.getId()){esta = esta+1;}
+                }
+            if(esta == 0){resultado.add(i);}
+        }
+        em.close();
+        emf.close(); 
+        return resultado;
+    }
+    
     public static boolean existeArtista(String nickname)
     {
         boolean us=false;
@@ -179,47 +215,216 @@ public class ManejadorUsuarios
         emf.close(); 
     }
 //    
-//    public static void modificarArtista(DtArtista ar)
-//    {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        List<Artista> listaArtistas = em.createNamedQuery("Artista.findAll").getResultList();
-//        Artista vp = null;
-//        for(int i=0; i<listaArtistas.size(); i++)
-//        {
-//            vp=listaArtistas.get(i);
-//            if(vp.getNickname()==ar.getNickname())
-//            {
-//                vp.setApellido(ar.getApellido());
-//                vp.setBiografia(ar.getBiografia());
-//                vp.setCorreo(ar.getCorreo());
-//                vp.setImagen(ar.getImagen());
-//                vp.setNombre(ar.getNombre());
-//                vp.setLinkWeb(ar.getLinkWeb());
-//            }
-//        }    
-//    }
+    public static void modificarArtista(DtArtista ar)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> lista = em.createNamedQuery("ArtistaporNick",Artista.class);
+        lista.setParameter("nickname", ar.getNickname());
+        Artista vp= lista.getSingleResult();
+        vp.setApellido(ar.getApellido());
+        vp.setBiografia(ar.getBiografia());
+        vp.setCorreo(ar.getCorreo());
+        vp.setImagen(ar.getImagen());
+        vp.setNombre(ar.getNombre());
+        vp.setLinkWeb(ar.getLinkWeb());
+        em.persist(vp);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.close();
+        emf.close(); 
+    }
 //    
 //    
-//    public static void modificarEspectador(DtEspectador es)
-//    {
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-//        EntityManager em = emf.createEntityManager();
-//        em.getTransaction().begin();
-//        List<Espectador> listaEspectadores = em.createNamedQuery("Espectador.findAll").getResultList();
-//        Espectador vp = null;
-//        for(int i=0; i<listaEspectadores.size(); i++)
-//        {
-//            vp=listaEspectadores.get(i);
-//            if(vp.getNickname()==es.getNickname())
-//            {
-//                vp.setApellido(es.getApellido());
-//                vp.setCorreo(es.getCorreo());
-//                vp.setImagen(es.getImagen());
-//                vp.setNombre(es.getNombre());
-//            }
-//        }    
-//    }
-//    
+    public static void modificarEspectador(DtEspectador es)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> lista = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        lista.setParameter("nickname", es.getNickname());
+        Espectador vp= lista.getSingleResult();
+        vp.setApellido(es.getApellido());
+        em.persist(vp);
+        em.getTransaction().commit();
+        em.close();
+        emf.close(); 
+        
+    }
+    
+    public static int getCanjeables(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        consulta.getSingleResult().calcularCanjeables();
+        int cantCanj =  consulta.getSingleResult().getCanjeables();
+        em.close();
+        emf.close();
+        return cantCanj;
+    }
+    
+    public static List<Registro> listarCanjeables(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        List<Registro> registros = esteMen.getRegistros();
+        List<Registro> canjeables = new ArrayList<Registro>();
+        for(Registro i:registros){
+            if(i.getEstado()!=EstadoRegistro.USADO){
+                canjeables.add(i);
+            }
+        }
+        em.close();
+        emf.close();
+        return canjeables;
+    }
+    
+    public static void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+//        Registro r = new Registro();
+//        r.setCosto(costo);
+        List<Registro> canjeados = new ArrayList<Registro>();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion estaFUncion = consultaFuncion.getSingleResult();
+//        r.setEspectador(esteMen);
+//        r.setFuncion(estaFUncion);
+        List<Registro> registros = esteMen.getRegistros();
+        for(Registro i :registros){
+            int esta = 0;
+            for(String j :canjeables){
+                if(i.getFuncion().getNombre().equals(j)){esta++;}
+            }
+            if(esta!=0){
+                i.setEstado(EstadoRegistro.USADO);
+                canjeados.add(i);
+                i.setFuncion(null);
+                em.persist(i);
+            }
+            }
+//        r.setCanjeados(canjeados);
+        java.util.Date fecha =new java.util.Date();
+        int dia = fecha.getDate();
+        int mes = fecha.getMonth();
+        int anio = fecha.getYear()+1900;
+//        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
+//        r.setFecha(estaFecha);
+//        r.setEstado(EstadoRegistro.PENDIENTE);
+        Registro r = new Registro(estaFUncion,esteMen,dia,mes,anio,costo);
+        em.persist(r);
+        r.setCanjeados(canjeados);
+        em.persist(r);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }            
+    
+    public static void registrarUsuario(String nickname, String nombreFuncion, float costo){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+//        Registro r = new Registro();
+//        r.setCosto(costo);
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion estaFUncion = consultaFuncion.getSingleResult();
+//        r.setEspectador(esteMen);
+//        r.setFuncion(estaFUncion);
+        java.util.Date fecha =new java.util.Date();
+        int dia = fecha.getDate();
+        int mes = fecha.getMonth();
+        int anio = fecha.getYear();
+//        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
+//        r.setFecha(estaFecha);
+//        r.setEstado(EstadoRegistro.PENDIENTE);
+        Registro r = new Registro(estaFUncion,esteMen,dia,mes,anio,costo);
+        em.persist(r);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
+    
+    public static DtEspectador getDatosEspectador(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        return esteMen.getMyDt();
+    }
+    
+    
+    public static List<DtRegistro> getRegistros(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtRegistro> lista = new ArrayList<DtRegistro>();
+        for(int i=0; i<esteMen.getRegistros().size(); i++){
+            lista.add(esteMen.getRegistros().get(i).getMyDt());
+        
+        }
+        return lista;
+    }
+    
+    public static List<DtFuncion> getFuncionesRegistros(String nickname){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtFuncion> lista = new ArrayList<DtFuncion>();
+        for(int i=0; i<esteMen.getRegistros().size(); i++){
+            lista.add(esteMen.getRegistros().get(i).getFuncion().getMyDt());
+        
+        }
+        return lista;
+    }
+    
+    public static List<DtEspectaculo> listarEspectaculosDeArtista(String nickname)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick",Artista.class);
+        consulta.setParameter("nickname", nickname);
+        Artista a = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtEspectaculo> lista = new ArrayList<DtEspectaculo>();
+        for(int i=0; i<a.getEspectaculos().size(); i++){
+            lista.add(a.getEspectaculos().get(i).getMyDt());
+        
+        }
+        return lista;
+    }
+    
+    
+   //    
 }

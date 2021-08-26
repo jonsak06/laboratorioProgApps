@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -31,6 +34,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         }
         this.listadoDePlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
         this.ie = ie;
+        this.canjeImposible.setVisible(false);
     }
 
     /**
@@ -61,6 +65,9 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         canjearOK = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         listadoDeEspectadores = new javax.swing.JComboBox<>();
+        canjeImposible = new javax.swing.JLabel();
+        fechaFuncion = new javax.swing.JLabel();
+        datosEsp = new javax.swing.JLabel();
 
         jLabel6.setText("Usuario no registrado!");
 
@@ -114,6 +121,12 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         jLabel4.setText("Seleccione una Función");
 
+        listadoFunciones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                listadoFuncionesItemStateChanged(evt);
+            }
+        });
+
         jLabel7.setText("Este usuario tiene        ");
 
         jLabel9.setText("registros canjeables");
@@ -138,84 +151,106 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         jLabel8.setText("Seleccione un Espectador");
 
+        listadoDeEspectadores.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                listadoDeEspectadoresItemStateChanged(evt);
+            }
+        });
+
+        canjeImposible.setForeground(new java.awt.Color(255, 0, 0));
+        canjeImposible.setText("Imposible realizar canje!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonCancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(botonCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cantCanjeables, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9))
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(canjeImposible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jLabel4))
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(listadoFunciones, 0, 170, Short.MAX_VALUE)
-                                    .addComponent(listadoDePlataformas, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(listadoDeEspectaculos, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(listadoDeEspectadores, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(canjearOK, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(listadoDePlataformas, 0, 295, Short.MAX_VALUE)
+                                    .addComponent(listadoDeEspectaculos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(listadoFunciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(listadoDeEspectadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(datosEsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(239, 239, 239)
+                        .addComponent(fechaFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                        .addComponent(canjearOK, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(listadoDePlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(listadoDeEspectaculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(listadoFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(canjearOK))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(listadoDePlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(listadoDeEspectaculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(listadoFunciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)
+                        .addComponent(fechaFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(listadoDeEspectadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(30, 30, 30)
+                        .addGap(9, 9, 9)
+                        .addComponent(datosEsp, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(cantCanjeables, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(canjearOK)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonRegistrar)
-                    .addComponent(botonCancelar))
-                .addGap(26, 26, 26))
+                            .addComponent(jLabel9)
+                            .addComponent(canjeImposible))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botonRegistrar)
+                            .addComponent(botonCancelar))))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -228,6 +263,33 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         // TODO add your handling code here:
+        float descuento = ie.getDescuento(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString());
+        float costo = ie.getCosto(this.listadoFunciones.getSelectedItem().toString());
+        if(descuento!=0){costo = descuento*costo*(float)0.01;}
+        List<String> listaSeleccionada = this.seleccionarCanjeables.getSelectedValuesList();
+        if (canjearOK.isSelected()==true && listaSeleccionada.size()<3){
+            JOptionPane.showMessageDialog(null, "No has seleccionado suficientes canjeables", "Error", JOptionPane.WARNING_MESSAGE);
+        }else if(canjearOK.isSelected()==true && listaSeleccionada.size()>3){
+            JOptionPane.showMessageDialog(null, "Debes seleccionar 3 canjeables para canjear un registro", "Error", JOptionPane.WARNING_MESSAGE);
+        }else if(canjearOK.isSelected()==true){
+            costo = 0;
+            iUsuarios iu = Fabrica.getCrlUsuarios();
+            iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
+        }else{
+        iUsuarios iu = Fabrica.getCrlUsuarios();
+        iu.registrarUsuario(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString(), costo);
+        canjeImposible.setVisible(false);
+        DefaultListModel<String> modelo = new DefaultListModel<String>();
+        this.seleccionarCanjeables.setModel(modelo);
+        this.canjearOK.setSelected(false);
+        this.cantCanjeables.setVisible(false);
+        this.fechaFuncion.setVisible(false);
+        this.datosEsp.setVisible(false);
+        JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
+        }
+        
+        
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
@@ -247,31 +309,81 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         List<String> listaEspectaculos = new ArrayList<String>();
         listaEspectaculos.add("--Seleleccione uno--");
 //        IEspectaculos ce = Fabrica.getCtrlEspectaculos();
+        if (this.listadoDePlataformas.getSelectedItem().toString() != "--Seleccione una--"){
          List<DtEspectaculo> lEsp = this.ie.listarEspectaculos(listadoDePlataformas.getSelectedItem().toString());
         for (DtEspectaculo i :lEsp){
             listaEspectaculos.add(i.getNombre());
         }
-        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
+        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));}
     }//GEN-LAST:event_listadoDePlataformasItemStateChanged
 
     private void listadoDeEspectaculosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDeEspectaculosItemStateChanged
         // TODO add your handling code here:
         List<String> listaFunciones = new ArrayList<String>();
+        if(this.listadoDeEspectaculos.getSelectedItem().toString() != "--Seleleccione uno--"){
         listaFunciones.add("--Seleccione una--");
         List<DtFuncion> lFunc = this.ie.listarFunciones(listadoDeEspectaculos.getSelectedItem().toString());
         for (DtFuncion i :lFunc){
             listaFunciones.add(i.getNombre());
         }
-        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));
+        this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));}
+//        List<String> listaEspectadores = new ArrayList<String>();
+//        listaEspectadores.add("--Seleccione uno--");
+//        iUsuarios iu = Fabrica.getCrlUsuarios();
+//        List<DtEspectador> lEspect = iu.getEspectadores();
+//        for (DtEspectador i :lEspect){
+//            listaEspectadores.add(i.getNombre()+" "+i.getApellido()+"--"+i.getNickname());
+//        }
+//        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
+    }//GEN-LAST:event_listadoDeEspectaculosItemStateChanged
+
+    private void listadoFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoFuncionesItemStateChanged
+        // TODO add your handling code here:
         List<String> listaEspectadores = new ArrayList<String>();
+        if (this.listadoFunciones.getSelectedItem().toString() != "--Seleccione una--"){
         listaEspectadores.add("--Seleccione uno--");
         iUsuarios iu = Fabrica.getCrlUsuarios();
-        List<DtEspectador> lEspect = iu.getEspectadores();
+        DtFuncion funcion = ie.getDatosFuncion(this.listadoFunciones.getSelectedItem().toString());
+        List<DtEspectador> lEspect = iu.getNoRegistrados(this.listadoFunciones.getSelectedItem().toString());
         for (DtEspectador i :lEspect){
-            listaEspectadores.add(i.getNombre()+" "+i.getApellido()+"--"+i.getNickname());
+            listaEspectadores.add(i.getNickname());
         }
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
-    }//GEN-LAST:event_listadoDeEspectaculosItemStateChanged
+        this.fechaFuncion.setText("Fecha: "+funcion.getHoraInicio().toString());
+        this.fechaFuncion.setVisible(true);
+        
+        }
+        
+    }//GEN-LAST:event_listadoFuncionesItemStateChanged
+
+    private void listadoDeEspectadoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDeEspectadoresItemStateChanged
+        // TODO add your handling code here:
+        if(this.listadoDeEspectaculos.getSelectedItem().toString()!="--Seleccione uno--"){
+        iUsuarios iu = Fabrica.getCrlUsuarios();
+        DtEspectador esteMen = iu.getDatosEspectador(this.listadoDeEspectadores.getSelectedItem().toString());
+        this.datosEsp.setText(esteMen.getNombre()+" "+esteMen.getApellido()+" "+esteMen.getCorreo());
+        this.datosEsp.setVisible(true);
+        int cantCanj = iu.getCanjeables(listadoDeEspectadores.getSelectedItem().toString());
+        this.cantCanjeables.setText(cantCanj+"");
+        this.cantCanjeables.setVisible(true);
+        if(cantCanj<3){
+            this.canjeImposible.setVisible(true);
+            DefaultListModel<String> modelo = new DefaultListModel<String>();
+            modelo.add(0,"No hay suficientes registros canjeables");
+            this.seleccionarCanjeables.setModel(modelo);
+        }else{
+            List<Registro> canjeables = iu.listarCanjeables(this.listadoDeEspectadores.getSelectedItem().toString());
+            DefaultListModel<String> modelo = new DefaultListModel<String>();
+            int pos = 0;
+            for(Registro i :canjeables){
+                modelo.add(pos, i.getFuncion().getNombre());
+                pos++;
+            }
+            this.seleccionarCanjeables.setModel(modelo);
+            this.seleccionarCanjeables.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        }
+        }
+    }//GEN-LAST:event_listadoDeEspectadoresItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -311,8 +423,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrar;
+    private javax.swing.JLabel canjeImposible;
     private javax.swing.JCheckBox canjearOK;
     private javax.swing.JLabel cantCanjeables;
+    private javax.swing.JLabel datosEsp;
+    private javax.swing.JLabel fechaFuncion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

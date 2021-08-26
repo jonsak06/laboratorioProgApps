@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author jsmat
@@ -35,7 +37,6 @@ public class AltaPlataforma extends javax.swing.JFrame {
         descripcion = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         url = new javax.swing.JTextField();
-        mensajeRepetida = new javax.swing.JLabel();
         botonIngresar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
 
@@ -66,9 +67,12 @@ public class AltaPlataforma extends javax.swing.JFrame {
             }
         });
 
-        mensajeRepetida.setText("Ya existe una plataforma con ese nombre!");
-
         botonIngresar.setText("Ingresar");
+        botonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonIngresarActionPerformed(evt);
+            }
+        });
 
         botonCancelar.setText("Cancelar");
         botonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -83,13 +87,8 @@ public class AltaPlataforma extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mensajeRepetida, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(botonCancelar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -103,8 +102,13 @@ public class AltaPlataforma extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nombre))
-                            .addComponent(jLabel1))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                            .addComponent(jLabel1))
+                        .addContainerGap(64, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,9 +127,7 @@ public class AltaPlataforma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(mensajeRepetida)
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botonIngresar)
                     .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,6 +150,21 @@ public class AltaPlataforma extends javax.swing.JFrame {
         this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+        // TODO add your handling code here:
+        IEspectaculos ie = Fabrica.getCtrlEspectaculos();
+        if(this.url.getText().contains(" ") || this.url.getText().contains(".")==false){
+            JOptionPane.showMessageDialog(null, "URL invalida", "ERROR!", JOptionPane.DEFAULT_OPTION);
+        }else{
+        boolean ingresada = ie.ingresarPlataforma(this.nombre.getText(), this.descripcion.getText(), this.url.getText());
+        if(ingresada==false){
+        JOptionPane.showMessageDialog(null, "La plataforma ya esta registrada", "ERROR!", JOptionPane.DEFAULT_OPTION);
+        }else{
+        JOptionPane.showMessageDialog(null, "Registro exitoso!", "Listo!", JOptionPane.DEFAULT_OPTION);
+        }
+        }
+    }//GEN-LAST:event_botonIngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,7 +210,6 @@ public class AltaPlataforma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel mensajeRepetida;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField url;
     // End of variables declaration//GEN-END:variables

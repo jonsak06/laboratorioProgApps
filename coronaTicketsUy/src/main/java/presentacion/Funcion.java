@@ -16,6 +16,9 @@ import java.util.List;
  * @author julio
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Funcion.findAll", query = "SELECT f FROM Funcion f"),
+    @NamedQuery(name = "Funcion.findByNombre", query = "SELECT f FROM Funcion f WHERE f.nombre = :nombre")})
 public class Funcion implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -16,6 +16,9 @@ public interface IEspectaculos {
     
     public List<DtEspectaculo> listarEspectaculos(String nombre);
     public List<DtFuncion> listarFunciones(String nombreEspectaculo);
-    
+    public float getDescuento(String nickname, String nombreFuncion);
+    public float getCosto(String nombreFuncion);
     boolean existeEspectaculo(String nombreEspectaculo);
+    public DtFuncion getDatosFuncion(String nombreFuncion);
+    public boolean ingresarPlataforma(String nombre, String descripcion, String url);
 }

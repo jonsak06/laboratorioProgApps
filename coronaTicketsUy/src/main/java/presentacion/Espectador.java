@@ -36,10 +36,14 @@ public class Espectador extends Usuario {
     @Column(name = "CANT_CANJEABLES")
     private int canjeables;
 
-    public void setCanjeables(int canjeables) {
-        this.canjeables = canjeables;
+    public void calcularCanjeables(){
+        canjeables = 0;
+        for (Registro i :this.registros){
+            if(i.getEstado()!=EstadoRegistro.USADO){
+            canjeables = canjeables + 1;
+            }
+        }
     }
-
     public int getCanjeables() {
         return canjeables;
     }
@@ -110,7 +114,10 @@ public class Espectador extends Usuario {
     
     public DtEspectador getMyDt()
     {
-        DtEspectador dt = new DtEspectador(this.canjeables, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        this.calcularCanjeables();
+        
+    
+        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
         return dt; 
     }
     

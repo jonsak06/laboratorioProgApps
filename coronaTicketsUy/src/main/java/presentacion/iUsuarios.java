@@ -21,6 +21,19 @@ public interface iUsuarios {
     boolean existeUsuario(String nickname);
     void altaArtista(DtArtista ar);
     void altaEspectador(DtEspectador es);
-//    public void modificarArtista(DtArtista ar);
-//    public void modificarEspectador(DtEspectador es);
+    public void modificarArtista(DtArtista ar);
+    public void modificarEspectador(DtEspectador es);
+    public List<DtEspectador> getNoRegistrados(String nombreFuncion);
+    public int getCanjeables(String nickname);
+    public List<Registro> listarCanjeables(String nickname);
+    public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion);
+    public void registrarUsuario(String nickname, String nombreFuncion, float costo);
+    public DtEspectador getDatosEspectador(String nickname);
+    public List<DtRegistro> getRegistros(String nickname);
+    public List<DtFuncion> getFuncionesRegistros(String nickname);
+    public List<DtEspectaculo> listarEspectaculosDeArtista(String nickname);
+    public DtPlataforma plataformaEspectaculosDeArtista(String nickname, String nombre);
+    public List<DtFuncion> listarFuncionesEspectaculosDeArtista(String nickname, String nombre);
+    public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre);
+    
 }

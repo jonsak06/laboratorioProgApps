@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -50,7 +51,102 @@ public class ManEspectaculo {
            DtFuncion esteDt = new DtFuncion(i.getId(),i.getNombre(),i.getHoraInicio(),i.getFechaRegistro(),i.getFecha());
            lDtf.add(esteDt);
        }
+       em.close();
+       emf.close();
        return lDtf;
     }
     
+    public static float getDescuento(String nickname, String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        List<Compra> comprasDesteMen = esteMen.getCompras();
+        List<PaqueteDeEspectaculos> paquetesComprados = new ArrayList<PaqueteDeEspectaculos>();
+        for(Compra i :comprasDesteMen){
+           paquetesComprados.add(i.getPaquete());
+        }
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion funcion = consultaFuncion.getSingleResult();
+        float result = 0;
+        for(PaqueteDeEspectaculos i :paquetesComprados){
+            for(Espectaculo j :i.getEspectaculos()){
+                if(j.getId()==funcion.getEspectaculo().getId()){
+                    result = i.getDescuento();
+                }
+            }
+        }
+        em.close();
+        emf.close();
+        return result;
+    }
+    
+    public static float getCosto(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion funcion = consultaFuncion.getSingleResult();
+        em.close();
+        emf.close();
+        return funcion.getEspectaculo().getCosto();
+    }
+    
+    public static DtFuncion getDatosFuncion(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consultaFuncion.setParameter("nombre", nombreFuncion);
+        Funcion funcion = consultaFuncion.getSingleResult();
+        em.close();
+        emf.close();
+        return funcion.getMyDt();
+    }
+    
+    
+    
+    
+    public static DtPlataforma plataformaEspectaculos(String nombre)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombre);
+        Espectaculo e = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        DtPlataforma plat=new DtPlataforma();
+        
+        plat=e.getPlataforma().getMyDt();
+        
+        return plat;
+    }
+    
+    
+    
+    
+    public static List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculos(String nombre)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombre);
+        Espectaculo e = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtPaqueteDeEspectaculos> lista=new ArrayList<DtPaqueteDeEspectaculos>();
+
+        for(int u=0; u<e.getPaquetes().size(); u++)
+        {
+            lista.add(e.getPaquetes().get(u).getMyDt());
+        }
+
+        return lista;
+    }
 }

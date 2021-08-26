@@ -9,6 +9,7 @@ import java.util.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
      */
     public ModificarUsuario() {
         initComponents();
+        List<String> nicknames = new ArrayList<String>();
         tfNombre.setEnabled(true);
         tfApellido.setEnabled(true);
         tfCorreoElectronico.setEnabled(true);
@@ -32,12 +34,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
         espectadores=Fabrica.getCrlUsuarios().getEspectadores();
         for (int i=0; i<espectadores.size(); i++)
         {
-            cbUsuario.addItem(espectadores.get(i).getNickname());
+            nicknames.add(espectadores.get(i).getNickname());
         }
         tfNombre.setText(espectadores.get(0).getNombre());
         tfNickname.setText(espectadores.get(0).getNickname());
         tfApellido.setText(espectadores.get(0).getApellido());
         tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+        this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
     }
 
     /**
@@ -110,6 +113,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         btCancelar.setText("Cancelar");
 
         btModificar.setText("Modificar");
+        btModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btModificarActionPerformed(evt);
+            }
+        });
 
         btImagen.setText("Imagen");
 
@@ -129,6 +137,12 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfBiografia.setEnabled(false);
 
         jLabel1.setText("Usuario:");
+
+        cbUsuario.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbUsuarioItemStateChanged(evt);
+            }
+        });
 
         tfNombre.setText("jTextField3");
         tfNombre.setEnabled(false);
@@ -241,6 +255,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
     private void cbTipoUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoUsuarioItemStateChanged
         // TODO add your handling code here:
+        List<String> nicknames = new ArrayList<String>();
         if( cbTipoUsuario.getSelectedItem().toString()=="Artista")
         {
             tfNombre.setEnabled(true);
@@ -250,11 +265,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
             lbTitulo.setText("Ingrese los datos del artista");
-            cbUsuario.removeAllItems();
+            
             artistas=Fabrica.getCrlUsuarios().getArtistas();
             for (int i=0; i<artistas.size(); i++)
             {
-                cbUsuario.addItem(artistas.get(i).getNickname());
+                nicknames.add(artistas.get(i).getNickname());
             }
             tfNombre.setText(artistas.get(0).getNombre());
             tfNickname.setText(artistas.get(0).getNickname());
@@ -263,7 +278,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfDescripcion.setText(artistas.get(0).getDescripcion());
             tfBiografia.setText(artistas.get(0).getBiografia());
             tfLinkWeb.setText(artistas.get(0).getLinkWeb());
-            
+            this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
         }
 
         if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
@@ -276,23 +291,97 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfBiografia.setEnabled(false);
             tfLinkWeb.setEnabled(false);
             lbTitulo.setText("Ingrese los datos del espectador");
-            cbUsuario.removeAllItems();
             espectadores=Fabrica.getCrlUsuarios().getEspectadores();
             for (int i=0; i<espectadores.size(); i++)
             {
-                cbUsuario.addItem(espectadores.get(i).getNickname());
+                nicknames.add(espectadores.get(i).getNickname());
             }
             tfNombre.setText(espectadores.get(0).getNombre());
             tfNickname.setText(espectadores.get(0).getNickname());
             tfApellido.setText(espectadores.get(0).getApellido());
             tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+            this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
         }
+
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
 
     private void cbTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoUsuarioActionPerformed
         // TODO add your handling code here:
 
     }//GEN-LAST:event_cbTipoUsuarioActionPerformed
+
+    private void btModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btModificarActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+       if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
+        {
+            for (int i=0; i<espectadores.size(); i++)
+            {
+                if(cbUsuario.getSelectedItem().toString()==espectadores.get(i).getNickname())
+                {
+                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", espectadores.get(i).getFechaNacimiento());
+                    Fabrica.getCrlUsuarios().modificarEspectador(es);
+                }
+            }
+            
+        }
+            
+        if("Artista"==cbTipoUsuario.getSelectedItem().toString())
+        {
+            for (int i=0; i<artistas.size(); i++)
+            {
+                if(cbUsuario.getSelectedItem().toString()==artistas.get(i).getNickname())
+                {
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", artistas.get(i).getFechaNacimiento());
+                    Fabrica.getCrlUsuarios().modificarArtista(ar);
+                }
+            }
+        } 
+        
+        
+        
+        
+    }//GEN-LAST:event_btModificarActionPerformed
+
+    private void cbUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUsuarioItemStateChanged
+        // TODO add your handling code here:
+        
+        if( cbTipoUsuario.getSelectedItem().toString()=="Artista")
+        {
+            for (int i=0; i<artistas.size(); i++)
+            {
+                if(cbUsuario.getSelectedItem().toString()==artistas.get(i).getNickname())
+                {
+                    tfNombre.setText(artistas.get(i).getNombre());
+                    tfApellido.setText(artistas.get(i).getApellido());
+                    tfNickname.setText(artistas.get(i).getNickname());
+                    tfCorreoElectronico.setText(artistas.get(i).getCorreo());
+                    tfDescripcion.setText(artistas.get(i).getDescripcion());
+                    tfBiografia.setText(artistas.get(i).getBiografia());
+                    tfLinkWeb.setText(artistas.get(i).getLinkWeb());
+                }
+            }
+        }
+        
+        if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
+        {
+            for (int i=0; i<espectadores.size(); i++)
+            {
+                if(cbUsuario.getSelectedItem().toString()==espectadores.get(i).getNickname())
+                {
+                    tfNombre.setText(espectadores.get(i).getNombre());
+                    tfNickname.setText(espectadores.get(i).getNickname());
+                    tfApellido.setText(espectadores.get(i).getApellido());
+                    tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
+
+                }
+            }
+        }
+
+       
+    }//GEN-LAST:event_cbUsuarioItemStateChanged
 
     /**
      * @param args the command line arguments
