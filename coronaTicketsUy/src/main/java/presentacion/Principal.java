@@ -115,12 +115,14 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         AltaPlataforma altPlat = new AltaPlataforma();
         altPlat.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_altaPlataformasActionPerformed
 
     private void registroUsuarioFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroUsuarioFuncionActionPerformed
         // TODO add your handling code here:
         RegistroEspectadorFuncion rEspFunc = new RegistroEspectadorFuncion();
         rEspFunc.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_registroUsuarioFuncionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

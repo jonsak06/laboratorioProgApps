@@ -64,6 +64,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         usuarioNoExiste = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         listadoDePlataformas = new javax.swing.JComboBox<>();
@@ -84,6 +85,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         canjeImposible = new javax.swing.JLabel();
         fechaFuncion = new javax.swing.JLabel();
         datosEsp = new javax.swing.JLabel();
+        volverBTN = new javax.swing.JButton();
 
         jLabel6.setText("Usuario no registrado!");
 
@@ -104,10 +106,20 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                 .addContainerGap(186, Short.MAX_VALUE))
         );
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 formComponentHidden(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -176,6 +188,13 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         canjeImposible.setForeground(new java.awt.Color(255, 0, 0));
         canjeImposible.setText("Imposible realizar canje!");
 
+        volverBTN.setText("Volver");
+        volverBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,7 +207,9 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(botonCancelar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(222, 222, 222)
+                                .addComponent(volverBTN))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,7 +286,8 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(botonRegistrar)
-                            .addComponent(botonCancelar))))
+                            .addComponent(botonCancelar)
+                            .addComponent(volverBTN))))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -324,7 +346,8 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        Principal ventanaPrincipal = new Principal();
+        ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonCancelarActionPerformed
 
@@ -439,6 +462,22 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_listadoDeEspectadoresItemStateChanged
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
+
+    private void volverBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverBTNActionPerformed
+        // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal();
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_volverBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -482,6 +521,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private javax.swing.JLabel cantCanjeables;
     private javax.swing.JLabel datosEsp;
     private javax.swing.JLabel fechaFuncion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -497,6 +537,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listadoFunciones;
     private javax.swing.JList<String> seleccionarCanjeables;
     private javax.swing.JDialog usuarioNoExiste;
+    private javax.swing.JButton volverBTN;
     // End of variables declaration//GEN-END:variables
 
 }
