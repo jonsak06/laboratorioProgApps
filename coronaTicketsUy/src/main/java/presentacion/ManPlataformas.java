@@ -99,6 +99,19 @@ public class ManPlataformas {
             }
             
         }
+        
+        public static List<String> getNombres() {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+            EntityManager em = emf.createEntityManager();
+            List<Plataforma> plats = em.createNamedQuery("Plataforma.findAll", Plataforma.class)
+                    .getResultList();
+            em.close();
+            ArrayList<String> nombres = new ArrayList();
+            plats.forEach(p -> {
+                nombres.add(p.getNombre());
+            });
+            return nombres;
+        }
          
    
    

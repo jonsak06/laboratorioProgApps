@@ -26,7 +26,7 @@ public class ManejadorPaquetes {
         
         em.close();
         return paq.size()>0;
-    };
+    }
     
     public boolean crearPaquete(DtPaqueteDeEspectaculos dvPaquete){
         if(existePaquete(dvPaquete.getNombre())) {
@@ -41,5 +41,25 @@ public class ManejadorPaquetes {
         txn.commit();
         em.close();
         return true;
-    };
+    }
+    
+    public List<String> getNombres() {
+       EntityManager em = emf.createEntityManager();
+       List<PaqueteDeEspectaculos> paqs = em.createNamedQuery("PaqueteDeEspectaculos.findAll", PaqueteDeEspectaculos.class)
+               .getResultList();
+       em.close();
+       ArrayList<String> nombres = new ArrayList();
+       paqs.forEach(p -> {
+           nombres.add(p.getNombre());
+       });
+       return nombres;
+    }
+    
+    public PaqueteDeEspectaculos getPaquete(String nombrePaquete) {
+        EntityManager em = emf.createEntityManager();
+        PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName", PaqueteDeEspectaculos.class)
+                .setParameter("nombre", nombrePaquete).getSingleResult();
+        em.close();
+        return paq;
+    }
 }

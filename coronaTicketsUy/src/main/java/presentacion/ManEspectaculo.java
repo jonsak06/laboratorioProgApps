@@ -149,4 +149,19 @@ public class ManEspectaculo {
 
         return lista;
     }
+    
+    public static List<String> getNombres(String plataforma) {
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+            EntityManager em = emf.createEntityManager();
+            List<Espectaculo> esps = em.createNamedQuery("Espectaculo.findAll", Espectaculo.class)
+                    .getResultList();
+            em.close();
+            ArrayList<String> nombres = new ArrayList();
+            esps.forEach(e -> {
+                if(e.getPlataforma().getNombre().equals(plataforma)) {
+                    nombres.add(e.getNombre());
+                }
+            });
+            return nombres;
+        }
 }

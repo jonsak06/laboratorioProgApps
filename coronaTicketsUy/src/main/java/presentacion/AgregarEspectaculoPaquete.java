@@ -17,6 +17,8 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
     public AgregarEspectaculoPaquete() {
         initComponents();
     }
+    
+    private iPaquetes ctPaq = Fabrica.getCtrlPaquetes();
 
     /**
      * This method is called from within the constructor to initialize the form.

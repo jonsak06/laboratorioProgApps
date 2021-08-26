@@ -163,4 +163,14 @@ public class PaqueteDeEspectaculos implements Serializable {
         DtPaqueteDeEspectaculos dt = new DtPaqueteDeEspectaculos(this.id, this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.descuento);
         return dt;
     }
+    
+    public List<String> filtrarEspectaculosNoIncluidos(List<String> nomEsps) {
+        List<String> nomEspsFilt = new ArrayList();
+        espectaculos.forEach(e -> {
+            if(!nomEsps.contains(e.getNombre())) {
+                nomEspsFilt.add(e.getNombre());
+            }
+        });
+        return nomEspsFilt;
+    }
 }
