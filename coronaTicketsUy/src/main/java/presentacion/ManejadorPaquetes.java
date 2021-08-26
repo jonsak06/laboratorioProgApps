@@ -5,7 +5,6 @@
  */
 package presentacion;
 import java.util.*;
-//import java.sql.Date;
 import javax.persistence.*;
 /**
  *
@@ -34,6 +33,7 @@ public class ManejadorPaquetes {
             return false;
         }
         PaqueteDeEspectaculos p = new PaqueteDeEspectaculos(dvPaquete);
+        p.setFechaAlta(new java.sql.Date(System.currentTimeMillis()));
         EntityManager em = emf.createEntityManager();
         EntityTransaction txn = em.getTransaction();
         txn.begin();

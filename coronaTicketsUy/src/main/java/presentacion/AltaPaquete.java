@@ -210,14 +210,14 @@ public class AltaPaquete extends javax.swing.JFrame {
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         // TODO add your handling code here:
-        String nombre = inputNombre.getText();
-        String descripcion = inputDescripcion.getText();
-        Date fechaInicio = new Date(Integer.parseInt(comboDiaInicio.getSelectedItem().toString()),
-                Integer.parseInt(comboMesInicio.getSelectedItem().toString()),
-                Integer.parseInt(comboAnioInicio.getSelectedItem().toString()));
-        Date fechaFin = new Date(Integer.parseInt(comboDiaFin.getSelectedItem().toString()),
-                Integer.parseInt(comboMesFin.getSelectedItem().toString()),
-                Integer.parseInt(comboAnioFin.getSelectedItem().toString()));
+        String nombre = inputNombre.getText().trim();
+        String descripcion = inputDescripcion.getText().trim();
+        Date fechaInicio = new Date(Integer.parseInt(comboAnioInicio.getSelectedItem().toString())-1900, 
+                Integer.parseInt(comboMesInicio.getSelectedItem().toString())-1, 
+                Integer.parseInt(comboDiaInicio.getSelectedItem().toString()));
+        Date fechaFin = new Date(Integer.parseInt(comboAnioFin.getSelectedItem().toString())-1900, 
+                Integer.parseInt(comboMesFin.getSelectedItem().toString())-1, 
+                Integer.parseInt(comboDiaFin.getSelectedItem().toString()));
         int descuento;
         try {
             descuento = Integer.parseInt(inputDescuento.getText());
@@ -225,7 +225,6 @@ public class AltaPaquete extends javax.swing.JFrame {
             descuento = 0;
         }
         
-        //agregar control fecha fin > fecha inicio
         if(nombre.isBlank()) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre");            
         } else if(nombre.length() > 255) {
@@ -237,6 +236,8 @@ public class AltaPaquete extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese una descripcion");
         } else if(descripcion.length() > 1000) {
             JOptionPane.showMessageDialog(null, "La descripcion es demasiado larga");
+        } else if(fechaInicio.getTime() > fechaFin.getTime()) {
+            JOptionPane.showMessageDialog(null, "La fecha de fin debe ser mayor o igual a la fecha de inicio");            
         } else {
             boolean resp = ctPaq.confirmarAltaPaquete(nombre, descripcion, fechaInicio, fechaFin, descuento);
             if (resp) {
@@ -247,8 +248,6 @@ public class AltaPaquete extends javax.swing.JFrame {
                 inputNombre.setText("");
             }  
         }
-        
-        
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
