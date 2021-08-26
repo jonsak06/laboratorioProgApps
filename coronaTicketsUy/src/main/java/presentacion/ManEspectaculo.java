@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -104,4 +105,48 @@ public class ManEspectaculo {
         return funcion.getMyDt();
     }
     
+    
+    
+    
+    public static DtPlataforma plataformaEspectaculos(String nombre)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombre);
+        Espectaculo e = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        DtPlataforma plat=new DtPlataforma();
+        
+        plat=e.getPlataforma().getMyDt();
+        
+        return plat;
+    }
+    
+    
+    
+    
+    public static List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculos(String nombre)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombre);
+        Espectaculo e = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<DtPaqueteDeEspectaculos> lista=new ArrayList<DtPaqueteDeEspectaculos>();
+
+        for(int u=0; u<e.getPaquetes().size(); u++)
+        {
+            lista.add(e.getPaquetes().get(u).getMyDt());
+        }
+
+        return lista;
+    }
 }

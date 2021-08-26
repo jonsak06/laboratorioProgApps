@@ -112,4 +112,19 @@ public class crlUsuarios implements iUsuarios
    {
        return ManejadorUsuarios.listarEspectaculosDeArtista(nickname);
    }
+   
+   public DtPlataforma plataformaEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.plataformaEspectaculos(nombre);
+   
+   }
+   public List<DtFuncion> listarFuncionesEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.listarFunciones(nombre);
+   }
+   public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre)
+   {
+       return ManEspectaculo.listarPaquetesEspectaculos(nombre);
+   }
+    
 }
