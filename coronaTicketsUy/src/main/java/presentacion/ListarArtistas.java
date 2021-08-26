@@ -214,7 +214,7 @@ public class ListarArtistas extends javax.swing.JFrame {
             matris [i][3]=Integer.toString(espectaculos.get(i).getCantidadMinimaEspectadores());
             matris [i][4]=Float.toString(espectaculos.get(i).getCosto());
             matris [i][5]=espectaculos.get(i).getUrl();
-            matris [i][5]=espectaculos.get(i).getFechaDeRegistro().toString();
+            matris [i][6]=espectaculos.get(i).getFechaDeRegistro().toString();
 
         }
         tEspectaculos.setModel(new javax.swing.table.DefaultTableModel(
