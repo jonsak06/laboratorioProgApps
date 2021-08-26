@@ -31,4 +31,5 @@ public interface iUsuarios {
     public DtEspectador getDatosEspectador(String nickname);
     public List<DtRegistro> getRegistros(String nickname);
     public List<DtFuncion> getFuncionesRegistros(String nickname);
+    public List<DtEspectaculo> listarEspectaculosDeArtista(String nickname);
 }
