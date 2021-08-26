@@ -170,9 +170,9 @@ public class AltaPlataforma extends javax.swing.JFrame {
         IEspectaculos ie = Fabrica.getCtrlEspectaculos();
         if(this.url.getText().contains(" ") || this.url.getText().contains(".")==false || this.url.getText().length()<1 || this.url.getText().length()>254){
             JOptionPane.showMessageDialog(null, "URL invalida", "ERROR!", JOptionPane.DEFAULT_OPTION);
-        }else if(this.nombre.getText().length()<1 || this.nombre.getText().length()>254){
+        }else if(this.nombre.getText().length()<1 || this.nombre.getText().length()>254 || this.nombre.getText().trim().length()==0){
             JOptionPane.showMessageDialog(null, "Nombre invalido", "ERROR!", JOptionPane.DEFAULT_OPTION);
-        }else if(this.descripcion.getText().length()<1){
+        }else if(this.descripcion.getText().length()<1 || this.descripcion.getText().trim().length()==0){
             JOptionPane.showMessageDialog(null, "Descripcion obligatoria", "ERROR!", JOptionPane.DEFAULT_OPTION);
             }else{
         boolean ingresada = ie.ingresarPlataforma(this.nombre.getText(), this.descripcion.getText(), this.url.getText());
