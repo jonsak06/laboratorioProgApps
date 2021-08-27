@@ -175,7 +175,7 @@ public class AltaPlataforma extends javax.swing.JFrame {
         }else if(this.descripcion.getText().length()<1 || this.descripcion.getText().trim().length()==0){
             JOptionPane.showMessageDialog(null, "Descripcion obligatoria", "ERROR!", JOptionPane.DEFAULT_OPTION);
             }else{
-        boolean ingresada = ie.ingresarPlataforma(this.nombre.getText(), this.descripcion.getText(), this.url.getText());
+        boolean ingresada = ie.ingresarPlataforma(this.nombre.getText().trim(), this.descripcion.getText(), this.url.getText());
         if(ingresada==false){
         JOptionPane.showMessageDialog(null, "La plataforma ya esta registrada", "ERROR!", JOptionPane.DEFAULT_OPTION);
         }else{
