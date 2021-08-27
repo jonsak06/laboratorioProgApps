@@ -150,7 +150,7 @@ public class ManEspectaculo {
         return lista;
     }
     
-    public static List<String> getNombres(String plataforma) {
+    public static List<String> getNombres(String nombrePlataforma) {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
             EntityManager em = emf.createEntityManager();
             List<Espectaculo> esps = em.createNamedQuery("Espectaculo.findAll", Espectaculo.class)
@@ -158,7 +158,7 @@ public class ManEspectaculo {
             em.close();
             ArrayList<String> nombres = new ArrayList();
             esps.forEach(e -> {
-                if(e.getPlataforma().getNombre().equals(plataforma)) {
+                if(e.getPlataforma().getNombre().equals(nombrePlataforma)) {
                     nombres.add(e.getNombre());
                 }
             });

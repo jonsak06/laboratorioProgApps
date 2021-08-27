@@ -164,13 +164,12 @@ public class PaqueteDeEspectaculos implements Serializable {
         return dt;
     }
     
-    public List<String> filtrarEspectaculosNoIncluidos(List<String> nomEsps) {
-        List<String> nomEspsFilt = new ArrayList();
+    public List<String> filtrarEspectaculosNoIncluidos(List<String> nomEsps, String nombrePlataforma) {
         espectaculos.forEach(e -> {
-            if(!nomEsps.contains(e.getNombre())) {
-                nomEspsFilt.add(e.getNombre());
+            if(nomEsps.contains(e.getNombre())) {
+                nomEsps.remove(e.getNombre());
             }
         });
-        return nomEspsFilt;
+        return nomEsps;
     }
 }
