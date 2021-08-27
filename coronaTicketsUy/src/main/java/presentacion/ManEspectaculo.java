@@ -171,6 +171,7 @@ public class ManEspectaculo {
         Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
                 .setParameter("nombre", nombreEspectaculo).getSingleResult();
         em.close();
+        emf.close();
         return e;
     }
 }

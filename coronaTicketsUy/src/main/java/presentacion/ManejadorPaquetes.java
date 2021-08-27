@@ -60,6 +60,7 @@ public class ManejadorPaquetes {
         PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName", PaqueteDeEspectaculos.class)
                 .setParameter("nombre", nombrePaquete).getSingleResult();
         em.close();
+        emf.close();
         return paq;
     }
 }
