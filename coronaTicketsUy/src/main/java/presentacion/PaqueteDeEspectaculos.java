@@ -172,4 +172,12 @@ public class PaqueteDeEspectaculos implements Serializable {
         });
         return nomEsps;
     }
+    
+    public List<String> getNombresEspectaculos() {
+        List<String> nomEsps = new ArrayList();
+        espectaculos.forEach(e -> {
+            nomEsps.add(e.getNombre());
+        });
+        return nomEsps;
+    }
 }
