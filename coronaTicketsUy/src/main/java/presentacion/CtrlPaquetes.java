@@ -7,6 +7,7 @@ package presentacion;
 
 import java.sql.Date;
 import java.util.List;
+import javax.persistence.*;
 
 /**
  *
@@ -40,7 +41,21 @@ public class CtrlPaquetes implements iPaquetes {
         return p.filtrarEspectaculosNoIncluidos(nomEsps, nombrePlataforma);
     }
     
-    public void confirmarAgregadoEspectaculo() {
+    public void confirmarAgregadoEspectaculo(String nombreEspectaculo, String nombrePaquete) {
+        //falta corregir persistencia
+        
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction txn = em.getTransaction();
+//        txn.begin();
+        Espectaculo e = ManEspectaculo.getEspectaculo(nombreEspectaculo);
+        PaqueteDeEspectaculos p = mp.getPaquete(nombrePaquete);
+        p.addEspectaculo(e);
+        e.addPaquete(p);
+//        em.persist(p);
+//        em.persist(e);
+//        txn.commit();
+//        em.close();    
         
     }
 }

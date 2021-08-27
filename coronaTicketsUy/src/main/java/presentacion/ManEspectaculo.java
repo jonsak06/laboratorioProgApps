@@ -164,4 +164,13 @@ public class ManEspectaculo {
             });
             return nombres;
         }
+    
+    public static Espectaculo getEspectaculo(String nombreEspectaculo) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
+                .setParameter("nombre", nombreEspectaculo).getSingleResult();
+        em.close();
+        return e;
+    }
 }
