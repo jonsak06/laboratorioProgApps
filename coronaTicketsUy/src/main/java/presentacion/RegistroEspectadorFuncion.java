@@ -471,10 +471,14 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private void listadoFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoFuncionesItemStateChanged
         // TODO add your handling code here:
         List<String> listaEspectadores = new ArrayList<String>();
-        if (this.listadoFunciones.getSelectedItem().toString() != "--Seleccione una--"){
+                if (this.listadoFunciones.getSelectedItem().toString() != "--Seleccione una--"){
         listaEspectadores.add("--Seleccione uno--");
         iUsuarios iu = Fabrica.getCrlUsuarios();
         DtFuncion funcion = ie.getDatosFuncion(this.listadoFunciones.getSelectedItem().toString());
+        boolean completa = ie.estaCompleta(listadoFunciones.getSelectedItem().toString());
+        if(completa == true){
+            JOptionPane.showMessageDialog(null, "Esta funcion ya esta llena. Elija otra", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
         fFuncion = funcion.getFecha();
         List<DtEspectador> lEspect = iu.getNoRegistrados(this.listadoFunciones.getSelectedItem().toString());
         for (DtEspectador i :lEspect){
@@ -489,7 +493,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.canjearOK.setSelected(false);
         this.cantCanjeables.setVisible(false);
         this.datosEsp.setVisible(false);
-        
+        }
         }
         
     }//GEN-LAST:event_listadoFuncionesItemStateChanged

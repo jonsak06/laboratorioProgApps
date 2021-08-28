@@ -33,11 +33,12 @@ public class Funcion implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+        
     public Funcion(){
         this.artistasInvitados = new ArrayList<Artista>();
     }
     
+      
     public Funcion(String nombre, int dinicio, int minicio, int yinicio, int hinicio, int mininicio, int dreg, int mreg, int yreg, Espectaculo e, List<Artista> artistasInvitados){
         
         this.setNombre(nombre);
@@ -50,6 +51,21 @@ public class Funcion implements Serializable {
         this.setFechaRegistro(freg);
         this.artistasInvitados = artistasInvitados;
             
+    }
+    
+    public boolean estaCompleta(){
+        int maximo = this.espectaculo.getCantMaxEspectadores();
+        int cantidadDeRegistro = 0;
+        for(Registro i :this.registros){
+            if(i.getEstado() == EstadoRegistro.PENDIENTE){
+                cantidadDeRegistro++;
+            }
+        }
+        if(cantidadDeRegistro == maximo){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     @ManyToMany
