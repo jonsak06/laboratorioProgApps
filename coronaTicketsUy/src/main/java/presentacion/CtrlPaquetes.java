@@ -44,18 +44,22 @@ public class CtrlPaquetes implements iPaquetes {
     public void confirmarAgregadoEspectaculo(String nombreEspectaculo, String nombrePaquete) {
         //falta corregir persistencia
         
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction txn = em.getTransaction();
-//        txn.begin();
-        Espectaculo e = ManEspectaculo.getEspectaculo(nombreEspectaculo);
-        PaqueteDeEspectaculos p = mp.getPaquete(nombrePaquete);
-        p.addEspectaculo(e);
-        e.addPaquete(p);
-//        em.persist(p);
-//        em.persist(e);
-//        txn.commit();
-//        em.close();    
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consultaEsp = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consultaEsp.setParameter("nombre", nombreEspectaculo);
+        Espectaculo e = consultaEsp.getSingleResult();
+        TypedQuery<PaqueteDeEspectaculos> consulta = em.createNamedQuery("PaqueteByName",PaqueteDeEspectaculos.class);
+        consulta.setParameter("nombre", nombrePaquete);
+        PaqueteDeEspectaculos paq = consulta.getSingleResult();
+        paq.addEspectaculo(e);
+        e.addPaquete(paq);
+        em.persist(paq);
+        em.persist(e);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
         
     }
 }

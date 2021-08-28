@@ -135,7 +135,7 @@ public class Espectaculo implements Serializable {
     this.funciones.add(i+1, f);
     }
     
-    @ManyToMany
+    @ManyToMany//(mappedBy = "espectaculos")
     private List<PaqueteDeEspectaculos> paquetes;
     public List<PaqueteDeEspectaculos> getPaquetes(){
         return this.paquetes;

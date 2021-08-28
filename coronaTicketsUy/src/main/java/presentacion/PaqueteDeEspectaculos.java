@@ -37,6 +37,7 @@ public class PaqueteDeEspectaculos implements Serializable {
     public PaqueteDeEspectaculos(String nombre, String descripcion, float descuento, int fid, int fim, int fiy, int ffd, int ffm, int ffy, int fad, int fam, int fay){
         this.setNombre(nombre);
         this.setDescrp(descripcion);
+        this.descuento = descuento;
         java.sql.Date finicio = new java.sql.Date(fiy-1899,fim-12,fid-31);
         this.setFechaInicio(finicio);
         java.sql.Date ffin = new java.sql.Date(ffy-1899,ffm-12,ffd-31);
@@ -125,13 +126,22 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.descuento = d;
     }
     
-    @ManyToMany
+//    @JoinTable(
+//            name = "rel_esp_paq",
+//            joinColumns = @JoinColumn(name = "FK_PAQ", nullable = false),
+//            inverseJoinColumns = @JoinColumn(name = "FK_ESP", nullable = false)
+//    )
+    @ManyToMany//(cascade = CascadeType.ALL)
     private List<Espectaculo> espectaculos;
     public List<Espectaculo> getEspectaculos(){
         return this.espectaculos;
     }
     public void addEspectaculo(Espectaculo e){
         this.espectaculos.add(e);
+    }
+    
+    public void setEspectaculos(List<Espectaculo> l){
+        this.espectaculos = l;
     }
     @Override
     public int hashCode() {

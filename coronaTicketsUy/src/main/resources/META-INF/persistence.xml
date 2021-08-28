@@ -11,7 +11,7 @@
     <class>presentacion.Artista</class>
     <class>presentacion.Compra</class>
     <class>presentacion.PaqueteDeEspectaculos</class>
-    <shared-cache-mode>ALL</shared-cache-mode>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://raspberrypijulio.ddns.net:8457/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="grupo1"/>

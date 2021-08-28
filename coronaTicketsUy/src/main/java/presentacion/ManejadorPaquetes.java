@@ -57,8 +57,11 @@ public class ManejadorPaquetes {
     
     public PaqueteDeEspectaculos getPaquete(String nombrePaquete) {
         EntityManager em = emf.createEntityManager();
-        PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName", PaqueteDeEspectaculos.class)
-                .setParameter("nombre", nombrePaquete).getSingleResult();
+        TypedQuery<PaqueteDeEspectaculos> consulta = em.createNamedQuery("PaqueteByName",PaqueteDeEspectaculos.class);
+        consulta.setParameter("nombre", nombrePaquete);
+        PaqueteDeEspectaculos paq = consulta.getSingleResult();
+//        PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName", PaqueteDeEspectaculos.class)
+//                .setParameter("nombre", nombrePaquete).getSingleResult();
         em.close();
         emf.close();
         return paq;

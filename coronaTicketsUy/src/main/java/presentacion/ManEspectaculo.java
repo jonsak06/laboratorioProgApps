@@ -168,8 +168,11 @@ public class ManEspectaculo {
     public static Espectaculo getEspectaculo(String nombreEspectaculo) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
-        Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
-                .setParameter("nombre", nombreEspectaculo).getSingleResult();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre", Espectaculo.class);
+        consulta.setParameter("nombre", nombreEspectaculo);
+        Espectaculo e = consulta.getSingleResult();
+//        Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
+//                .setParameter("nombre", nombreEspectaculo).getSingleResult();
         em.close();
         emf.close();
         return e;
