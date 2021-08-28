@@ -30,13 +30,14 @@ public class DtPaqueteDeEspectaculos {
         this.descuento = descuento;
     }
 
-    public DtPaqueteDeEspectaculos(Long id, String nombre, String descripcion, Date fechaInicio, Date fechaFin, float descuento) {
+    public DtPaqueteDeEspectaculos(Long id, String nombre, String descripcion, Date fechaInicio, Date fechaFin, float descuento, Date fechaAlta) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.descuento = descuento;
+        this.fechaAlta = fechaAlta;
     }
 
     public Long getId() {
