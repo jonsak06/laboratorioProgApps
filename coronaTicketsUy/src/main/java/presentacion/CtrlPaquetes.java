@@ -62,4 +62,19 @@ public class CtrlPaquetes implements iPaquetes {
         emf.close();
         
     }
+    
+    public DtPaqueteDeEspectaculos mostrarInfoPaquete(String nombrePaquete) {
+        PaqueteDeEspectaculos p = mp.getPaquete(nombrePaquete);
+        return p.getMyDt();
+    }
+    
+    public List<String> listarEspectaculosIncluidos(String nombrePaquete) {
+        PaqueteDeEspectaculos p = mp.getPaquete(nombrePaquete);
+        return p.getNombresEspectaculos();
+    }
+    
+    public DtEspectaculo mostarInfoEspectaculo(String nombreEspectaculo) {
+        Espectaculo e = ManEspectaculo.getEspectaculo(nombreEspectaculo);
+        return e.getMyDt();
+    }
 }

@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,19 +78,19 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tfDescripcion.setText("jTextField2");
         tfDescripcion.setEnabled(false);
 
-        tfLinkWeb.setText("jTextField2");
         tfLinkWeb.setEnabled(false);
 
-        tfApellido.setText("jTextField3");
         tfApellido.setEnabled(false);
+        tfApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfApellidoActionPerformed(evt);
+            }
+        });
 
-        tfNickname.setText("jTextField4");
         tfNickname.setEnabled(false);
 
-        tfCorreoElectronico.setText("jTextField5");
         tfCorreoElectronico.setEnabled(false);
 
         cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Espectador", "Artista" }));
@@ -133,7 +134,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         lbTitulo.setText("Elija el tipo de usuario");
 
-        tfBiografia.setText("jTextField2");
         tfBiografia.setEnabled(false);
 
         jLabel1.setText("Usuario:");
@@ -144,7 +144,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
             }
         });
 
-        tfNombre.setText("jTextField3");
         tfNombre.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -258,6 +257,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
         List<String> nicknames = new ArrayList<String>();
         if( cbTipoUsuario.getSelectedItem().toString()=="Artista")
         {
+            tfNombre.setText("");
+            tfApellido.setText("");
+            tfCorreoElectronico.setText("");
+            tfNickname.setText("");
+            tfLinkWeb.setText("");
+            tfBiografia.setText(""); 
+            tfDescripcion.setText("");
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
             tfCorreoElectronico.setEnabled(true);
@@ -314,8 +320,15 @@ public class ModificarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        
-       if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
+       if(tfNickname.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nickname","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfNombre.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfApellido.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un apellido","Usuarios", JOptionPane.ERROR_MESSAGE);    
+        } else if(tfCorreoElectronico.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electronico","Usuarios", JOptionPane.ERROR_MESSAGE);                    
+        } else if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
         {
             for (int i=0; i<espectadores.size(); i++)
             {
@@ -323,12 +336,18 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 {
                     DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", espectadores.get(i).getFechaNacimiento());
                     Fabrica.getCrlUsuarios().modificarEspectador(es);
+                    JOptionPane.showMessageDialog(null, "El espectador fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    
                 }
             }
             
-        }
-            
-        if("Artista"==cbTipoUsuario.getSelectedItem().toString())
+        }else if(tfLinkWeb.getText().isBlank()) {
+        JOptionPane.showMessageDialog(null, "Ingrese un link web","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfDescripcion.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una descripcion","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfBiografia.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese una biografia","Usuarios", JOptionPane.ERROR_MESSAGE);    
+        } else if ("Artista"==cbTipoUsuario.getSelectedItem().toString())
         {
             for (int i=0; i<artistas.size(); i++)
             {
@@ -336,6 +355,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 {
                     DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", artistas.get(i).getFechaNacimiento());
                     Fabrica.getCrlUsuarios().modificarArtista(ar);
+                    JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    
                 }
             }
         } 
@@ -361,6 +382,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfDescripcion.setText(artistas.get(i).getDescripcion());
                     tfBiografia.setText(artistas.get(i).getBiografia());
                     tfLinkWeb.setText(artistas.get(i).getLinkWeb());
+                    
                 }
             }
         }
@@ -375,13 +397,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfNickname.setText(espectadores.get(i).getNickname());
                     tfApellido.setText(espectadores.get(i).getApellido());
                     tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
-
+                    
                 }
             }
         }
 
        
     }//GEN-LAST:event_cbUsuarioItemStateChanged
+
+    private void tfApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfApellidoActionPerformed
 
     /**
      * @param args the command line arguments

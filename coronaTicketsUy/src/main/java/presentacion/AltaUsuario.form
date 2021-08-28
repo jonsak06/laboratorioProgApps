@@ -210,24 +210,18 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNombre">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfApellido">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField3"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNickname">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField4"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNicknameActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfCorreoElectronico">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField5"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfCorreoElectronicoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTipoUsuario">
       <Properties>
@@ -268,19 +262,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="tfBrebeBiografia">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfDescripcionGen">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfLinkWeb">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField2"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>

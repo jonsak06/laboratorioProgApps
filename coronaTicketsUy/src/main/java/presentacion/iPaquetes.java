@@ -17,4 +17,7 @@ public interface iPaquetes {
     public List<String> listarPlataformas();
     public List<String> listarEspectaculosNoIncluidos(String nombrePaquete, String nombrePlataforma);
     public void confirmarAgregadoEspectaculo(String nombreEspectaculo, String nombrePaquete);
+    public DtPaqueteDeEspectaculos mostrarInfoPaquete(String nombrePaquete);
+    public List<String> listarEspectaculosIncluidos(String nombrePaquete);
+    public DtEspectaculo mostarInfoEspectaculo(String nombreEspectaculo);
 }

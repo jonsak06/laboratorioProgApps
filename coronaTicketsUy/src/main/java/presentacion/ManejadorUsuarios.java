@@ -246,6 +246,8 @@ public class ManejadorUsuarios
         lista.setParameter("nickname", es.getNickname());
         Espectador vp= lista.getSingleResult();
         vp.setApellido(es.getApellido());
+        vp.setNombre(es.getNombre());
+        vp.setCorreo(es.getCorreo());
         em.persist(vp);
         em.getTransaction().commit();
         em.close();

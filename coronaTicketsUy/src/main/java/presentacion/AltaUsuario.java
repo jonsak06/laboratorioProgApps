@@ -91,13 +91,17 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         lbTitulo.setText("Elija el tipo de usuario");
 
-        tfNombre.setText("jTextField1");
+        tfNickname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNicknameActionPerformed(evt);
+            }
+        });
 
-        tfApellido.setText("jTextField3");
-
-        tfNickname.setText("jTextField4");
-
-        tfCorreoElectronico.setText("jTextField5");
+        tfCorreoElectronico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCorreoElectronicoActionPerformed(evt);
+            }
+        });
 
         lbTipoUsuario.setText("Tipo de usuario:");
 
@@ -119,13 +123,10 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         lbLinkWeb.setText("Link sitio web:");
 
-        tfBrebeBiografia.setText("jTextField2");
         tfBrebeBiografia.setEnabled(false);
 
-        tfDescripcionGen.setText("jTextField2");
         tfDescripcionGen.setEnabled(false);
 
-        tfLinkWeb.setText("jTextField2");
         tfLinkWeb.setEnabled(false);
 
         cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
@@ -267,7 +268,13 @@ public class AltaUsuario extends javax.swing.JFrame {
             tfBrebeBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
             lbTitulo.setText("Ingrese los datos del artista");
-            
+            tfNombre.setText("");
+            tfApellido.setText("");
+            tfCorreoElectronico.setText("");
+            tfNickname.setText("");
+            tfLinkWeb.setText("");
+            tfBrebeBiografia.setText(""); 
+            tfDescripcionGen.setText("");
         }
         
         if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
@@ -283,34 +290,84 @@ public class AltaUsuario extends javax.swing.JFrame {
             tfBrebeBiografia.setEnabled(false);
             tfLinkWeb.setEnabled(false);
             lbTitulo.setText("Ingrese los datos del espectador");
+            tfNombre.setText("");
+            tfApellido.setText("");
+            tfCorreoElectronico.setText("");
+            tfNickname.setText("");
+            tfLinkWeb.setText("");
+            tfBrebeBiografia.setText(""); 
+            tfDescripcionGen.setText("");
         }
     }//GEN-LAST:event_cbTipoUsuarioItemStateChanged
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
         // TODO add your handling code here:
-        if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
+        if(tfNickname.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nickname","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfNombre.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfApellido.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un apellido","Usuarios", JOptionPane.ERROR_MESSAGE);    
+        } else if(tfCorreoElectronico.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo electronico","Usuarios", JOptionPane.ERROR_MESSAGE);                    
+        } else if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Ya existe", "Error", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya existe", "Usuarios", JOptionPane.WARNING_MESSAGE);
         }
         else
         {
             if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
             {
-                Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
+                Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, 
+                Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
+                Integer.parseInt(cbDia.getSelectedItem().toString()));
                 long id = 0;
-                DtEspectador es = new DtEspectador(0, id, tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", fecha);
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
                 Fabrica.getCrlUsuarios().altaEspectador(es);
+                JOptionPane.showMessageDialog(null, "El espectador fue crado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                tfNombre.setText("");
+                tfApellido.setText("");
+                tfCorreoElectronico.setText("");
+                tfNickname.setText("");
+                
             }
             
             if("Artista"==cbTipoUsuario.getSelectedItem().toString())
             {
-                Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
-                long id = 0;
-                DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBrebeBiografia.getText(), tfDescripcionGen.getText(), id, tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), "", fecha);
-                Fabrica.getCrlUsuarios().altaArtista(ar);
+                if(tfLinkWeb.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese un link web","Usuarios", JOptionPane.ERROR_MESSAGE);            
+                } else if(tfDescripcionGen.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese una descripcion","Usuarios", JOptionPane.ERROR_MESSAGE);            
+                } else if(tfBrebeBiografia.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(null, "Ingrese una biografia","Usuarios", JOptionPane.ERROR_MESSAGE);    
+                } else {
+                    Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, 
+                    Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
+                    Integer.parseInt(cbDia.getSelectedItem().toString()));
+                    long id = 0;
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
+                    Fabrica.getCrlUsuarios().altaArtista(ar);
+                    JOptionPane.showMessageDialog(null, "El artista fue crado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    tfNombre.setText("");
+                    tfApellido.setText("");
+                    tfCorreoElectronico.setText("");
+                    tfNickname.setText("");
+                    tfLinkWeb.setText("");
+                    tfBrebeBiografia.setText(""); 
+                    tfDescripcionGen.setText("");
+                }
+                
             }
         }
     }//GEN-LAST:event_btCrearActionPerformed
+
+    private void tfNicknameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNicknameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNicknameActionPerformed
+
+    private void tfCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCorreoElectronicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCorreoElectronicoActionPerformed
 
     /**
      * @param args the command line arguments
