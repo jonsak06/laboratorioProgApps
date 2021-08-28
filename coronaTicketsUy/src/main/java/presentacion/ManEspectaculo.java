@@ -177,4 +177,16 @@ public class ManEspectaculo {
         emf.close();
         return e;
     }
+    
+    public static boolean estaCompleta(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consulta.setParameter("nombre", nombreFuncion);
+        Funcion estaF = consulta.getSingleResult();
+        boolean result = estaF.estaCompleta();
+        em.close();
+        emf.close();
+        return result;
+    }
 }

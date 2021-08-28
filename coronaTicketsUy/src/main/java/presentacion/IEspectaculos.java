@@ -21,4 +21,5 @@ public interface IEspectaculos {
     boolean existeEspectaculo(String nombreEspectaculo);
     public DtFuncion getDatosFuncion(String nombreFuncion);
     public boolean ingresarPlataforma(String nombre, String descripcion, String url);
+    public boolean estaCompleta(String nombreFuncion);
 }
