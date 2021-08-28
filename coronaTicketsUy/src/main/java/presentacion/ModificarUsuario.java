@@ -112,6 +112,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         lbFechaNacimiento2.setText("Descripcion general:");
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btModificar.setText("Modificar");
         btModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -408,6 +413,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private void tfApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfApellidoActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal();
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
