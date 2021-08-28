@@ -69,6 +69,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         btCrear.setText("Crear");
         btCrear.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +122,7 @@ public class AltaUsuario extends javax.swing.JFrame {
             }
         });
 
-        lbFechaNacimiento1.setText("Brebe biografia:");
+        lbFechaNacimiento1.setText("Breve biografia:");
 
         lbFechaNacimiento2.setText("Descripcion general:");
 
@@ -324,7 +329,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 long id = 0;
                 DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
                 Fabrica.getCrlUsuarios().altaEspectador(es);
-                JOptionPane.showMessageDialog(null, "El espectador fue crado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El espectador fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                 tfNombre.setText("");
                 tfApellido.setText("");
                 tfCorreoElectronico.setText("");
@@ -347,7 +352,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                     long id = 0;
                     DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
                     Fabrica.getCrlUsuarios().altaArtista(ar);
-                    JOptionPane.showMessageDialog(null, "El artista fue crado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     tfNombre.setText("");
                     tfApellido.setText("");
                     tfCorreoElectronico.setText("");
@@ -368,6 +373,13 @@ public class AltaUsuario extends javax.swing.JFrame {
     private void tfCorreoElectronicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCorreoElectronicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCorreoElectronicoActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+        Principal ventanaPrincipal = new Principal();
+        ventanaPrincipal.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
