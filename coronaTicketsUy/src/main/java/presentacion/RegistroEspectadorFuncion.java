@@ -23,6 +23,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
      * Creates new form RegistroEspectadorFuncion
      */
     private IEspectaculos ie;
+    private java.sql.Date fFuncion;
     public RegistroEspectadorFuncion() {
         initComponents();
         List<String> l = new ArrayList<String>();
@@ -354,14 +355,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         // TODO add your handling code here:
-        int dia = Integer.parseInt(this.dia.getSelectedItem().toString())+1;
+        int dia = Integer.parseInt(this.dia.getSelectedItem().toString());
         int mes = Integer.parseInt(this.mes.getSelectedItem().toString());
         int anio = Integer.parseInt(this.anio.getSelectedItem().toString());
         float descuento = ie.getDescuento(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString());
         float costo = ie.getCosto(this.listadoFunciones.getSelectedItem().toString());
         if(descuento!=0){costo = descuento*costo*(float)0.01;}
         List<String> listaSeleccionada = this.seleccionarCanjeables.getSelectedValuesList();
-        if(((mes==4 || mes==6 || mes==9 || mes==11)&&dia==31) || (mes==2 && (dia==30 || dia==31)) || ((mes==2)&&dia==29)&&(anio%4!=0)){
+        java.sql.Date fecha = new java.sql.Date(anio-1899,mes-12,dia-31);
+        if(((mes==4 || mes==6 || mes==9 || mes==11)&&dia==31) || (mes==2 && (dia==30 || dia==31)) || ((mes==2)&&dia==29)&&(anio%4!=0) || fecha.compareTo(fFuncion)>0){
             JOptionPane.showMessageDialog(null, "Fecha invalida", "Error", JOptionPane.WARNING_MESSAGE);
         }else if (canjearOK.isSelected()==true && listaSeleccionada.size()<3){
             JOptionPane.showMessageDialog(null, "No has seleccionado suficientes canjeables", "Error", JOptionPane.WARNING_MESSAGE);
@@ -370,7 +372,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         }else if(canjearOK.isSelected()==true){
             costo = 0;
             iUsuarios iu = Fabrica.getCrlUsuarios();
-            iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString());
+            iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString(),dia,mes,anio);
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
         }else{
         iUsuarios iu = Fabrica.getCrlUsuarios();
@@ -473,6 +475,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         listaEspectadores.add("--Seleccione uno--");
         iUsuarios iu = Fabrica.getCrlUsuarios();
         DtFuncion funcion = ie.getDatosFuncion(this.listadoFunciones.getSelectedItem().toString());
+        fFuncion = funcion.getFecha();
         List<DtEspectador> lEspect = iu.getNoRegistrados(this.listadoFunciones.getSelectedItem().toString());
         for (DtEspectador i :lEspect){
             listaEspectadores.add(i.getNickname());
