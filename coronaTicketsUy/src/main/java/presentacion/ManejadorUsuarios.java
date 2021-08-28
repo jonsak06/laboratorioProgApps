@@ -123,8 +123,9 @@ public class ManejadorUsuarios
         List<Registro> regF = estaFuncion.getRegistros();
         List<String> listadeNick = new ArrayList<String>();
         for (Registro i :regF){
+            if(i.getEstado()!=EstadoRegistro.USADO){
             String nick = i.getEspectador().getNickname();
-            listadeNick.add(nick);
+            listadeNick.add(nick);}
         }
         for (String i :listadeNick){
             TypedQuery<Espectador> cons = em.createNamedQuery("EspectadorporNick", Espectador.class);
@@ -309,7 +310,7 @@ public class ManejadorUsuarios
             if(esta!=0){
                 i.setEstado(EstadoRegistro.USADO);
                 canjeados.add(i);
-                i.setFuncion(null);
+//                i.setFuncion(null);
                 em.persist(i);
             }
             }
@@ -322,7 +323,7 @@ public class ManejadorUsuarios
 //        r.setFecha(estaFecha);
 //        r.setEstado(EstadoRegistro.PENDIENTE);
         Registro r = new Registro(estaFUncion,esteMen,dia,mes,anio,costo);
-        em.persist(r);
+//        em.persist(r);
         r.setCanjeados(canjeados);
         em.persist(r);
         em.getTransaction().commit();
