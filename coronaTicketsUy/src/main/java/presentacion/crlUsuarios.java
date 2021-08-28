@@ -91,8 +91,8 @@ public class crlUsuarios implements iUsuarios
        ManejadorUsuarios.canjearRegistros(canjeables, nickname, costo, nombreFuncion);
    }
    
-   public void registrarUsuario(String nickname, String nombreFuncion, float costo){
-       ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo);
+   public void registrarUsuario(String nickname, String nombreFuncion, float costo, int fdia, int fmes, int fanio){
+       ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo, fdia, fmes,  fanio);
    }
    
    public DtEspectador getDatosEspectador(String nickname){
