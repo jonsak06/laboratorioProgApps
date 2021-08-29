@@ -5,6 +5,10 @@
  */
 package presentacion;
 
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dexion
@@ -16,6 +20,16 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
      */
     public AgregarEspectaculoPaquete() {
         initComponents();
+        comboPaquetes.setModel(new DefaultComboBoxModel(ctPaq.listarPaquetes().toArray()));
+        comboPlataformas.setModel(new DefaultComboBoxModel(ctPaq.listarPlataformas().toArray()));
+    }
+    
+    private String nomPaq;
+    
+    private void restaurarComboBoxes() {
+        comboPaquetes.setSelectedIndex(0);
+        comboPlataformas.setSelectedIndex(0);
+        comboEspectaculos.removeAllItems();
     }
     
     private iPaquetes ctPaq = Fabrica.getCtrlPaquetes();
@@ -31,14 +45,14 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboPaquetes = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        comboPlataformas = new javax.swing.JComboBox<>();
+        buttonListarEspectaculos = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        comboEspectaculos = new javax.swing.JComboBox<>();
+        buttonConfirmar = new javax.swing.JButton();
+        buttonCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,31 +60,30 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione el paquete:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Seleccione la plataforma:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("Listar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonListarEspectaculos.setText("Listar");
+        buttonListarEspectaculos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buttonListarEspectaculosActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Seleccione el espectáculo:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton2.setText("Confirmar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonConfirmar.setText("Agregar");
+        buttonConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonConfirmarActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Cancelar");
+        buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,7 +94,7 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
+                        .addComponent(buttonListarEspectaculos)
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
@@ -89,13 +102,13 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
                                 .addComponent(jLabel4))
                             .addGap(32, 32, 32)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBox1, 0, 193, Short.MAX_VALUE)
-                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(comboPaquetes, 0, 193, Short.MAX_VALUE)
+                                .addComponent(comboPlataformas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comboEspectaculos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton2)
+                            .addComponent(buttonConfirmar)
                             .addGap(18, 18, 18)
-                            .addComponent(jButton3))))
+                            .addComponent(buttonCancelar))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -106,34 +119,55 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboPaquetes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(buttonListarEspectaculos)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboEspectaculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap())
+                    .addComponent(buttonConfirmar)
+                    .addComponent(buttonCancelar))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void buttonListarEspectaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListarEspectaculosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        nomPaq = comboPaquetes.getSelectedItem().toString();
+        String nomPlat = comboPlataformas.getSelectedItem().toString();
+        List<String> nomEsps = ctPaq.listarEspectaculosNoIncluidos(nomPaq, nomPlat);
+        if(nomEsps.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay espectáculos para agregar");
+            restaurarComboBoxes();
+        }
+        comboEspectaculos.setModel(new DefaultComboBoxModel(nomEsps.toArray()));
+    }//GEN-LAST:event_buttonListarEspectaculosActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if(comboEspectaculos.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar un espectáculo");
+        } else {
+            String nomEsp = comboEspectaculos.getSelectedItem().toString();
+            ctPaq.confirmarAgregadoEspectaculo(nomEsp, nomPaq);
+            JOptionPane.showMessageDialog(null, "Espectáculo agregado al paquete");
+            restaurarComboBoxes();
+        }
+    }//GEN-LAST:event_buttonConfirmarActionPerformed
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_buttonCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,12 +205,12 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JButton buttonCancelar;
+    private javax.swing.JButton buttonConfirmar;
+    private javax.swing.JButton buttonListarEspectaculos;
+    private javax.swing.JComboBox<String> comboEspectaculos;
+    private javax.swing.JComboBox<String> comboPaquetes;
+    private javax.swing.JComboBox<String> comboPlataformas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

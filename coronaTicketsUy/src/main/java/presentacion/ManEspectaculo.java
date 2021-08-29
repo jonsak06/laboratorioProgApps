@@ -168,13 +168,22 @@ public class ManEspectaculo {
     public static Espectaculo getEspectaculo(String nombreEspectaculo) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre", Espectaculo.class);
-        consulta.setParameter("nombre", nombreEspectaculo);
-        Espectaculo e = consulta.getSingleResult();
-//        Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
-//                .setParameter("nombre", nombreEspectaculo).getSingleResult();
+        Espectaculo e = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class)
+                .setParameter("nombre", nombreEspectaculo).getSingleResult();
         em.close();
         emf.close();
         return e;
+    }
+    
+    public static boolean estaCompleta(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
+        consulta.setParameter("nombre", nombreFuncion);
+        Funcion estaF = consulta.getSingleResult();
+        boolean result = estaF.estaCompleta();
+        em.close();
+        emf.close();
+        return result;
     }
 }

@@ -23,6 +23,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
      * Creates new form RegistroEspectadorFuncion
      */
     private IEspectaculos ie;
+    private java.sql.Date fFuncion;
     public RegistroEspectadorFuncion() {
         initComponents();
         List<String> l = new ArrayList<String>();
@@ -36,6 +37,13 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         List<String> listaEspectadores = new ArrayList<String>();
         listaEspectadores.add("--Seleciones uno--");
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
+        List<String> listaAnios = new ArrayList<String>();
+        int k = 1930;
+        while (k<2070){
+            listaAnios.add(k+"");
+            k++;
+        }
+        this.anio.setModel(new DefaultComboBoxModel(listaAnios.toArray()));
         canjeImposible.setVisible(false);
         DefaultListModel<String> modelo = new DefaultListModel<String>();
         this.seleccionarCanjeables.setModel(modelo);
@@ -65,6 +73,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         usuarioNoExiste = new javax.swing.JDialog();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         listadoDePlataformas = new javax.swing.JComboBox<>();
@@ -87,6 +96,10 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         datosEsp = new javax.swing.JLabel();
         volverBTN = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        dia = new javax.swing.JComboBox<>();
+        mes = new javax.swing.JComboBox<>();
+        anio = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
 
         jLabel6.setText("Usuario no registrado!");
 
@@ -108,6 +121,8 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         );
 
         jButton1.setText("jButton1");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -198,6 +213,18 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
         jLabel5.setText("Presione control + click para seleccionar");
 
+        dia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+
+        mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+
+        anio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anioActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Ingrese la fecha de registro");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,21 +233,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(222, 222, 222)
-                                .addComponent(volverBTN))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cantCanjeables, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(canjeImposible, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,7 +248,16 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                                     .addComponent(listadoDeEspectaculos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(listadoFunciones, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(listadoDeEspectadores, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(datosEsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(datosEsp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cantCanjeables, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9)
+                                .addGap(18, 18, 18)
+                                .addComponent(canjeImposible))
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(fechaFuncion, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -252,6 +274,23 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(229, 229, 229)
+                        .addComponent(volverBTN))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(anio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,13 +330,19 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(cantCanjeables, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)
-                            .addComponent(canjeImposible))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botonRegistrar)
-                            .addComponent(botonCancelar)
-                            .addComponent(volverBTN))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                            .addComponent(canjeImposible))))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonRegistrar)
+                    .addComponent(botonCancelar)
+                    .addComponent(volverBTN))
+                .addContainerGap())
         );
 
         pack();
@@ -310,22 +355,28 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         // TODO add your handling code here:
+        int dia = Integer.parseInt(this.dia.getSelectedItem().toString());
+        int mes = Integer.parseInt(this.mes.getSelectedItem().toString());
+        int anio = Integer.parseInt(this.anio.getSelectedItem().toString());
         float descuento = ie.getDescuento(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString());
         float costo = ie.getCosto(this.listadoFunciones.getSelectedItem().toString());
         if(descuento!=0){costo = descuento*costo*(float)0.01;}
         List<String> listaSeleccionada = this.seleccionarCanjeables.getSelectedValuesList();
-        if (canjearOK.isSelected()==true && listaSeleccionada.size()<3){
+        java.sql.Date fecha = new java.sql.Date(anio-1899,mes-12,dia-31);
+        if(((mes==4 || mes==6 || mes==9 || mes==11)&&dia==31) || (mes==2 && (dia==30 || dia==31)) || ((mes==2)&&dia==29)&&(anio%4!=0) || fecha.compareTo(fFuncion)>0){
+            JOptionPane.showMessageDialog(null, "Fecha invalida", "Error", JOptionPane.WARNING_MESSAGE);
+        }else if (canjearOK.isSelected()==true && listaSeleccionada.size()<3){
             JOptionPane.showMessageDialog(null, "No has seleccionado suficientes canjeables", "Error", JOptionPane.WARNING_MESSAGE);
         }else if(canjearOK.isSelected()==true && listaSeleccionada.size()>3){
             JOptionPane.showMessageDialog(null, "Debes seleccionar 3 canjeables para canjear un registro", "Error", JOptionPane.WARNING_MESSAGE);
         }else if(canjearOK.isSelected()==true){
             costo = 0;
             iUsuarios iu = Fabrica.getCrlUsuarios();
-            iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString());
+            iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString(),dia,mes,anio);
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
         }else{
         iUsuarios iu = Fabrica.getCrlUsuarios();
-        iu.registrarUsuario(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString(), costo);
+        iu.registrarUsuario(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString(), costo,dia,mes,anio);
         canjeImposible.setVisible(false);
         DefaultListModel<String> modelo = new DefaultListModel<String>();
         this.seleccionarCanjeables.setModel(modelo);
@@ -420,10 +471,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private void listadoFuncionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoFuncionesItemStateChanged
         // TODO add your handling code here:
         List<String> listaEspectadores = new ArrayList<String>();
-        if (this.listadoFunciones.getSelectedItem().toString() != "--Seleccione una--"){
+                if (this.listadoFunciones.getSelectedItem().toString() != "--Seleccione una--"){
         listaEspectadores.add("--Seleccione uno--");
         iUsuarios iu = Fabrica.getCrlUsuarios();
         DtFuncion funcion = ie.getDatosFuncion(this.listadoFunciones.getSelectedItem().toString());
+        boolean completa = ie.estaCompleta(listadoFunciones.getSelectedItem().toString());
+        if(completa == true){
+            JOptionPane.showMessageDialog(null, "Esta funcion ya esta llena. Elija otra", "Error", JOptionPane.WARNING_MESSAGE);
+        }else{
+        fFuncion = funcion.getFecha();
         List<DtEspectador> lEspect = iu.getNoRegistrados(this.listadoFunciones.getSelectedItem().toString());
         for (DtEspectador i :lEspect){
             listaEspectadores.add(i.getNickname());
@@ -437,7 +493,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.canjearOK.setSelected(false);
         this.cantCanjeables.setVisible(false);
         this.datosEsp.setVisible(false);
-        
+        }
         }
         
     }//GEN-LAST:event_listadoFuncionesItemStateChanged
@@ -487,6 +543,10 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_volverBTNActionPerformed
 
+    private void anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -523,15 +583,19 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> anio;
     private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.JLabel canjeImposible;
     private javax.swing.JCheckBox canjearOK;
     private javax.swing.JLabel cantCanjeables;
     private javax.swing.JLabel datosEsp;
+    private javax.swing.JComboBox<String> dia;
     private javax.swing.JLabel fechaFuncion;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -545,6 +609,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> listadoDeEspectadores;
     private javax.swing.JComboBox<String> listadoDePlataformas;
     private javax.swing.JComboBox<String> listadoFunciones;
+    private javax.swing.JComboBox<String> mes;
     private javax.swing.JList<String> seleccionarCanjeables;
     private javax.swing.JDialog usuarioNoExiste;
     private javax.swing.JButton volverBTN;

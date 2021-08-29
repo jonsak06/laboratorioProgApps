@@ -286,7 +286,7 @@ public class ManejadorUsuarios
         return canjeables;
     }
     
-    public static void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion){
+    public static void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion, int fdia, int fmes, int fanio){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -315,14 +315,11 @@ public class ManejadorUsuarios
             }
             }
 //        r.setCanjeados(canjeados);
-        java.util.Date fecha =new java.util.Date();
-        int dia = fecha.getDate();
-        int mes = fecha.getMonth();
-        int anio = fecha.getYear()+1900;
+
 //        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
 //        r.setFecha(estaFecha);
 //        r.setEstado(EstadoRegistro.PENDIENTE);
-        Registro r = new Registro(estaFUncion,esteMen,dia,mes,anio,costo);
+        Registro r = new Registro(estaFUncion,esteMen,fdia,fmes,fanio,costo);
 //        em.persist(r);
         r.setCanjeados(canjeados);
         em.persist(r);
@@ -331,7 +328,7 @@ public class ManejadorUsuarios
         emf.close();
     }            
     
-    public static void registrarUsuario(String nickname, String nombreFuncion, float costo){
+    public static void registrarUsuario(String nickname, String nombreFuncion, float costo, int fdia, int fmes, int fanio){
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -345,14 +342,10 @@ public class ManejadorUsuarios
         Funcion estaFUncion = consultaFuncion.getSingleResult();
 //        r.setEspectador(esteMen);
 //        r.setFuncion(estaFUncion);
-        java.util.Date fecha =new java.util.Date();
-        int dia = fecha.getDate();
-        int mes = fecha.getMonth();
-        int anio = fecha.getYear();
 //        java.sql.Date estaFecha = new java.sql.Date(anio+1900-1899,mes-12,dia-31);
 //        r.setFecha(estaFecha);
 //        r.setEstado(EstadoRegistro.PENDIENTE);
-        Registro r = new Registro(estaFUncion,esteMen,dia,mes,anio,costo);
+        Registro r = new Registro(estaFUncion,esteMen,fdia,fmes,fanio,costo);
         em.persist(r);
         em.getTransaction().commit();
         em.close();

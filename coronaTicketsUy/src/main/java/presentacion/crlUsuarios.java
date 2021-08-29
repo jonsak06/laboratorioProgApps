@@ -87,12 +87,12 @@ public class crlUsuarios implements iUsuarios
         return ManejadorUsuarios.listarCanjeables(nickname);
     }
     
-   public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion){
-       ManejadorUsuarios.canjearRegistros(canjeables, nickname, costo, nombreFuncion);
+   public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion, int fdia, int fmes, int fanio){
+       ManejadorUsuarios.canjearRegistros(canjeables, nickname, costo, nombreFuncion, fdia, fmes, fanio);
    }
    
-   public void registrarUsuario(String nickname, String nombreFuncion, float costo){
-       ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo);
+   public void registrarUsuario(String nickname, String nombreFuncion, float costo, int fdia, int fmes, int fanio){
+       ManejadorUsuarios.registrarUsuario(nickname, nombreFuncion, costo, fdia, fmes,  fanio);
    }
    
    public DtEspectador getDatosEspectador(String nickname){

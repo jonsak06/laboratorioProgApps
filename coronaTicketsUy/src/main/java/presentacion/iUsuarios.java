@@ -26,8 +26,8 @@ public interface iUsuarios {
     public List<DtEspectador> getNoRegistrados(String nombreFuncion);
     public int getCanjeables(String nickname);
     public List<Registro> listarCanjeables(String nickname);
-    public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion);
-    public void registrarUsuario(String nickname, String nombreFuncion, float costo);
+    public void canjearRegistros(List<String> canjeables, String nickname, float costo, String nombreFuncion, int fdia, int fmes, int fanio);
+    public void registrarUsuario(String nickname, String nombreFuncion, float costo, int fdia, int fmes, int fanio);
     public DtEspectador getDatosEspectador(String nickname);
     public List<DtRegistro> getRegistros(String nickname);
     public List<DtFuncion> getFuncionesRegistros(String nickname);

@@ -170,7 +170,7 @@ public class PaqueteDeEspectaculos implements Serializable {
     
     public DtPaqueteDeEspectaculos getMyDt()
     {
-        DtPaqueteDeEspectaculos dt = new DtPaqueteDeEspectaculos(this.id, this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.descuento);
+        DtPaqueteDeEspectaculos dt = new DtPaqueteDeEspectaculos(this.id, this.nombre, this.descripcion, this.fechaInicio, this.fechaFin, this.descuento, this.fechaAlta);
         return dt;
     }
     
