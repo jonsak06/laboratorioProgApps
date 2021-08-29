@@ -154,10 +154,14 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         // TODO add your handling code here:
-        String nomEsp = comboEspectaculos.getSelectedItem().toString();
-        ctPaq.confirmarAgregadoEspectaculo(nomEsp, nomPaq);
-        JOptionPane.showMessageDialog(null, "Espectáculo agregado al paquete");
-        restaurarComboBoxes();
+        if(comboEspectaculos.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar un espectáculo");
+        } else {
+            String nomEsp = comboEspectaculos.getSelectedItem().toString();
+            ctPaq.confirmarAgregadoEspectaculo(nomEsp, nomPaq);
+            JOptionPane.showMessageDialog(null, "Espectáculo agregado al paquete");
+            restaurarComboBoxes();
+        }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
