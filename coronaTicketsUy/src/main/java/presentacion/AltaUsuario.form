@@ -26,30 +26,6 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbFechaNacimiento" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbTipoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tfNombre" max="32767" attributes="0"/>
-                          <Component id="tfApellido" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tfNickname" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tfCorreoElectronico" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cbTipoUsuario" pref="251" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Component id="cbDia" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbMes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="cbAnio" min="-2" pref="84" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="tfDescripcionGen" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btCancelar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
@@ -84,6 +60,38 @@
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="lImagen" min="-2" pref="103" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lbFechaNacimiento" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbTipoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tfNombre" max="32767" attributes="0"/>
+                          <Component id="tfApellido" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfNickname" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfCorreoElectronico" alignment="0" max="32767" attributes="0"/>
+                          <Component id="cbTipoUsuario" pref="276" max="32767" attributes="0"/>
+                          <Component id="tfDescripcionGen" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbAnio" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cbMes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbDia" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -130,7 +138,15 @@
                   </Group>
                   <Component id="tfNombre" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbFechaNacimiento" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cbDia" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -152,7 +168,7 @@
                   <Component id="lbLinkWeb" min="-2" max="-2" attributes="0"/>
                   <Component id="tfLinkWeb" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="15" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btImagen" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lImagen" alignment="3" min="-2" pref="90" max="-2" attributes="0"/>
@@ -324,6 +340,7 @@
             <StringItem index="30" value="31"/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -348,7 +365,11 @@
             <StringItem index="12" value=" "/>
           </StringArray>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbMesItemStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -359,6 +380,9 @@
           <StringArray count="0"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbAnioItemStateChanged"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -366,6 +390,21 @@
     <Component class="javax.swing.JLabel" name="lImagen">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mes"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dia"/>
       </Properties>
     </Component>
   </SubComponents>
