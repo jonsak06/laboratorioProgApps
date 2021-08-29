@@ -5,8 +5,10 @@
  */
 package presentacion;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -54,6 +56,7 @@ public class ListarEspectadores extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tRegistros = new javax.swing.JTable();
         btCancelar = new javax.swing.JButton();
+        lImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +114,8 @@ public class ListarEspectadores extends javax.swing.JFrame {
             }
         });
 
+        lImagen.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -119,14 +124,19 @@ public class ListarEspectadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(445, 445, 445)
-                        .addComponent(btCancelar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(445, 445, 445)
+                                .addComponent(btCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +144,9 @@ public class ListarEspectadores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(btCancelar)
                 .addContainerGap())
@@ -147,6 +159,22 @@ public class ListarEspectadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int index = tEspectadores.getSelectedRow();
+        
+           if(espectadores.get(index).getImagen()!="PATH")
+           {
+               if(espectadores.get(index).getImagen()!="")
+               {
+                    Image mImagen = new ImageIcon(espectadores.get(index).getImagen()).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
+                    
+               }
+               
+           }
+           
+            
+        
+        
         List<DtRegistro> registros=new ArrayList<DtRegistro>();
         registros=Fabrica.getCrlUsuarios().getRegistros(espectadores.get(index).getNickname());
         String matris[][] = new String [registros.size()][6];
@@ -220,6 +248,7 @@ public class ListarEspectadores extends javax.swing.JFrame {
     private javax.swing.JButton btCancelar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lImagen;
     private javax.swing.JTable tEspectadores;
     private javax.swing.JTable tRegistros;
     // End of variables declaration//GEN-END:variables

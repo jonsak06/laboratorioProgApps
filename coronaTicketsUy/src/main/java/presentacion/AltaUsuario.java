@@ -9,13 +9,21 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.awt.FlowLayout;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author tecnologo
  */
 public class AltaUsuario extends javax.swing.JFrame {
     
-    
+    String ruta="";
     
    
     /**
@@ -65,6 +73,7 @@ public class AltaUsuario extends javax.swing.JFrame {
         cbDia = new javax.swing.JComboBox<>();
         cbMes = new javax.swing.JComboBox<>();
         cbAnio = new javax.swing.JComboBox<>();
+        lImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +92,11 @@ public class AltaUsuario extends javax.swing.JFrame {
         });
 
         btImagen.setText("Imagen");
+        btImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btImagenActionPerformed(evt);
+            }
+        });
 
         lbNombre.setText("Nombre:");
 
@@ -138,6 +152,8 @@ public class AltaUsuario extends javax.swing.JFrame {
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
 
+        lImagen.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,31 +182,33 @@ public class AltaUsuario extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(tfDescripcionGen, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btCrear))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(126, 126, 126)
-                                .addComponent(btImagen)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCrear)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbFechaNacimiento1)
                         .addGap(48, 48, 48)
                         .addComponent(tfBrebeBiografia))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbLinkWeb)
-                        .addGap(62, 62, 62)
-                        .addComponent(tfLinkWeb))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbNickname)
                             .addComponent(lbApellido)
                             .addComponent(lbCorreoElectronico)
                             .addComponent(lbFechaNacimiento2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btImagen)
+                            .addComponent(lbLinkWeb))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(tfLinkWeb))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -242,9 +260,11 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbLinkWeb)
                     .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btImagen)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btImagen)
+                    .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btCrear)
                     .addComponent(btCancelar)))
@@ -307,14 +327,14 @@ public class AltaUsuario extends javax.swing.JFrame {
 
     private void btCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearActionPerformed
         // TODO add your handling code here:
-        if(tfNickname.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un nickname","Usuarios", JOptionPane.ERROR_MESSAGE);            
-        } else if(tfNombre.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre","Usuarios", JOptionPane.ERROR_MESSAGE);            
-        } else if(tfApellido.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un apellido","Usuarios", JOptionPane.ERROR_MESSAGE);    
-        } else if(tfCorreoElectronico.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un correo electronico","Usuarios", JOptionPane.ERROR_MESSAGE);                    
+        if(tfNickname.getText().isBlank()|| this.tfNickname.getText().length()<1 || this.tfNickname.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Nickname invalido","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfNombre.getText().isBlank()|| this.tfNombre.getText().length()<1 || this.tfNombre.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Nombre invalido","Usuarios", JOptionPane.ERROR_MESSAGE);            
+        } else if(tfApellido.getText().isBlank()|| this.tfApellido.getText().length()<1 || this.tfApellido.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Apellido invalido","Usuarios", JOptionPane.ERROR_MESSAGE);    
+        } else if(this.tfCorreoElectronico.getText().contains("@")==false ||this.tfCorreoElectronico.getText().contains(" ") || this.tfCorreoElectronico.getText().contains(".")==false || tfCorreoElectronico.getText().isBlank()|| this.tfCorreoElectronico.getText().length()<1 || this.tfCorreoElectronico.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Correo electronico invalido","Usuarios", JOptionPane.ERROR_MESSAGE);                    
         } else if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
         {
             JOptionPane.showMessageDialog(null, "Ya existe", "Usuarios", JOptionPane.WARNING_MESSAGE);
@@ -327,7 +347,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
                 Integer.parseInt(cbDia.getSelectedItem().toString()));
                 long id = 0;
-                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
                 Fabrica.getCrlUsuarios().altaEspectador(es);
                 JOptionPane.showMessageDialog(null, "El espectador fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                 tfNombre.setText("");
@@ -339,18 +359,21 @@ public class AltaUsuario extends javax.swing.JFrame {
             
             if("Artista"==cbTipoUsuario.getSelectedItem().toString())
             {
+                
                 if(tfLinkWeb.getText().isBlank()) {
                     JOptionPane.showMessageDialog(null, "Ingrese un link web","Usuarios", JOptionPane.ERROR_MESSAGE);            
-                } else if(tfDescripcionGen.getText().isBlank()) {
-                    JOptionPane.showMessageDialog(null, "Ingrese una descripcion","Usuarios", JOptionPane.ERROR_MESSAGE);            
-                } else if(tfBrebeBiografia.getText().isBlank()) {
-                    JOptionPane.showMessageDialog(null, "Ingrese una biografia","Usuarios", JOptionPane.ERROR_MESSAGE);    
+                }else if(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()<1 || this.tfLinkWeb.getText().length()>254){
+                    JOptionPane.showMessageDialog(null, "URL invalida", "ERROR!", JOptionPane.DEFAULT_OPTION);
+                } else if(tfDescripcionGen.getText().isBlank()|| this.tfDescripcionGen.getText().length()<1 || this.tfDescripcionGen.getText().length()>254) {
+                    JOptionPane.showMessageDialog(null, "Descripcion invalida","Usuarios", JOptionPane.ERROR_MESSAGE);            
+                } else if(tfBrebeBiografia.getText().isBlank()|| this.tfBrebeBiografia.getText().length()<1 || this.tfBrebeBiografia.getText().length()>254) {
+                    JOptionPane.showMessageDialog(null, "Biografia invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
                 } else {
                     Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, 
                     Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
                     Integer.parseInt(cbDia.getSelectedItem().toString()));
                     long id = 0;
-                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "", fecha);
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
                     Fabrica.getCrlUsuarios().altaArtista(ar);
                     JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     tfNombre.setText("");
@@ -380,6 +403,25 @@ public class AltaUsuario extends javax.swing.JFrame {
         ventanaPrincipal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImagenActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter filtrado = new FileNameExtensionFilter("JPG, PNG & GIF", "jpg", "png", "gif");
+        jFileChooser.setFileFilter(filtrado);
+        int respuesta = jFileChooser.showOpenDialog(this);
+        if(respuesta==JFileChooser.APPROVE_OPTION)
+        {
+            ruta=jFileChooser.getSelectedFile().getPath();
+            Image mImagen = new ImageIcon(ruta).getImage();
+            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+            lImagen.setIcon(mIcono);
+        }
+        
+    }//GEN-LAST:event_btImagenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,6 +466,7 @@ public class AltaUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JComboBox<String> cbTipoUsuario;
+    private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbCorreoElectronico;
     private javax.swing.JLabel lbFechaNacimiento;
