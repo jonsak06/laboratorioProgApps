@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,6 +152,11 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         CBF1Mes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12", " " }));
         CBF1Mes.setEnabled(false);
+        CBF1Mes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBF1MesItemStateChanged(evt);
+            }
+        });
         CBF1Mes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBF1MesActionPerformed(evt);
@@ -158,6 +164,11 @@ public class AltaFuncion extends javax.swing.JFrame {
         });
 
         CBF1Anio.setEnabled(false);
+        CBF1Anio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBF1AnioItemStateChanged(evt);
+            }
+        });
         CBF1Anio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CBF1AnioActionPerformed(evt);
@@ -199,6 +210,11 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         CBFAMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "12" }));
         CBFAMes.setEnabled(false);
+        CBFAMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CBFAMesItemStateChanged(evt);
+            }
+        });
 
         jLabel9.setText("Ingrese datos de la funcion:");
 
@@ -340,8 +356,27 @@ public class AltaFuncion extends javax.swing.JFrame {
                 Integer.parseInt(CBFADia.getSelectedItem().toString()));           
             java.sql.Timestamp fhinicio = new java.sql.Timestamp(Integer.parseInt(CBF1Anio.getSelectedItem().toString())-1899,Integer.parseInt(CBF1Mes.getSelectedItem().toString())-12,Integer.parseInt(CBF1Dia.getSelectedItem().toString())-31,Integer.parseInt(CBHHora.getSelectedItem().toString()),Integer.parseInt(CBHMin.getSelectedItem().toString()),0,0);
             DtFuncion fun=new DtFuncion(id,nombre,fhinicio,fechaInicio,fechaAlta);
-            Fabrica.getCtrlEspectaculos().crearFuncion(ComboBoxEsp.getSelectedItem().toString(), fun, artConf);
+            
            
+            
+            if(TextoNombre.getText().isBlank()|| this.TextoNombre.getText().length()<1 || this.TextoNombre.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Nickname invalido","Usuarios", JOptionPane.ERROR_MESSAGE);}    
+            else {
+                    boolean resp = Fabrica.getCtrlEspectaculos().existeFuncion(nombre);
+                    if (resp==true){
+                        JOptionPane.showMessageDialog(null, "Una funcion con ese nombre ya existe");
+                        TextoNombre.setText("");
+                        
+                    }
+                    else{
+                    Fabrica.getCtrlEspectaculos().crearFuncion(ComboBoxEsp.getSelectedItem().toString(), fun, artConf);
+                    JOptionPane.showMessageDialog(null, "Funcion creada");
+                    }
+                    }
+       
+        
+            
+            
 
 
 
@@ -408,11 +443,139 @@ public class AltaFuncion extends javax.swing.JFrame {
 
     private void BConfirArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirArtistasActionPerformed
         // TODO add your handling code here:
-        
-       artConf.add(CBArtInvi.getSelectedItem().toString());
+        boolean existe= false;
+        for(String i: artConf){
+           if(CBArtInvi.getSelectedItem().toString()== i){
+               existe= true;          
+           }
+       }
+       if(existe==true){
+
+            JOptionPane.showMessageDialog(null, "El Artista ya esta agregado");              
+       }
+       else {
+           JOptionPane.showMessageDialog(null, "Artista agregado");
+           artConf.add(CBArtInvi.getSelectedItem().toString());
+
+       }
         
         
     }//GEN-LAST:event_BConfirArtistasActionPerformed
+
+    private void CBF1AnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBF1AnioItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBF1AnioItemStateChanged
+
+    private void CBF1MesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBF1MesItemStateChanged
+        // TODO add your handling code here:
+        
+        CBF1Dia.setEnabled(true);
+        if(Integer.parseInt(CBF1Anio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(CBF1Mes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBF1Dia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(CBF1Mes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBF1Dia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(CBF1Mes.getSelectedItem().toString())%2 ==0 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBF1Dia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBF1Dia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        
+    }//GEN-LAST:event_CBF1MesItemStateChanged
+
+    private void CBFAMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CBFAMesItemStateChanged
+            CBFADia.setEnabled(true);
+        if(Integer.parseInt(CBFAAnio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(CBFAMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBFADia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(CBFAAnio.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBFADia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(CBFAMes.getSelectedItem().toString())%2 ==0 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBFADia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            CBFADia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBFAMesItemStateChanged
 
     /**
      * @param args the command line arguments
