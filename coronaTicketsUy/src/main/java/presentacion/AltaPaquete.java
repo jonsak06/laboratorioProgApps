@@ -245,8 +245,6 @@ public class AltaPaquete extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Paquete ya existe, ingrese otro nombre");
                 inputNombre.setText("");
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre");
         }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
