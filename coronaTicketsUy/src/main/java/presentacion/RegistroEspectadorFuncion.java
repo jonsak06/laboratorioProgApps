@@ -359,7 +359,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         int dia = Integer.parseInt(this.dia.getSelectedItem().toString());
         int mes = Integer.parseInt(this.mes.getSelectedItem().toString());
         int anio = Integer.parseInt(this.anio.getSelectedItem().toString());
-        if((listadoDePlataformas.getSelectedItem()!=null && listadoDeEspectaculos.getSelectedItem()!=null && listadoFunciones.getSelectedItem()!=null && listadoDeEspectadores.getSelectedItem()!=null )&&(listadoDePlataformas.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectaculos.getSelectedItem().toString()!="--Seleccione uno--" && listadoFunciones.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectadores.getSelectedItem().toString()!="Seleccione uno--")){
+        if((listadoDePlataformas.getSelectedItem()!=null && listadoDeEspectaculos.getSelectedItem()!=null && listadoFunciones.getSelectedItem()!=null && listadoDeEspectadores.getSelectedItem()!=null )&&(listadoDePlataformas.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectaculos.getSelectedItem().toString()!="--Seleccione uno--" && listadoFunciones.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectadores.getSelectedItem().toString()!="--Seleccione uno--")){
         float descuento = ie.getDescuento(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString());
         float costo = ie.getCosto(this.listadoFunciones.getSelectedItem().toString());
         if(descuento!=0){costo = descuento*costo*(float)0.01;}
