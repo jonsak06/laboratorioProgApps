@@ -7,6 +7,7 @@ package presentacion;
 
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -217,40 +218,49 @@ public class ConsultaPaquete extends javax.swing.JFrame {
 
     private void buttonConsultarPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarPaqueteActionPerformed
         // TODO add your handling code here:
-        String nombrePaquete = comboPaquetes.getSelectedItem().toString();
-        List<String> espectaculos = ctPaq.listarEspectaculosIncluidos(nombrePaquete);
-        DtPaqueteDeEspectaculos dvPaq = ctPaq.mostrarInfoPaquete(nombrePaquete);
-        
-        String nombre = dvPaq.getNombre();
-        String descripcion = dvPaq.getDescripcion();
-        String fechaInicio = dvPaq.getFechaInicio().toString();
-        String fechaFin = dvPaq.getFechaFin().toString();
-        String descuento = Float.toString(dvPaq.getDescuento());
-        String fechaAlta = dvPaq.getFechaAlta().toString();
-        
-        Object[] row = {nombre, descripcion, fechaInicio, fechaFin, descuento, fechaAlta};
-        DefaultTableModel model = (DefaultTableModel) tablePaquete.getModel();
-        model.addRow(row);
-        comboEspectaculos.setModel(new DefaultComboBoxModel(espectaculos.toArray()));
+        if(comboPaquetes.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No hay paquetes en el sistema");
+        } else {
+            String nombrePaquete = comboPaquetes.getSelectedItem().toString();
+            List<String> espectaculos = ctPaq.listarEspectaculosIncluidos(nombrePaquete);
+            DtPaqueteDeEspectaculos dvPaq = ctPaq.mostrarInfoPaquete(nombrePaquete);
+
+            String nombre = dvPaq.getNombre();
+            String descripcion = dvPaq.getDescripcion();
+            String fechaInicio = dvPaq.getFechaInicio().toString();
+            String fechaFin = dvPaq.getFechaFin().toString();
+            String descuento = Float.toString(dvPaq.getDescuento());
+            String fechaAlta = dvPaq.getFechaAlta().toString();
+
+            Object[] row = {nombre, descripcion, fechaInicio, fechaFin, descuento, fechaAlta};
+            DefaultTableModel model = (DefaultTableModel) tablePaquete.getModel();
+            model.addRow(row);
+            comboEspectaculos.setModel(new DefaultComboBoxModel(espectaculos.toArray()));
+        }
     }//GEN-LAST:event_buttonConsultarPaqueteActionPerformed
 
     private void buttonConsultarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConsultarEspectaculoActionPerformed
         // TODO add your handling code here:
-        String nombreEspectaculo = comboEspectaculos.getSelectedItem().toString();
-        DtEspectaculo dvEsp = ctPaq.mostarInfoEspectaculo(nombreEspectaculo);
+        if(comboEspectaculos.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "Debe de seleccionar un espectáculo");
+        } else {
+            String nombreEspectaculo = comboEspectaculos.getSelectedItem().toString();
+            DtEspectaculo dvEsp = ctPaq.mostarInfoEspectaculo(nombreEspectaculo);
+
+            String nombre = dvEsp.getNombre();
+            String descripcion = dvEsp.getDescripcion();
+            String duracion = Integer.toString(dvEsp.getDuracion());
+            String maxEsp = Integer.toString(dvEsp.getCantidadMaximaEspectadores());
+            String minEsp = Integer.toString(dvEsp.getCantidadMinimaEspectadores());
+            String url = dvEsp.getUrl();
+            String costo = Float.toString(dvEsp.getCosto());
+            String fechaAlta = dvEsp.getFechaDeRegistro().toString();
+
+            Object[] row = {nombre, descripcion, duracion, maxEsp, minEsp, url, costo, fechaAlta};
+            DefaultTableModel model = (DefaultTableModel) tableEspectaculo.getModel();
+            model.addRow(row);
+        }
         
-        String nombre = dvEsp.getNombre();
-        String descripcion = dvEsp.getDescripcion();
-        String duracion = Integer.toString(dvEsp.getDuracion());
-        String maxEsp = Integer.toString(dvEsp.getCantidadMaximaEspectadores());
-        String minEsp = Integer.toString(dvEsp.getCantidadMinimaEspectadores());
-        String url = dvEsp.getUrl();
-        String costo = Float.toString(dvEsp.getCosto());
-        String fechaAlta = dvEsp.getFechaDeRegistro().toString();
-        
-        Object[] row = {nombre, descripcion, duracion, maxEsp, minEsp, url, costo, fechaAlta};
-        DefaultTableModel model = (DefaultTableModel) tableEspectaculo.getModel();
-        model.addRow(row);
     }//GEN-LAST:event_buttonConsultarEspectaculoActionPerformed
 
     private void comboEspectaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEspectaculosActionPerformed

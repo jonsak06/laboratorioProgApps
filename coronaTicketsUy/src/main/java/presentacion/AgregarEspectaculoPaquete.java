@@ -60,7 +60,29 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione el paquete:");
 
+        comboPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboPaquetesMouseClicked(evt);
+            }
+        });
+        comboPaquetes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPaquetesActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Seleccione la plataforma:");
+
+        comboPlataformas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboPlataformasMouseClicked(evt);
+            }
+        });
+        comboPlataformas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPlataformasActionPerformed(evt);
+            }
+        });
 
         buttonListarEspectaculos.setText("Listar");
         buttonListarEspectaculos.addActionListener(new java.awt.event.ActionListener() {
@@ -142,14 +164,20 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
 
     private void buttonListarEspectaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListarEspectaculosActionPerformed
         // TODO add your handling code here:
-        nomPaq = comboPaquetes.getSelectedItem().toString();
-        String nomPlat = comboPlataformas.getSelectedItem().toString();
-        List<String> nomEsps = ctPaq.listarEspectaculosNoIncluidos(nomPaq, nomPlat);
-        if(nomEsps.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "No hay espectáculos para agregar");
-            restaurarComboBoxes();
+        if(comboPaquetes.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No hay paquetes en el sistema");
+        } else if(comboPlataformas.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No hay plataformas en el sistema");
+        } else {
+          nomPaq = comboPaquetes.getSelectedItem().toString();
+            String nomPlat = comboPlataformas.getSelectedItem().toString();
+            List<String> nomEsps = ctPaq.listarEspectaculosNoIncluidos(nomPaq, nomPlat);
+            if(nomEsps.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay espectáculos para agregar");
+                restaurarComboBoxes();
+            }
+            comboEspectaculos.setModel(new DefaultComboBoxModel(nomEsps.toArray()));  
         }
-        comboEspectaculos.setModel(new DefaultComboBoxModel(nomEsps.toArray()));
     }//GEN-LAST:event_buttonListarEspectaculosActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
@@ -168,6 +196,24 @@ public class AgregarEspectaculoPaquete extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void comboPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPaquetesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPaquetesActionPerformed
+
+    private void comboPlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPlataformasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPlataformasActionPerformed
+
+    private void comboPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboPaquetesMouseClicked
+        // TODO add your handling code here:
+        comboEspectaculos.removeAllItems();
+    }//GEN-LAST:event_comboPaquetesMouseClicked
+
+    private void comboPlataformasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboPlataformasMouseClicked
+        // TODO add your handling code here:
+        comboEspectaculos.removeAllItems();
+    }//GEN-LAST:event_comboPlataformasMouseClicked
 
     /**
      * @param args the command line arguments
