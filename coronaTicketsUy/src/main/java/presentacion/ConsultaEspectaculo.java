@@ -5,6 +5,10 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author tecnologo
@@ -16,6 +20,19 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
      */
     public ConsultaEspectaculo() {
         initComponents();
+        
+        List<String> li= new ArrayList<String>();
+        li.add("--Seleccione una--");
+        IEspectaculos iesp = Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataformas = iesp.listarPlataformas();
+         for (DtPlataforma i :dtPlataformas){
+             li.add(i.getNombre());
+         }
+        this.cbPlataformas.setModel(new DefaultComboBoxModel(li.toArray()));
+        
+       
+          
+        
     }
 
     /**
