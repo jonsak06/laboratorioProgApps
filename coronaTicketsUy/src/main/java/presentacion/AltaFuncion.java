@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package presentacion;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -29,17 +31,15 @@ public class AltaFuncion extends javax.swing.JFrame {
              li.add(i.getNombre());
          }
         this.ComboBoxPlat.setModel(new DefaultComboBoxModel(li.toArray()));
-        
-        List<String> liart= new ArrayList<String>();
+            
+          List<String> liart= new ArrayList<String>();
         liart.add("--Artista--");
-         
-        List<DtArtista> dtArtistas=Fabrica.getCrlUsuarios().getArtistas();
+        
+           List<DtArtista> dtArtistas=Fabrica.getCrlUsuarios().getArtistas();
          for (DtArtista i :dtArtistas){
              liart.add(i.getNombre());
          }
         this.CBArtInvi.setModel(new DefaultComboBoxModel(liart.toArray()));
-        
-        
         
         
         int i=1900;
@@ -162,14 +162,21 @@ public class AltaFuncion extends javax.swing.JFrame {
             }
         });
 
+        CBHHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", " " }));
         CBHHora.setEnabled(false);
 
+        CBHMin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", " " }));
         CBHMin.setEnabled(false);
 
         CBArtInvi.setEnabled(false);
         CBArtInvi.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CBArtInviItemStateChanged(evt);
+            }
+        });
+        CBArtInvi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBArtInviActionPerformed(evt);
             }
         });
 
@@ -316,6 +323,19 @@ public class AltaFuncion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+            String nombre = TextoNombre.getText();
+            Date fechaInicio = new Date(Integer.parseInt(CBF1Anio.getSelectedItem().toString())-1900, 
+                Integer.parseInt(CBF1Mes.getSelectedItem().toString())-1, 
+                Integer.parseInt(CBF1Dia.getSelectedItem().toString()));
+            Date fechaAlta = new Date(Integer.parseInt(CBFAAnio.getSelectedItem().toString())-1900, 
+                Integer.parseInt(CBFAMes.getSelectedItem().toString())-1, 
+                Integer.parseInt(CBFADia.getSelectedItem().toString()));           
+            java.sql.Timestamp fhinicio = new java.sql.Timestamp(Integer.parseInt(CBF1Anio.getSelectedItem().toString())-1899,Integer.parseInt(CBF1Mes.getSelectedItem().toString())-12,Integer.parseInt(CBF1Dia.getSelectedItem().toString())-31,Integer.parseInt(CBHHora.getSelectedItem().toString()),Integer.parseInt(CBHMin.getSelectedItem().toString()),0,0);
+
+
+
+
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -371,6 +391,10 @@ public class AltaFuncion extends javax.swing.JFrame {
         // TODO add your handling code here:
         BConfirArtistas.setEnabled(true);
     }//GEN-LAST:event_CBArtInviItemStateChanged
+
+    private void CBArtInviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBArtInviActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBArtInviActionPerformed
 
     /**
      * @param args the command line arguments

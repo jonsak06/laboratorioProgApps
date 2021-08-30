@@ -86,6 +86,12 @@ public class ConsultaPaquete extends javax.swing.JFrame {
 
         jLabel4.setText("Espectáculos del paquete:");
 
+        comboEspectaculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEspectaculosActionPerformed(evt);
+            }
+        });
+
         buttonConsultarEspectaculo.setText("Consultar espectáculo");
         buttonConsultarEspectaculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,6 +252,10 @@ public class ConsultaPaquete extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tableEspectaculo.getModel();
         model.addRow(row);
     }//GEN-LAST:event_buttonConsultarEspectaculoActionPerformed
+
+    private void comboEspectaculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEspectaculosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEspectaculosActionPerformed
 
     /**
      * @param args the command line arguments
