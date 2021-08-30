@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -74,6 +75,9 @@ public class AltaUsuario extends javax.swing.JFrame {
         cbMes = new javax.swing.JComboBox<>();
         cbAnio = new javax.swing.JComboBox<>();
         lImagen = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -149,10 +153,29 @@ public class AltaUsuario extends javax.swing.JFrame {
         tfLinkWeb.setEnabled(false);
 
         cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDia.setEnabled(false);
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+        cbMes.setEnabled(false);
+        cbMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMesItemStateChanged(evt);
+            }
+        });
+
+        cbAnio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbAnioItemStateChanged(evt);
+            }
+        });
 
         lImagen.setText("jLabel1");
+
+        jLabel1.setText("Año");
+
+        jLabel2.setText("Mes");
+
+        jLabel3.setText("Dia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,26 +184,6 @@ public class AltaUsuario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbFechaNacimiento)
-                            .addComponent(lbNombre)
-                            .addComponent(lbTipoUsuario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNombre)
-                            .addComponent(tfApellido)
-                            .addComponent(tfNickname)
-                            .addComponent(tfCorreoElectronico)
-                            .addComponent(cbTipoUsuario, 0, 251, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(tfDescripcionGen, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -208,7 +211,32 @@ public class AltaUsuario extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(42, 42, 42)
                                 .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbFechaNacimiento)
+                            .addComponent(lbNombre)
+                            .addComponent(lbTipoUsuario))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfNombre)
+                            .addComponent(tfApellido)
+                            .addComponent(tfNickname)
+                            .addComponent(tfCorreoElectronico)
+                            .addComponent(cbTipoUsuario, 0, 276, Short.MAX_VALUE)
+                            .addComponent(tfDescripcionGen, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -242,7 +270,13 @@ public class AltaUsuario extends javax.swing.JFrame {
                             .addComponent(lbCorreoElectronico)
                             .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbFechaNacimiento)
                     .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,7 +294,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbLinkWeb)
                     .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btImagen)
                     .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,6 +457,113 @@ public class AltaUsuario extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btImagenActionPerformed
 
+    private void cbAnioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbAnioItemStateChanged
+        // TODO add your handling code here:
+        cbMes.setEnabled(true);
+        cbDia.setEnabled(true);
+        if(Integer.parseInt(cbAnio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString())%2 ==0 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+    }//GEN-LAST:event_cbAnioItemStateChanged
+
+    private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged
+        // TODO add your handling code here:
+        cbDia.setEnabled(true);
+        if(Integer.parseInt(cbAnio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString())%2 ==0 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+    }//GEN-LAST:event_cbMesItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -466,6 +607,9 @@ public class AltaUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbDia;
     private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JComboBox<String> cbTipoUsuario;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbCorreoElectronico;
