@@ -134,6 +134,12 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             }
         });
 
+        tbEspectadoresMin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbEspectadoresMinActionPerformed(evt);
+            }
+        });
+
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,17 +199,14 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                                             .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(124, 124, 124))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap())))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbDescripcion)
@@ -342,9 +345,18 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null, "Ya existe", "Error", JOptionPane.WARNING_MESSAGE);
         }
-        else
+        else if(tbNombre.getText().isBlank()|| this.tbNombre.getText().length()<1 || this.tbNombre.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Nombre invalido","Espectaculos", JOptionPane.ERROR_MESSAGE);            
+        }
+        else if(tbDescripcion.getText().isBlank()|| this.tbDescripcion.getText().length()<1 || this.tbDescripcion.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Descripcion","Espectaculos", JOptionPane.ERROR_MESSAGE);            
+        }
+        else if(this.tbUrl.getText().contains(" ") || this.tbUrl.getText().contains(".")==false || tbUrl.getText().isBlank()|| this.tbUrl.getText().length()<1 || this.tbUrl.getText().length()>254) {
+            JOptionPane.showMessageDialog(null, "Url invalido","Espectaculos", JOptionPane.ERROR_MESSAGE);                    
+        }
+        else 
         {
-            Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
+            Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, Integer.parseInt(cbMes.getSelectedItem().toString())-1, Integer.parseInt(cbDia.getSelectedItem().toString()));
             
             long id = 0;
             
@@ -353,27 +365,38 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             int espectadoresMax = 0;
             float costo = 0;
             
+            boolean chequeo = true;
+            
             try{
                 duracion = Integer.valueOf(tbDuracion.getText());
-                espectadoresMin = Integer.valueOf(tbDuracion.getText());
-                espectadoresMax = Integer.valueOf(tbDuracion.getText());
-                costo = Float.parseFloat(tbDuracion.getText());
+                espectadoresMin = Integer.valueOf(tbEspectadoresMin.getText());
+                espectadoresMax = Integer.valueOf(tbEspectadoresMax.getText());
+                costo = Float.parseFloat(tbCosto.getText());
             }
             catch(NumberFormatException ex)
             {
                 JOptionPane.showMessageDialog(null, "Ingrese Numero", "Error", JOptionPane.WARNING_MESSAGE);
+                chequeo = false;
             }
             
             
             //Falta Fecha del Espectaculo
-            DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
-            Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
+            if(chequeo == true){
+                DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
+                Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
+            }
+            chequeo = true;
         }
+                    
     }//GEN-LAST:event_btAceptarActionPerformed
 
     private void tbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbNombreActionPerformed
+
+    private void tbEspectadoresMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEspectadoresMinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbEspectadoresMinActionPerformed
 
     /**
      * @param args the command line arguments
