@@ -5,17 +5,34 @@
  */
 package presentacion;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author osiris
  */
-public class ConsultaDeCasos extends javax.swing.JFrame {
-
+public class ConsultaDeFuncion extends javax.swing.JFrame {
+ List<String> li= new ArrayList<String>();
+ List<DtEspectaculo> dtEspectaculos= new ArrayList<DtEspectaculo>();
     /**
      * Creates new form ConsultaDeCasos
      */
-    public ConsultaDeCasos() {
+    public ConsultaDeFuncion() {
         initComponents();
+        
+        li.add("--Seleccione una--");
+       
+        List<DtPlataforma> dtPlataformas = Fabrica.getCtrlEspectaculos().listarPlataformas();
+         for (DtPlataforma i :dtPlataformas){
+             li.add(i.getNombre());
+         }
+        this.ComboBoxConsDPlat.setModel(new DefaultComboBoxModel(li.toArray()));
+        
+        
+        
+        
     }
 
     /**
@@ -35,8 +52,6 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         ComboBoxConsDPlat = new javax.swing.JComboBox<>();
         CombBoxConsLisEsp = new javax.swing.JComboBox<>();
-        CBConsCasFun = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
         TablaConsDatosFun = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
 
@@ -69,11 +84,16 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
             }
         });
 
-        CombBoxConsLisEsp.setEnabled(false);
-
-        CBConsCasFun.setEnabled(false);
-
-        jLabel5.setText("Datos de la Funcion");
+        CombBoxConsLisEsp.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CombBoxConsLisEspItemStateChanged(evt);
+            }
+        });
+        CombBoxConsLisEsp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CombBoxConsLisEspActionPerformed(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,16 +122,14 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel3))
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ComboBoxConsDPlat, 0, 155, Short.MAX_VALUE)
-                            .addComponent(CombBoxConsLisEsp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CBConsCasFun, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(CombBoxConsLisEsp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel5))
+                        .addGap(118, 118, 118)
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -131,14 +149,10 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
                     .addComponent(CombBoxConsLisEsp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CBConsCasFun, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
                 .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pack();
@@ -148,9 +162,54 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
         // TODO add your handling code here:
         ComboBoxConsDPlat.setEnabled(true);
         CombBoxConsLisEsp.setEnabled(true);
-        CBConsCasFun.setEnabled(true);
         TablaConsDatosFun.setEnabled(true);
+        
+        CombBoxConsLisEsp.setEnabled(true);
+        List<String> liesp= new ArrayList<String>();
+        liesp.add("--Seleccione un--");
+        IEspectaculos ifu = Fabrica.getCtrlEspectaculos();
+        dtEspectaculos = ifu.listarEspectaculos(ComboBoxConsDPlat.getSelectedItem().toString());
+         for (DtEspectaculo i :dtEspectaculos){
+             liesp.add(i.getNombre());
+         }
+        this.CombBoxConsLisEsp.setModel(new DefaultComboBoxModel(liesp.toArray()));
+
     }//GEN-LAST:event_ComboBoxConsDPlatItemStateChanged
+
+    private void CombBoxConsLisEspActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CombBoxConsLisEspActionPerformed
+      
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombBoxConsLisEspActionPerformed
+
+    private void CombBoxConsLisEspItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CombBoxConsLisEspItemStateChanged
+
+        int indexE = jTable2.getSelectedRow();
+        List<DtFuncion> funciones=Fabrica.getCtrlEspectaculos().listarFunciones(CombBoxConsLisEsp.getSelectedItem().toString());
+        String matrisF[][] = new String [funciones.size()][2];
+      
+        
+        for(int i=0; i<funciones.size(); i++)
+        {
+
+            matrisF [i][0]=funciones.get(i).getNombre();
+            matrisF [i][1]=funciones.get(i).getHoraInicio().toString();
+            
+        }
+        
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            matrisF,
+            new String [] {
+                "Nombre ", "Fecha y hora"
+            }
+        ));
+        
+      
+     
+      
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CombBoxConsLisEspItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -169,26 +228,26 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDeCasos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaDeFuncion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDeCasos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaDeFuncion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDeCasos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaDeFuncion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultaDeCasos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConsultaDeFuncion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConsultaDeCasos().setVisible(true);
+                new ConsultaDeFuncion().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CBConsCasFun;
     private javax.swing.JComboBox<String> CombBoxConsLisEsp;
     private javax.swing.JComboBox<String> ComboBoxConsDPlat;
     private javax.swing.JScrollPane TablaConsDatosFun;
@@ -196,7 +255,6 @@ public class ConsultaDeCasos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
