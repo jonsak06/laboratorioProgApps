@@ -162,10 +162,20 @@ public class AltaUsuario extends javax.swing.JFrame {
                 cbMesItemStateChanged(evt);
             }
         });
+        cbMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMesActionPerformed(evt);
+            }
+        });
 
         cbAnio.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbAnioItemStateChanged(evt);
+            }
+        });
+        cbAnio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbAnioActionPerformed(evt);
             }
         });
 
@@ -562,6 +572,14 @@ public class AltaUsuario extends javax.swing.JFrame {
             cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
         }
     }//GEN-LAST:event_cbMesItemStateChanged
+
+    private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMesActionPerformed
+
+    private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbAnioActionPerformed
 
     /**
      * @param args the command line arguments

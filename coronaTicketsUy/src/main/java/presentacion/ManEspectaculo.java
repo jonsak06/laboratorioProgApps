@@ -5,7 +5,6 @@
  */
 package presentacion;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -19,6 +18,37 @@ import javax.persistence.TypedQuery;
  * @author elinzar
  */
 public class ManEspectaculo {
+    
+    /**
+     *
+     * @param plataforma
+     * @param artista
+     * @param espectaculo
+     */
+    public static void altaEspectaculo(String plataforma, String artista, DtEspectaculo espectaculo)
+    {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        TypedQuery<Plataforma> consultaPlataforma = em.createNamedQuery("Plataforma.findByNombre",Plataforma.class);
+        consultaPlataforma.setParameter("nombre", plataforma);
+        Plataforma estaPlataforma = consultaPlataforma.getSingleResult();
+        
+        TypedQuery<Artista> consultaArtista = em.createNamedQuery("ArtistaporNick",Artista.class);
+        consultaArtista.setParameter("nickname", artista);
+        Artista esteArtista = consultaArtista.getSingleResult();
+        
+        Espectaculo nuevoEspectaculo = new Espectaculo(espectaculo.getNombre(),espectaculo.getDescripcion(),espectaculo.getDuracion(),espectaculo.getCantidadMaximaEspectadores(),espectaculo.getCantidadMinimaEspectadores(),espectaculo.getUrl(),espectaculo.getCosto(),espectaculo.getFechaDeRegistro(), estaPlataforma, esteArtista);
+        
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.persist(nuevoEspectaculo);
+        em.getTransaction().commit();
+        em.getTransaction().begin();
+        em.close();
+        emf.close(); 
+    }
     
     public static boolean existeEspectaculo(String nombreEspectaculo){
         boolean existe = false;

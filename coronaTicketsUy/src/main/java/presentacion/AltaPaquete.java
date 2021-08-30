@@ -226,9 +226,7 @@ public class AltaPaquete extends javax.swing.JFrame {
         }
         
         if(nombre.isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un nombre");            
-        } else if(nombre.length() > 255) {
-            JOptionPane.showMessageDialog(null, "El nombre es demasiado largo");            
+            JOptionPane.showMessageDialog(null, "El nombre es demasiado largo");
         } else if(descuento < 0 || descuento > 100){
             JOptionPane.showMessageDialog(null, "Porcentaje de descuento invalido");
             inputDescuento.setText("");
@@ -246,7 +244,9 @@ public class AltaPaquete extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Paquete ya existe, ingrese otro nombre");
                 inputNombre.setText("");
-            }  
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un nombre");
         }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 

@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +59,9 @@ public class CtrlEspectaculos implements IEspectaculos {
      
      public boolean existeFuncion(String nombreFuncion){
          return ManPlataformas.existeFuncion(nombreFuncion);
+     }
+     
+     public void altaEspectaculo(String plataforma, String artista, DtEspectaculo espectaculo){
+        ManEspectaculo.altaEspectaculo(plataforma,artista, espectaculo);
      }
 }

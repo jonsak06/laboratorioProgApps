@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author tecnologo
+ * @author elinzar
  */
 public class AltaEspectaculo extends javax.swing.JFrame {
 
@@ -21,22 +22,34 @@ public class AltaEspectaculo extends javax.swing.JFrame {
      */
     public AltaEspectaculo() {
         initComponents();
-        List<String> lPlataformas = new ArrayList<String>();
-        lPlataformas.add("--Seleccione Plataforma--");
-        Fabrica.getCtrlEspectaculos();
-        List<DtPlataforma> dtPlataforma = Fabrica.getCtrlEspectaculos().listarPlataformas();
-        for (DtPlataforma iterator :dtPlataforma){
-            lPlataformas.add(iterator.getNombre());
+        int i=1900;
+        while(i<2101)
+        {
+            cbAnio.addItem(Integer.toString(i));
+            i++;
         }
+        
+        //listaPlataformas
+        List<String> lPlataformas = new ArrayList<>();
+        lPlataformas.add("--Seleccione Plataforma--");
+        //Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataforma;
+        dtPlataforma = Fabrica.getCtrlEspectaculos().listarPlataformas();
+        dtPlataforma.forEach(iterator -> {
+            lPlataformas.add(iterator.getNombre());
+        });
         this.cbListaPlataformas.setModel(new DefaultComboBoxModel(lPlataformas.toArray()));
         
-        List<String> lArtistas = new ArrayList<String>();
+        
+        //listaArtista
+        List<String> lArtistas = new ArrayList<>();
         lArtistas.add("--Seleccione Artista--");
         List<DtArtista> dtArtista = Fabrica.getCrlUsuarios().getArtistas();
-        for (DtArtista iterator :dtArtista){
+        dtArtista.forEach(iterator -> {
             lArtistas.add(iterator.getNickname());
-        }
-        this.cbListaArtista.setModel(new DefaultComboBoxModel(lArtistas.toArray()));
+        });
+        this.cbListaArtistas.setModel(new DefaultComboBoxModel(lArtistas.toArray()));
+        
     }
 
     /**
@@ -48,63 +61,70 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox<>();
+        lbTitulo = new javax.swing.JLabel();
+        cbListaArtistas = new javax.swing.JComboBox<>();
+        lbListarArtista = new javax.swing.JLabel();
         lbNombre = new javax.swing.JLabel();
-        lbFecha = new javax.swing.JLabel();
-        cbListaPlataformas = new javax.swing.JComboBox<>();
-        cbDiaEspectaculo = new javax.swing.JComboBox<>();
-        cbListaArtista = new javax.swing.JComboBox<>();
-        cbMesEspectaculo = new javax.swing.JComboBox<>();
-        lbListaArtistas = new javax.swing.JLabel();
-        cbAnioEspectaculo = new javax.swing.JComboBox<>();
-        tbNombre = new javax.swing.JTextField();
-        btCancelar = new javax.swing.JButton();
-        btConfirmar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        lbListaPlataformas = new javax.swing.JLabel();
-        tbDuracion = new javax.swing.JTextField();
         lbDuracion = new javax.swing.JLabel();
-        lbExpecatdoresMinimos = new javax.swing.JLabel();
-        tbExpectadoresMin = new javax.swing.JTextField();
-        tbCosto = new javax.swing.JTextField();
-        cbDiaAlta = new javax.swing.JComboBox<>();
-        cbMesAlta = new javax.swing.JComboBox<>();
-        lbFechaAlta = new javax.swing.JLabel();
-        cbAnioAlta = new javax.swing.JComboBox<>();
+        lbEspectadoresMIN = new javax.swing.JLabel();
+        lbEspectadoresMax = new javax.swing.JLabel();
+        lbURL = new javax.swing.JLabel();
         lbCosto = new javax.swing.JLabel();
-        tbExpectadoresMax = new javax.swing.JTextField();
-        tbDescripcion = new javax.swing.JTextField();
+        lbFechaAlta = new javax.swing.JLabel();
+        cbMes = new javax.swing.JComboBox<>();
+        cbAnio = new javax.swing.JComboBox<>();
+        cbDia = new javax.swing.JComboBox<>();
+        tbNombre = new javax.swing.JTextField();
+        tbDuracion = new javax.swing.JTextField();
+        tbEspectadoresMin = new javax.swing.JTextField();
+        tbEspectadoresMax = new javax.swing.JTextField();
+        tbUrl = new javax.swing.JTextField();
+        tbCosto = new javax.swing.JTextField();
+        btCancelar = new javax.swing.JButton();
+        btAceptar = new javax.swing.JButton();
+        cbListaPlataformas = new javax.swing.JComboBox<>();
+        lbListarPlataforma = new javax.swing.JLabel();
         lbDescripcion = new javax.swing.JLabel();
-        lbExpectadoresMaximo = new javax.swing.JLabel();
-        lbIngreseDatos = new javax.swing.JLabel();
+        tbDescripcion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        lbTitulo.setText("Alta Espectaculo");
+
+        lbListarArtista.setText("Listar Artista");
+
         lbNombre.setText("Nombre");
 
-        lbFecha.setText("Fecha");
+        lbDuracion.setText("Duracion");
 
-        cbListaPlataformas.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbListaPlataformasItemStateChanged(evt);
+        lbEspectadoresMIN.setText("Espectadores Min");
+
+        lbEspectadoresMax.setText("Espectadores Max");
+
+        lbURL.setText("URL");
+
+        lbCosto.setText("Costo");
+
+        lbFechaAlta.setText("Fecha de Alta");
+
+        cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbMesActionPerformed(evt);
             }
         });
-        cbListaPlataformas.addActionListener(new java.awt.event.ActionListener() {
+
+        cbAnio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbListaPlataformasActionPerformed(evt);
+                cbAnioActionPerformed(evt);
             }
         });
 
-        cbMesEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+        cbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbMesEspectaculoActionPerformed(evt);
-            }
-        });
-
-        lbListaArtistas.setText("Listar Artista");
-
-        cbAnioEspectaculo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAnioEspectaculoActionPerformed(evt);
+                cbDiaActionPerformed(evt);
             }
         });
 
@@ -121,208 +141,194 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             }
         });
 
-        btConfirmar.setText("Confirmar");
-        btConfirmar.addActionListener(new java.awt.event.ActionListener() {
+        btAceptar.setText("Aceptar");
+        btAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btConfirmarActionPerformed(evt);
+                btAceptarActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Alta Espectaculo");
-
-        lbListaPlataformas.setText("Listar Plataformas");
-
-        lbDuracion.setText("Duracion");
-
-        lbExpecatdoresMinimos.setText("Expectadores Minimos");
-
-        tbExpectadoresMin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbExpectadoresMinActionPerformed(evt);
-            }
-        });
-
-        tbCosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbCostoActionPerformed(evt);
-            }
-        });
-
-        cbMesAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbMesAltaActionPerformed(evt);
-            }
-        });
-
-        lbFechaAlta.setText("Fecha de Alta");
-
-        cbAnioAlta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbAnioAltaActionPerformed(evt);
-            }
-        });
-
-        lbCosto.setText("Costo");
-
-        tbExpectadoresMax.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbExpectadoresMaxActionPerformed(evt);
-            }
-        });
+        lbListarPlataforma.setText("Listar Plataforma");
 
         lbDescripcion.setText("Descripcion");
-
-        lbExpectadoresMaximo.setText("Expectadores Maximo");
-
-        lbIngreseDatos.setText("Ingrese datos del Espectaculo:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(196, 196, 196))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btCancelar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btConfirmar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbNombre)
-                                    .addComponent(lbCosto)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbFecha)
-                                            .addComponent(lbDuracion)
-                                            .addComponent(lbListaArtistas)
-                                            .addComponent(lbListaPlataformas))
-                                        .addGap(50, 50, 50)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbListaArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cbDiaEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbMesEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbAnioEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cbDiaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbMesAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cbAnioAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 118, Short.MAX_VALUE)))
+                        .addComponent(btCancelar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btAceptar)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbListarArtista)
+                            .addComponent(lbListarPlataforma)
                             .addComponent(lbFechaAlta)
+                            .addComponent(lbDuracion)
+                            .addComponent(lbNombre)
+                            .addComponent(lbEspectadoresMIN)
+                            .addComponent(lbEspectadoresMax)
+                            .addComponent(lbURL)
+                            .addComponent(lbCosto))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbExpecatdoresMinimos)
-                                    .addComponent(lbDescripcion)
-                                    .addComponent(lbExpectadoresMaximo, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(lbTitulo)
+                                .addGap(149, 149, 149))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tbExpectadoresMin, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tbExpectadoresMax, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lbIngreseDatos))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(tbDuracion, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tbNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tbCosto, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tbUrl, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tbEspectadoresMax, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(124, 124, 124))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbDescripcion)
+                        .addGap(64, 64, 64)
+                        .addComponent(tbDescripcion)
+                        .addGap(124, 124, 124))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(lbTitulo)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbListaPlataformas)
-                    .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbListaArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbListaArtistas))
-                .addGap(21, 21, 21)
-                .addComponent(lbIngreseDatos)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNombre))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbDiaEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbMesEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAnioEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbFecha))
+                    .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbListarPlataforma))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbDiaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbMesAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbAnioAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbFechaAlta))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btConfirmar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbDescripcion)
-                            .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbDuracion)
-                            .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbExpecatdoresMinimos)
-                            .addComponent(tbExpectadoresMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tbExpectadoresMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbExpectadoresMaximo))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbCosto)
-                            .addComponent(tbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar)))
+                    .addComponent(cbListaArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbListarArtista))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbFechaAlta)
+                    .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNombre)
+                    .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbDescripcion)
+                    .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbDuracion)
+                    .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbEspectadoresMIN)
+                    .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbEspectadoresMax)
+                    .addComponent(tbEspectadoresMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbURL)
+                    .addComponent(tbUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCosto)
+                    .addComponent(tbCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCancelar)
+                    .addComponent(btAceptar))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbListaPlataformasItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbListaPlataformasItemStateChanged
-
-    }//GEN-LAST:event_cbListaPlataformasItemStateChanged
-
-    private void cbListaPlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListaPlataformasActionPerformed
+    private void cbMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbListaPlataformasActionPerformed
+    }//GEN-LAST:event_cbMesActionPerformed
 
-    private void cbMesEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesEspectaculoActionPerformed
+    private void cbAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbMesEspectaculoActionPerformed
+        cbMes.setEnabled(true);
+        cbDia.setEnabled(true);
+        if(Integer.parseInt(cbAnio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString())%2 ==0 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+    }//GEN-LAST:event_cbAnioActionPerformed
 
-    private void cbAnioEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioEspectaculoActionPerformed
+    private void cbDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDiaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbAnioEspectaculoActionPerformed
-
-    private void tbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbNombreActionPerformed
+    }//GEN-LAST:event_cbDiaActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
@@ -330,36 +336,44 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    private void btConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConfirmarActionPerformed
-            // TODO add your handling code here:    
+    private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed
+        // TODO add your handling code here:
         if(Fabrica.getCtrlEspectaculos().existeEspectaculo(tbNombre.getText()))
         {
             JOptionPane.showMessageDialog(null, "Ya existe", "Error", JOptionPane.WARNING_MESSAGE);
         }
         else
         {
+            Date fecha = new Date(Integer.parseInt(cbDia.getSelectedItem().toString()), Integer.parseInt(cbMes.getSelectedItem().toString()), Integer.parseInt(cbAnio.getSelectedItem().toString()));
+            
+            long id = 0;
+            
+            int duracion = 0;
+            int espectadoresMin = 0;
+            int espectadoresMax = 0;
+            float costo = 0;
+            
+            try{
+                duracion = Integer.valueOf(tbDuracion.getText());
+                espectadoresMin = Integer.valueOf(tbDuracion.getText());
+                espectadoresMax = Integer.valueOf(tbDuracion.getText());
+                costo = Float.parseFloat(tbDuracion.getText());
+            }
+            catch(NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Ingrese Numero", "Error", JOptionPane.WARNING_MESSAGE);
+            }
+            
+            
+            //Falta Fecha del Espectaculo
+            DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
+            Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
         }
-    }//GEN-LAST:event_btConfirmarActionPerformed
+    }//GEN-LAST:event_btAceptarActionPerformed
 
-    private void tbExpectadoresMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbExpectadoresMinActionPerformed
+    private void tbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tbExpectadoresMinActionPerformed
-
-    private void tbCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbCostoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbCostoActionPerformed
-
-    private void cbMesAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMesAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbMesAltaActionPerformed
-
-    private void cbAnioAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAnioAltaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbAnioAltaActionPerformed
-
-    private void tbExpectadoresMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbExpectadoresMaxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbExpectadoresMaxActionPerformed
+    }//GEN-LAST:event_tbNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -397,33 +411,31 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAceptar;
     private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btConfirmar;
-    private javax.swing.JComboBox<String> cbAnioAlta;
-    private javax.swing.JComboBox<String> cbAnioEspectaculo;
-    private javax.swing.JComboBox<String> cbDiaAlta;
-    private javax.swing.JComboBox<String> cbDiaEspectaculo;
-    private javax.swing.JComboBox<String> cbListaArtista;
+    private javax.swing.JComboBox<String> cbAnio;
+    private javax.swing.JComboBox<String> cbDia;
+    private javax.swing.JComboBox<String> cbListaArtistas;
     private javax.swing.JComboBox<String> cbListaPlataformas;
-    private javax.swing.JComboBox<String> cbMesAlta;
-    private javax.swing.JComboBox<String> cbMesEspectaculo;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> cbMes;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lbCosto;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbDuracion;
-    private javax.swing.JLabel lbExpecatdoresMinimos;
-    private javax.swing.JLabel lbExpectadoresMaximo;
-    private javax.swing.JLabel lbFecha;
+    private javax.swing.JLabel lbEspectadoresMIN;
+    private javax.swing.JLabel lbEspectadoresMax;
     private javax.swing.JLabel lbFechaAlta;
-    private javax.swing.JLabel lbIngreseDatos;
-    private javax.swing.JLabel lbListaArtistas;
-    private javax.swing.JLabel lbListaPlataformas;
+    private javax.swing.JLabel lbListarArtista;
+    private javax.swing.JLabel lbListarPlataforma;
     private javax.swing.JLabel lbNombre;
+    private javax.swing.JLabel lbTitulo;
+    private javax.swing.JLabel lbURL;
     private javax.swing.JTextField tbCosto;
     private javax.swing.JTextField tbDescripcion;
     private javax.swing.JTextField tbDuracion;
-    private javax.swing.JTextField tbExpectadoresMax;
-    private javax.swing.JTextField tbExpectadoresMin;
+    private javax.swing.JTextField tbEspectadoresMax;
+    private javax.swing.JTextField tbEspectadoresMin;
     private javax.swing.JTextField tbNombre;
+    private javax.swing.JTextField tbUrl;
     // End of variables declaration//GEN-END:variables
 }

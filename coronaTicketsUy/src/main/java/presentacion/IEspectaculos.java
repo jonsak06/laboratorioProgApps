@@ -24,4 +24,6 @@ public interface IEspectaculos {
     public boolean estaCompleta(String nombreFuncion);
     public boolean crearFuncion(String nombreEspectaculo, DtFuncion dtFuncion, List<String> artInvi);
     public boolean existeFuncion(String nombreFuncion);
+    
+    void altaEspectaculo(String plataforma, String artista, DtEspectaculo espectaculo);
 }

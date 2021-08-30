@@ -359,7 +359,7 @@ public class AltaFuncion extends javax.swing.JFrame {
             
            
             
-            if(TextoNombre.getText().isBlank()|| this.TextoNombre.getText().length()<1 || this.TextoNombre.getText().length()>254) {
+            if(this.TextoNombre.getText().length()<1|| this.TextoNombre.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Nickname invalido","Usuarios", JOptionPane.ERROR_MESSAGE);}    
             else {
                     boolean resp = Fabrica.getCtrlEspectaculos().existeFuncion(nombre);

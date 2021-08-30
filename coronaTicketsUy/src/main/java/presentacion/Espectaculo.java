@@ -41,6 +41,20 @@ public class Espectaculo implements Serializable {
         this.setURL(url);
         
     }
+
+    public Espectaculo(String nombre, String descripcion, int duracion, int cantidadMaximaEspectadores, int cantidadMinimaEspectadores, String url, float costo, Date fechaDeRegistro, Plataforma plataforma, Artista artista) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.duracion = duracion;
+        this.cantidadMaximaEspectadores = cantidadMaximaEspectadores;
+        this.cantidadMinimaEspectadores = cantidadMinimaEspectadores;
+        this.url = url;
+        this.costo = costo;
+        this.fechaDeRegistro = fechaDeRegistro;
+        this.plataforma = plataforma;
+        this.artista = artista;
+    }
+    
     
     @Column(name = "NOMBRE_ESP")
     private String nombre;
