@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
@@ -114,5 +116,53 @@ public class ManPlataformas {
         }
          
    
+        
+    
+    public static boolean existeFuncion(String nombreFuncion) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Funcion> paq = em.createNamedQuery("Funcion.findByNombre", Funcion.class)
+                .setParameter("nombre", nombreFuncion).getResultList();
+        
+        em.close();
+        return paq.size()>0;
+    }
+    
+    public static boolean crearFuncion(String nombreEspectaculo, DtFuncion dtFuncion, List<String> artInvi){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        if(existeFuncion(dtFuncion.getNombre())) {
+            return false;
+        }
+         EntityManager em = emf.createEntityManager();
+       em.getTransaction().begin();
+       
+      TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombreEspectaculo);
+        Espectaculo esteEspectaculo = consulta.getSingleResult();
+        List<Artista> listaArtConf= new ArrayList<Artista>();
+        TypedQuery<Artista> consultarArtistas = em.createNamedQuery("Artista.findAll",Artista.class);
+        List<Artista> listaDeArtTodos = consultarArtistas.getResultList();
+        
+    for(Artista i:listaDeArtTodos){
+
+         for(String u:artInvi){
+             
+             
+                
+             if(i.getNickname()== u){
+                  listaArtConf.add(i);
+            }
+        }
+    }
+       
+       
+       Funcion nuevafun =new Funcion(listaArtConf, dtFuncion.getNombre(),dtFuncion.getHoraInicio(),dtFuncion.getFechaDeRegistro(),dtFuncion.getFecha(), esteEspectaculo);
+         em.persist(nuevafun);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        return true;
+    }
+        
    
 }

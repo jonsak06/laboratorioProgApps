@@ -52,6 +52,17 @@ public class Funcion implements Serializable {
         this.artistasInvitados = artistasInvitados;
             
     }
+
+    public Funcion(List<Artista> artistasInvitados, String nombre, Timestamp horaInicio, Date fechaDeRegistro, Date fecha, Espectaculo espectaculo) {
+        this.artistasInvitados = artistasInvitados;
+        this.nombre = nombre;
+        this.horaInicio = horaInicio;
+        this.fechaDeRegistro = fechaDeRegistro;
+        this.fecha = fecha;
+        this.espectaculo = espectaculo;
+    }
+    
+    
     
     public boolean estaCompleta(){
         int maximo = this.espectaculo.getCantMaxEspectadores();

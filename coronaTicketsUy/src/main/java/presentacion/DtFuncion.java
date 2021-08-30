@@ -29,6 +29,9 @@ public class DtFuncion {
         this.fechaDeRegistro = fechaDeRegistro;
         this.fecha = fecha;
     }
+    
+    
+    
 
     public Long getId() {
         return id;

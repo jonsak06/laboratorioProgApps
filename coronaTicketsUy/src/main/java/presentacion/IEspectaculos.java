@@ -22,4 +22,6 @@ public interface IEspectaculos {
     public DtFuncion getDatosFuncion(String nombreFuncion);
     public boolean ingresarPlataforma(String nombre, String descripcion, String url);
     public boolean estaCompleta(String nombreFuncion);
+    public boolean crearFuncion(String nombreEspectaculo, DtFuncion dtFuncion, List<String> artInvi);
+    public boolean existeFuncion(String nombreFuncion);
 }

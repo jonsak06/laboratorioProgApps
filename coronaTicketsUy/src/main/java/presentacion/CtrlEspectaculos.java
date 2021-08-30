@@ -51,4 +51,12 @@ public class CtrlEspectaculos implements IEspectaculos {
     public boolean estaCompleta(String nombreFuncion){
         return ManEspectaculo.estaCompleta(nombreFuncion);
     }
+    
+     public boolean crearFuncion(String nombreEspectaculo, DtFuncion dtFuncion, List<String> artInvi){
+         return ManPlataformas.crearFuncion(nombreEspectaculo, dtFuncion, artInvi);
+     }
+     
+     public boolean existeFuncion(String nombreFuncion){
+         return ManPlataformas.existeFuncion(nombreFuncion);
+     }
 }

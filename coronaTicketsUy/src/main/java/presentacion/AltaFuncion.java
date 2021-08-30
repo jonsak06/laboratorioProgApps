@@ -15,7 +15,9 @@ import javax.swing.DefaultComboBoxModel;
  * @author osiris
  */
 public class AltaFuncion extends javax.swing.JFrame {
-
+    
+    List<String> artConf = new ArrayList();
+    
     /**
      * Creates new form AltaFuncion
      */
@@ -25,8 +27,8 @@ public class AltaFuncion extends javax.swing.JFrame {
         
          List<String> li= new ArrayList<String>();
         li.add("--Seleccione una--");
-        IEspectaculos iesp = Fabrica.getCtrlEspectaculos();
-        List<DtPlataforma> dtPlataformas = iesp.listarPlataformas();
+       
+        List<DtPlataforma> dtPlataformas = Fabrica.getCtrlEspectaculos().listarPlataformas();
          for (DtPlataforma i :dtPlataformas){
              li.add(i.getNombre());
          }
@@ -184,6 +186,11 @@ public class AltaFuncion extends javax.swing.JFrame {
 
         BConfirArtistas.setText("Confirmar Artista");
         BConfirArtistas.setEnabled(false);
+        BConfirArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BConfirArtistasActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Fecha de Alta");
 
@@ -324,6 +331,7 @@ public class AltaFuncion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
             String nombre = TextoNombre.getText();
+             long id = 0;
             Date fechaInicio = new Date(Integer.parseInt(CBF1Anio.getSelectedItem().toString())-1900, 
                 Integer.parseInt(CBF1Mes.getSelectedItem().toString())-1, 
                 Integer.parseInt(CBF1Dia.getSelectedItem().toString()));
@@ -331,7 +339,9 @@ public class AltaFuncion extends javax.swing.JFrame {
                 Integer.parseInt(CBFAMes.getSelectedItem().toString())-1, 
                 Integer.parseInt(CBFADia.getSelectedItem().toString()));           
             java.sql.Timestamp fhinicio = new java.sql.Timestamp(Integer.parseInt(CBF1Anio.getSelectedItem().toString())-1899,Integer.parseInt(CBF1Mes.getSelectedItem().toString())-12,Integer.parseInt(CBF1Dia.getSelectedItem().toString())-31,Integer.parseInt(CBHHora.getSelectedItem().toString()),Integer.parseInt(CBHMin.getSelectedItem().toString()),0,0);
-
+            DtFuncion fun=new DtFuncion(id,nombre,fhinicio,fechaInicio,fechaAlta);
+            Fabrica.getCtrlEspectaculos().crearFuncion(ComboBoxEsp.getSelectedItem().toString(), fun, artConf);
+           
 
 
 
@@ -395,6 +405,14 @@ public class AltaFuncion extends javax.swing.JFrame {
     private void CBArtInviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBArtInviActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CBArtInviActionPerformed
+
+    private void BConfirArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BConfirArtistasActionPerformed
+        // TODO add your handling code here:
+        
+       artConf.add(CBArtInvi.getSelectedItem().toString());
+        
+        
+    }//GEN-LAST:event_BConfirArtistasActionPerformed
 
     /**
      * @param args the command line arguments
