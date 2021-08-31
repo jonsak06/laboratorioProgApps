@@ -36,10 +36,10 @@ public class Principal extends javax.swing.JFrame {
         iModificarUsuario = new javax.swing.JMenuItem();
         iListarUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        menuPaquetes = new javax.swing.JMenu();
+        optionAltaPaquete = new javax.swing.JMenuItem();
+        optionConsultaPaquete = new javax.swing.JMenuItem();
+        optionAgregarEspectaculo = new javax.swing.JMenuItem();
         plataformas = new javax.swing.JMenu();
         altaPlataformas = new javax.swing.JMenuItem();
 
@@ -91,18 +91,53 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.setText("Espectáculos");
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Paquetes");
+        menuPaquetes.setText("Paquetes");
+        menuPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuPaquetesMouseClicked(evt);
+            }
+        });
 
-        jMenuItem1.setText("Alta de paquete");
-        jMenu3.add(jMenuItem1);
+        optionAltaPaquete.setText("Alta de paquete");
+        optionAltaPaquete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                optionAltaPaqueteMouseClicked(evt);
+            }
+        });
+        optionAltaPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionAltaPaqueteActionPerformed(evt);
+            }
+        });
+        menuPaquetes.add(optionAltaPaquete);
 
-        jMenuItem2.setText("Consulta de paquete");
-        jMenu3.add(jMenuItem2);
+        optionConsultaPaquete.setText("Consulta de paquete");
+        optionConsultaPaquete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                optionConsultaPaqueteMouseClicked(evt);
+            }
+        });
+        optionConsultaPaquete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionConsultaPaqueteActionPerformed(evt);
+            }
+        });
+        menuPaquetes.add(optionConsultaPaquete);
 
-        jMenuItem3.setText("Añadir espectáculo");
-        jMenu3.add(jMenuItem3);
+        optionAgregarEspectaculo.setText("Añadir espectáculo");
+        optionAgregarEspectaculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                optionAgregarEspectaculoMouseClicked(evt);
+            }
+        });
+        optionAgregarEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionAgregarEspectaculoActionPerformed(evt);
+            }
+        });
+        menuPaquetes.add(optionAgregarEspectaculo);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(menuPaquetes);
 
         plataformas.setText("Plataformas");
 
@@ -183,6 +218,40 @@ public class Principal extends javax.swing.JFrame {
 
                                                    
 
+    private void menuPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuPaquetesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuPaquetesMouseClicked
+
+    private void optionAltaPaqueteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionAltaPaqueteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionAltaPaqueteMouseClicked
+
+    private void optionConsultaPaqueteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionConsultaPaqueteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionConsultaPaqueteMouseClicked
+
+    private void optionAgregarEspectaculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_optionAgregarEspectaculoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_optionAgregarEspectaculoMouseClicked
+
+    private void optionAltaPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionAltaPaqueteActionPerformed
+        // TODO add your handling code here:
+        new AltaPaquete().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_optionAltaPaqueteActionPerformed
+
+    private void optionConsultaPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionConsultaPaqueteActionPerformed
+        // TODO add your handling code here:
+        new ConsultaPaquete().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_optionConsultaPaqueteActionPerformed
+
+    private void optionAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionAgregarEspectaculoActionPerformed
+        // TODO add your handling code here:
+        new AgregarEspectaculoPaquete().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_optionAgregarEspectaculoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,11 +295,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu menuPaquetes;
+    private javax.swing.JMenuItem optionAgregarEspectaculo;
+    private javax.swing.JMenuItem optionAltaPaquete;
+    private javax.swing.JMenuItem optionConsultaPaquete;
     private javax.swing.JMenu plataformas;
     private javax.swing.JMenuItem registroUsuarioFuncion;
     // End of variables declaration//GEN-END:variables
