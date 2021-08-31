@@ -252,6 +252,7 @@ public class AltaPaquete extends javax.swing.JFrame {
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
         // TODO add your handling code here:
+        new Principal().setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
