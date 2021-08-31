@@ -185,6 +185,37 @@ public class ManejadorUsuarios
         return us;
     }
     
+    public static boolean existeCorreo(String correo)
+    {
+        boolean us=false;
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("Artista.findAll",Artista.class);
+        List<Artista> a = consulta.getResultList();
+        for(int i=0; i<a.size(); i++)
+        {
+            if(a.get(i).getCorreo().equals(correo))
+            {
+                us=true;
+            }
+        }
+        TypedQuery<Espectador> consulta2 = em.createNamedQuery("Espectador.findAll",Espectador.class);
+        List<Espectador> e = consulta2.getResultList();
+        for(int i=0; i<e.size(); i++)
+        {
+            if(e.get(i).getCorreo().equals(correo))
+            {
+                us=true;
+            }
+        }
+        
+        em.getTransaction().commit();
+        em.close();
+        emf.close(); 
+        return us;
+    }
+    
     public static void altaArtista(DtArtista ar)
     {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");

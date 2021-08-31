@@ -35,5 +35,5 @@ public interface iUsuarios {
     public DtPlataforma plataformaEspectaculosDeArtista(String nickname, String nombre);
     public List<DtFuncion> listarFuncionesEspectaculosDeArtista(String nickname, String nombre);
     public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre);
-    
+    public boolean existeCorreo(String correo);
 }

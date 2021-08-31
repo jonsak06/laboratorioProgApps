@@ -17,7 +17,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Artista.findAll", query = "SELECT a FROM Artista a"),
-    @NamedQuery(name = "ArtistaporNick", query = "SELECT a FROM Artista a WHERE a.nickname = :nickname")})
+    @NamedQuery(name = "ArtistaporNick", query = "SELECT a FROM Artista a WHERE a.nickname = :nickname"),
+    @NamedQuery(name = "ArtistaporCorreo", query = "SELECT a FROM Artista a WHERE a.correo = :correo")})
 public class Artista extends Usuario {
 
     private static final long serialVersionUID = 1L;

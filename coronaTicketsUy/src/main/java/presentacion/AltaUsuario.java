@@ -387,7 +387,10 @@ public class AltaUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Correo electronico invalido","Usuarios", JOptionPane.ERROR_MESSAGE);                    
         } else if(Fabrica.getCrlUsuarios().existeUsuario(tfNickname.getText()))
         {
-            JOptionPane.showMessageDialog(null, "Ya existe", "Usuarios", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ya existe el nickname", "Usuarios", JOptionPane.WARNING_MESSAGE);
+        }else if(Fabrica.getCrlUsuarios().existeCorreo(tfCorreoElectronico.getText()))
+        {
+            JOptionPane.showMessageDialog(null, "Ya existe el correo", "Usuarios", JOptionPane.WARNING_MESSAGE);
         }
         else
         {

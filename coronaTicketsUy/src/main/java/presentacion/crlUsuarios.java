@@ -127,4 +127,8 @@ public class crlUsuarios implements iUsuarios
        return ManEspectaculo.listarPaquetesEspectaculos(nombre);
    }
     
+   public boolean existeCorreo(String correo)
+   {
+       return ManejadorUsuarios.existeCorreo(correo);
+   }
 }
