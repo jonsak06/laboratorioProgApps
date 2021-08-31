@@ -471,11 +471,12 @@ public class AltaUsuario extends javax.swing.JFrame {
             ruta=jFileChooser.getSelectedFile().getPath();
             Path origen = jFileChooser.getSelectedFile().toPath();
             Path destino = Paths.get(this.tfNickname.getText()+".jpg");
-  try {
-          Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
-                } catch (IOException ex) {
-          Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
-      }     ruta = destino.toString();
+            try {
+                Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex){
+                Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ruta = destino.toString();
             Image mImagen = new ImageIcon(destino.toString()).getImage();
             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
             lImagen.setIcon(mIcono);
