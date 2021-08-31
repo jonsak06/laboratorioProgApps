@@ -33,20 +33,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iModificarUsuarioActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="iListarArtistas">
+            <MenuItem class="javax.swing.JMenuItem" name="iListarUsuarios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Artistas"/>
+                <Property name="text" type="java.lang.String" value="Consultar Usario"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iListarArtistasActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="iListarEspectadores">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Espectadores"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iListarEspectadoresActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="iListarUsuariosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

@@ -30,6 +30,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
     public ModificarUsuario() {
         initComponents();
         List<String> nicknames = new ArrayList<String>();
+        ruta="silueta.jpg";
+        Image mImagen = new ImageIcon(ruta).getImage();
+        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+        lImagen.setIcon(mIcono);
         tfNombre.setEnabled(true);
         tfApellido.setEnabled(true);
         tfCorreoElectronico.setEnabled(true);
@@ -49,10 +53,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
         ruta=espectadores.get(0).getImagen();
         if(espectadores.get(0).getImagen()!="")
         {
-            Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
-            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+            mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
+            mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
             lImagen.setIcon(mIcono);
         }
+        
         
     }
 

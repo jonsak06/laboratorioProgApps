@@ -34,8 +34,7 @@ public class Principal extends javax.swing.JFrame {
         registroUsuarioFuncion = new javax.swing.JMenuItem();
         iAltaUsuario = new javax.swing.JMenuItem();
         iModificarUsuario = new javax.swing.JMenuItem();
-        iListarArtistas = new javax.swing.JMenuItem();
-        iListarEspectadores = new javax.swing.JMenuItem();
+        iListarUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -79,21 +78,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(iModificarUsuario);
 
-        iListarArtistas.setText("Listar Artistas");
-        iListarArtistas.addActionListener(new java.awt.event.ActionListener() {
+        iListarUsuarios.setText("Consultar Usario");
+        iListarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iListarArtistasActionPerformed(evt);
+                iListarUsuariosActionPerformed(evt);
             }
         });
-        jMenu1.add(iListarArtistas);
-
-        iListarEspectadores.setText("Listar Espectadores");
-        iListarEspectadores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                iListarEspectadoresActionPerformed(evt);
-            }
-        });
-        jMenu1.add(iListarEspectadores);
+        jMenu1.add(iListarUsuarios);
 
         jMenuBar1.add(jMenu1);
 
@@ -183,19 +174,14 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_iModificarUsuarioActionPerformed
 
-    private void iListarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iListarArtistasActionPerformed
+    private void iListarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iListarUsuariosActionPerformed
         // TODO add your handling code here:
-        ListarArtistas la = new ListarArtistas();
+        ListarUsuario la = new ListarUsuario();
         la.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_iListarArtistasActionPerformed
+    }//GEN-LAST:event_iListarUsuariosActionPerformed
 
-    private void iListarEspectadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iListarEspectadoresActionPerformed
-        // TODO add your handling code here:
-        ListarEspectadores le = new ListarEspectadores();
-        le.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_iListarEspectadoresActionPerformed
+                                                   
 
     /**
      * @param args the command line arguments
@@ -235,8 +221,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem altaPlataformas;
     private javax.swing.JMenuItem iAltaUsuario;
-    private javax.swing.JMenuItem iListarArtistas;
-    private javax.swing.JMenuItem iListarEspectadores;
+    private javax.swing.JMenuItem iListarUsuarios;
     private javax.swing.JMenuItem iModificarUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;

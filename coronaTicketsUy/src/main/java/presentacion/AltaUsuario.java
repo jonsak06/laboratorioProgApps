@@ -45,7 +45,8 @@ public class AltaUsuario extends javax.swing.JFrame {
             cbAnio.addItem(Integer.toString(i));
             i++;
         }
-        Image mImagen = new ImageIcon("silueta.jpg").getImage();
+        ruta="silueta.jpg";
+        Image mImagen = new ImageIcon(ruta).getImage();
         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
         lImagen.setIcon(mIcono);
         
@@ -410,6 +411,10 @@ public class AltaUsuario extends javax.swing.JFrame {
                 tfApellido.setText("");
                 tfCorreoElectronico.setText("");
                 tfNickname.setText("");
+                ruta="silueta.jpg";
+                Image mImagen = new ImageIcon(ruta).getImage();
+                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                lImagen.setIcon(mIcono);
                 
             }
             
@@ -439,6 +444,10 @@ public class AltaUsuario extends javax.swing.JFrame {
                     tfLinkWeb.setText("");
                     tfBrebeBiografia.setText(""); 
                     tfDescripcionGen.setText("");
+                    ruta="silueta.jpg";
+                    Image mImagen = new ImageIcon(ruta).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
                 }
                 
             }
