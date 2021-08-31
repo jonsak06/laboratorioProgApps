@@ -29,10 +29,7 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
              li.add(i.getNombre());
          }
         this.ComboBoxConsDPlat.setModel(new DefaultComboBoxModel(li.toArray()));
-        
-        
-        
-        
+          
     }
 
     /**

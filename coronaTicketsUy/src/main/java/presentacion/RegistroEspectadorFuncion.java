@@ -29,13 +29,13 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         List<String> l = new ArrayList<String>();
         l.add("--Seleccione una--");
         List<String> listaEspectaculos = new ArrayList<String>();
-        listaEspectaculos.add("--Seleciones uno--");
+        listaEspectaculos.add("--Seleccione uno--");
         this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
         List<String> listaFUnciones = new ArrayList<String>();
-        listaFUnciones.add("--Seleciones una--");
+        listaFUnciones.add("--Seleccione una--");
         this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
         List<String> listaEspectadores = new ArrayList<String>();
-        listaEspectadores.add("--Seleciones uno--");
+        listaEspectadores.add("--Seleccione uno--");
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
         List<String> listaAnios = new ArrayList<String>();
         int k = 1930;
@@ -59,6 +59,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.listadoDePlataformas.setModel(new DefaultComboBoxModel(l.toArray()));
         this.ie = ie;
         this.canjeImposible.setVisible(false);
+        this.botonRegistrar.setVisible(false);
     }
 
     /**
@@ -358,6 +359,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         int dia = Integer.parseInt(this.dia.getSelectedItem().toString());
         int mes = Integer.parseInt(this.mes.getSelectedItem().toString());
         int anio = Integer.parseInt(this.anio.getSelectedItem().toString());
+        if((listadoDePlataformas.getSelectedItem()!=null && listadoDeEspectaculos.getSelectedItem()!=null && listadoFunciones.getSelectedItem()!=null && listadoDeEspectadores.getSelectedItem()!=null )&&(listadoDePlataformas.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectaculos.getSelectedItem().toString()!="--Seleccione uno--" && listadoFunciones.getSelectedItem().toString()!="--Seleccione una--" && listadoDeEspectadores.getSelectedItem().toString()!="--Seleccione uno--")){
         float descuento = ie.getDescuento(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString());
         float costo = ie.getCosto(this.listadoFunciones.getSelectedItem().toString());
         if(descuento!=0){costo = descuento*costo*(float)0.01;}
@@ -385,15 +387,17 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.fechaFuncion.setVisible(false);
         this.datosEsp.setVisible(false);
         List<String> listaEspectaculos = new ArrayList<String>();
-        listaEspectaculos.add("--Seleciones uno--");
+        listaEspectaculos.add("--Seleccione uno--");
         this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));
         List<String> listaFUnciones = new ArrayList<String>();
-        listaFUnciones.add("--Seleciones una--");
+        listaFUnciones.add("--Seleccione una--");
         this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
         List<String> listaEspectadores = new ArrayList<String>();
-        listaEspectadores.add("--Seleciones uno--");
+        listaEspectadores.add("--Seleccione uno--");
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
         JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
+        }}else{
+            JOptionPane.showMessageDialog(null, "Datos erroneos!", "Error!", JOptionPane.WARNING_MESSAGE);
         }
         
         
@@ -415,14 +419,14 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        String seleccion = listadoDePlataformas.getSelectedItem().toString();
         List<String> listaEspectaculos = new ArrayList<String>();
-        listaEspectaculos.add("--Seleleccione uno--");
+        listaEspectaculos.add("--Seleccione uno--");
 //        IEspectaculos ce = Fabrica.getCtrlEspectaculos();
         if (this.listadoDePlataformas.getSelectedItem().toString() != "--Seleccione una--"){
         List<String> listaFUnciones = new ArrayList<String>();
-        listaFUnciones.add("--Seleciones una--");
+        listaFUnciones.add("--Seleccione una--");
         this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFUnciones.toArray()));
         List<String> listaEspectadores = new ArrayList<String>();
-        listaEspectadores.add("--Seleciones uno--");
+        listaEspectadores.add("--Seleccione uno--");
         canjeImposible.setVisible(false);
         DefaultListModel<String> modelo = new DefaultListModel<String>();
         this.seleccionarCanjeables.setModel(modelo);
@@ -435,13 +439,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         for (DtEspectaculo i :lEsp){
             listaEspectaculos.add(i.getNombre());
         }
-        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));}
+        this.listadoDeEspectaculos.setModel(new DefaultComboBoxModel(listaEspectaculos.toArray()));}else{
+            this.botonRegistrar.setVisible(false);
+        }
     }//GEN-LAST:event_listadoDePlataformasItemStateChanged
 
     private void listadoDeEspectaculosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDeEspectaculosItemStateChanged
         // TODO add your handling code here:
         List<String> listaFunciones = new ArrayList<String>();
-        if(this.listadoDeEspectaculos.getSelectedItem().toString() != "--Seleleccione uno--"){
+        if(this.listadoDeEspectaculos.getSelectedItem().toString() != "--Seleccione uno--"){
         listaFunciones.add("--Seleccione una--");
         List<DtFuncion> lFunc = this.ie.listarFunciones(listadoDeEspectaculos.getSelectedItem().toString());
         for (DtFuncion i :lFunc){
@@ -449,7 +455,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         }
         this.listadoFunciones.setModel(new DefaultComboBoxModel(listaFunciones.toArray()));
         List<String> listaEspectadores = new ArrayList<String>();
-        listaEspectadores.add("--Seleciones uno--");
+        listaEspectadores.add("--Seleccione uno--");
         canjeImposible.setVisible(false);
         DefaultListModel<String> modelo = new DefaultListModel<String>();
         this.seleccionarCanjeables.setModel(modelo);
@@ -457,7 +463,9 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.cantCanjeables.setVisible(false);
         this.fechaFuncion.setVisible(false);
         this.datosEsp.setVisible(false);
-        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));}
+        this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));}else{
+            this.botonRegistrar.setVisible(false);
+        }
 //        List<String> listaEspectadores = new ArrayList<String>();
 //        listaEspectadores.add("--Seleccione uno--");
 //        iUsuarios iu = Fabrica.getCrlUsuarios();
@@ -494,13 +502,15 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         this.cantCanjeables.setVisible(false);
         this.datosEsp.setVisible(false);
         }
+        }else{
+            this.botonRegistrar.setVisible(false);
         }
         
     }//GEN-LAST:event_listadoFuncionesItemStateChanged
 
     private void listadoDeEspectadoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_listadoDeEspectadoresItemStateChanged
         // TODO add your handling code here:
-        if(this.listadoDeEspectaculos.getSelectedItem().toString()!="--Seleccione uno--"){
+        if(this.listadoDeEspectadores.getSelectedItem().toString()!="--Seleccione uno--"){
         iUsuarios iu = Fabrica.getCrlUsuarios();
         DtEspectador esteMen = iu.getDatosEspectador(this.listadoDeEspectadores.getSelectedItem().toString());
         this.datosEsp.setText(esteMen.getNombre()+" "+esteMen.getApellido()+" "+esteMen.getCorreo());
@@ -508,6 +518,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         int cantCanj = iu.getCanjeables(listadoDeEspectadores.getSelectedItem().toString());
         this.cantCanjeables.setText(cantCanj+"");
         this.cantCanjeables.setVisible(true);
+        this.botonRegistrar.setVisible(true);
         if(cantCanj<3){
             this.canjeImposible.setVisible(true);
             DefaultListModel<String> modelo = new DefaultListModel<String>();
@@ -524,6 +535,8 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             this.seleccionarCanjeables.setModel(modelo);
             this.seleccionarCanjeables.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         }
+        }else{
+            this.botonRegistrar.setVisible(false);
         }
     }//GEN-LAST:event_listadoDeEspectadoresItemStateChanged
 

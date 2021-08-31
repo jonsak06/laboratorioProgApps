@@ -329,14 +329,14 @@ public class ManejadorUsuarios
     }            
     
     public static void registrarUsuario(String nickname, String nombreFuncion, float costo, int fdia, int fmes, int fanio){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");//pedir instancia de la fabrica del entity manager
+        EntityManager em = emf.createEntityManager();//le pido a la fabrica una instaancia del EM
+        em.getTransaction().begin();//si vas a guardar o modificar la base de datos 
 //        Registro r = new Registro();
 //        r.setCosto(costo);
-        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
-        consulta.setParameter("nickname", nickname);
-        Espectador esteMen = consulta.getSingleResult();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);//declara la consulta
+        consulta.setParameter("nickname", nickname);//setear parametros de la consulta
+        Espectador esteMen = consulta.getSingleResult();//si es un solo resultado si no usar getResultList()
         TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
         consultaFuncion.setParameter("nombre", nombreFuncion);
         Funcion estaFUncion = consultaFuncion.getSingleResult();

@@ -14,6 +14,13 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -459,7 +466,14 @@ public class AltaUsuario extends javax.swing.JFrame {
         if(respuesta==JFileChooser.APPROVE_OPTION)
         {
             ruta=jFileChooser.getSelectedFile().getPath();
-            Image mImagen = new ImageIcon(ruta).getImage();
+            Path origen = jFileChooser.getSelectedFile().toPath();
+            Path destino = Paths.get(this.tfNickname.getText()+".jpg");
+  try {
+          Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException ex) {
+          Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+      }     ruta = destino.toString();
+            Image mImagen = new ImageIcon(destino.toString()).getImage();
             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
             lImagen.setIcon(mIcono);
         }

@@ -14,25 +14,23 @@ import javax.swing.DefaultComboBoxModel;
  * @author tecnologo
  */
 public class ConsultaEspectaculo extends javax.swing.JFrame {
-
+    private List<DtEspectaculo> espectaculos=new ArrayList<>();
     /**
      * Creates new form ConsultaEspectaculo
      */
     public ConsultaEspectaculo() {
         initComponents();
-        
-        List<String> li= new ArrayList<String>();
-        li.add("--Seleccione una--");
-        IEspectaculos iesp = Fabrica.getCtrlEspectaculos();
-        List<DtPlataforma> dtPlataformas = iesp.listarPlataformas();
-         for (DtPlataforma i :dtPlataformas){
-             li.add(i.getNombre());
-         }
-        this.cbPlataformas.setModel(new DefaultComboBoxModel(li.toArray()));
-        
        
-          
-        
+        //listaPlataformas
+        List<String> lPlataformas = new ArrayList<>();
+        lPlataformas.add("--Seleccione Plataforma--");
+        //Fabrica.getCtrlEspectaculos();
+        List<DtPlataforma> dtPlataforma;
+        dtPlataforma = Fabrica.getCtrlEspectaculos().listarPlataformas();
+        dtPlataforma.forEach(iterator -> {
+            lPlataformas.add(iterator.getNombre());
+        });
+        this.cbPlataformas.setModel(new DefaultComboBoxModel(lPlataformas.toArray()));    
     }
 
     /**
@@ -48,26 +46,29 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
         cbPlataformas = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         LbEspectaculo = new javax.swing.JLabel();
-        cbEspectaculo = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbFunciones = new javax.swing.JTable();
-        LbFunciones = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPaquetes = new javax.swing.JTable();
-        LbPaquetes = new javax.swing.JLabel();
         btSalir = new javax.swing.JButton();
+        LbFunciones = new javax.swing.JLabel();
+        LbPaquetes = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbEspectaculo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbPlataforma.setText("Plataformas");
 
-        cbPlataformas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPlataformas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPlataformasActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Consulta Espectaculo");
 
         LbEspectaculo.setText("Espectaculo");
-
-        cbEspectaculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         tbFunciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,8 +83,6 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbFunciones);
 
-        LbFunciones.setText("Funciones");
-
         tbPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -95,9 +94,12 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPaquetesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbPaquetes);
-
-        LbPaquetes.setText("Paquetes");
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -106,37 +108,53 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
             }
         });
 
+        LbFunciones.setText("Funciones");
+
+        LbPaquetes.setText("Paquetes");
+
+        tbEspectaculo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tbEspectaculo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbEspectaculoMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tbEspectaculo);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(13, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LbFunciones)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LbPaquetes)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbPlataforma)
-                                    .addComponent(LbEspectaculo))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)))
+                                .addComponent(lbPlataforma)
+                                .addGap(20, 20, 20)
+                                .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(LbFunciones)
+                            .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LbPaquetes)
+                            .addComponent(LbEspectaculo))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(304, 304, 304)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -148,19 +166,19 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPlataforma))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbEspectaculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LbEspectaculo))
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(LbEspectaculo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LbFunciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LbPaquetes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btSalir)
                 .addContainerGap())
         );
@@ -171,6 +189,81 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalirActionPerformed
+
+    private void cbPlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPlataformasActionPerformed
+        // TODO add your handling code here:
+        //listaEspectaculo
+        espectaculos=Fabrica.getCtrlEspectaculos().listarEspectaculos(cbPlataformas.getSelectedItem().toString());
+        
+        String matris[][] = new String [espectaculos.size()][7];
+        
+        for(int i=0; i<espectaculos.size(); i++)
+        {
+
+            matris [i][0]=espectaculos.get(i).getNombre();
+            matris [i][1]=espectaculos.get(i).getDescripcion();
+            matris [i][2]=Integer.toString(espectaculos.get(i).getCantidadMaximaEspectadores());
+            matris [i][3]=Integer.toString(espectaculos.get(i).getCantidadMinimaEspectadores());
+            matris [i][4]=Float.toString(espectaculos.get(i).getCosto());
+            matris [i][5]=espectaculos.get(i).getUrl();
+            matris [i][6]=espectaculos.get(i).getFechaDeRegistro().toString();
+
+        }
+        tbEspectaculo.setModel(new javax.swing.table.DefaultTableModel(
+            matris,
+            new String [] {
+                "Nombre", "Descripcion", "Esp Max", "Esp Min", "Costo", "URL", "Fecha de Registro"
+            }
+        ));
+    }//GEN-LAST:event_cbPlataformasActionPerformed
+
+    private void tbPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPaquetesMouseClicked
+        // TODO add your handling code here:
+        int index = tbPaquetes.getSelectedRow();
+        
+    }//GEN-LAST:event_tbPaquetesMouseClicked
+
+    private void tbEspectaculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEspectaculoMouseClicked
+        // TODO add your handling code here:
+        int indexE = tbEspectaculo.getSelectedRow();
+        List<DtPaqueteDeEspectaculos> paquetes=Fabrica.getCrlUsuarios().listarPaquetesEspectaculosDeArtista("", espectaculos.get(indexE).getNombre());
+        List<DtFuncion> funciones=Fabrica.getCrlUsuarios().listarFuncionesEspectaculosDeArtista("", espectaculos.get(indexE).getNombre());
+        DtPlataforma plataforma=Fabrica.getCrlUsuarios().plataformaEspectaculosDeArtista("", espectaculos.get(indexE).getNombre());
+        String matrisP[][] = new String [paquetes.size()][5];
+        String matrisF[][] = new String [funciones.size()][2];
+        
+        for(int i=0; i<funciones.size(); i++)
+        {
+
+            matrisF [i][0]=funciones.get(i).getNombre();
+            matrisF [i][1]=funciones.get(i).getHoraInicio().toString();
+            
+        }
+        
+        tbFunciones.setModel(new javax.swing.table.DefaultTableModel(
+            matrisF,
+            new String [] {
+                "Nombre ", "Fecha y hora"
+            }
+        ));
+        
+        for(int i=0; i<paquetes.size(); i++)
+        {
+
+            matrisP [i][0]=paquetes.get(i).getNombre();
+            matrisP [i][1]=paquetes.get(i).getDescripcion();
+            matrisP [i][2]=paquetes.get(i).getFechaInicio().toString();
+            matrisP [i][3]=paquetes.get(i).getFechaFin().toString();
+            matrisP [i][4]=Float.toString(paquetes.get(i).getDescuento());
+        }
+        
+        tbPaquetes.setModel(new javax.swing.table.DefaultTableModel(
+            matrisP,
+            new String [] {
+                "Nombre", "Descripcion", "Inicio", "Fin", "Descuento"
+            }
+        ));
+    }//GEN-LAST:event_tbEspectaculoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -212,12 +305,13 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JLabel LbFunciones;
     private javax.swing.JLabel LbPaquetes;
     private javax.swing.JButton btSalir;
-    private javax.swing.JComboBox<String> cbEspectaculo;
     private javax.swing.JComboBox<String> cbPlataformas;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lbPlataforma;
+    private javax.swing.JTable tbEspectaculo;
     private javax.swing.JTable tbFunciones;
     private javax.swing.JTable tbPaquetes;
     // End of variables declaration//GEN-END:variables
