@@ -45,6 +45,9 @@ public class AltaUsuario extends javax.swing.JFrame {
             cbAnio.addItem(Integer.toString(i));
             i++;
         }
+        Image mImagen = new ImageIcon("silueta.jpg").getImage();
+        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+        lImagen.setIcon(mIcono);
         
     }
 
