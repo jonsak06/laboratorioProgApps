@@ -229,7 +229,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(e2);
         Espectaculo e3 = new Espectaculo("Memphis Blues World","Espectáculo promoviendo álbum Memphis Blues.",110,5,1000,"https://twitter.com/cyndilauper",800,30,5,2020,cl,tl);
         em.persist(e3);
-        Espectaculo e4 = new Espectaculo("Springsteenon Broadway","Springsteen  tocando  guitarra o\n" +
+        Espectaculo e4 = new Espectaculo("Springsteen on Broadway","Springsteen  tocando  guitarra o\n" +
 "piano   y   relatando   anécdotas\n" +
 "recogidas   en   su   autobiografía\n" +
 "de 2016, Born to Run. ",100,100,1500,"https://www.youtube.com/BruceSpringsteen",980,7,6,2020,bs,yt);

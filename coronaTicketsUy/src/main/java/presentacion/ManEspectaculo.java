@@ -217,5 +217,20 @@ public class ManEspectaculo {
         emf.close();
         return result;
     }
+    
+    public static List<DtArtista> getInvitados(String nombreFuncion){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre", Funcion.class);
+        consulta.setParameter("nombre", nombreFuncion);
+        Funcion estaFuncion = consulta.getSingleResult();
+        em.close();
+        emf.close();
+        List<DtArtista> result = new ArrayList<DtArtista>();
+        for(Artista i :estaFuncion.getInvitados()){
+            result.add(i.getMyDt());
+        }
+        return result;
+    }
      
 }
