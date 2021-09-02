@@ -81,7 +81,7 @@ public class ManEspectaculo {
        List<Funcion> funciones = e.getFunciones();
         java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
        for (Funcion i :funciones){
-           if(i.getFecha().before(f)){
+           if(i.getFecha().after(f)){
            DtFuncion esteDt = new DtFuncion(i.getId(),i.getNombre(),i.getHoraInicio(),i.getFechaRegistro(),i.getFecha());
            lDtf.add(esteDt);
            }
