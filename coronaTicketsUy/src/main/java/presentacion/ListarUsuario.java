@@ -457,24 +457,15 @@ public class ListarUsuario extends javax.swing.JFrame {
                             return canEdit [columnIndex];
                         }
                     });
-                    if(artistas.get(i).getImagen().isEmpty())
-                    {
+                    
 
-                        if(artistas.get(i).getImagen()!="PATH")
+                    if(artistas.get(i).getImagen()!="PATH")
+                    {
+                        if(artistas.get(i).getImagen()!="")
                         {
-                            if(artistas.get(i).getImagen()!="")
-                            {
-                                Image mImagen = new ImageIcon(artistas.get(i).getImagen()).getImage();
-                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                lImagen.setIcon(mIcono);
-                            }
-                            else
-                            {
-                                ruta="silueta.jpg";
-                                Image mImagen = new ImageIcon(ruta).getImage();
-                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                lImagen.setIcon(mIcono);
-                            }
+                            Image mImagen = new ImageIcon(artistas.get(i).getImagen()).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
                         }
                         else
                         {
@@ -482,10 +473,7 @@ public class ListarUsuario extends javax.swing.JFrame {
                             Image mImagen = new ImageIcon(ruta).getImage();
                             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                             lImagen.setIcon(mIcono);
-
                         }
-
-
                     }
                     else
                     {
@@ -495,6 +483,10 @@ public class ListarUsuario extends javax.swing.JFrame {
                         lImagen.setIcon(mIcono);
 
                     }
+
+
+                    
+                    
 
                     espectaculos=Fabrica.getCrlUsuarios().listarEspectaculosDeArtista(artistas.get(i).getNickname());
                     List<String> lE=new ArrayList<String>();
@@ -615,44 +607,33 @@ public class ListarUsuario extends javax.swing.JFrame {
                                return canEdit [columnIndex];
                            }
                        });
-                       if(espectadores.get(i).getImagen().isEmpty())
-                       {
 
-                           if(espectadores.get(i).getImagen()!="PATH")
-                           {
-                               if(espectadores.get(i).getImagen()!="")
-                               {
-                                   Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
-                                   ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                   lImagen.setIcon(mIcono);
-                               }
-                               else
-                               {
-                                   ruta="silueta.jpg";
-                                   Image mImagen = new ImageIcon(ruta).getImage();
-                                   ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                   lImagen.setIcon(mIcono);
-                               }
-                           }
-                           else
-                           {
-                               ruta="silueta.jpg";
-                               Image mImagen = new ImageIcon(ruta).getImage();
-                               ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                               lImagen.setIcon(mIcono);
+                        if(espectadores.get(i).getImagen()!="PATH")
+                        {
+                            if(espectadores.get(i).getImagen()!="")
+                            {
+                                Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
+                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                                lImagen.setIcon(mIcono);
+                            }
+                            else
+                            {
+                                ruta="silueta.jpg";
+                                Image mImagen = new ImageIcon(ruta).getImage();
+                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                                lImagen.setIcon(mIcono);
+                            }
+                        }
+                        else
+                        {
+                            ruta="silueta.jpg";
+                            Image mImagen = new ImageIcon(ruta).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
 
-                           }
+                        }
 
 
-                       }
-                       else
-                       {
-                           ruta="silueta.jpg";
-                           Image mImagen = new ImageIcon(ruta).getImage();
-                           ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                           lImagen.setIcon(mIcono);
-
-                       }
                        registros=Fabrica.getCrlUsuarios().getRegistros(espectadores.get(i).getNickname());
                        funciones=Fabrica.getCrlUsuarios().getFuncionesRegistros(espectadores.get(i).getNickname());
 

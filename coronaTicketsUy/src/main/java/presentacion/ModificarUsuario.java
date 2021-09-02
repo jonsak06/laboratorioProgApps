@@ -174,8 +174,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         tfNombre.setEnabled(false);
 
-        lImagen.setText("jLabel2");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -351,11 +349,29 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
             this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
             ruta=espectadores.get(0).getImagen();
-            if(espectadores.get(0).getImagen()!="")
+            if(espectadores.get(0).getImagen()!="PATH")
             {
-                Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
+                if(espectadores.get(0).getImagen()!="")
+                {
+                    Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
+                }
+                else
+                {
+                    ruta="silueta.jpg";
+                    Image mImagen = new ImageIcon(ruta).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
+                }
+            }
+            else
+            {
+                ruta="silueta.jpg";
+                Image mImagen = new ImageIcon(ruta).getImage();
                 ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                 lImagen.setIcon(mIcono);
+
             }
         }
 
@@ -376,7 +392,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nombre invalido","Usuarios", JOptionPane.ERROR_MESSAGE);            
         } else if(tfApellido.getText().isBlank()|| this.tfApellido.getText().length()<1 || this.tfApellido.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Apellido invalido","Usuarios", JOptionPane.ERROR_MESSAGE);    
-        } else if(this.tfCorreoElectronico.getText().contains("@")==false ||this.tfCorreoElectronico.getText().contains(" ") || this.tfCorreoElectronico.getText().contains(".")==false || tfCorreoElectronico.getText().isBlank()|| this.tfCorreoElectronico.getText().length()<1 || this.tfCorreoElectronico.getText().length()>254) {
+        } else if(this.tfCorreoElectronico.getText().contains(".@")||this.tfCorreoElectronico.getText().contains("@.")||this.tfCorreoElectronico.getText().contains("@")==false ||this.tfCorreoElectronico.getText().contains(" ") || this.tfCorreoElectronico.getText().contains(".")==false || tfCorreoElectronico.getText().isBlank()|| this.tfCorreoElectronico.getText().length()<1 || this.tfCorreoElectronico.getText().length()>254|| this.tfCorreoElectronico.getText().length()==this.tfCorreoElectronico.getText().indexOf(".")|| this.tfCorreoElectronico.getText().indexOf("@")>this.tfCorreoElectronico.getText().indexOf(".")) {
             JOptionPane.showMessageDialog(null, "Correo electronico invalido","Usuarios", JOptionPane.ERROR_MESSAGE);                    
         } else if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
         {
@@ -436,11 +452,29 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfBiografia.setText(artistas.get(i).getBiografia());
                     tfLinkWeb.setText(artistas.get(i).getLinkWeb());
                     ruta=artistas.get(i).getImagen();
-                    if(artistas.get(i).getImagen()!="")
+                    if(espectadores.get(i).getImagen()!="PATH")
                     {
-                        Image mImagen = new ImageIcon(artistas.get(i).getImagen()).getImage();
+                        if(espectadores.get(i).getImagen()!="")
+                        {
+                            Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
+                        }
+                        else
+                        {
+                            ruta="silueta.jpg";
+                            Image mImagen = new ImageIcon(ruta).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
+                        }
+                    }
+                    else
+                    {
+                        ruta="silueta.jpg";
+                        Image mImagen = new ImageIcon(ruta).getImage();
                         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                         lImagen.setIcon(mIcono);
+
                     }
                     
                     
@@ -459,12 +493,29 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfApellido.setText(espectadores.get(i).getApellido());
                     tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
                     ruta=espectadores.get(i).getImagen();
-                    if(espectadores.get(i).getImagen()!="")
+                    if(espectadores.get(i).getImagen()!="PATH")
                     {
-                        Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
+                        if(espectadores.get(i).getImagen()!="")
+                        {
+                            Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
+                        }
+                        else
+                        {
+                            ruta="silueta.jpg";
+                            Image mImagen = new ImageIcon(ruta).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
+                        }
+                    }
+                    else
+                    {
+                        ruta="silueta.jpg";
+                        Image mImagen = new ImageIcon(ruta).getImage();
                         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                         lImagen.setIcon(mIcono);
-                        
+
                     }
                            
                 }

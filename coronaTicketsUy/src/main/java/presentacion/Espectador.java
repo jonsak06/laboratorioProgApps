@@ -70,6 +70,7 @@ public class Espectador extends Usuario {
         this.setFechaNacimiento(fnac);
         this.setNickname(nick);
         this.setNombre(nombre);
+        this.setImagen("PATH");
         
     }
     
