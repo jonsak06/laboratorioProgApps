@@ -166,14 +166,14 @@ public class ConsultaPaquete extends javax.swing.JFrame {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(buttonConsultarEspectaculo)
-                                    .addComponent(buttonCancelar)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(comboPaquetes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(comboPaquetes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(buttonCancelar)
+                                    .addComponent(buttonConsultarEspectaculo))))
                         .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
@@ -190,18 +190,18 @@ public class ConsultaPaquete extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboEspectaculos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(buttonConsultarEspectaculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(buttonCancelar)
-                .addGap(24, 24, 24))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -235,6 +235,9 @@ public class ConsultaPaquete extends javax.swing.JFrame {
 
             Object[] row = {nombre, descripcion, fechaInicio, fechaFin, descuento, fechaAlta};
             DefaultTableModel model = (DefaultTableModel) tablePaquete.getModel();
+            if(model.getRowCount() > 0) {
+               model.removeRow(0); 
+            }
             model.addRow(row);
             comboEspectaculos.setModel(new DefaultComboBoxModel(espectaculos.toArray()));
         }
@@ -259,6 +262,9 @@ public class ConsultaPaquete extends javax.swing.JFrame {
 
             Object[] row = {nombre, descripcion, duracion, maxEsp, minEsp, url, costo, fechaAlta};
             DefaultTableModel model = (DefaultTableModel) tableEspectaculo.getModel();
+            if(model.getRowCount() > 0) {
+               model.removeRow(0); 
+            }
             model.addRow(row);
         }
         
