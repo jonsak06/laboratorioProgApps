@@ -38,6 +38,10 @@ public class Principal extends javax.swing.JFrame {
         iModificarUsuario = new javax.swing.JMenuItem();
         iListarUsuarios = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        altaEspectaculo = new javax.swing.JMenuItem();
+        consultaEspectaculo = new javax.swing.JMenuItem();
+        altaFuncion = new javax.swing.JMenuItem();
+        consultaFuncion = new javax.swing.JMenuItem();
         menuPaquetes = new javax.swing.JMenu();
         optionAltaPaquete = new javax.swing.JMenuItem();
         optionConsultaPaquete = new javax.swing.JMenuItem();
@@ -91,6 +95,39 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Espectáculos");
+
+        altaEspectaculo.setText("Alta de Espectaculo");
+        altaEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaEspectaculoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(altaEspectaculo);
+
+        consultaEspectaculo.setText("Consultar Espectaculo");
+        consultaEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaEspectaculoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(consultaEspectaculo);
+
+        altaFuncion.setText("Alta de Funcion");
+        altaFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaFuncionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(altaFuncion);
+
+        consultaFuncion.setText("Consultar Funcion");
+        consultaFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultaFuncionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(consultaFuncion);
+
         jMenuBar1.add(jMenu2);
 
         menuPaquetes.setText("Paquetes");
@@ -255,6 +292,34 @@ public class Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_optionAgregarEspectaculoActionPerformed
 
+    private void altaEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaEspectaculoActionPerformed
+        // TODO add your handling code here:
+        AltaEspectaculo ae = new AltaEspectaculo();
+        ae.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_altaEspectaculoActionPerformed
+
+    private void consultaEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaEspectaculoActionPerformed
+        // TODO add your handling code here:
+        ConsultaEspectaculo ce = new ConsultaEspectaculo();
+        ce.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultaEspectaculoActionPerformed
+
+    private void altaFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaFuncionActionPerformed
+        // TODO add your handling code here:
+        AltaFuncion af = new AltaFuncion();
+        af.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_altaFuncionActionPerformed
+
+    private void consultaFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaFuncionActionPerformed
+        // TODO add your handling code here:
+        ConsultaDeFuncion cf = new ConsultaDeFuncion();
+        cf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_consultaFuncionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,7 +356,11 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem altaEspectaculo;
+    private javax.swing.JMenuItem altaFuncion;
     private javax.swing.JMenuItem altaPlataformas;
+    private javax.swing.JMenuItem consultaEspectaculo;
+    private javax.swing.JMenuItem consultaFuncion;
     private javax.swing.JMenuItem iAltaUsuario;
     private javax.swing.JMenuItem iListarUsuarios;
     private javax.swing.JMenuItem iModificarUsuario;

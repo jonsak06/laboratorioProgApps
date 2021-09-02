@@ -188,6 +188,10 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
 
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        Principal p = new Principal();
+        p.setVisible(true);
+
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void cbPlataformasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPlataformasActionPerformed

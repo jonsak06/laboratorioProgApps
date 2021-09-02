@@ -337,6 +337,8 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.setVisible(false);
         this.dispose();
+        Principal p = new Principal();
+        p.setVisible(true);
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAceptarActionPerformed

@@ -51,6 +51,7 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
         CombBoxConsLisEsp = new javax.swing.JComboBox<>();
         TablaConsDatosFun = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +107,13 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
         jTable2.setEnabled(false);
         TablaConsDatosFun.setViewportView(jTable2);
 
+        jButton1.setText("Volver");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,7 +137,10 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -149,7 +160,9 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
                 .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,6 +221,14 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CombBoxConsLisEspItemStateChanged
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        Principal p = new Principal();
+        p.setVisible(true);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,6 +269,7 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> CombBoxConsLisEsp;
     private javax.swing.JComboBox<String> ComboBoxConsDPlat;
     private javax.swing.JScrollPane TablaConsDatosFun;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
