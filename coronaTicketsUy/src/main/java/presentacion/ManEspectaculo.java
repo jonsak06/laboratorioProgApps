@@ -6,6 +6,7 @@
 package presentacion;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -78,9 +79,12 @@ public class ManEspectaculo {
        Espectaculo e = consulta.getSingleResult();
        List<DtFuncion> lDtf = new ArrayList<DtFuncion>();
        List<Funcion> funciones = e.getFunciones();
+        java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
        for (Funcion i :funciones){
+           if(i.getFecha().before(f)){
            DtFuncion esteDt = new DtFuncion(i.getId(),i.getNombre(),i.getHoraInicio(),i.getFechaRegistro(),i.getFecha());
            lDtf.add(esteDt);
+           }
        }
        em.close();
        emf.close();

@@ -7,6 +7,7 @@ package presentacion;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
 
@@ -36,9 +37,19 @@ public class Espectador extends Usuario {
     
     @Column(name = "CANT_CANJEABLES")
     private int canjeables;
+    
+    public void actualizarRegistros(){
+        java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        for(Registro i :this.registros){
+            if(i.getFuncion().getFecha().before(f)){
+                i.setEstado(EstadoRegistro.USADO);
+            }
+        }
+    }
 
     public void calcularCanjeables(){
         canjeables = 0;
+        this.actualizarRegistros();
         for (Registro i :this.registros){
             if(i.getEstado()!=EstadoRegistro.USADO){
             canjeables = canjeables + 1;
