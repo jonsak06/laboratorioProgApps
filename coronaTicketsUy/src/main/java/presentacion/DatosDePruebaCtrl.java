@@ -19,6 +19,15 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         
+        List<Artista> lista = new ArrayList<Artista>();
+        TypedQuery<Artista> consulta1 = em.createNamedQuery("Artista.findAll",Artista.class);
+        lista = consulta1.getResultList();
+//        try{
+//            lista = consulta1.getResultList();
+//        }catch(Exception e){
+//            lista = new ArrayList<Artista>();
+//        }
+        if(lista.size()==0){
         //////////////////////CARGA DE DATOS DE ARTISTAS////////////////////////////////////
         em.getTransaction().begin();
         Artista vp = new Artista();
@@ -491,7 +500,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.getTransaction().commit();
         System.out.print(a.size());
         em.close();
-        emf.close();  
+        emf.close();  }
         ////acceder desde mysql //// sudo mysql -h raspberrypijulio.ddns.net --port 8457 -u grupo1 -p   //pass grupo12021
     }
 

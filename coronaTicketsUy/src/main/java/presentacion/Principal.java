@@ -5,6 +5,8 @@
  */
 package presentacion;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -191,6 +193,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         iDatosDePrueba d = Fabrica.getDatosDePrueba();
         d.cargarDatos();
+        JOptionPane.showMessageDialog(null, "Carga completa!", "Listo!", JOptionPane.DEFAULT_OPTION);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
