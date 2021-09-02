@@ -64,4 +64,8 @@ public class CtrlEspectaculos implements IEspectaculos {
      public void altaEspectaculo(String plataforma, String artista, DtEspectaculo espectaculo){
         ManEspectaculo.altaEspectaculo(plataforma,artista, espectaculo);
      }
+     
+     public List<DtArtista> getInvitados(String nombreFuncion){
+         return ManEspectaculo.getInvitados(nombreFuncion);
+     }
 }
