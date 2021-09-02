@@ -131,4 +131,8 @@ public class crlUsuarios implements iUsuarios
    {
        return ManejadorUsuarios.existeCorreo(correo);
    }
+   
+   public  void actualizarRegistros(){
+       ManejadorUsuarios.actualizarRegistros();
+   }
 }

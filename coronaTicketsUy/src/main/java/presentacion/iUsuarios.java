@@ -36,4 +36,5 @@ public interface iUsuarios {
     public List<DtFuncion> listarFuncionesEspectaculosDeArtista(String nickname, String nombre);
     public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre);
     public boolean existeCorreo(String correo);
+    public void actualizarRegistros();
 }

@@ -493,14 +493,32 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         
        
         System.out.print("CARGA TERMINADA");
-        em.getTransaction().begin();
-        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick",Artista.class);
-        consulta.setParameter("nickname", "vpeople");
-        List<Artista> a = consulta.getResultList();
-        em.getTransaction().commit();
-        System.out.print(a.size());
+    //        em.getTransaction().begin();
+    //        el.actualizarRegistros();
+    //        co.actualizarRegistros();
+    //        ew.actualizarRegistros();
+    //        gh.actualizarRegistros();
+    //        sp.actualizarRegistros();
+    //        ar.actualizarRegistros();
+    //        ap.actualizarRegistros();
+    //        ml.actualizarRegistros();
+    //        cb.actualizarRegistros();
+    //        em.persist(el);
+    //        em.persist(co);
+    //        em.persist(ew);
+    //        em.persist(gh);
+    //        em.persist(sp);
+    //        em.persist(ar);
+    //        em.persist(ap);
+    //        em.persist(ml);
+    //        em.persist(cb);
+    //        em.getTransaction().commit();
+    //        System.out.print("Actualizados los registros");
         em.close();
-        emf.close();  }
+        emf.close();  
+        }
+        ////ACTUALIZAR LOS REGISTROS DE LOS ESPECTADORES//////
+        
         ////acceder desde mysql //// sudo mysql -h raspberrypijulio.ddns.net --port 8457 -u grupo1 -p   //pass grupo12021
     }
 

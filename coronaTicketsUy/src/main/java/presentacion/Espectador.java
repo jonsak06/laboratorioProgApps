@@ -38,18 +38,19 @@ public class Espectador extends Usuario {
     @Column(name = "CANT_CANJEABLES")
     private int canjeables;
     
-    public void actualizarRegistros(){
-        java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
-        for(Registro i :this.registros){
-            if(i.getFuncion().getFecha().before(f)){
-                i.setEstado(EstadoRegistro.USADO);
-            }
-        }
-    }
+//    public void actualizarRegistros(){
+//        java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
+//        for(Registro i :this.registros){
+//            if(i.getFuncion().getFecha().before(f)){
+//                i.setEstado(EstadoRegistro.USADO);
+//                
+//            }
+//        }
+//    }
 
     public void calcularCanjeables(){
         canjeables = 0;
-        this.actualizarRegistros();
+//        this.actualizarRegistros();
         for (Registro i :this.registros){
             if(i.getEstado()!=EstadoRegistro.USADO){
             canjeables = canjeables + 1;

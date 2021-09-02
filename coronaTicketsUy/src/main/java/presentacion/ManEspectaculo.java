@@ -97,10 +97,13 @@ public class ManEspectaculo {
         TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick",Espectador.class);
         consulta.setParameter("nickname", nickname);
         Espectador esteMen = consulta.getSingleResult();
+        java.sql.Date ahorita= new java.sql.Date(Calendar.getInstance().getTime().getTime());
         List<Compra> comprasDesteMen = esteMen.getCompras();
         List<PaqueteDeEspectaculos> paquetesComprados = new ArrayList<PaqueteDeEspectaculos>();
         for(Compra i :comprasDesteMen){
+            if(i.getPaquete().getFechaFin().after(ahorita)){
            paquetesComprados.add(i.getPaquete());
+            }
         }
         TypedQuery<Funcion> consultaFuncion = em.createNamedQuery("Funcion.findByNombre",Funcion.class);
         consultaFuncion.setParameter("nombre", nombreFuncion);

@@ -37,8 +37,13 @@ public class Registro implements Serializable {
         this.setEspectador(e);
         this.setCosto(costo);
         java.sql.Date fecha = new java.sql.Date(fy-1899,fm-12,fd-31);
+        java.sql.Date ahorita= new java.sql.Date(Calendar.getInstance().getTime().getTime());
         this.setFecha(fecha);
         this.estado = PENDIENTE;
+        if(f.getFecha().before(ahorita)){
+            this.estado = USADO;
+        }
+        
     }
     
 //    @Temporal(TemporalType.DATE)

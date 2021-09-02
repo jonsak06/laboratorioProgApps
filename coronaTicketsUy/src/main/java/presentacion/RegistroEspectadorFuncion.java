@@ -26,6 +26,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private java.sql.Date fFuncion;
     public RegistroEspectadorFuncion() {
         initComponents();
+        ManejadorUsuarios.actualizarRegistros();
         List<String> l = new ArrayList<String>();
         l.add("--Seleccione una--");
         List<String> listaEspectaculos = new ArrayList<String>();

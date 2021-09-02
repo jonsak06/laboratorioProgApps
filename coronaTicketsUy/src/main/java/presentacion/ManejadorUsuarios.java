@@ -452,6 +452,28 @@ public class ManejadorUsuarios
         return lista;
     }
     
+    public static void actualizarRegistros(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
+        em.getTransaction().begin();
+        List<Espectador> lista = new ArrayList<Espectador>();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("Espectador.findAll",Espectador.class);
+        lista = consulta.getResultList();
+        for(Espectador i :lista){
+            List<Registro> registros = i.getRegistros();
+            for(Registro j :registros){
+                if(j.getFuncion().getFecha().before(f)){
+                    j.setEstado(EstadoRegistro.USADO);
+                }
+            }
+            em.persist(i);
+        }
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        
+    }
     
    //    
 }
