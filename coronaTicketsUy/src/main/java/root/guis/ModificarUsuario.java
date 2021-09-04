@@ -6,10 +6,17 @@
 package root.guis;
 
 import java.awt.Image;
+import java.io.IOException;
 import java.util.*;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -409,10 +416,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     
                 }
             }
-        }
-            //
-        if ("Artista"==cbTipoUsuario.getSelectedItem().toString())
-        {
+        }else if ("Artista"==cbTipoUsuario.getSelectedItem().toString()){
             for (int i=0; i<artistas.size(); i++)
             {
                 if(cbUsuario.getSelectedItem().toString()==artistas.get(i).getNickname())
@@ -546,8 +550,20 @@ public class ModificarUsuario extends javax.swing.JFrame {
         int respuesta = jFileChooser.showOpenDialog(this);
         if(respuesta==JFileChooser.APPROVE_OPTION)
         {
+//            ruta=jFileChooser.getSelectedFile().getPath();
+//            Image mImagen = new ImageIcon(ruta).getImage();
+//            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+//            lImagen.setIcon(mIcono);
             ruta=jFileChooser.getSelectedFile().getPath();
-            Image mImagen = new ImageIcon(ruta).getImage();
+            Path origen = jFileChooser.getSelectedFile().toPath();
+            Path destino = Paths.get(this.tfNickname.getText()+".jpg");
+            try {
+                Files.copy(origen, destino, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ex){
+                Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ruta = destino.toString();
+            Image mImagen = new ImageIcon(destino.toString()).getImage();
             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
             lImagen.setIcon(mIcono);
         }

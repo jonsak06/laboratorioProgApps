@@ -163,8 +163,8 @@ public class ManPlataformas {
     }
        
        
-       Funcion nuevafun =new Funcion(listaArtConf, dtFuncion.getNombre(),dtFuncion.getHoraInicio(),dtFuncion.getFechaDeRegistro(),dtFuncion.getFecha(), esteEspectaculo);
-         em.persist(nuevafun);
+       Funcion nuevafun =new Funcion(listaArtConf, dtFuncion.getNombre(),dtFuncion.getHoraInicio(),dtFuncion.getFecha(),dtFuncion.getFechaDeRegistro(), esteEspectaculo);
+        em.persist(nuevafun);
         em.getTransaction().commit();
         em.close();
         emf.close();

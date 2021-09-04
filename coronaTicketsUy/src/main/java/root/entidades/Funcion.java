@@ -60,7 +60,9 @@ public class Funcion implements Serializable {
         this.horaInicio = horaInicio;
         this.fechaDeRegistro = fechaDeRegistro;
         this.fecha = fecha;
-        this.espectaculo = espectaculo;
+//        this.espectaculo = espectaculo;
+        this.setEspectaculo(espectaculo);
+
     }
     
     

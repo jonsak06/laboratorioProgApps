@@ -390,6 +390,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             if(chequeo == true){
                 DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
                 Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
+                JOptionPane.showMessageDialog(null, "Espectaculo Guardado exitosamente!","Espectaculos", JOptionPane.DEFAULT_OPTION);
             }
             chequeo = true;
         }
