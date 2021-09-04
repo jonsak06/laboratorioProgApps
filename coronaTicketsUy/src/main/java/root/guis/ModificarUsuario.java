@@ -410,12 +410,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 }
             }
         }
-            
-        if(tfLinkWeb.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Ingrese un link web","Usuarios", JOptionPane.ERROR_MESSAGE);            
-        }else if(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()<1 || this.tfLinkWeb.getText().length()>254){
-            JOptionPane.showMessageDialog(null, "URL invalida", "ERROR!", JOptionPane.DEFAULT_OPTION);
-        } else if(tfDescripcion.getText().isBlank()|| this.tfDescripcion.getText().length()<1 || this.tfDescripcion.getText().length()>254) {
+            //
+        if(tfDescripcion.getText().isBlank()|| this.tfDescripcion.getText().length()<1 || this.tfDescripcion.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Descripcion invalida","Usuarios", JOptionPane.ERROR_MESSAGE);            
         } else if(tfBiografia.getText().isBlank()|| this.tfBiografia.getText().length()<1 || this.tfBiografia.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Biografia invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
@@ -425,10 +421,16 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 if(cbUsuario.getSelectedItem().toString()==artistas.get(i).getNickname())
                 {
-                    DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, artistas.get(i).getFechaNacimiento());
-                    Fabrica.getCrlUsuarios().modificarArtista(ar);
-                    JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
-                    
+                    if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
+
+                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, artistas.get(i).getFechaNacimiento());
+                        Fabrica.getCrlUsuarios().modificarArtista(ar);
+                        JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Lick invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
+                    }
                 }
             }
         } 
