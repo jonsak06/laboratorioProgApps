@@ -65,30 +65,35 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="tbDuracion" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tbNombre" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tbCosto" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tbUrl" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tbEspectadoresMax" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="tbEspectadoresMin" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="cbAnio" min="-2" pref="70" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="cbMes" min="-2" pref="70" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cbDia" min="-2" pref="70" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="tbDuracion" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbNombre" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbCosto" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbUrl" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbEspectadoresMax" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="tbEspectadoresMin" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="cbDia" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="cbListaArtistas" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="cbListaPlataformas" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cbMes" min="-2" pref="70" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cbAnio" min="-2" pref="70" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="cbListaArtistas" alignment="1" min="-2" pref="100" max="-2" attributes="0"/>
-                                      <Component id="cbListaPlataformas" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -96,7 +101,7 @@
                       <Component id="lbDescripcion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
                       <Component id="tbDescripcion" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -245,6 +250,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbMesItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbMesActionPerformed"/>
       </Events>
       <AuxValues>

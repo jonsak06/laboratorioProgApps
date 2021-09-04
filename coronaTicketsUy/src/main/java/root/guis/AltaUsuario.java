@@ -579,7 +579,7 @@ public class AltaUsuario extends javax.swing.JFrame {
             }
             cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
         }
-        else if(Integer.parseInt(cbMes.getSelectedItem().toString())%2 ==0 )
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString())==4 ||Integer.parseInt(cbMes.getSelectedItem().toString())==6 || Integer.parseInt(cbMes.getSelectedItem().toString())==9 || Integer.parseInt(cbMes.getSelectedItem().toString())==11)
         {
             List<String> dias = new ArrayList<String>();
             int i=1;

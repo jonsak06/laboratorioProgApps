@@ -113,6 +113,11 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         lbFechaAlta.setText("Fecha de Alta");
 
         cbMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbMes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbMesItemStateChanged(evt);
+            }
+        });
         cbMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMesActionPerformed(evt);
@@ -193,30 +198,33 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(tbDuracion, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tbNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tbCosto, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tbUrl, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tbEspectadoresMax, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(124, 124, 124))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(tbDuracion, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tbNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tbCosto, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tbUrl, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tbEspectadoresMax, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addGap(111, 111, 111)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addContainerGap())))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbDescripcion)
                         .addGap(64, 64, 64)
                         .addComponent(tbDescripcion)
-                        .addGap(124, 124, 124))))
+                        .addGap(111, 111, 111))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,6 +412,59 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private void tbEspectadoresMinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbEspectadoresMinActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbEspectadoresMinActionPerformed
+
+    private void cbMesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbMesItemStateChanged
+        // TODO add your handling code here:
+        cbDia.setEnabled(true);
+        if(Integer.parseInt(cbAnio.getSelectedItem().toString())%4 ==0&&Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<30)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString()) ==2 )
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<29)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else if(Integer.parseInt(cbMes.getSelectedItem().toString())==4 ||Integer.parseInt(cbMes.getSelectedItem().toString())==6 || Integer.parseInt(cbMes.getSelectedItem().toString())==9 || Integer.parseInt(cbMes.getSelectedItem().toString())==11)
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<31)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+        else 
+        {
+            List<String> dias = new ArrayList<String>();
+            int i=1;
+            while(i<32)
+            {
+                dias.add(Integer.toString(i));
+                
+                i++;
+            }
+            cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
+        }
+    }//GEN-LAST:event_cbMesItemStateChanged
 
     /**
      * @param args the command line arguments

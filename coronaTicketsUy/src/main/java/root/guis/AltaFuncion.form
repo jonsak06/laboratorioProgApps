@@ -46,14 +46,14 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="ComboBoxPlat" pref="166" max="32767" attributes="0"/>
+                                          <Component id="ComboBoxPlat" max="32767" attributes="0"/>
                                           <Component id="ComboBoxEsp" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="220" max="-2" attributes="0"/>
+                      <EmptySpace pref="120" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -78,8 +78,8 @@
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="CBFADia" min="-2" pref="80" max="-2" attributes="0"/>
                                                       <Component id="CBHHora" min="-2" pref="80" max="-2" attributes="0"/>
+                                                      <Component id="CBFAAnio" min="-2" pref="80" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -88,15 +88,15 @@
                                                   </Group>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="CBF1Dia" min="-2" pref="80" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="CBF1Anio" min="-2" pref="80" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="CBF1Mes" min="-2" pref="80" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="CBF1Anio" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <Component id="CBFAAnio" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <Component id="CBFADia" min="-2" pref="80" max="-2" attributes="0"/>
+                                              <Component id="CBF1Dia" min="-2" pref="80" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="TextoNombre" min="-2" pref="134" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -146,8 +146,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="CBF1Dia" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CBF1Mes" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="CBF1Anio" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CBF1Anio" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
