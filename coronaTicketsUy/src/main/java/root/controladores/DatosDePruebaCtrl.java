@@ -28,15 +28,15 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         
-        List<Artista> lista = new ArrayList<Artista>();
-        TypedQuery<Artista> consulta1 = em.createNamedQuery("Artista.findAll",Artista.class);
-        lista = consulta1.getResultList();
+//        List<Artista> lista = new ArrayList<Artista>();
+//        TypedQuery<Artista> consulta1 = em.createNamedQuery("Artista.findAll",Artista.class);
+//        lista = consulta1.getResultList();
 //        try{
 //            lista = consulta1.getResultList();
 //        }catch(Exception e){
 //            lista = new ArrayList<Artista>();
 //        }
-        if(lista.size()==0){
+        if(!existenDatos()){
         //////////////////////CARGA DE DATOS DE ARTISTAS////////////////////////////////////
         em.getTransaction().begin();
         Artista vp = new Artista();
@@ -532,5 +532,16 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
     }
 
     public DatosDePruebaCtrl() {
+    }
+    
+    public boolean existenDatos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Artista> lista = new ArrayList<Artista>();
+        TypedQuery<Artista> consulta1 = em.createNamedQuery("Artista.findAll",Artista.class);
+        lista = consulta1.getResultList();
+        em.close();
+        emf.close();
+        return lista.size() > 0;
     }
 }

@@ -21,6 +21,13 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        deshabilitarBoton();
+    }
+    
+    private void deshabilitarBoton() {
+        if(Fabrica.getDatosDePrueba().existenDatos()) {
+            jButton1.setEnabled(false);
+        }
     }
 
     /**
@@ -233,7 +240,7 @@ public class Principal extends javax.swing.JFrame {
         iDatosDePrueba d = Fabrica.getDatosDePrueba();
         d.cargarDatos();
         JOptionPane.showMessageDialog(null, "Carga completa!", "Listo!", JOptionPane.DEFAULT_OPTION);
-        
+        deshabilitarBoton();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void iAltaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iAltaUsuarioActionPerformed

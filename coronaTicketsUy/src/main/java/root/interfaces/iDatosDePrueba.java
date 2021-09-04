@@ -11,6 +11,6 @@ package root.interfaces;
  */
 public interface iDatosDePrueba {
     
-     void cargarDatos();
-    
+    void cargarDatos();
+    boolean existenDatos();
 }
