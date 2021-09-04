@@ -93,7 +93,7 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu1.add(iModificarUsuario);
 
-        iListarUsuarios.setText("Consultar Usario");
+        iListarUsuarios.setText("Consultar Usuario");
         iListarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 iListarUsuariosActionPerformed(evt);
