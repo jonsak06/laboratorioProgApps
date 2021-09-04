@@ -411,11 +411,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             }
         }
             //
-        if(tfDescripcion.getText().isBlank()|| this.tfDescripcion.getText().length()<1 || this.tfDescripcion.getText().length()>254) {
-            JOptionPane.showMessageDialog(null, "Descripcion invalida","Usuarios", JOptionPane.ERROR_MESSAGE);            
-        } else if(tfBiografia.getText().isBlank()|| this.tfBiografia.getText().length()<1 || this.tfBiografia.getText().length()>254) {
-            JOptionPane.showMessageDialog(null, "Biografia invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
-        } else if ("Artista"==cbTipoUsuario.getSelectedItem().toString())
+        if ("Artista"==cbTipoUsuario.getSelectedItem().toString())
         {
             for (int i=0; i<artistas.size(); i++)
             {
@@ -429,7 +425,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     }
                     else
                     {
-                        JOptionPane.showMessageDialog(null, "Lick invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
+                        JOptionPane.showMessageDialog(null, "Link invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
                     }
                 }
             }

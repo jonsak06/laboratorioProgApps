@@ -426,38 +426,31 @@ public class AltaUsuario extends javax.swing.JFrame {
             if("Artista"==cbTipoUsuario.getSelectedItem().toString())
             {
                 
-                if(this.tfDescripcionGen.getText().length()>254) {
-                    JOptionPane.showMessageDialog(null, "Descripcion muy larga","Usuarios", JOptionPane.ERROR_MESSAGE);            
-                } else if(this.tfBrebeBiografia.getText().length()>254) {
-                    JOptionPane.showMessageDialog(null, "Biografia muy larga","Usuarios", JOptionPane.ERROR_MESSAGE);    
-                } else {
-                    
-                    if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
-                        Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, 
-                        Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
-                        Integer.parseInt(cbDia.getSelectedItem().toString()));
-                        long id = 0;
-                        DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
-                        Fabrica.getCrlUsuarios().altaArtista(ar);
-                        JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
-                        tfNombre.setText("");
-                        tfApellido.setText("");
-                        tfCorreoElectronico.setText("");
-                        tfNickname.setText("");
-                        tfLinkWeb.setText("");
-                        tfBrebeBiografia.setText(""); 
-                        tfDescripcionGen.setText("");
-                        ruta="silueta.jpg";
-                        Image mImagen = new ImageIcon(ruta).getImage();
-                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                        lImagen.setIcon(mIcono);
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "Lick invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
-                    }
-                    
+                if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
+                    Date fecha = new Date(Integer.parseInt(cbAnio.getSelectedItem().toString())-1900, 
+                    Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
+                    Integer.parseInt(cbDia.getSelectedItem().toString()));
+                    long id = 0;
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
+                    Fabrica.getCrlUsuarios().altaArtista(ar);
+                    JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                    tfNombre.setText("");
+                    tfApellido.setText("");
+                    tfCorreoElectronico.setText("");
+                    tfNickname.setText("");
+                    tfLinkWeb.setText("");
+                    tfBrebeBiografia.setText(""); 
+                    tfDescripcionGen.setText("");
+                    ruta="silueta.jpg";
+                    Image mImagen = new ImageIcon(ruta).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
                 }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Lick invalida","Usuarios", JOptionPane.ERROR_MESSAGE);    
+                }
+
                 
             }
         }
