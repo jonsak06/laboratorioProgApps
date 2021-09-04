@@ -2,15 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="PERSISTENCIA" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>presentacion.Plataforma</class>
-    <class>presentacion.Espectaculo</class>
-    <class>presentacion.Funcion</class>
-    <class>presentacion.Registro</class>
-    <class>presentacion.Usuario</class>
-    <class>presentacion.Espectador</class>
-    <class>presentacion.Artista</class>
-    <class>presentacion.Compra</class>
-    <class>presentacion.PaqueteDeEspectaculos</class>
+    <class>root.entidades.Espectador</class>
+    <class>root.entidades.Usuario</class>
+    <class>root.entidades.Artista</class>
+    <class>root.entidades.Funcion</class>
+    <class>root.entidades.Espectaculo</class>
+    <class>root.entidades.Plataforma</class>
+    <class>root.entidades.PaqueteDeEspectaculos</class>
+    <class>root.entidades.Compra</class>
+    <class>root.entidades.Registro</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://raspberrypijulio.ddns.net:8457/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
