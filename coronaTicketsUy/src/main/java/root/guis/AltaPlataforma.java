@@ -170,9 +170,9 @@ public class AltaPlataforma extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "La plataforma ya esta registrada", "ERROR!", JOptionPane.DEFAULT_OPTION);
         }else{
         JOptionPane.showMessageDialog(null, "Registro exitoso!", "Listo!", JOptionPane.DEFAULT_OPTION);
-        this.nombre.setText("");
-        this.descripcion.setText("");
-        this.url.setText("");
+        AltaPlataforma nuevo = new AltaPlataforma();
+        nuevo.setVisible(true);
+        this.dispose();
         }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed

@@ -410,6 +410,9 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         listaEspectadores.add("--Seleccione uno--");
         this.listadoDeEspectadores.setModel(new DefaultComboBoxModel(listaEspectadores.toArray()));
         JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
+        RegistroEspectadorFuncion nuevo = new RegistroEspectadorFuncion();
+        nuevo.setVisible(true);
+        this.dispose();
         }}else{
             JOptionPane.showMessageDialog(null, "Datos erroneos!", "Error!", JOptionPane.WARNING_MESSAGE);
         }
