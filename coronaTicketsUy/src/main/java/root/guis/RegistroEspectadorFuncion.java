@@ -413,6 +413,7 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
         RegistroEspectadorFuncion nuevo = new RegistroEspectadorFuncion();
         nuevo.setVisible(true);
         this.dispose();
+        //
         }}else{
             JOptionPane.showMessageDialog(null, "Datos erroneos!", "Error!", JOptionPane.WARNING_MESSAGE);
         }
