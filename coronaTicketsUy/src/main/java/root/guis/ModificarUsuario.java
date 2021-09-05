@@ -458,7 +458,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, espectadores.get(i).getFechaNacimiento());
                     Fabrica.getCrlUsuarios().modificarEspectador(es);
                     JOptionPane.showMessageDialog(null, "El espectador fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
-                    
+                    ModificarUsuario ventana = new ModificarUsuario();
+                    ventana.setVisible(true);
+                    this.dispose();
                 }
             }
         }else if ("Artista"==cbTipoUsuario.getSelectedItem().toString()){
@@ -471,8 +473,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                         DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, artistas.get(i).getFechaNacimiento());
                         Fabrica.getCrlUsuarios().modificarArtista(ar);
                         JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
-                        espectadores=Fabrica.getCrlUsuarios().getEspectadores();
-                        artistas=Fabrica.getCrlUsuarios().getArtistas();
+                        ModificarUsuario ventana = new ModificarUsuario();
+                        ventana.setVisible(true);
+                        this.dispose();
                     }
                     else
                     {
