@@ -365,6 +365,9 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         else if(tbDescripcion.getText().isBlank()|| this.tbDescripcion.getText().length()<1 || this.tbDescripcion.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Descripcion","Espectaculos", JOptionPane.ERROR_MESSAGE);            
         }
+        else if(cbListaArtistas.getSelectedItem().toString().equals("--Seleccione Artista--")||cbListaPlataformas.getSelectedItem().toString().equals("--Seleccione Plataforma--") ) {
+            JOptionPane.showMessageDialog(null, "Hay cosas sin seleccionar","Espectaculos", JOptionPane.ERROR_MESSAGE);            
+        }
         else if(this.tbUrl.getText().contains(" ") || this.tbUrl.getText().contains(".")==false || tbUrl.getText().isBlank()|| this.tbUrl.getText().length()<1 || this.tbUrl.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Url invalido","Espectaculos", JOptionPane.ERROR_MESSAGE);                    
         }
@@ -396,9 +399,13 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             
             //Falta Fecha del Espectaculo
             if(chequeo == true){
-                DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
-                Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
-                JOptionPane.showMessageDialog(null, "Espectaculo Guardado exitosamente!","Espectaculos", JOptionPane.DEFAULT_OPTION);
+                if(espectadoresMin<0 && espectadoresMin<espectadoresMax)
+                {
+                    DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
+                    Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
+                    JOptionPane.showMessageDialog(null, "Espectaculo Guardado exitosamente!","Espectaculos", JOptionPane.DEFAULT_OPTION);
+
+                }
             }
             chequeo = true;
         }
@@ -439,7 +446,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                 i++;
             }
             cbDia.setModel(new DefaultComboBoxModel(dias.toArray()));
-        }
+        }//
         else if(Integer.parseInt(cbMes.getSelectedItem().toString())==4 ||Integer.parseInt(cbMes.getSelectedItem().toString())==6 || Integer.parseInt(cbMes.getSelectedItem().toString())==9 || Integer.parseInt(cbMes.getSelectedItem().toString())==11)
         {
             List<String> dias = new ArrayList<String>();
