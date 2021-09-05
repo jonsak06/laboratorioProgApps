@@ -173,6 +173,7 @@ public class AltaPlataforma extends javax.swing.JFrame {
         AltaPlataforma nuevo = new AltaPlataforma();
         nuevo.setVisible(true);
         this.dispose();
+        //
         }
         }
     }//GEN-LAST:event_botonIngresarActionPerformed
