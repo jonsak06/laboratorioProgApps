@@ -39,6 +39,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
      */
     public ModificarUsuario() {
         initComponents();
+        
         List<String> nicknames = new ArrayList<String>();
         ruta="silueta.jpg";
         Image mImagen = new ImageIcon(ruta).getImage();
@@ -55,18 +56,27 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             nicknames.add(espectadores.get(i).getNickname());
         }
-        tfNombre.setText(espectadores.get(0).getNombre());
-        tfNickname.setText(espectadores.get(0).getNickname());
-        tfApellido.setText(espectadores.get(0).getApellido());
-        tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
-        this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
-        ruta=espectadores.get(0).getImagen();
-        if(espectadores.get(0).getImagen()!="")
+        if(espectadores.size()==0)
         {
-            mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
-            mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-            lImagen.setIcon(mIcono);
+            cbUsuario.setEnabled(false);
+                 
         }
+        else
+        {
+            tfNombre.setText(espectadores.get(0).getNombre());
+            tfNickname.setText(espectadores.get(0).getNickname());
+            tfApellido.setText(espectadores.get(0).getApellido());
+            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+            this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
+            ruta=espectadores.get(0).getImagen();
+            if(espectadores.get(0).getImagen()!="")
+            {
+                mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
+                mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                lImagen.setIcon(mIcono);
+            }
+        }
+        
         
         
     }
@@ -320,22 +330,48 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 nicknames.add(artistas.get(i).getNickname());
             }
-            tfNombre.setText(artistas.get(0).getNombre());
-            tfNickname.setText(artistas.get(0).getNickname());
-            tfApellido.setText(artistas.get(0).getApellido());
-            tfCorreoElectronico.setText(artistas.get(0).getCorreo());
-            tfDescripcion.setText(artistas.get(0).getDescripcion());
-            tfBiografia.setText(artistas.get(0).getBiografia());
-            tfLinkWeb.setText(artistas.get(0).getLinkWeb());
-            this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
-            ruta=artistas.get(0).getImagen();
-            if(artistas.get(0).getImagen()!="")
+            if(artistas.size()==0)
             {
-                Image mImagen = new ImageIcon(artistas.get(0).getImagen()).getImage();
-                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                lImagen.setIcon(mIcono);
+                cbUsuario.setEnabled(false);
+
             }
-            
+            else
+            {
+                tfNombre.setText(artistas.get(0).getNombre());
+                tfNickname.setText(artistas.get(0).getNickname());
+                tfApellido.setText(artistas.get(0).getApellido());
+                tfCorreoElectronico.setText(artistas.get(0).getCorreo());
+                tfDescripcion.setText(artistas.get(0).getDescripcion());
+                tfBiografia.setText(artistas.get(0).getBiografia());
+                tfLinkWeb.setText(artistas.get(0).getLinkWeb());
+                this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
+                ruta=artistas.get(0).getImagen();
+                if(artistas.get(0).getImagen()!="PATH")
+                {
+                    if(artistas.get(0).getImagen()!="")
+                    {
+                        ruta=artistas.get(0).getImagen();
+                        Image mImagen = new ImageIcon(artistas.get(0).getImagen()).getImage();
+                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                        lImagen.setIcon(mIcono);
+                    }
+                    else
+                    {
+                        ruta="silueta.jpg";
+                        Image mImagen = new ImageIcon(ruta).getImage();
+                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                        lImagen.setIcon(mIcono);
+                    }
+                }
+                else
+                {
+                    ruta="silueta.jpg";
+                    Image mImagen = new ImageIcon(ruta).getImage();
+                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                    lImagen.setIcon(mIcono);
+
+                }
+            }
         }
 
         if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
@@ -353,19 +389,35 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 nicknames.add(espectadores.get(i).getNickname());
             }
-            tfNombre.setText(espectadores.get(0).getNombre());
-            tfNickname.setText(espectadores.get(0).getNickname());
-            tfApellido.setText(espectadores.get(0).getApellido());
-            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
-            this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
-            ruta=espectadores.get(0).getImagen();
-            if(espectadores.get(0).getImagen()!="PATH")
+            if(espectadores.size()==0)
             {
-                if(espectadores.get(0).getImagen()!="")
+                cbUsuario.setEnabled(false);
+
+            }
+            else
+            {
+                tfNombre.setText(espectadores.get(0).getNombre());
+                tfNickname.setText(espectadores.get(0).getNickname());
+                tfApellido.setText(espectadores.get(0).getApellido());
+                tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+                this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
+                ruta=espectadores.get(0).getImagen();
+                if(espectadores.get(0).getImagen()!="PATH")
                 {
-                    Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
-                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                    lImagen.setIcon(mIcono);
+                    if(espectadores.get(0).getImagen()!="")
+                    {
+                        ruta=espectadores.get(0).getImagen();
+                        Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
+                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                        lImagen.setIcon(mIcono);
+                    }
+                    else
+                    {
+                        ruta="silueta.jpg";
+                        Image mImagen = new ImageIcon(ruta).getImage();
+                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                        lImagen.setIcon(mIcono);
+                    }
                 }
                 else
                 {
@@ -373,15 +425,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     Image mImagen = new ImageIcon(ruta).getImage();
                     ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                     lImagen.setIcon(mIcono);
-                }
-            }
-            else
-            {
-                ruta="silueta.jpg";
-                Image mImagen = new ImageIcon(ruta).getImage();
-                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                lImagen.setIcon(mIcono);
 
+                }
             }
         }
 
@@ -457,10 +502,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfBiografia.setText(artistas.get(i).getBiografia());
                     tfLinkWeb.setText(artistas.get(i).getLinkWeb());
                     ruta=artistas.get(i).getImagen();
-                    if(espectadores.get(i).getImagen()!="PATH")
+                    if(artistas.get(i).getImagen()!="PATH")
                     {
-                        if(espectadores.get(i).getImagen()!="")
+                        if(artistas.get(i).getImagen()!="")
                         {
+                            ruta=artistas.get(i).getImagen();
                             Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
                             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                             lImagen.setIcon(mIcono);
@@ -502,6 +548,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     {
                         if(espectadores.get(i).getImagen()!="")
                         {
+                            ruta=espectadores.get(i).getImagen();
                             Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
                             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                             lImagen.setIcon(mIcono);
