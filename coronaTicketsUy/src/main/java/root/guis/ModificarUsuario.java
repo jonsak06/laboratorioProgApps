@@ -471,6 +471,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
                         DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, artistas.get(i).getFechaNacimiento());
                         Fabrica.getCrlUsuarios().modificarArtista(ar);
                         JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
+                        espectadores=Fabrica.getCrlUsuarios().getEspectadores();
+                        artistas=Fabrica.getCrlUsuarios().getArtistas();
                     }
                     else
                     {
@@ -498,9 +500,18 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     tfApellido.setText(artistas.get(i).getApellido());
                     tfNickname.setText(artistas.get(i).getNickname());
                     tfCorreoElectronico.setText(artistas.get(i).getCorreo());
-                    tfDescripcion.setText(artistas.get(i).getDescripcion());
-                    tfBiografia.setText(artistas.get(i).getBiografia());
-                    tfLinkWeb.setText(artistas.get(i).getLinkWeb());
+                    if(!artistas.get(i).getDescripcion().isEmpty())
+                    {
+                        tfDescripcion.setText(artistas.get(i).getDescripcion());
+                    }
+                    if(!artistas.get(i).getBiografia().isEmpty())
+                    {
+                        tfBiografia.setText(artistas.get(i).getBiografia());
+                    }
+                    if(!artistas.get(i).getLinkWeb().isEmpty())
+                    {
+                        tfLinkWeb.setText(artistas.get(i).getLinkWeb());
+                    }
                     ruta=artistas.get(i).getImagen();
                     if(artistas.get(i).getImagen()!="PATH")
                     {
