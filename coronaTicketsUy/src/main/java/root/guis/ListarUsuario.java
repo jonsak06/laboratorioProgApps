@@ -356,7 +356,7 @@ public class ListarUsuario extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(388, 388, 388)
                         .addComponent(btCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

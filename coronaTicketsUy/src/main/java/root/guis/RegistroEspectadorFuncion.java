@@ -188,6 +188,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
                 listadoFuncionesItemStateChanged(evt);
             }
         });
+        listadoFunciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listadoFuncionesActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Este usuario tiene        ");
 
@@ -389,6 +394,9 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             iUsuarios iu = Fabrica.getCrlUsuarios();
             iu.canjearRegistros(listaSeleccionada, this.listadoDeEspectadores.getSelectedItem().toString(), costo, this.listadoFunciones.getSelectedItem().toString(),dia,mes,anio);
             JOptionPane.showMessageDialog(null, "Registro exitoso", "Listo!", JOptionPane.DEFAULT_OPTION);
+            RegistroEspectadorFuncion nuevo = new RegistroEspectadorFuncion();
+            nuevo.setVisible(true);
+            this.dispose();
         }else{
         iUsuarios iu = Fabrica.getCrlUsuarios();
         iu.registrarUsuario(this.listadoDeEspectadores.getSelectedItem().toString(), this.listadoFunciones.getSelectedItem().toString(), costo,dia,mes,anio);
@@ -582,6 +590,10 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private void anioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_anioActionPerformed
+
+    private void listadoFuncionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoFuncionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_listadoFuncionesActionPerformed
 
     /**
      * @param args the command line arguments

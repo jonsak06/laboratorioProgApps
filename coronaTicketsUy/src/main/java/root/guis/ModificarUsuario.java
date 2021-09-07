@@ -47,7 +47,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         lImagen.setIcon(mIcono);
         tfNombre.setEnabled(true);
         tfApellido.setEnabled(true);
-        tfCorreoElectronico.setEnabled(true);
+        tfCorreoElectronico.setEnabled(false);
         tfDescripcion.setEnabled(false);
         tfBiografia.setEnabled(false);
         tfLinkWeb.setEnabled(false);
@@ -319,7 +319,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfDescripcion.setText("");
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfCorreoElectronico.setEnabled(true);
+            tfCorreoElectronico.setEnabled(false);
             tfDescripcion.setEnabled(true);
             tfBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
@@ -378,7 +378,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfCorreoElectronico.setEnabled(true);
+            tfCorreoElectronico.setEnabled(false);
             
             tfDescripcion.setEnabled(false);
             tfBiografia.setEnabled(false);

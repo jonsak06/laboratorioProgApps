@@ -399,12 +399,25 @@ public class AltaEspectaculo extends javax.swing.JFrame {
             
             //Falta Fecha del Espectaculo
             if(chequeo == true){
-                if(espectadoresMin<0 && espectadoresMin<espectadoresMax)
+                if(espectadoresMin>0 && espectadoresMin<espectadoresMax)
                 {
                     DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
                     Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
                     JOptionPane.showMessageDialog(null, "Espectaculo Guardado exitosamente!","Espectaculos", JOptionPane.DEFAULT_OPTION);
-
+                    tbNombre.setText("");
+                    tbDescripcion.setText("");
+                    tbDuracion.setText("");
+                    tbEspectadoresMin.setText("");
+                    tbEspectadoresMax.setText("");
+                    tbUrl.setText("");
+                    tbCosto.setText("");
+                    cbDia.setSelectedIndex(0);
+                    cbMes.setSelectedIndex(0);
+                    cbAnio.setSelectedIndex(0);
+                    cbListaArtistas.setSelectedIndex(0);
+                    cbListaPlataformas.setSelectedIndex(0);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos erroneos");
                 }
             }
             chequeo = true;
