@@ -11,6 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;
+import root.entidades.DtArtista;
 import root.fabrica.Fabrica;
 import root.interfaces.IEspectaculos;
 
@@ -135,18 +136,18 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(67, 67, 67)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ComboBoxConsDPlat, 0, 155, Short.MAX_VALUE)
-                            .addComponent(CombBoxConsLisEsp, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(CombBoxConsLisEsp, 0, 347, Short.MAX_VALUE)
+                            .addComponent(ComboBoxConsDPlat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                        .addComponent(TablaConsDatosFun, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,21 +202,29 @@ public class ConsultaDeFuncion extends javax.swing.JFrame {
 
         int indexE = jTable2.getSelectedRow();
         List<DtFuncion> funciones=Fabrica.getCtrlEspectaculos().listarFunciones(CombBoxConsLisEsp.getSelectedItem().toString());
-        String matrisF[][] = new String [funciones.size()][2];
+        String matrisF[][] = new String [funciones.size()][4];
       
         
         for(int i=0; i<funciones.size(); i++)
         {
 
             matrisF [i][0]=funciones.get(i).getNombre();
-            matrisF [i][1]=funciones.get(i).getHoraInicio().toString();
+            IEspectaculos ie = Fabrica.getCtrlEspectaculos();
+            List<DtArtista> invitados = ie.getInvitados(funciones.get(i).getNombre());
+            String inv = "";
+            for (DtArtista j :invitados){
+                inv = inv + j.getNombre()+" "+j.getApellido()+", ";
+            }
+            matrisF[i][1] = inv;
+            matrisF [i][2]=funciones.get(i).getHoraInicio().toString();
+            matrisF [i][3] = funciones.get(i).getFechaDeRegistro().toString();
             
         }
         
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             matrisF,
             new String [] {
-                "Nombre ", "Fecha y hora"
+                "Nombre ", "Invitados", "Fecha y hora","Fecha de Registro"
             }
         ));
         

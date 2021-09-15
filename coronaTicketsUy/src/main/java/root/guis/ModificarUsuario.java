@@ -47,7 +47,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         lImagen.setIcon(mIcono);
         tfNombre.setEnabled(true);
         tfApellido.setEnabled(true);
-        tfCorreoElectronico.setEnabled(false);
+//        tfCorreoElectronico.setEnabled(false);
         tfDescripcion.setEnabled(false);
         tfBiografia.setEnabled(false);
         tfLinkWeb.setEnabled(false);
@@ -66,7 +66,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfNombre.setText(espectadores.get(0).getNombre());
             tfNickname.setText(espectadores.get(0).getNickname());
             tfApellido.setText(espectadores.get(0).getApellido());
-            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+//            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
             this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
             ruta=espectadores.get(0).getImagen();
             if(espectadores.get(0).getImagen()!="")
@@ -93,7 +93,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfLinkWeb = new javax.swing.JTextField();
         tfApellido = new javax.swing.JTextField();
         tfNickname = new javax.swing.JTextField();
-        tfCorreoElectronico = new javax.swing.JTextField();
         cbTipoUsuario = new javax.swing.JComboBox<>();
         lbTipoUsuario = new javax.swing.JLabel();
         lbFechaNacimiento1 = new javax.swing.JLabel();
@@ -103,7 +102,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         btImagen = new javax.swing.JButton();
         lbNombre = new javax.swing.JLabel();
         lbApellido = new javax.swing.JLabel();
-        lbCorreoElectronico = new javax.swing.JLabel();
         lbNickname = new javax.swing.JLabel();
         lbLinkWeb = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JLabel();
@@ -115,6 +113,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfDescripcion = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         tfBiografia = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        fechaNacimiento = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,8 +128,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         });
 
         tfNickname.setEnabled(false);
-
-        tfCorreoElectronico.setEnabled(false);
 
         cbTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Espectador", "Artista" }));
         cbTipoUsuario.addItemListener(new java.awt.event.ItemListener() {
@@ -174,8 +172,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         lbApellido.setText("Apellido:");
 
-        lbCorreoElectronico.setText("Correo electrónico:");
-
         lbNickname.setText("Nickname:");
 
         lbLinkWeb.setText("Link sitio web:");
@@ -200,6 +196,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfBiografia.setRows(5);
         jScrollPane2.setViewportView(tfBiografia);
 
+        jLabel2.setText("Fecha de nacimiento:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -222,7 +220,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
                             .addComponent(lbTipoUsuario)
                             .addComponent(lbNickname)
                             .addComponent(lbApellido)
-                            .addComponent(lbCorreoElectronico)
                             .addComponent(lbFechaNacimiento2)
                             .addComponent(jLabel1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +231,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfApellido)
                                     .addComponent(tfNickname)
-                                    .addComponent(tfCorreoElectronico)
                                     .addComponent(cbTipoUsuario, 0, 248, Short.MAX_VALUE)
                                     .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
@@ -242,6 +238,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2)
                                     .addComponent(jScrollPane1)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbLinkWeb)
+                        .addGap(55, 55, 55)
+                        .addComponent(tfLinkWeb))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbFechaNacimiento1)
@@ -251,9 +251,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                 .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbLinkWeb)
-                        .addGap(55, 55, 55)
-                        .addComponent(tfLinkWeb)))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -282,9 +282,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     .addComponent(lbNickname)
                     .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCorreoElectronico)
-                    .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbFechaNacimiento2)
@@ -323,14 +323,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             tfNombre.setText("");
             tfApellido.setText("");
-            tfCorreoElectronico.setText("");
+//            tfCorreoElectronico.setText("");
             tfNickname.setText("");
             tfLinkWeb.setText("");
             tfBiografia.setText(""); 
             tfDescripcion.setText("");
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfCorreoElectronico.setEnabled(false);
+//            tfCorreoElectronico.setEnabled(false);
             tfDescripcion.setEnabled(true);
             tfBiografia.setEnabled(true);
             tfLinkWeb.setEnabled(true);
@@ -351,7 +351,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 tfNombre.setText(artistas.get(0).getNombre());
                 tfNickname.setText(artistas.get(0).getNickname());
                 tfApellido.setText(artistas.get(0).getApellido());
-                tfCorreoElectronico.setText(artistas.get(0).getCorreo());
+//                tfCorreoElectronico.setText(artistas.get(0).getCorreo());
                 tfDescripcion.setText(artistas.get(0).getDescripcion());
                 tfBiografia.setText(artistas.get(0).getBiografia());
                 tfLinkWeb.setText(artistas.get(0).getLinkWeb());
@@ -389,7 +389,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         {
             tfNombre.setEnabled(true);
             tfApellido.setEnabled(true);
-            tfCorreoElectronico.setEnabled(false);
+//            tfCorreoElectronico.setEnabled(false);
             
             tfDescripcion.setEnabled(false);
             tfBiografia.setEnabled(false);
@@ -410,7 +410,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 tfNombre.setText(espectadores.get(0).getNombre());
                 tfNickname.setText(espectadores.get(0).getNickname());
                 tfApellido.setText(espectadores.get(0).getApellido());
-                tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+//                tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
                 this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
                 ruta=espectadores.get(0).getImagen();
                 if(espectadores.get(0).getImagen()!="PATH")
@@ -458,15 +458,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Nombre invalido","Usuarios", JOptionPane.ERROR_MESSAGE);            
         } else if(tfApellido.getText().isBlank()|| this.tfApellido.getText().length()<1 || this.tfApellido.getText().length()>254) {
             JOptionPane.showMessageDialog(null, "Apellido invalido","Usuarios", JOptionPane.ERROR_MESSAGE);    
-        } else if(this.tfCorreoElectronico.getText().contains(".@")||this.tfCorreoElectronico.getText().contains("@.")||this.tfCorreoElectronico.getText().contains("@")==false ||this.tfCorreoElectronico.getText().contains(" ") || this.tfCorreoElectronico.getText().contains(".")==false || tfCorreoElectronico.getText().isBlank()|| this.tfCorreoElectronico.getText().length()<1 || this.tfCorreoElectronico.getText().length()>254|| this.tfCorreoElectronico.getText().length()==this.tfCorreoElectronico.getText().indexOf(".")|| this.tfCorreoElectronico.getText().indexOf("@")>this.tfCorreoElectronico.getText().indexOf(".")) {
+        } /*else if(this.tfCorreoElectronico.getText().contains(".@")||this.tfCorreoElectronico.getText().contains("@.")||this.tfCorreoElectronico.getText().contains("@")==false ||this.tfCorreoElectronico.getText().contains(" ") || this.tfCorreoElectronico.getText().contains(".")==false || tfCorreoElectronico.getText().isBlank()|| this.tfCorreoElectronico.getText().length()<1 || this.tfCorreoElectronico.getText().length()>254|| this.tfCorreoElectronico.getText().length()==this.tfCorreoElectronico.getText().indexOf(".")|| this.tfCorreoElectronico.getText().indexOf("@")>this.tfCorreoElectronico.getText().indexOf(".")) {
             JOptionPane.showMessageDialog(null, "Correo electronico invalido","Usuarios", JOptionPane.ERROR_MESSAGE);                    
-        } else if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
+        }*/ else if("Espectador"==cbTipoUsuario.getSelectedItem().toString())
         {
             for (int i=0; i<espectadores.size(); i++)
             {
                 if(cbUsuario.getSelectedItem().toString()==espectadores.get(i).getNickname())
                 {
-                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, espectadores.get(i).getFechaNacimiento());
+                    long miliseg = fechaNacimiento.getDate().getTime();
+                    java.sql.Date fecha = new java.sql.Date(miliseg);
+                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), espectadores.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
                     Fabrica.getCrlUsuarios().modificarEspectador(es);
                     JOptionPane.showMessageDialog(null, "El espectador fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     ModificarUsuario ventana = new ModificarUsuario();
@@ -480,8 +482,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 if(cbUsuario.getSelectedItem().toString()==artistas.get(i).getNickname())
                 {
                     if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
-
-                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), tfCorreoElectronico.getText(), tfNickname.getText(), ruta, artistas.get(i).getFechaNacimiento());
+                        long miliseg = fechaNacimiento.getDate().getTime();
+                        java.sql.Date fecha = new java.sql.Date(miliseg);
+                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), artistas.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
                         Fabrica.getCrlUsuarios().modificarArtista(ar);
                         JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                         ModificarUsuario ventana = new ModificarUsuario();
@@ -512,8 +515,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 {
                     tfNombre.setText(artistas.get(i).getNombre());
                     tfApellido.setText(artistas.get(i).getApellido());
+                    this.fechaNacimiento.setDate(artistas.get(i).getFechaNacimiento());
+                    this.fechaNacimiento.setVisible(true);
                     tfNickname.setText(artistas.get(i).getNickname());
-                    tfCorreoElectronico.setText(artistas.get(i).getCorreo());
+//                    tfCorreoElectronico.setText(artistas.get(i).getCorreo());
                     if(!artistas.get(i).getDescripcion().isEmpty())
                     {
                         tfDescripcion.setText(artistas.get(i).getDescripcion());
@@ -564,10 +569,12 @@ public class ModificarUsuario extends javax.swing.JFrame {
             {
                 if(cbUsuario.getSelectedItem().toString()==espectadores.get(i).getNickname())
                 {
+                    this.fechaNacimiento.setDate(espectadores.get(i).getFechaNacimiento());
+                    this.fechaNacimiento.setVisible(true);
                     tfNombre.setText(espectadores.get(i).getNombre());
                     tfNickname.setText(espectadores.get(i).getNickname());
                     tfApellido.setText(espectadores.get(i).getApellido());
-                    tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
+//                    tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
                     ruta=espectadores.get(i).getImagen();
                     if(espectadores.get(i).getImagen()!="PATH")
                     {
@@ -682,12 +689,13 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btModificar;
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JComboBox<String> cbUsuario;
+    private com.toedter.calendar.JDateChooser fechaNacimiento;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lbApellido;
-    private javax.swing.JLabel lbCorreoElectronico;
     private javax.swing.JLabel lbFechaNacimiento1;
     private javax.swing.JLabel lbFechaNacimiento2;
     private javax.swing.JLabel lbLinkWeb;
@@ -697,7 +705,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextField tfApellido;
     private javax.swing.JTextArea tfBiografia;
-    private javax.swing.JTextField tfCorreoElectronico;
     private javax.swing.JTextArea tfDescripcion;
     private javax.swing.JTextField tfLinkWeb;
     private javax.swing.JTextField tfNickname;

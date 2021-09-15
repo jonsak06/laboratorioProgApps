@@ -43,7 +43,6 @@
                           <Component id="lbTipoUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbNickname" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbApellido" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbCorreoElectronico" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lbFechaNacimiento2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -57,7 +56,6 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="tfApellido" alignment="0" max="32767" attributes="0"/>
                                   <Component id="tfNickname" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tfCorreoElectronico" alignment="0" max="32767" attributes="0"/>
                                   <Component id="cbTipoUsuario" alignment="0" pref="248" max="32767" attributes="0"/>
                                   <Component id="cbUsuario" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -71,6 +69,11 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lbLinkWeb" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="tfLinkWeb" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lbFechaNacimiento1" min="-2" max="-2" attributes="0"/>
@@ -83,9 +86,9 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lbLinkWeb" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                      <Component id="tfLinkWeb" max="32767" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="fechaNacimiento" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -123,11 +126,11 @@
                   <Component id="tfNickname" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbCorreoElectronico" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfCorreoElectronico" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="fechaNacimiento" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lbFechaNacimiento2" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -180,11 +183,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNickname">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="tfCorreoElectronico">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -253,11 +251,6 @@
     <Component class="javax.swing.JLabel" name="lbApellido">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbCorreoElectronico">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbNickname">
@@ -330,5 +323,12 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha de nacimiento:"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="fechaNacimiento">
+    </Component>
   </SubComponents>
 </Form>
