@@ -405,7 +405,7 @@ public class AltaFuncion extends javax.swing.JFrame {
                existe= true;          
            }
        }
-       if(existe==true){
+       if(false==true){
 
             JOptionPane.showMessageDialog(null, "El Artista ya esta agregado");              
        }
