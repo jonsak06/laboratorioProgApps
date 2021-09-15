@@ -90,7 +90,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tfDescripcion = new javax.swing.JTextField();
         tfLinkWeb = new javax.swing.JTextField();
         tfApellido = new javax.swing.JTextField();
         tfNickname = new javax.swing.JTextField();
@@ -108,15 +107,16 @@ public class ModificarUsuario extends javax.swing.JFrame {
         lbNickname = new javax.swing.JLabel();
         lbLinkWeb = new javax.swing.JLabel();
         lbTitulo = new javax.swing.JLabel();
-        tfBiografia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         cbUsuario = new javax.swing.JComboBox<>();
         tfNombre = new javax.swing.JTextField();
         lImagen = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tfDescripcion = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tfBiografia = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tfDescripcion.setEnabled(false);
 
         tfLinkWeb.setEnabled(false);
 
@@ -145,7 +145,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         lbTipoUsuario.setText("Tipo de usuario:");
 
-        lbFechaNacimiento1.setText("Brebe biografia:");
+        lbFechaNacimiento1.setText("Breve biografia:");
 
         lbFechaNacimiento2.setText("Descripcion general:");
 
@@ -182,8 +182,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         lbTitulo.setText("Elija el tipo de usuario");
 
-        tfBiografia.setEnabled(false);
-
         jLabel1.setText("Usuario:");
 
         cbUsuario.addItemListener(new java.awt.event.ItemListener() {
@@ -193,6 +191,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
         });
 
         tfNombre.setEnabled(false);
+
+        tfDescripcion.setColumns(20);
+        tfDescripcion.setRows(5);
+        jScrollPane1.setViewportView(tfDescripcion);
+
+        tfBiografia.setColumns(20);
+        tfBiografia.setRows(5);
+        jScrollPane2.setViewportView(tfBiografia);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,14 +217,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
                         .addComponent(btModificar)
                         .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbFechaNacimiento1)
-                        .addGap(48, 48, 48)
-                        .addComponent(tfBiografia))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbLinkWeb)
-                        .addGap(62, 62, 62)
-                        .addComponent(tfLinkWeb))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbNombre)
                             .addComponent(lbTipoUsuario)
@@ -228,6 +226,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
                             .addComponent(lbFechaNacimiento2)
                             .addComponent(jLabel1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tfNombre))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,16 +236,24 @@ public class ModificarUsuario extends javax.swing.JFrame {
                                     .addComponent(tfNickname)
                                     .addComponent(tfCorreoElectronico)
                                     .addComponent(cbTipoUsuario, 0, 248, Short.MAX_VALUE)
-                                    .addComponent(tfDescripcion, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNombre))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2)
+                                    .addComponent(jScrollPane1)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btImagen)
-                        .addGap(81, 81, 81)
-                        .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbFechaNacimiento1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btImagen)
+                                .addGap(38, 38, 38)
+                                .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbLinkWeb)
+                        .addGap(55, 55, 55)
+                        .addComponent(tfLinkWeb)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -277,29 +286,31 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     .addComponent(lbCorreoElectronico)
                     .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbFechaNacimiento2)
-                    .addComponent(tfDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbFechaNacimiento1)
-                    .addComponent(tfBiografia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbLinkWeb)
-                    .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbFechaNacimiento1)
+                        .addGap(63, 63, 63))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btImagen)
-                        .addGap(41, 41, 41))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btCancelar)
+                            .addComponent(btModificar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCancelar)
-                    .addComponent(btModificar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbLinkWeb)
+                            .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addComponent(lImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                        .addGap(43, 43, 43))))
         );
 
         pack();
@@ -672,6 +683,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private javax.swing.JComboBox<String> cbUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lImagen;
     private javax.swing.JLabel lbApellido;
     private javax.swing.JLabel lbCorreoElectronico;
@@ -683,9 +696,9 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel lbTipoUsuario;
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JTextField tfApellido;
-    private javax.swing.JTextField tfBiografia;
+    private javax.swing.JTextArea tfBiografia;
     private javax.swing.JTextField tfCorreoElectronico;
-    private javax.swing.JTextField tfDescripcion;
+    private javax.swing.JTextArea tfDescripcion;
     private javax.swing.JTextField tfLinkWeb;
     private javax.swing.JTextField tfNickname;
     private javax.swing.JTextField tfNombre;

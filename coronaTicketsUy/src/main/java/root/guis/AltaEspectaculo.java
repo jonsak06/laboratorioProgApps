@@ -66,6 +66,8 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         lbTitulo = new javax.swing.JLabel();
         cbListaArtistas = new javax.swing.JComboBox<>();
         lbListarArtista = new javax.swing.JLabel();
@@ -90,7 +92,12 @@ public class AltaEspectaculo extends javax.swing.JFrame {
         cbListaPlataformas = new javax.swing.JComboBox<>();
         lbListarPlataforma = new javax.swing.JLabel();
         lbDescripcion = new javax.swing.JLabel();
-        tbDescripcion = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tbDescripcion = new javax.swing.JTextArea();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -167,6 +174,10 @@ public class AltaEspectaculo extends javax.swing.JFrame {
 
         lbDescripcion.setText("Descripcion");
 
+        tbDescripcion.setColumns(20);
+        tbDescripcion.setRows(5);
+        jScrollPane2.setViewportView(tbDescripcion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -197,34 +208,27 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                                 .addGap(149, 149, 149))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tbCosto)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tbEspectadoresMin)
+                                        .addComponent(tbDuracion)
+                                        .addComponent(jScrollPane2)
+                                        .addComponent(tbNombre)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(cbAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(cbMes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(18, 18, 18)
-                                            .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(tbDuracion, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tbNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tbCosto, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tbUrl, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tbEspectadoresMax, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(tbEspectadoresMin, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addGap(111, 111, 111)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cbListaArtistas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbListaPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap())))))
+                                            .addComponent(cbDia, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cbListaPlataformas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cbListaArtistas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(tbUrl)
+                                        .addComponent(tbEspectadoresMax)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbDescripcion)
-                        .addGap(64, 64, 64)
-                        .addComponent(tbDescripcion)
-                        .addGap(111, 111, 111))))
+                        .addGap(111, 325, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,10 +254,10 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                     .addComponent(lbNombre)
                     .addComponent(tbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbDescripcion)
-                    .addComponent(tbDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDuracion)
                     .addComponent(tbDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -530,6 +534,9 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbListaPlataformas;
     private javax.swing.JComboBox<String> cbMes;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lbCosto;
     private javax.swing.JLabel lbDescripcion;
     private javax.swing.JLabel lbDuracion;
@@ -542,7 +549,7 @@ public class AltaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JLabel lbTitulo;
     private javax.swing.JLabel lbURL;
     private javax.swing.JTextField tbCosto;
-    private javax.swing.JTextField tbDescripcion;
+    private javax.swing.JTextArea tbDescripcion;
     private javax.swing.JTextField tbDuracion;
     private javax.swing.JTextField tbEspectadoresMax;
     private javax.swing.JTextField tbEspectadoresMin;
