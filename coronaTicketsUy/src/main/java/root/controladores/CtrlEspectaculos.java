@@ -8,7 +8,7 @@ package root.controladores;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;

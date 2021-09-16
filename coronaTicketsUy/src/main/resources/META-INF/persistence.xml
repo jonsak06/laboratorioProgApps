@@ -11,6 +11,7 @@
     <class>root.entidades.PaqueteDeEspectaculos</class>
     <class>root.entidades.Compra</class>
     <class>root.entidades.Registro</class>
+    <class>root.entidades.Categoria</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://raspberrypijulio.ddns.net:8457/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;

@@ -7,7 +7,7 @@ package root.controladores;
 
 import java.util.ArrayList;
 import java.util.List;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtEspectador;
 import root.datatypes.DtFuncion;

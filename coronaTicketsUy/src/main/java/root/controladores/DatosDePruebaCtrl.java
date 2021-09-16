@@ -9,13 +9,17 @@ import java.util.*;
 import java.util.Properties;
 import javax.persistence.*;
 import root.entidades.Artista;
+import root.entidades.Categoria;
+import root.entidades.Compra;
 import root.entidades.Espectaculo;
 import root.entidades.Espectador;
+import root.entidades.EstadoEspectaculo;
 import root.entidades.EstadoRegistro;
 import root.entidades.Funcion;
 import root.entidades.PaqueteDeEspectaculos;
 import root.entidades.Plataforma;
 import root.entidades.Registro;
+import root.entidades.Usuario;
 import root.interfaces.iDatosDePrueba;
 
 /**
@@ -46,7 +50,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         vp.setDescripcion("Village   People   es   una   innovadora   formación   musical de   estilo   disco   de   finales   de   los   años   70.   Fue   famosa tanto   por   sus   peculiares   disfraces,   como   por   sus canciones pegadizas, con letras sugerentes y llenas dedobles sentidos.");
         java.sql.Date fvp = new java.sql.Date(1977-1899,1-12,1-31);
         vp.setFechaNacimiento(fvp);
-        vp.setImagen("PATH");
+        vp.setImagen("vpeople.jpg");
         vp.setLinkWeb("www.officialvillagepeople.com");
         vp.setNickname("vpeople");
         vp.setNombre("Village");
@@ -60,7 +64,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         dm.setDescripcion("Depeche   Mode   es   un   grupo   inglés   de   música electrónica   formado   en   Basildon,   Essex,   en   1980   por Vicent   Clarke   y   Andrew   John   Fletcher,   a   los   que   se unieron Martin Lee Gore y poco después David Gahan. Actualmente   se   le   considera   como   grupo   de   música alternativa.");
         java.sql.Date fdm = new java.sql.Date(1980-1899,6-12,14-31);
         dm.setFechaNacimiento(fdm);
-        dm.setImagen("PATH");
+        dm.setImagen("dmode.jpg");
         dm.setLinkWeb("www.depechemode.com");
         dm.setNickname("dmode");
         dm.setNombre("Depeche");
@@ -84,7 +88,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "los límites de contenido de las letras de sus canciones");
         java.sql.Date fcl = new java.sql.Date(1953-1899,6-12,22-31);
         cl.setFechaNacimiento(fcl);
-        cl.setImagen("PATH");
+        cl.setImagen("clouper.jpg");
         cl.setLinkWeb("cyndilauper.com");
         cl.setNickname("clouper");
         cl.setNombre("Cyndi");
@@ -101,7 +105,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "compositor estadounidense.");
         java.sql.Date fbs = new java.sql.Date(1949-1899,9-12,23-31);
         bs.setFechaNacimiento(fbs);
-        bs.setImagen("PATH");
+        bs.setImagen("bruceTheBoss.jpg");
         bs.setLinkWeb("brucespringsteen.net");
         bs.setNickname("bruceTheBoss");
         bs.setNombre("Bruce");
@@ -119,7 +123,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "baterista es Rafael Ugo).");
         java.sql.Date ftn = new java.sql.Date(1998-1899,1-12,1-31);
         tn.setFechaNacimiento(ftn);
-        tn.setImagen("PATH");
+        tn.setImagen("tripleNelson.jpg");
         tn.setLinkWeb("www.latriplenelson.uy");
         tn.setNickname("tripleNelson");
         tn.setNombre("La Triple");
@@ -138,7 +142,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "Viña del Mar de febrero de 1994.");
         java.sql.Date fll = new java.sql.Date(1987-1899,2-12,14-31);
         ll.setFechaNacimiento(fll);
-        ll.setImagen("PATH");
+        ll.setImagen("la_ley.jpg");
         ll.setLinkWeb("www.lasleyesdenewton.com");
         ll.setNickname("la_ley");
         ll.setNombre("La");
@@ -154,7 +158,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "ha editado veinticuatro discos");
         java.sql.Date fpi = new java.sql.Date(1981-1899,8-12,13-31);
         pi.setFechaNacimiento(fpi);
-        pi.setImagen("PATH");
+        pi.setImagen("lospimpi.jpg");
         pi.setLinkWeb("www.pimpinela.net");
         pi.setNickname("lospimpi");
         pi.setNombre("Pimpinela");
@@ -169,7 +173,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "Dyango es un cantante español de música romántica.");
         java.sql.Date fdy = new java.sql.Date(1981-1899,8-12,13-31);
         dy.setFechaNacimiento(fdy);
-        dy.setImagen("PATH");
+        dy.setImagen("dyangounchained.jpg");
         dy.setLinkWeb(" ");
         dy.setNickname("dyangounchained");
         dy.setNombre("Dyango");
@@ -190,11 +194,20 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
 "músico brasileño Luiz Caldas bajo el título «Fricote»");
         java.sql.Date fal = new java.sql.Date(1952-1899,7-12,17-31);
         al.setFechaNacimiento(fal);
-        al.setImagen("PATH");
+        al.setImagen("alcides.jpg");
         al.setLinkWeb(" ");
         al.setNickname("alcides");
         al.setNombre("Alcides");
         em.persist(al);
+        vp.setPasswd("asdfg456");
+        dm.setPasswd("123rtgfdv");
+        cl.setPasswd("poiuy086");
+        bs.setPasswd("GTO468");
+        tn.setPasswd("HGF135");
+        ll.setPasswd("lkj65D");
+        pi.setPasswd("jhvf395");
+        dy.setPasswd("ijngr024");
+        al.setPasswd("987mnbgh");
         em.getTransaction().commit();
         ////////////////////////////FIN DE LA CARGA DE DATOS DE ARTISTAS///////////////////////////////
         
@@ -219,6 +232,24 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(ml);
         Espectador cb = new Espectador("cbochinche","Cacho","Bochinche","cbochinche@vera.com.uy",8,5,1937);
         em.persist(cb);
+        el.setPasswd("lkj34df");
+        el.setImagen("silueta.jpg");
+        co.setPasswd("poke579");
+        co.setImagen("silueta.jpg");
+        ew.setPasswd("mkji648");
+        ew.setImagen(ew.getNickname()+".jpg");
+        gh.setPasswd("fcku0123");
+        gh.setImagen(gh.getNickname()+".jpg");
+        sp.setPasswd("vbmn4r");
+        sp.setImagen(sp.getNickname()+".jpg");
+        ar.setPasswd("ncnl123");
+        ar.setImagen(ar.getNickname()+".jpg");
+        ap.setPasswd("mny101");
+        ap.setImagen(ap.getNickname()+".jpg");
+        ml.setPasswd("1o1vbm");
+        ml.setImagen("silueta.jpg");
+        cb.setPasswd("ultraton01");
+        cb.setImagen("silueta.jpg");
         em.getTransaction().commit();
         ///////////////////////////////FIN DE LA CARGA DE ESPECTADORES/////////////////////////////////////
         
@@ -258,9 +289,46 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(e5);
         Espectaculo e6 = new Espectaculo("30 años","Espectáculo conmemorando los 30 años de Violeta.",80,30,150,"https://twitter.com/alcides_shows",450,31,7,2021,al,tl);
         em.persist(e6);
+        Espectaculo e7 = new Espectaculo("Grandes Éxitos 2020","Espectáculo  de  gira  con  los\n"+"temas de siempre",120,5,1000,"https://www.youtube.com/c/dyangooficial",500,9,1,2021,dy,yt);
+        em.persist(e7);
+        Espectaculo e8 = new Espectaculo("Llega a Casa","Primer   Espectáculo   con\n"+"transmisión por streaming",100,100,1500,"https://www.instagram.com/latriplenelson/",400,20,5,2021,tn,in);
+        em.persist(e8);
+        e7.setEstado(EstadoEspectaculo.RECHAZADO);
+        e8.setEstado(EstadoEspectaculo.INGRESADO);
         em.getTransaction().commit();
         ////////////////////////////////////////CARGA DE ESPECTACULOS TERMINADA//////////////////////////////////
 
+        //////////////////////////////CATEGORIAS//////////////////////////////
+        
+        em.getTransaction().begin();
+        Categoria c1 = new Categoria("Bandas Latinas");
+        Categoria c2 = new Categoria("Solistas");
+        Categoria c3 = new Categoria("Rock en Inglés");
+        Categoria c4 = new Categoria("Música Tropical");
+        em.persist(c1);
+        em.persist(c2);
+        em.persist(c3);
+        em.persist(c4);
+        em.persist(e1);
+        em.persist(e2);
+        em.persist(e3);
+        em.persist(e4);
+        em.persist(e5);
+        em.persist(e6);
+        em.persist(e7);
+        em.persist(e8);
+        e1.setCategoria(c3);
+        e2.setCategoria(c3);
+        e3.setCategoria(c2);
+        e4.setCategoria(c3);
+        e5.setCategoria(c1);
+        e6.setCategoria(c4);
+        e7.setCategoria(c2);
+        e8.setCategoria(c1);
+        em.getTransaction().commit();
+        
+        //////////////////////////////////////////////////////////////////////
+        
         /////////////////////////////////CARGA DE FUNCIONES DE ESPECTACULOS/////////////////////////
         em.getTransaction().begin();
         List<Artista> artF1 = new ArrayList<Artista>();
@@ -338,6 +406,9 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         artF17.add(dy);
         Funcion f17 = new Funcion("30 años - 2",1,10,2021,21,0,31,7,2021,e6,artF17);
         em.persist(f17);
+        List<Artista> artF18 = new ArrayList();
+        Funcion f18 = new Funcion("30 años - 3",15,11,2021,9,0,31,7,2021,e6,artF18);
+        em.persist(f18);
         em.getTransaction().commit();
         //////////////////////////////////////CARGA DE FUNCIONES TERMINADA////////////////////////
         
@@ -361,7 +432,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(r8);
         Registro r9 = new Registro(f3,co,15,5,2021,550);
         em.persist(r9);
-        Registro r10 = new Registro(f3,ml,20,5,2021,550);
+        Registro r10 = new Registro(f3,ml,20,5,2021,440);
         em.persist(r10);
         Registro r11 = new Registro(f4,el,5,5,2021,750);
         em.persist(r11);
@@ -369,13 +440,13 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(r12);
         Registro r13 = new Registro(f4,sp,15,5,2021,750);
         em.persist(r13);
-        Registro r14 = new Registro(f4,ap,20,5,2021,750);
+        Registro r14 = new Registro(f4,ap,20,5,2021,600);
         em.persist(r14);
         Registro r15 = new Registro(f5,gh,8,6,2021,750);
         em.persist(r15);
         Registro r16 = new Registro(f5,ew,16,6,2021,750);
         em.persist(r16);
-        Registro r17 = new Registro(f5,ml,25,6,2021,750);
+        Registro r17 = new Registro(f5,ml,25,6,2021,600);
         em.persist(r17);
         Registro r18 = new Registro(f6,cb,5,7,2021,750);
         em.persist(r18);
@@ -393,7 +464,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         Registro r21 = new Registro(f7,ml,19,7,2021,0);
         r21.setCanjeados(cr21);
         em.persist(r21);
-        Registro r22 = new Registro(f8,el,17,8,2021,800);
+        Registro r22 = new Registro(f8,el,17,8,2021,560);
         em.persist(r22);
         Registro r23 = new Registro(f8,gh,20,8,2021,800);
         em.persist(r23);
@@ -409,7 +480,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         Registro r25 = new Registro(f9,co,15,8,2021,0);
         r25.setCanjeados(cr25);
         em.persist(r25);
-        Registro r26 = new Registro(f9,ew,26,8,2021,800);
+        Registro r26 = new Registro(f9,ew,26,8,2021,560);
         em.persist(r26);
         Registro r27 = new Registro(f10,ar,19,7,2021,0);
         List<Registro> cr27 = new ArrayList<Registro>();
@@ -437,11 +508,11 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(r30);
         Registro r31 = new Registro(f11,gh,30,8,2021,980);
         em.persist(r31);
-        Registro r32 = new Registro(f12,el,16,8,2021,980);
+        Registro r32 = new Registro(f12,el,16,8,2021,686);
         em.persist(r32);
         Registro r33 = new Registro(f12,co,16,8,2021,980);
         em.persist(r33);
-        Registro r34 = new Registro(f12,ew,1,9,2021,980);
+        Registro r34 = new Registro(f12,ew,1,9,2021,686);
         em.persist(r34);
         Registro r35 = new Registro(f12,sp,5,9,2021,980);
         em.persist(r35);
@@ -453,7 +524,7 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(r38);
         Registro r39 = new Registro(f14,cb,6,9,2021,500);
         em.persist(r39);
-        Registro r40 = new Registro(f15,co,1,9,2021,500);
+        Registro r40 = new Registro(f15,co,1,9,2021,425);
         em.persist(r40);
         Registro r41 = new Registro(f16,sp,16,8,2021,450);
         em.persist(r41);
@@ -465,11 +536,13 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(r44);
         Registro r45 = new Registro(f17,ap,20,8,2021,450);
         em.persist(r45);
-        Registro r46 = new Registro(f17,co,2,9,2021,450);
+        Registro r46 = new Registro(f17,co,2,9,2021, (float) 382.5);
         em.persist(r46);
         em.getTransaction().commit();
         
         /////////////////////////////////////FIN DE LA CARGA DE REGISTROS//////////////////////
+        
+        
         
         ////////////////////////////////INICIO DE CARGA DE PAQUETES///////////////////////
         em.getTransaction().begin();
@@ -497,6 +570,36 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
         em.persist(e4);
         em.persist(e5);
         em.persist(e6);
+        
+    /////////////////////////////COMPRA DE PAQUETES////////////////////////
+        
+//        em.persist(ap);
+//        em.persist(ml);
+//        em.persist(co);
+//        em.persist(el);
+//        em.persist(ew);
+        Compra cp1 = new Compra(p1,1,5,2021);
+        Compra cp2 = new Compra(p1,20,5,2021);
+        Compra cp3 = new Compra(p3,9,8,2021);
+        Compra cp4 = new Compra(p2,16,8,2021);
+        Compra cp5 = new Compra(p2,26,8,2021);
+//        ap.addCompra(cp1);
+//        ml.addCompra(cp2);
+//        co.addCompra(cp3);
+//        el.addCompra(cp4);
+//        ew.addCompra(cp5);
+          cp1.setEspectador(ap);
+          cp2.setEspectador(ml);
+          cp3.setEspectador(co);
+          cp4.setEspectador(el);
+          cp5.setEspectador(ew);
+          em.persist(cp1);
+          em.persist(cp2);
+          em.persist(cp3);
+          em.persist(cp4);
+          em.persist(cp5);
+         //////////////////////////////////////////////////////////////////////
+        
         em.getTransaction().commit();
         /////////////////////////////////FIN DE CARGA DE PAQUETES/////////////////////////
         
@@ -523,6 +626,190 @@ public class DatosDePruebaCtrl implements iDatosDePrueba {
     //        em.persist(cb);
     //        em.getTransaction().commit();
     //        System.out.print("Actualizados los registros");
+    ///////////////////////////////////CARGA DE LOS SEGUIDORES////////////////////////////////
+    
+    em.getTransaction().begin();
+//    vp.addSiguiendo(bs);
+    List<Usuario> siguiendoVP = new ArrayList<Usuario>();
+    siguiendoVP.add(bs);
+    vp.setSiguiendo(siguiendoVP);
+    em.persist(vp);
+    List<Usuario> siguiendoDM = new ArrayList<Usuario>();
+    siguiendoDM.add(cl);  
+    siguiendoDM.add(bs);
+    dm.setSiguiendo(siguiendoDM);
+//    dm.addSiguiendo(cl);
+//    dm.addSiguiendo(bs);
+    em.persist(dm);
+    List<Usuario> siguiendoCL = new ArrayList<Usuario>();
+    siguiendoCL.add(vp);  
+    siguiendoCL.add(dm);
+    siguiendoCL.add(dy);
+    cl.setSiguiendo(siguiendoCL);
+//    cl.addSiguiendo(vp);
+//    cl.addSiguiendo(dm);
+//    cl.addSiguiendo(dy);
+    em.persist(cl);
+    List<Usuario> siguiendoBS = new ArrayList<Usuario>();
+    siguiendoBS.add(vp);  
+    siguiendoBS.add(dm);
+    siguiendoBS.add(cl);
+    siguiendoBS.add(gh);
+    bs.setSiguiendo(siguiendoBS);
+//    bs.addSiguiendo(vp);
+//    bs.addSiguiendo(dm);
+//    bs.addSiguiendo(cl);
+//    bs.addSiguiendo(gh);
+    em.persist(bs);
+    List<Usuario> siguiendoTN = new ArrayList<Usuario>();
+    siguiendoTN.add(cl);  
+    siguiendoTN.add(ll);
+    siguiendoTN.add(ew);
+    tn.setSiguiendo(siguiendoTN);
+//    tn.addSiguiendo(cl);
+//    tn.addSiguiendo(ll);
+//    tn.addSiguiendo(ew);
+    em.persist(tn);
+    List<Usuario> siguiendoLL = new ArrayList<Usuario>();
+    siguiendoLL.add(dm);  
+    siguiendoLL.add(pi);
+    siguiendoLL.add(ew);
+    ll.setSiguiendo(siguiendoLL);
+//    ll.addSiguiendo(dm);
+//    ll.addSiguiendo(pi);
+//    ll.addSiguiendo(ew);
+    em.persist(ll);
+    List<Usuario> siguiendoPI = new ArrayList<Usuario>();
+    siguiendoPI.add(dm);  
+    siguiendoPI.add(dy);
+    siguiendoPI.add(al);
+    pi.setSiguiendo(siguiendoPI);
+//    pi.addSiguiendo(dm);
+//    pi.addSiguiendo(dy);
+//    pi.addSiguiendo(al);
+    em.persist(pi);
+    List<Usuario> siguiendoDY = new ArrayList<Usuario>();
+    siguiendoDY.add(tn);  
+    siguiendoDY.add(pi);
+    dy.setSiguiendo(siguiendoDY);
+//    dy.addSiguiendo(tn);
+//    dy.addSiguiendo(pi);
+    em.persist(dy);
+    List<Usuario> siguiendoAL = new ArrayList<Usuario>();
+    siguiendoAL.add(pi);  
+    siguiendoAL.add(sp);
+    al.setSiguiendo(siguiendoAL);
+//    al.addSiguiendo(pi);
+//    al.addSiguiendo(sp);
+    em.persist(al);
+    List<Usuario> siguiendoEL = new ArrayList<Usuario>();
+    siguiendoEL.add(pi);  
+    siguiendoEL.add(dy);
+    siguiendoEL.add(ew);
+    siguiendoEL.add(sp);
+    siguiendoEL.add(ar);
+    el.setSiguiendo(siguiendoEL);
+//    el.addSiguiendo(pi);
+//    el.addSiguiendo(dy);
+//    el.addSiguiendo(ew);
+//    el.addSiguiendo(sp);
+//    el.addSiguiendo(ar);
+    em.persist(el);
+    List<Usuario> siguiendoCO = new ArrayList<Usuario>();
+    siguiendoCO.add(vp);  
+    siguiendoCO.add(dm);
+    siguiendoCO.add(cl);
+    siguiendoCO.add(bs);
+    siguiendoCO.add(tn);
+    siguiendoCO.add(ll);
+    siguiendoCO.add(pi);
+    siguiendoCO.add(dy);
+    siguiendoCO.add(al);
+    co.setSiguiendo(siguiendoCO);
+//    co.addSiguiendo(vp);
+//    co.addSiguiendo(dm);
+//    co.addSiguiendo(cl);
+//    co.addSiguiendo(bs);
+//    co.addSiguiendo(tn);
+//    co.addSiguiendo(ll);
+//    co.addSiguiendo(pi);
+//    co.addSiguiendo(dy);
+//    co.addSiguiendo(al);
+    em.persist(co);
+    List<Usuario> siguiendoEW = new ArrayList<Usuario>();
+    siguiendoEW.add(dm);  
+    siguiendoEW.add(cl);
+    siguiendoEW.add(bs);
+    siguiendoEW.add(gh);
+    ew.setSiguiendo(siguiendoEW);
+//    ew.addSiguiendo(dm);
+//    ew.addSiguiendo(cl);
+//    ew.addSiguiendo(bs);
+//    ew.addSiguiendo(gh);
+    em.persist(ew);
+    List<Usuario> siguiendoGH = new ArrayList<Usuario>();
+    siguiendoGH.add(bs);  
+    siguiendoGH.add(ll);
+    siguiendoGH.add(dy);
+    gh.setSiguiendo(siguiendoGH);
+//    gh.addSiguiendo(bs);
+//    gh.addSiguiendo(ll);
+//    gh.addSiguiendo(dy);
+    em.persist(gh);
+    List<Usuario> siguiendoSP = new ArrayList<Usuario>();
+    siguiendoSP.add(vp);  
+    siguiendoSP.add(pi);
+    siguiendoSP.add(ll);
+    siguiendoSP.add(ar);
+    siguiendoSP.add(ap);
+    siguiendoSP.add(ml);
+    sp.setSiguiendo(siguiendoSP);
+//    sp.addSiguiendo(vp);
+//    sp.addSiguiendo(pi);
+//    sp.addSiguiendo(ll);
+//    sp.addSiguiendo(ar);
+//    sp.addSiguiendo(ap);
+//    sp.addSiguiendo(ml);
+    em.persist(sp);
+    List<Usuario> siguiendoAR = new ArrayList<Usuario>();
+    siguiendoAR.add(al);  
+    siguiendoAR.add(sp);
+    ar.setSiguiendo(siguiendoAR);
+//    ar.addSiguiendo(al);
+//    ar.addSiguiendo(sp);
+    em.persist(ar);
+    List<Usuario> siguiendoAP = new ArrayList<Usuario>();
+    siguiendoAP.add(al);  
+    siguiendoAP.add(sp);
+    ap.setSiguiendo(siguiendoAP);
+//    ap.addSiguiendo(al);
+//    ap.addSiguiendo(sp);
+    em.persist(ap);
+    List<Usuario> siguiendoML = new ArrayList<Usuario>();
+    siguiendoML.add(pi);  
+    siguiendoML.add(al);
+    ml.setSiguiendo(siguiendoML);
+//    ml.addSiguiendo(pi);
+//    ml.addSiguiendo(al);
+    em.persist(ml);
+    List<Usuario> siguiendoCB = new ArrayList<Usuario>();
+    siguiendoCB.add(ll);  
+    siguiendoCB.add(pi);
+    siguiendoCB.add(al);
+    siguiendoCB.add(ar);
+    siguiendoCB.add(ap);
+    siguiendoCB.add(ml);
+    cb.setSiguiendo(siguiendoCB);
+//    cb.addSiguiendo(ll);
+//    cb.addSiguiendo(pi);
+//    cb.addSiguiendo(al);
+//    cb.addSiguiendo(ar);
+//    cb.addSiguiendo(ap);
+//    cb.addSiguiendo(ml);
+    em.persist(cb);
+    em.getTransaction().commit();
+    
+    ////////////////////////////////////////////////////////////////////////////////////
         em.close();
         emf.close();  
         }

@@ -15,7 +15,7 @@ import java.time.Instant;
 import java.util.List;
 import javax.persistence.*;
 import root.entidades.Artista;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.entidades.Espectador;
 import root.entidades.EstadoRegistro;
 import root.entidades.Funcion;

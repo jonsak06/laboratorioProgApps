@@ -46,6 +46,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         java.sql.Date falta = new java.sql.Date(fay-1899,fam-12,fad-31);
         this.setFechaAlta(falta);
         this.espectaculos = new ArrayList<Espectaculo>();
+        compras = new ArrayList<Compra>();
     }
 
     public PaqueteDeEspectaculos(String nombre, String descripcion, Date fechaInicio, Date fechaAlta, Date fechaFin) {
@@ -54,6 +55,8 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.fechaInicio = fechaInicio;
         this.fechaAlta = fechaAlta;
         this.fechaFin = fechaFin;
+        compras = new ArrayList<Compra>();
+
     }
     
     
@@ -66,6 +69,7 @@ public class PaqueteDeEspectaculos implements Serializable {
         descuento = dvPaquete.getDescuento();
         fechaAlta = dvPaquete.getFechaAlta();
         espectaculos = new ArrayList<Espectaculo>();
+        compras = new ArrayList<Compra>();
     }
     
     public PaqueteDeEspectaculos(){this.espectaculos = new ArrayList<Espectaculo>();}
@@ -144,6 +148,10 @@ public class PaqueteDeEspectaculos implements Serializable {
     public void setEspectaculos(List<Espectaculo> l){
         this.espectaculos = l;
     }
+    
+    @OneToMany(mappedBy = "paquete")
+    private List<Compra> compras;
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -5,8 +5,10 @@
  */
 package root.entidades;
 
+import root.datatypes.DtArtista;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -31,6 +33,7 @@ public class Artista extends Usuario {
     }
 
     public Artista() {
+
     }
     
     public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia) {
@@ -38,12 +41,13 @@ public class Artista extends Usuario {
         this.setBiografia(biografia);
         this.setDescripcion(descripcion);
         this.setLinkWeb(link);
-        
+
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+    
     
     @OneToMany(mappedBy = "artista")
 //    @Column(name="ESPECTACULOS_DE_ARTISTA")

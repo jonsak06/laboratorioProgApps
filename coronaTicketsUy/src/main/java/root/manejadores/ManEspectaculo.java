@@ -19,7 +19,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import root.entidades.Artista;
 import root.entidades.Compra;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.entidades.Espectaculo;
 import root.entidades.Espectador;
 import root.entidades.Funcion;

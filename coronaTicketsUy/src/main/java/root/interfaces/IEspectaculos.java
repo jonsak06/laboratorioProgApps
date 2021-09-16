@@ -6,7 +6,7 @@
 package root.interfaces;
 
 import java.util.List;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;

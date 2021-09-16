@@ -54,6 +54,7 @@ public class Espectaculo implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
         this.plataforma = plataforma;
         this.artista = artista;
+        this.estado = EstadoEspectaculo.ACEPTADO;
     }
     
     
@@ -65,6 +66,20 @@ public class Espectaculo implements Serializable {
     public void setNombre(String nombre){
         this.nombre = nombre;           
     }
+    
+    @Column(name = "ESTADO_ESPECTACULO")
+    @Enumerated(value = EnumType.STRING)
+    private EstadoEspectaculo estado;
+
+    public EstadoEspectaculo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoEspectaculo estado) {
+        this.estado = estado;
+    }
+
+   
     
     @Lob
     @Column(name = "DESCR_ESP")
@@ -128,6 +143,17 @@ public class Espectaculo implements Serializable {
     }
     public void setFechaRegistro(java.sql.Date f){
         this.fechaDeRegistro = f;
+    }
+    
+    @ManyToOne
+    private Categoria categoria;
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
     
 //    @Column(name = "PLATAFORMA")
@@ -207,5 +233,7 @@ public class Espectaculo implements Serializable {
         DtEspectaculo dt = new DtEspectaculo(this.id, this.nombre, this.descripcion, this.duracion, this.cantidadMaximaEspectadores, this.cantidadMinimaEspectadores, this.url, this.costo, this.fechaDeRegistro);
         return dt;
     }
+
+   
     
 }

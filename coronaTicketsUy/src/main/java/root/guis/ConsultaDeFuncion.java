@@ -11,7 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;
-import root.entidades.DtArtista;
+import root.datatypes.DtArtista;
 import root.fabrica.Fabrica;
 import root.interfaces.IEspectaculos;
 
