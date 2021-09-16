@@ -148,7 +148,7 @@ public class ManejadorUsuarios
         for (DtEspectador i :listaTotal){
             int esta = 0;
             for(DtEspectador j :listaFinal){
-                if(j.getId()==i.getId()){esta = esta+1;}
+                if(j.getNickname().equals(i.getNickname())){esta = esta+1;}
                 }
             if(esta == 0){resultado.add(i);}
         }
