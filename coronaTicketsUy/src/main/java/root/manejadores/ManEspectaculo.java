@@ -22,6 +22,7 @@ import root.entidades.Compra;
 import root.datatypes.DtArtista;
 import root.entidades.Espectaculo;
 import root.entidades.Espectador;
+import root.entidades.EstadoEspectaculo;
 import root.entidades.Funcion;
 import root.entidades.PaqueteDeEspectaculos;
 import root.entidades.Plataforma;
@@ -53,7 +54,7 @@ public class ManEspectaculo {
         Artista esteArtista = consultaArtista.getSingleResult();
         
         Espectaculo nuevoEspectaculo = new Espectaculo(espectaculo.getNombre(),espectaculo.getDescripcion(),espectaculo.getDuracion(),espectaculo.getCantidadMaximaEspectadores(),espectaculo.getCantidadMinimaEspectadores(),espectaculo.getUrl(),espectaculo.getCosto(),espectaculo.getFechaDeRegistro(), estaPlataforma, esteArtista);
-        
+        nuevoEspectaculo.setEstado(EstadoEspectaculo.ACEPTADO);
         em.getTransaction().commit();
         em.getTransaction().begin();
         em.persist(nuevoEspectaculo);
@@ -72,7 +73,7 @@ public class ManEspectaculo {
        consulta.setParameter("nombre", nombreEspectaculo);
        List<Espectaculo> lEspectaculo = consulta.getResultList();
        em.getTransaction().commit();
-       if(lEspectaculo.size()>0)
+       if(lEspectaculo.size()>0 && lEspectaculo.get(0).getEstado()==EstadoEspectaculo.ACEPTADO)
         {
             existe=true;
         }
@@ -89,6 +90,7 @@ public class ManEspectaculo {
        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre", Espectaculo.class);
        consulta.setParameter("nombre", nombreEsp);
        Espectaculo e = consulta.getSingleResult();
+       if(e.getEstado()==EstadoEspectaculo.ACEPTADO){
        List<DtFuncion> lDtf = new ArrayList<DtFuncion>();
        List<Funcion> funciones = e.getFunciones();
         java.sql.Date f= new java.sql.Date(Calendar.getInstance().getTime().getTime());
@@ -100,7 +102,9 @@ public class ManEspectaculo {
        }
        em.close();
        emf.close();
-       return lDtf;
+       return lDtf;}else{
+       return null;
+       }
     }
     
     public static float getDescuento(String nickname, String nombreFuncion){
@@ -206,6 +210,11 @@ public class ManEspectaculo {
             List<Espectaculo> esps = em.createNamedQuery("Espectaculo.findAll", Espectaculo.class)
                     .getResultList();
             em.close();
+            for(Espectaculo i: esps){
+                if(i.getEstado()!=EstadoEspectaculo.ACEPTADO){
+                    esps.remove(i);
+                }
+            }
             ArrayList<String> nombres = new ArrayList();
             esps.forEach(e -> {
                 if(e.getPlataforma().getNombre().equals(nombrePlataforma)) {
@@ -250,6 +259,52 @@ public class ManEspectaculo {
             result.add(i.getMyDt());
         }
         return result;
+    }
+    
+    public static List<DtEspectaculo> listarRechazados(){
+        List<DtEspectaculo> resultado = new ArrayList<DtEspectaculo>();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery consulta = em.createNamedQuery("Espectaculo.listarPorEstado",Espectaculo.class);
+        consulta.setParameter("estado", EstadoEspectaculo.RECHAZADO);
+        List<Espectaculo> lista = consulta.getResultList();
+        em.close();
+        emf.close();
+        for(Espectaculo i:lista){
+            DtEspectaculo este = i.getMyDt();
+            resultado.add(este);
+        }
+        return resultado;
+    }
+    
+        public static List<DtEspectaculo> listarIngresados(){
+        List<DtEspectaculo> resultado = new ArrayList<DtEspectaculo>();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery consulta = em.createNamedQuery("Espectaculo.listarPorEstado",Espectaculo.class);
+        consulta.setParameter("estado", EstadoEspectaculo.INGRESADO);
+        List<Espectaculo> lista = consulta.getResultList();
+        em.close();
+        emf.close();
+        for(Espectaculo i:lista){
+            DtEspectaculo este = i.getMyDt();
+            resultado.add(este);
+        }
+        return resultado;
+    }
+        
+    public static void aceptar_rechazarIngresado(String nombre, EstadoEspectaculo estado){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre",Espectaculo.class);
+        consulta.setParameter("nombre", nombre);
+        Espectaculo e = consulta.getSingleResult();
+        e.setEstado(estado);
+        em.persist(e);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
     }
      
 }

@@ -35,6 +35,17 @@ public class DtEspectaculo {
         this.costo = costo;
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    
+    private String nombreArtista;
+
+    public String getNombreArtista() {
+        return nombreArtista;
+    }
+
+    public void setNombreArtista(String nombreArtista) {
+        this.nombreArtista = nombreArtista;
+    }
+    
 
     public Long getId() {
         return id;

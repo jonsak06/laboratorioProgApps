@@ -12,6 +12,7 @@ import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;
+import root.entidades.EstadoEspectaculo;
 import root.interfaces.IEspectaculos;
 import root.manejadores.ManEspectaculo;
 import root.manejadores.ManPlataformas;
@@ -75,4 +76,15 @@ public class CtrlEspectaculos implements IEspectaculos {
      public List<DtArtista> getInvitados(String nombreFuncion){
          return ManEspectaculo.getInvitados(nombreFuncion);
      }
+     public List<DtEspectaculo> listarRechazados(){
+         return ManEspectaculo.listarRechazados();
+     }
+     
+    public List<DtEspectaculo> listarIngresados(){
+         return ManEspectaculo.listarIngresados();
+     }
+    
+    public void aceptar_rechazarIngresado(String nombre, EstadoEspectaculo estado){
+        ManEspectaculo.aceptar_rechazarIngresado(nombre, estado);
+    }
 }

@@ -9,10 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 import root.datatypes.DtEspectador;
+import root.entidades.Espectaculo;
 import root.entidades.Espectador;
+import root.entidades.EstadoEspectaculo;
 import root.entidades.EstadoRegistro;
 import root.entidades.Funcion;
 import root.entidades.Registro;
+import root.entidades.Usuario;
 import root.manejadores.ManejadorUsuarios;
 
 
@@ -29,34 +32,11 @@ public class NewMain {
         // TODO code application logic here
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
-        TypedQuery<Funcion> consulta = em.createNamedQuery("Funcion.findByNombre", Funcion.class);
-        consulta.setParameter("nombre", "Bien de Familia - A");
-        Funcion estaFuncion = consulta.getSingleResult();
-        List<DtEspectador> listaFinal = new ArrayList<DtEspectador>();
-        List<Registro> regF = estaFuncion.getRegistros();
-        List<String> listadeNick = new ArrayList<String>();
-        for (Registro i :regF){
-            if(i.getEstado()!=EstadoRegistro.USADO){
-            String nick = i.getEspectador().getNickname();
-            listadeNick.add(nick);}
-        }
-        for (String i :listadeNick){
-            TypedQuery<Espectador> cons = em.createNamedQuery("EspectadorporNick", Espectador.class);
-            Espectador este = cons.setParameter("nickname", i).getSingleResult();
-            DtEspectador esteDt = este.getMyDt();
-            listaFinal.add(esteDt);
-        }
-        List<DtEspectador> resultado = new ArrayList<DtEspectador>();
-        List<DtEspectador> listaTotal = ManejadorUsuarios.getEspectadores();
-        for (DtEspectador i :listaTotal){
-            int esta = 0;
-            for(DtEspectador j :listaFinal){
-                if(/*j.getId()==i.getId()*/j.getNickname().equals(i.getNickname())){esta = esta+1;}
-                }
-            if(esta == 0){resultado.add(i);}
-        }
-        for(DtEspectador i: resultado){
-            System.out.println(i.getApellido());
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.listarPorEstado", Espectaculo.class);
+        consulta.setParameter("estado", EstadoEspectaculo.INGRESADO);
+        List<Espectaculo> e = consulta.getResultList();
+        for(Espectaculo i:e){
+            System.out.println(i.getNombre());
         }
         em.close();
         emf.close();

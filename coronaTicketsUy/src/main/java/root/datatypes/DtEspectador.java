@@ -15,8 +15,8 @@ public class DtEspectador extends DtUsuario
 {
     private int canjeables;
 
-    public DtEspectador(int canjeables, Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
-        super(id, nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+    public DtEspectador(int canjeables, Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
+        super(id, nombre, apellido, correo, nickname, imagen, fechaNacimiento, pass);
         this.canjeables = canjeables;
     }
     public DtEspectador(){}

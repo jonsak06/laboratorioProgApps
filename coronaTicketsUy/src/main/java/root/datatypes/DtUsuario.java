@@ -20,9 +20,10 @@ public abstract class DtUsuario
     private String nickname;
     private String imagen;
     private Date fechaNacimiento;
+    private String pass;
 
     public DtUsuario(){}
-    public DtUsuario(Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+    public DtUsuario(Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,6 +31,15 @@ public abstract class DtUsuario
         this.nickname = nickname;
         this.imagen = imagen;
         this.fechaNacimiento = fechaNacimiento;
+        this.pass = pass;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public Long getId() {

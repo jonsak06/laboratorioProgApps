@@ -10,6 +10,7 @@ import root.datatypes.DtArtista;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;
+import root.entidades.EstadoEspectaculo;
 
 /**
  *
@@ -30,4 +31,7 @@ public interface IEspectaculos {
     public boolean existeFuncion(String nombreFuncion);
     public List<DtArtista> getInvitados(String nombreFuncion);
     void altaEspectaculo(String plataforma, String artista, DtEspectaculo espectaculo);
+    public List<DtEspectaculo> listarRechazados();
+    public List<DtEspectaculo> listarIngresados();
+    public void aceptar_rechazarIngresado(String nombre, EstadoEspectaculo estado);
 }

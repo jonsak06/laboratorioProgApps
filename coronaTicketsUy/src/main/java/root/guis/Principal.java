@@ -51,6 +51,7 @@ public class Principal extends javax.swing.JFrame {
         consultaEspectaculo = new javax.swing.JMenuItem();
         altaFuncion = new javax.swing.JMenuItem();
         consultaFuncion = new javax.swing.JMenuItem();
+        aceptarRechazar = new javax.swing.JMenuItem();
         menuPaquetes = new javax.swing.JMenu();
         optionAltaPaquete = new javax.swing.JMenuItem();
         optionConsultaPaquete = new javax.swing.JMenuItem();
@@ -136,6 +137,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(consultaFuncion);
+
+        aceptarRechazar.setText("Aceptar/Rechazar Ingresados");
+        aceptarRechazar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarRechazarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(aceptarRechazar);
 
         jMenuBar1.add(jMenu2);
 
@@ -329,6 +338,13 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_consultaFuncionActionPerformed
 
+    private void aceptarRechazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarRechazarActionPerformed
+        // TODO add your handling code here:
+        AceptarRechazarEspectaculo nuevo = new AceptarRechazarEspectaculo();
+        nuevo.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_aceptarRechazarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +381,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem aceptarRechazar;
     private javax.swing.JMenuItem altaEspectaculo;
     private javax.swing.JMenuItem altaFuncion;
     private javax.swing.JMenuItem altaPlataformas;

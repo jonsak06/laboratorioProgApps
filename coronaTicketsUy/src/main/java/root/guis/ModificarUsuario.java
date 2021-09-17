@@ -115,6 +115,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfBiografia = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         fechaNacimiento = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
+        tfpass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,6 +200,14 @@ public class ModificarUsuario extends javax.swing.JFrame {
 
         jLabel2.setText("Fecha de nacimiento:");
 
+        jLabel3.setText("Password:");
+
+        tfpass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfpassActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,40 +230,44 @@ public class ModificarUsuario extends javax.swing.JFrame {
                             .addComponent(lbTipoUsuario)
                             .addComponent(lbNickname)
                             .addComponent(lbApellido)
-                            .addComponent(lbFechaNacimiento2)
                             .addComponent(jLabel1))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(43, 43, 43)
                                 .addComponent(tfNombre))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
+                                .addGap(47, 47, 47)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(tfApellido)
                                     .addComponent(tfNickname)
                                     .addComponent(cbTipoUsuario, 0, 248, Short.MAX_VALUE)
-                                    .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2)
-                                    .addComponent(jScrollPane1)))))
+                                    .addComponent(cbUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbFechaNacimiento2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbLinkWeb)
                         .addGap(55, 55, 55)
                         .addComponent(tfLinkWeb))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbFechaNacimiento1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btImagen)
                                 .addGap(38, 38, 38)
-                                .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbFechaNacimiento1))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel3)
+                        .addGap(87, 87, 87)
+                        .addComponent(tfpass)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -281,7 +295,11 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNickname)
                     .addComponent(tfNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(tfpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(fechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,20 +315,20 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbLinkWeb)
+                    .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btImagen)
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btCancelar)
                             .addComponent(btModificar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbLinkWeb)
-                            .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addComponent(lImagen, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                        .addGap(43, 43, 43))))
+                        .addGap(83, 83, 83)
+                        .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(41, Short.MAX_VALUE))))
         );
 
         pack();
@@ -468,7 +486,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 {
                     long miliseg = fechaNacimiento.getDate().getTime();
                     java.sql.Date fecha = new java.sql.Date(miliseg);
-                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), espectadores.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
+                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), espectadores.get(i).getCorreo(), tfNickname.getText(), ruta, fecha, this.tfpass.getText().trim());
                     Fabrica.getCrlUsuarios().modificarEspectador(es);
                     JOptionPane.showMessageDialog(null, "El espectador fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     ModificarUsuario ventana = new ModificarUsuario();
@@ -484,7 +502,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
                         long miliseg = fechaNacimiento.getDate().getTime();
                         java.sql.Date fecha = new java.sql.Date(miliseg);
-                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), artistas.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
+                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), artistas.get(i).getCorreo(), tfNickname.getText(), ruta, fecha, this.tfpass.getText().trim());
                         Fabrica.getCrlUsuarios().modificarArtista(ar);
                         JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                         ModificarUsuario ventana = new ModificarUsuario();
@@ -518,6 +536,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     this.fechaNacimiento.setDate(artistas.get(i).getFechaNacimiento());
                     this.fechaNacimiento.setVisible(true);
                     tfNickname.setText(artistas.get(i).getNickname());
+                    tfpass.setText(artistas.get(i).getPass());
 //                    tfCorreoElectronico.setText(artistas.get(i).getCorreo());
                     if(!artistas.get(i).getDescripcion().isEmpty())
                     {
@@ -573,6 +592,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     this.fechaNacimiento.setVisible(true);
                     tfNombre.setText(espectadores.get(i).getNombre());
                     tfNickname.setText(espectadores.get(i).getNickname());
+                    this.tfpass.setText(espectadores.get(i).getPass());
                     tfApellido.setText(espectadores.get(i).getApellido());
 //                    tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
                     ruta=espectadores.get(i).getImagen();
@@ -648,6 +668,10 @@ public class ModificarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btImagenActionPerformed
 
+    private void tfpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfpassActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfpassActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -692,6 +716,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser fechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lImagen;
@@ -709,5 +734,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField tfLinkWeb;
     private javax.swing.JTextField tfNickname;
     private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfpass;
     // End of variables declaration//GEN-END:variables
 }

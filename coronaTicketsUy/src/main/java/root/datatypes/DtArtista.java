@@ -18,8 +18,8 @@ public class DtArtista extends DtUsuario
     private String biografia;
     private String descripcion;
 
-    public DtArtista(String linkWeb, String biografia, String descripcion, Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
-        super(id, nombre, apellido, correo, nickname, imagen, fechaNacimiento);
+    public DtArtista(String linkWeb, String biografia, String descripcion, Long id, String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
+        super(id, nombre, apellido, correo, nickname, imagen, fechaNacimiento, pass);
         this.linkWeb = linkWeb;
         this.biografia = biografia;
         this.descripcion = descripcion;
@@ -30,6 +30,17 @@ public class DtArtista extends DtUsuario
     public String getLinkWeb() {
         return linkWeb;
     }
+    
+    private String nombreArtista;
+
+    public String getNombreArtista() {
+        return nombreArtista;
+    }
+
+    public void setNombreArtista(String nombreArtista) {
+        this.nombreArtista = nombreArtista;
+    }
+    
 
     public String getBiografia() {
         return biografia;
