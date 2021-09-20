@@ -36,12 +36,11 @@ public class Artista extends Usuario {
 
     }
     
-    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia, String pass) {
+    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.setBiografia(biografia);
         this.setDescripcion(descripcion);
         this.setLinkWeb(link);
-        this.setPasswd(pass);
 
     }
 
@@ -135,7 +134,7 @@ public class Artista extends Usuario {
     
     public DtArtista getMyDt()
     {
-        DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento(), this.getPasswd());
+        DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
         return dt; 
     }
 }

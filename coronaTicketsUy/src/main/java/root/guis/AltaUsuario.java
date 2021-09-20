@@ -91,8 +91,6 @@ public class AltaUsuario extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tfBrebeBiografia = new javax.swing.JTextArea();
         fNacimiento = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
-        tfpass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -171,8 +169,6 @@ public class AltaUsuario extends javax.swing.JFrame {
         tfBrebeBiografia.setRows(5);
         jScrollPane2.setViewportView(tfBrebeBiografia);
 
-        jLabel1.setText("Password:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -191,47 +187,40 @@ public class AltaUsuario extends javax.swing.JFrame {
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbFechaNacimiento)
                             .addComponent(lbNombre)
                             .addComponent(lbTipoUsuario))
-                        .addGap(48, 48, 48)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfNombre)
                             .addComponent(tfApellido)
                             .addComponent(tfNickname)
                             .addComponent(tfCorreoElectronico)
-                            .addComponent(cbTipoUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(cbTipoUsuario, 0, 276, Short.MAX_VALUE)
+                            .addComponent(fNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbFechaNacimiento1)
-                        .addGap(51, 51, 51)
-                        .addComponent(jScrollPane2))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbFechaNacimiento2)
+                            .addComponent(lbFechaNacimiento1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane1)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbLinkWeb)
                         .addGap(62, 62, 62)
                         .addComponent(tfLinkWeb))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbFechaNacimiento)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbFechaNacimiento2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbNickname)
                             .addComponent(lbApellido)
+                            .addComponent(lbCorreoElectronico)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(17, 17, 17)
                                 .addComponent(btImagen)
                                 .addGap(42, 42, 42)
                                 .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 203, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbCorreoElectronico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27)
-                        .addComponent(tfpass)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -261,11 +250,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                             .addComponent(lbCorreoElectronico)
                             .addComponent(tfCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(tfpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbFechaNacimiento)
                     .addComponent(fNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,7 +258,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbFechaNacimiento2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbFechaNacimiento1))
@@ -281,7 +266,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbLinkWeb)
                     .addComponent(tfLinkWeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -377,14 +362,13 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                Integer.parseInt(cbDia.getSelectedItem().toString()));
                 long id = 0;
-                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha, this.tfpass.getText().trim());
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
                 Fabrica.getCrlUsuarios().altaEspectador(es);
                 JOptionPane.showMessageDialog(null, "El espectador fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                 tfNombre.setText("");
                 tfApellido.setText("");
                 tfCorreoElectronico.setText("");
                 tfNickname.setText("");
-                tfpass.setText("");
                 ruta="silueta.jpg";
                 Image mImagen = new ImageIcon(ruta).getImage();
                 ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
@@ -402,7 +386,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                    Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                    Integer.parseInt(cbDia.getSelectedItem().toString()));
                     long id = 0;
-                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha,this.tfpass.getText().trim());
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
                     Fabrica.getCrlUsuarios().altaArtista(ar);
                     JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     tfNombre.setText("");
@@ -412,7 +396,6 @@ public class AltaUsuario extends javax.swing.JFrame {
                     tfLinkWeb.setText("");
                     tfBrebeBiografia.setText(""); 
                     tfDescripcionGen.setText("");
-                    tfpass.setText("");
                     ruta="silueta.jpg";
                     Image mImagen = new ImageIcon(ruta).getImage();
                     ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
@@ -511,7 +494,6 @@ public class AltaUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btImagen;
     private javax.swing.JComboBox<String> cbTipoUsuario;
     private com.toedter.calendar.JDateChooser fNacimiento;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lImagen;
@@ -532,6 +514,5 @@ public class AltaUsuario extends javax.swing.JFrame {
     private javax.swing.JTextField tfLinkWeb;
     private javax.swing.JTextField tfNickname;
     private javax.swing.JTextField tfNombre;
-    private javax.swing.JTextField tfpass;
     // End of variables declaration//GEN-END:variables
 }

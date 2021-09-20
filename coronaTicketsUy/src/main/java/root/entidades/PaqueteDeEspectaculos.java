@@ -93,19 +93,6 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.descripcion = desc;
     }
     
-    @Column
-    private String imagen;
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-    
-    
-    
 //    @Temporal(TemporalType.DATE)
     @Column(name="FECHA_INICIO_PAQ")
     private Date fechaInicio;

@@ -157,7 +157,6 @@ public class ManejadorUsuarios
         return resultado;
     }
     
-        
     public static boolean existeArtista(String nickname)
     {
         boolean us=false;
@@ -232,7 +231,7 @@ public class ManejadorUsuarios
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Artista vp = new Artista(ar.getNombre(), ar.getApellido(), ar.getCorreo(), ar.getNickname(), ar.getImagen(), ar.getFechaNacimiento(), ar.getDescripcion(), ar.getLinkWeb(), ar.getBiografia(), ar.getPass());
+        Artista vp = new Artista(ar.getNombre(), ar.getApellido(), ar.getCorreo(), ar.getNickname(), ar.getImagen(), ar.getFechaNacimiento(), ar.getDescripcion(), ar.getLinkWeb(), ar.getBiografia());
         em.getTransaction().commit();
         em.getTransaction().begin();
         
@@ -248,7 +247,7 @@ public class ManejadorUsuarios
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Espectador vp = new Espectador(es.getNombre(), es.getApellido(), es.getCorreo(), es.getNickname(), es.getImagen(), es.getFechaNacimiento(), es.getPass());
+        Espectador vp = new Espectador(es.getNombre(), es.getApellido(), es.getCorreo(), es.getNickname(), es.getImagen(), es.getFechaNacimiento());
         em.getTransaction().commit();
         em.getTransaction().begin();
         em.persist(vp);
@@ -271,11 +270,10 @@ public class ManejadorUsuarios
         vp.setCorreo(ar.getCorreo());
         vp.setImagen(ar.getImagen());
         vp.setNombre(ar.getNombre());
-        vp.setPasswd(ar.getPass());
         vp.setLinkWeb(ar.getLinkWeb());
         em.persist(vp);
         em.getTransaction().commit();
-//        em.getTransaction().begin();   NO ENTIENDO POR QUE UN BEGIN AQUI
+        em.getTransaction().begin();
         em.close();
         emf.close(); 
     }
@@ -292,7 +290,6 @@ public class ManejadorUsuarios
         vp.setApellido(es.getApellido());
         vp.setNombre(es.getNombre());
         vp.setCorreo(es.getCorreo());
-        vp.setPasswd(es.getPass());
         em.persist(vp);
         em.getTransaction().commit();
         em.close();

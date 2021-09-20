@@ -15,7 +15,6 @@ import java.util.List;
 import javax.persistence.*;
 import root.entidades.Artista;
 import root.entidades.Espectaculo;
-import root.entidades.EstadoEspectaculo;
 import root.entidades.Funcion;
 import root.entidades.Plataforma;
 
@@ -72,9 +71,8 @@ public class ManPlataformas {
         emf.close();
         List<DtEspectaculo> dtE = new ArrayList<DtEspectaculo>();
         for (int i=0;i<plat.getEspectaculos().size();i++){
-            if(plat.getEspectaculos().get(i).getEstado()==EstadoEspectaculo.ACEPTADO){
             DtEspectaculo esteDt = new DtEspectaculo(plat.getEspectaculos().get(i).getId(),plat.getEspectaculos().get(i).getNombre(),plat.getEspectaculos().get(i).getDescrp(),plat.getEspectaculos().get(i).getDuracion(),plat.getEspectaculos().get(i).getCantMaxEspectadores(),plat.getEspectaculos().get(i).getCantMinEspectadores(),plat.getEspectaculos().get(i).getURL(),plat.getEspectaculos().get(i).getCosto(),plat.getEspectaculos().get(i).getFechaRegistro());
-            dtE.add(esteDt);}
+            dtE.add(esteDt);
         }
         return dtE;
         }

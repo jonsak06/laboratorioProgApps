@@ -101,10 +101,9 @@ public class Espectador extends Usuario {
         return compras;
     }
 
-    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
+    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.canjeables=0;
-        this.setPasswd(pass);
     }
 
     public void addCompra(Compra c) {
@@ -140,7 +139,7 @@ public class Espectador extends Usuario {
         this.calcularCanjeables();
         
     
-        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento(),this.getPasswd());
+        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
         return dt; 
     }
     
