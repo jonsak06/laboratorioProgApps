@@ -8,6 +8,7 @@ package root.entidades;
 import root.datatypes.DtEspectaculo;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -40,6 +41,7 @@ public class Espectaculo implements Serializable {
         this.setNombre(nombre);
         this.setPlataforma(p);
         this.setURL(url);
+        this.categoria = new ArrayList<Categoria>();
         
     }
 
@@ -55,6 +57,8 @@ public class Espectaculo implements Serializable {
         this.plataforma = plataforma;
         this.artista = artista;
         this.estado = EstadoEspectaculo.ACEPTADO;
+        this.categoria = new ArrayList<Categoria>();
+
     }
     
     
@@ -145,14 +149,14 @@ public class Espectaculo implements Serializable {
         this.fechaDeRegistro = f;
     }
     
-    @ManyToOne
-    private Categoria categoria;
+    @ManyToMany
+    private List<Categoria> categoria;
 
-    public Categoria getCategoria() {
+    public List<Categoria> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(List<Categoria> categoria) {
         this.categoria = categoria;
     }
     
