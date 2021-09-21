@@ -35,6 +35,17 @@ public class PaqueteDeEspectaculos implements Serializable {
         this.id = id;
     }
     
+    @Column
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     public PaqueteDeEspectaculos(String nombre, String descripcion, float descuento, int fid, int fim, int fiy, int ffd, int ffm, int ffy, int fad, int fam, int fay){
         this.setNombre(nombre);
         this.setDescrp(descripcion);

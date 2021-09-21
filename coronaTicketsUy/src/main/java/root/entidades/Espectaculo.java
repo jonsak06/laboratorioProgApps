@@ -41,6 +41,7 @@ public class Espectaculo implements Serializable {
         this.setNombre(nombre);
         this.setPlataforma(p);
         this.setURL(url);
+        this.estado = EstadoEspectaculo.ACEPTADO;
         this.categoria = new ArrayList<Categoria>();
         
     }
@@ -61,6 +62,16 @@ public class Espectaculo implements Serializable {
 
     }
     
+    @Column
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     
     @Column(name = "NOMBRE_ESP")
     private String nombre;
