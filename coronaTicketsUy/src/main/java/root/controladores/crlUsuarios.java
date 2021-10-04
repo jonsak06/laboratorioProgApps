@@ -14,6 +14,7 @@ import root.datatypes.DtFuncion;
 import root.datatypes.DtPaqueteDeEspectaculos;
 import root.datatypes.DtPlataforma;
 import root.datatypes.DtRegistro;
+import root.datatypes.DtUsuario;
 import root.manejadores.ManEspectaculo;
 import root.manejadores.ManejadorUsuarios;
 import root.entidades.Registro;
@@ -146,4 +147,20 @@ public class crlUsuarios implements iUsuarios
    public  void actualizarRegistros(){
        ManejadorUsuarios.actualizarRegistros();
    }
+   
+   public List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname)
+   {
+       return ManejadorUsuarios.getUsuariosQueNoSiguesAr(nickname);
+   }
+   
+     public List<DtUsuario> getUsuariosQueSiguesAr(String nickname) 
+     {
+         return ManejadorUsuarios.getUsuariosQueSiguesAr(nickname);
+     }
+     public List<DtUsuario> getUsuariosQueSiguesEs(String nickname){
+         return ManejadorUsuarios.getUsuariosQueSiguesEs(nickname);
+     }
+     public List<DtUsuario> getUsuariosQueNoSiguesEs(String nickname){
+         return ManejadorUsuarios.getUsuariosQueNoSiguesEs(nickname);
+     }
 }

@@ -14,6 +14,7 @@ import root.datatypes.DtFuncion;
 import root.datatypes.DtPaqueteDeEspectaculos;
 import root.datatypes.DtPlataforma;
 import root.datatypes.DtRegistro;
+import root.datatypes.DtUsuario;
 import root.entidades.Registro;
 
 /**
@@ -45,4 +46,9 @@ public interface iUsuarios {
     public List<DtPaqueteDeEspectaculos> listarPaquetesEspectaculosDeArtista(String nickname, String nombre);
     public boolean existeCorreo(String correo);
     public void actualizarRegistros();
+     public List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname);
+     public List<DtUsuario> getUsuariosQueSiguesAr(String nickname) ;
+     public List<DtUsuario> getUsuariosQueNoSiguesEs(String nickname);
+     public List<DtUsuario> getUsuariosQueSiguesEs(String nickname);
+    
 }

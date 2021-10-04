@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.*;
 import java.util.List;
+import root.datatypes.DtUsuario;
 
 /**
  *
@@ -141,6 +142,7 @@ public abstract class Usuario implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
 
     @Override
     public int hashCode() {
