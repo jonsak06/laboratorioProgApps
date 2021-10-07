@@ -857,6 +857,7 @@ public class crlUsuariosTest {
         crlUsuarios instance = new crlUsuarios();
         List<String> expResult = new ArrayList<String>();
         expResult.add("eleven11");
+        
         expResult.add("costas");
         expResult.add("waston");
         expResult.add("house");
