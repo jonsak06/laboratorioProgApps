@@ -764,62 +764,116 @@ public class crlUsuariosTest {
 //    /**
 //     * Test of getUsuariosQueNoSiguesAr method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testGetUsuariosQueNoSiguesAr() {
-//        System.out.println("getUsuariosQueNoSiguesAr");
-//        String nickname = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        List<DtUsuario> expResult = null;
-//        List<DtUsuario> result = instance.getUsuariosQueNoSiguesAr(nickname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetUsuariosQueNoSiguesAr() {
+        System.out.println("getUsuariosQueNoSiguesAr");
+        String nickname = "vpeople";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("vpeople");
+        expResult.add("dmode");
+        expResult.add("clouper");
+        expResult.add("tripleNelson");
+        expResult.add("la_ley");
+        expResult.add("lospimpi");
+        expResult.add("dyangounchained");
+        expResult.add("alcides");
+        expResult.add("eleven11");
+        expResult.add("costas");
+        expResult.add("waston");
+        expResult.add("house");
+        expResult.add("sergiop");
+        expResult.add("chino");
+        expResult.add("tonyp");
+        expResult.add("lachiqui");
+        expResult.add("cbochinche");
+        List<DtUsuario> result = instance.getUsuariosQueNoSiguesAr(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+       
+    }
 //
 //    /**
 //     * Test of getUsuariosQueSiguesAr method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testGetUsuariosQueSiguesAr() {
-//        System.out.println("getUsuariosQueSiguesAr");
-//        String nickname = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        List<DtUsuario> expResult = null;
-//        List<DtUsuario> result = instance.getUsuariosQueSiguesAr(nickname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetUsuariosQueSiguesAr() {
+        System.out.println("getUsuariosQueSiguesAr");
+        String nickname = "vpeople";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("bruceTheBoss");
+        List<DtUsuario> result = instance.getUsuariosQueSiguesAr(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of getUsuariosQueSiguesEs method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testGetUsuariosQueSiguesEs() {
-//        System.out.println("getUsuariosQueSiguesEs");
-//        String nickname = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        List<DtUsuario> expResult = null;
-//        List<DtUsuario> result = instance.getUsuariosQueSiguesEs(nickname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetUsuariosQueSiguesEs() {
+        System.out.println("getUsuariosQueSiguesEs");
+        String nickname = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("vpeople");
+        expResult.add("dmode");
+        expResult.add("clouper");
+        expResult.add("bruceTheBoss");
+        expResult.add("tripleNelson");
+        expResult.add("la_ley");
+        expResult.add("lospimpi");
+        expResult.add("dyangounchained");
+        expResult.add("alcides");
+        
+        
+        List<DtUsuario> result = instance.getUsuariosQueSiguesEs(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of getUsuariosQueNoSiguesEs method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testGetUsuariosQueNoSiguesEs() {
-//        System.out.println("getUsuariosQueNoSiguesEs");
-//        String nickname = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        List<DtUsuario> expResult = null;
-//        List<DtUsuario> result = instance.getUsuariosQueNoSiguesEs(nickname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetUsuariosQueNoSiguesEs() {
+        System.out.println("getUsuariosQueNoSiguesEs");
+        String nickname = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("eleven11");
+        expResult.add("costas");
+        expResult.add("waston");
+        expResult.add("house");
+        expResult.add("sergiop");
+        expResult.add("chino");
+        expResult.add("tonyp");
+        expResult.add("lachiqui");
+        expResult.add("cbochinche");
+        List<DtUsuario> result = instance.getUsuariosQueNoSiguesEs(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of seguirUsuarioEs method, of class crlUsuarios.

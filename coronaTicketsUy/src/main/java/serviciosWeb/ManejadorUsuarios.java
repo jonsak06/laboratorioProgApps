@@ -28,6 +28,8 @@ import root.entidades.Funcion;
 import root.entidades.PaqueteDeEspectaculos;
 import root.entidades.Registro;
 import root.entidades.Usuario;
+import static root.manejadores.ManejadorUsuarios.getArtistas;
+import static root.manejadores.ManejadorUsuarios.getEspectadores;
 
 /**
  *
@@ -132,292 +134,6 @@ public class ManejadorUsuarios {
         return us;
     }
 
-    public static List<DtUsuario> getUsuariosQueSiguesAr(String nickname) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
-        consulta.setParameter("nickname", nickname);
-        Artista esteMen = consulta.getSingleResult();
-
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-        List<Usuario> lu = esteMen.getSiguiendo();
-        List<DtUsuario> dtA = new ArrayList<DtUsuario>();
-        for (Usuario i : lu) {
-            if (i instanceof Artista) {
-
-                DtUsuario esteDt = ((Artista) i).getMyDt();
-
-                dtA.add(esteDt);
-            }
-            if (i instanceof Espectador) {
-
-                DtUsuario esteDt = ((Espectador) i).getMyDt();
-
-                dtA.add(esteDt);
-            }
-        }
-        return dtA;
-    }
-
-    public static List<DtUsuario> getUsuariosQueSiguesEs(String nickname) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
-        consulta.setParameter("nickname", nickname);
-        Espectador esteMen = consulta.getSingleResult();
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-        List<Usuario> lu = esteMen.getSiguiendo();
-        List<DtUsuario> dtA = new ArrayList<DtUsuario>();
-        for (Usuario i : lu) {
-            if (i instanceof Artista) {
-
-                DtUsuario esteDt = ((Artista) i).getMyDt();
-
-                dtA.add(esteDt);
-            }
-            if (i instanceof Espectador) {
-
-                DtUsuario esteDt = ((Espectador) i).getMyDt();
-
-                dtA.add(esteDt);
-            }
-        }
-        return dtA;
-    }
-
-    public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
-        consulta.setParameter("nickname", nickname);
-        Artista esteMen = consulta.getSingleResult();
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-        List<DtUsuario> lDtU = new ArrayList<DtUsuario>();
-        List<String> aux = new ArrayList<String>();
-        for (Usuario i : lu) {
-            aux.add(i.getNickname());
-        }
-        for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())) {
-                lDtU.add(i);
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())) {
-                lDtU.add(i);
-            }
-        }
-
-        return lDtU;
-    }
-
-    public static List<DtUsuario> getUsuariosQueNoSiguesEs(String nickname) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
-        consulta.setParameter("nickname", nickname);
-        Espectador esteMen = consulta.getSingleResult();
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-        List<DtUsuario> lDtU = new ArrayList<DtUsuario>();
-        List<String> aux = new ArrayList<String>();
-        for (Usuario i : lu) {
-            aux.add(i.getNickname());
-        }
-        for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())) {
-                lDtU.add(i);
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())) {
-                lDtU.add(i);
-            }
-        }
-
-        return lDtU;
-    }
-
-    public static void seguirUsuarioEs(String nickname, String seguido) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
-        consulta.setParameter("nickname", nickname);
-        Espectador esteMen = consulta.getSingleResult();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-
-        for (DtArtista i : lAr) {
-            if (seguido.equals(i.getNickname())) {
-
-                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
-                consulta2.setParameter("nickname", seguido);
-                Artista eseMen = consulta2.getSingleResult();
-                lu.add(eseMen);
-                esteMen.setSiguiendo(lu);
-
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (seguido.equals(i.getNickname())) {
-                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
-                consulta2.setParameter("nickname", seguido);
-                Espectador eseMen = consulta2.getSingleResult();
-                lu.add(eseMen);
-                esteMen.setSiguiendo(lu);
-            }
-        }
-        em.persist(esteMen);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-    }
-
-    public static void seguirUsuarioAr(String nickname, String seguido) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
-        consulta.setParameter("nickname", nickname);
-        Artista esteMen = consulta.getSingleResult();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-
-        for (DtArtista i : lAr) {
-            if (seguido.equals(i.getNickname())) {
-
-                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
-                consulta2.setParameter("nickname", seguido);
-                Artista eseMen = consulta2.getSingleResult();
-                lu.add(eseMen);
-                esteMen.setSiguiendo(lu);
-
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (seguido.equals(i.getNickname())) {
-                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
-                consulta2.setParameter("nickname", seguido);
-                Espectador eseMen = consulta2.getSingleResult();
-                lu.add(eseMen);
-                esteMen.setSiguiendo(lu);
-            }
-        }
-        em.persist(esteMen);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-    }
-    
-        public static void dejarDeSeguirUsuarioEs(String nickname, String seguido) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
-        consulta.setParameter("nickname", nickname);
-        Espectador esteMen = consulta.getSingleResult();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-
-        for (DtArtista i : lAr) {
-            if (seguido.equals(i.getNickname())) {
-
-                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
-                consulta2.setParameter("nickname", seguido);
-                Artista eseMen = consulta2.getSingleResult();
-                lu.remove(eseMen);
-                esteMen.setSiguiendo(lu);
-
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (seguido.equals(i.getNickname())) {
-                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
-                consulta2.setParameter("nickname", seguido);
-                Espectador eseMen = consulta2.getSingleResult();
-                lu.remove(eseMen);
-                esteMen.setSiguiendo(lu);
-            }
-        }
-        em.persist(esteMen);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-    }
-        
-           public static void dejarDeSeguirUsuarioAr(String nickname, String seguido) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
-        EntityManager em = emf.createEntityManager();
-        em.getTransaction().begin();
-        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
-        consulta.setParameter("nickname", nickname);
-        Artista esteMen = consulta.getSingleResult();
-
-        List<DtArtista> lAr = getArtistas();
-        List<DtEspectador> lEs = getEspectadores();
-
-        List<Usuario> lu = esteMen.getSiguiendo();
-
-        for (DtArtista i : lAr) {
-            if (seguido.equals(i.getNickname())) {
-
-                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
-                consulta2.setParameter("nickname", seguido);
-                Artista eseMen = consulta2.getSingleResult();
-                lu.remove(eseMen);
-                esteMen.setSiguiendo(lu);
-
-            }
-        }
-        for (DtEspectador i : lEs) {
-            if (seguido.equals(i.getNickname())) {
-                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
-                consulta2.setParameter("nickname", seguido);
-                Espectador eseMen = consulta2.getSingleResult();
-                lu.remove(eseMen);
-                esteMen.setSiguiendo(lu);
-            }
-        }
-        em.persist(esteMen);
-        em.getTransaction().commit();
-        em.close();
-        emf.close();
-
-    }
         
     public static boolean existeEspectador(String nickname) {
         boolean us = false;
@@ -864,6 +580,294 @@ public class ManejadorUsuarios {
         em.close();
         emf.close();
     }
+    
+        public static List<DtUsuario> getUsuariosQueSiguesAr(String nickname) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
+        consulta.setParameter("nickname", nickname);
+        Artista esteMen = consulta.getSingleResult();
+
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<Usuario> lu = esteMen.getSiguiendo();
+        List<DtUsuario> dtA = new ArrayList<DtUsuario>();
+        for (Usuario i : lu) {
+            if (i instanceof Artista) {
+
+                DtUsuario esteDt = ((Artista) i).getMyDt();
+
+                dtA.add(esteDt);
+            }
+            if (i instanceof Espectador) {
+
+                DtUsuario esteDt = ((Espectador) i).getMyDt();
+
+                dtA.add(esteDt);
+            }
+        }
+        return dtA;
+    }
+
+    public static List<DtUsuario> getUsuariosQueSiguesEs(String nickname) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        List<Usuario> lu = esteMen.getSiguiendo();
+        List<DtUsuario> dtA = new ArrayList<DtUsuario>();
+        for (Usuario i : lu) {
+            if (i instanceof Artista) {
+
+                DtUsuario esteDt = ((Artista) i).getMyDt();
+
+                dtA.add(esteDt);
+            }
+            if (i instanceof Espectador) {
+
+                DtUsuario esteDt = ((Espectador) i).getMyDt();
+
+                dtA.add(esteDt);
+            }
+        }
+        return dtA;
+    }
+
+    public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
+        consulta.setParameter("nickname", nickname);
+        Artista esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+        List<DtUsuario> lDtU = new ArrayList<DtUsuario>();
+        List<String> aux = new ArrayList<String>();
+        for (Usuario i : lu) {
+            aux.add(i.getNickname());
+        }
+        for (DtArtista i : lAr) {
+            if (!aux.contains(i.getNickname())) {
+                lDtU.add(i);
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (!aux.contains(i.getNickname())) {
+                lDtU.add(i);
+            }
+        }
+
+        return lDtU;
+    }
+
+    public static List<DtUsuario> getUsuariosQueNoSiguesEs(String nickname) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+        List<DtUsuario> lDtU = new ArrayList<DtUsuario>();
+        List<String> aux = new ArrayList<String>();
+        for (Usuario i : lu) {
+            aux.add(i.getNickname());
+        }
+        for (DtArtista i : lAr) {
+            if (!aux.contains(i.getNickname())) {
+                lDtU.add(i);
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (!aux.contains(i.getNickname())) {
+                lDtU.add(i);
+            }
+        }
+
+        return lDtU;
+    }
+
+    public static void seguirUsuarioEs(String nickname, String seguido) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+
+        for (DtArtista i : lAr) {
+            if (seguido.equals(i.getNickname())) {
+
+                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
+                consulta2.setParameter("nickname", seguido);
+                Artista eseMen = consulta2.getSingleResult();
+                lu.add(eseMen);
+                esteMen.setSiguiendo(lu);
+
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (seguido.equals(i.getNickname())) {
+                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
+                consulta2.setParameter("nickname", seguido);
+                Espectador eseMen = consulta2.getSingleResult();
+                lu.add(eseMen);
+                esteMen.setSiguiendo(lu);
+            }
+        }
+        em.persist(esteMen);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+    }
+
+    public static void seguirUsuarioAr(String nickname, String seguido) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
+        consulta.setParameter("nickname", nickname);
+        Artista esteMen = consulta.getSingleResult();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+
+        for (DtArtista i : lAr) {
+            if (seguido.equals(i.getNickname())) {
+
+                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
+                consulta2.setParameter("nickname", seguido);
+                Artista eseMen = consulta2.getSingleResult();
+                lu.add(eseMen);
+                esteMen.setSiguiendo(lu);
+
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (seguido.equals(i.getNickname())) {
+                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
+                consulta2.setParameter("nickname", seguido);
+                Espectador eseMen = consulta2.getSingleResult();
+                lu.add(eseMen);
+                esteMen.setSiguiendo(lu);
+            }
+        }
+        em.persist(esteMen);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+    }
+    
+        public static void dejarDeSeguirUsuarioEs(String nickname, String seguido) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectador> consulta = em.createNamedQuery("EspectadorporNick", Espectador.class);
+        consulta.setParameter("nickname", nickname);
+        Espectador esteMen = consulta.getSingleResult();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+
+        for (DtArtista i : lAr) {
+            if (seguido.equals(i.getNickname())) {
+
+                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
+                consulta2.setParameter("nickname", seguido);
+                Artista eseMen = consulta2.getSingleResult();
+                lu.remove(eseMen);
+                esteMen.setSiguiendo(lu);
+
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (seguido.equals(i.getNickname())) {
+                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
+                consulta2.setParameter("nickname", seguido);
+                Espectador eseMen = consulta2.getSingleResult();
+                lu.remove(eseMen);
+                esteMen.setSiguiendo(lu);
+            }
+        }
+        em.persist(esteMen);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+    }
+        
+           public static void dejarDeSeguirUsuarioAr(String nickname, String seguido) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Artista> consulta = em.createNamedQuery("ArtistaporNick", Artista.class);
+        consulta.setParameter("nickname", nickname);
+        Artista esteMen = consulta.getSingleResult();
+
+        List<DtArtista> lAr = getArtistas();
+        List<DtEspectador> lEs = getEspectadores();
+
+        List<Usuario> lu = esteMen.getSiguiendo();
+
+        for (DtArtista i : lAr) {
+            if (seguido.equals(i.getNickname())) {
+
+                TypedQuery<Artista> consulta2 = em.createNamedQuery("ArtistaporNick", Artista.class);
+                consulta2.setParameter("nickname", seguido);
+                Artista eseMen = consulta2.getSingleResult();
+                lu.remove(eseMen);
+                esteMen.setSiguiendo(lu);
+
+            }
+        }
+        for (DtEspectador i : lEs) {
+            if (seguido.equals(i.getNickname())) {
+                TypedQuery<Espectador> consulta2 = em.createNamedQuery("EspectadorporNick", Espectador.class);
+                consulta2.setParameter("nickname", seguido);
+                Espectador eseMen = consulta2.getSingleResult();
+                lu.remove(eseMen);
+                esteMen.setSiguiendo(lu);
+            }
+        }
+        em.persist(esteMen);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+
+    }
+
 
 }
 

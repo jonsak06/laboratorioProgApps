@@ -163,4 +163,30 @@ public class crlUsuarios implements iUsuarios
      public List<DtUsuario> getUsuariosQueNoSiguesEs(String nickname){
          return ManejadorUsuarios.getUsuariosQueNoSiguesEs(nickname);
      }
+     
+     
+     public void seguirUsuarioEs(String nickname, String seguido){
+         ManejadorUsuarios.seguirUsuarioEs(nickname, seguido);
+     }
+     
+     public void seguirUsuarioAr(String nickname, String seguido){
+         ManejadorUsuarios.seguirUsuarioAr(nickname, seguido);
+     }
+     
+     public void dejarDeSeguirUsuarioEs(String nickname, String seguido)
+     {
+         ManejadorUsuarios.dejarDeSeguirUsuarioEs(nickname, seguido);
+     }
+     public void dejarDeSeguirUsuarioAr(String nickname, String seguido)
+     {
+         ManejadorUsuarios.dejarDeSeguirUsuarioAr(nickname, seguido);
+     }
+     
+     public List<DtPaqueteDeEspectaculos> getPaquetesDelUsuario(String nickname){
+         return ManejadorUsuarios.getPaquetesDelUsuario(nickname);
+     }
+     
+     public void comprarPaquete(String nickname, String nombrePaq){
+          ManejadorUsuarios.comprarPaquete(nickname, nombrePaq);
+     }
 }
