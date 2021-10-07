@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import javax.persistence.*;  
 
 /**
  *
@@ -36,11 +36,12 @@ public class Artista extends Usuario {
 
     }
     
-    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia) {
+    public Artista(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String descripcion, String link, String biografia, String pass) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.setBiografia(biografia);
         this.setDescripcion(descripcion);
         this.setLinkWeb(link);
+        this.setPasswd(pass);
 
     }
 
@@ -134,7 +135,7 @@ public class Artista extends Usuario {
     
     public DtArtista getMyDt()
     {
-        DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        DtArtista dt = new DtArtista(this.linkWeb, this.biografia, this.descripcion, this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento(), this.getPasswd());
         return dt; 
     }
 }

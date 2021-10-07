@@ -54,7 +54,7 @@ public class Espectador extends Usuario {
         canjeables = 0;
 //        this.actualizarRegistros();
         for (Registro i :this.registros){
-            if(i.getEstado()!=EstadoRegistro.USADO){
+            if(i.getEstado()!=EstadoRegistro.USADO && i.getCosto()!=0){
             canjeables = canjeables + 1;
             }
         }
@@ -101,9 +101,10 @@ public class Espectador extends Usuario {
         return compras;
     }
 
-    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.canjeables=0;
+        this.setPasswd(pass);
     }
 
     public void addCompra(Compra c) {
@@ -139,7 +140,7 @@ public class Espectador extends Usuario {
         this.calcularCanjeables();
         
     
-        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento(),this.getPasswd());
         return dt; 
     }
     

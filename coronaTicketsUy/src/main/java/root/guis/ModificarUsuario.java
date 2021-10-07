@@ -468,7 +468,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 {
                     long miliseg = fechaNacimiento.getDate().getTime();
                     java.sql.Date fecha = new java.sql.Date(miliseg);
-                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), espectadores.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
+                    DtEspectador es = new DtEspectador(espectadores.get(i).getCanjeables(), espectadores.get(i).getId(), tfNombre.getText(), tfApellido.getText(), espectadores.get(i).getCorreo(), tfNickname.getText(), ruta, fecha, "pass");
                     Fabrica.getCrlUsuarios().modificarEspectador(es);
                     JOptionPane.showMessageDialog(null, "El espectador fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     ModificarUsuario ventana = new ModificarUsuario();
@@ -484,7 +484,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
                     if("".equals(this.tfLinkWeb.getText())|| (!"".equals(this.tfLinkWeb.getText())&&!(this.tfLinkWeb.getText().contains(" ") || this.tfLinkWeb.getText().contains(".")==false || this.tfLinkWeb.getText().length()>254))){
                         long miliseg = fechaNacimiento.getDate().getTime();
                         java.sql.Date fecha = new java.sql.Date(miliseg);
-                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), artistas.get(i).getCorreo(), tfNickname.getText(), ruta, fecha);
+                        DtArtista ar = new DtArtista(tfLinkWeb.getText(), tfBiografia.getText(), tfDescripcion.getText(), artistas.get(i).getId(), tfNombre.getText(), tfApellido.getText(), artistas.get(i).getCorreo(), tfNickname.getText(), ruta, fecha, "pass");
                         Fabrica.getCrlUsuarios().modificarArtista(ar);
                         JOptionPane.showMessageDialog(null, "El artista fue modificado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                         ModificarUsuario ventana = new ModificarUsuario();

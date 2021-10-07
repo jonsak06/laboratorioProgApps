@@ -362,7 +362,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                Integer.parseInt(cbDia.getSelectedItem().toString()));
                 long id = 0;
-                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha, "pass");
                 Fabrica.getCrlUsuarios().altaEspectador(es);
                 JOptionPane.showMessageDialog(null, "El espectador fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                 tfNombre.setText("");
@@ -386,7 +386,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                    Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                    Integer.parseInt(cbDia.getSelectedItem().toString()));
                     long id = 0;
-                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha);
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha, "pass");
                     Fabrica.getCrlUsuarios().altaArtista(ar);
                     JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     tfNombre.setText("");
