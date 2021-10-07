@@ -932,20 +932,26 @@ public class crlUsuariosTest {
 //        fail("The test case is a prototype.");
 //    }
 //
-//    /**
-//     * Test of getPaquetesDelUsuario method, of class crlUsuarios.
-//     */
-//    @Test
-//    public void testGetPaquetesDelUsuario() {
-//        System.out.println("getPaquetesDelUsuario");
-//        String nickname = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        List<DtPaqueteDeEspectaculos> expResult = null;
-//        List<DtPaqueteDeEspectaculos> result = instance.getPaquetesDelUsuario(nickname);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    /**
+     * Test of getPaquetesDelUsuario method, of class crlUsuarios.
+     */
+    @Test
+    public void testGetPaquetesDelUsuario() {
+        System.out.println("getPaquetesDelUsuario");
+        String nickname = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("Paquete Latino");
+        List<DtPaqueteDeEspectaculos> result = instance.getPaquetesDelUsuario(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtPaqueteDeEspectaculos i : result) {
+            namesResult.add(i.getNombre());
+        }
+        assertEquals(expResult, namesResult);
+        
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of comprarPaquete method, of class crlUsuarios.
