@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import root.entidades.Espectaculo;
 
 /**
  *
@@ -195,19 +196,23 @@ public class PaqueteDeEspectaculos implements Serializable {
     }
     
     public List<String> filtrarEspectaculosNoIncluidos(List<String> nomEsps, String nombrePlataforma) {
-        espectaculos.forEach(e -> {
+//        espectaculos.forEach(e -> {
+            for(Espectaculo e :espectaculos){
             if(nomEsps.contains(e.getNombre())) {
                 nomEsps.remove(e.getNombre());
             }
-        });
+//        });
+            }
         return nomEsps;
     }
     
     public List<String> getNombresEspectaculos() {
         List<String> nomEsps = new ArrayList();
-        espectaculos.forEach(e -> {
+//        espectaculos.forEach(e -> {
+         for(Espectaculo e :espectaculos){
             nomEsps.add(e.getNombre());
-        });
+//        });
+         }
         return nomEsps;
     }
 }
