@@ -15,13 +15,14 @@ import serviciosWeb.ManEspectaculo;
 import serviciosWeb.ManPlataformas;
 import serviciosWeb.ManejadorPaquetes;
 import root.entidades.PaqueteDeEspectaculos;
+import root.interfaces.iPaquetes;
 
 
 /**
  *
  * @author dexion
  */
-public class CtrlPaquetes {
+public class CtrlPaquetes implements iPaquetes {
     private static final CtrlPaquetes instance = new CtrlPaquetes();
     private CtrlPaquetes(){this.mp = ManejadorPaquetes.getInstance();
 };

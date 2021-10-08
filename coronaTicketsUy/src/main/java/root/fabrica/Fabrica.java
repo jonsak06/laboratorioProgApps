@@ -5,11 +5,11 @@
  */
 package root.fabrica;
 
-import root.controladores.CtrlEspectaculos;
-import root.controladores.CtrlPaquetes;
-import root.controladores.DatosDePruebaCtrl;
+import serviciosWeb.CtrlEspectaculos;
+import serviciosWeb.CtrlPaquetes;
+import serviciosWeb.DatosDePruebaCtrl;
 import root.interfaces.IEspectaculos;
-import root.controladores.crlUsuarios;
+import serviciosWeb.crlUsuarios;
 import root.interfaces.iDatosDePrueba;
 import root.interfaces.iPaquetes;
 import root.interfaces.iUsuarios;

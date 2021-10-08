@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package root.controladores;
+package serviciosWeb;
 import java.sql.*;
 import java.util.*;
 import java.util.Properties;

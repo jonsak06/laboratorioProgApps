@@ -19,11 +19,11 @@ import root.datatypes.DtEspectaculo;
 import root.datatypes.DtEspectador;
 import root.datatypes.DtFuncion;
 import root.datatypes.DtPlataforma;
+import root.datatypes.DtRegistro;
 import root.fabrica.Fabrica;
 import root.interfaces.IEspectaculos;
-import root.manejadores.ManejadorUsuarios;
+import serviciosWeb.ManejadorUsuarios;
 import root.entidades.Registro;
-import root.controladores.crlUsuarios;
 import root.interfaces.iUsuarios;
 
 /**
@@ -39,8 +39,8 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
     private java.sql.Date fFuncion;
     public RegistroEspectadorFuncion() {
         initComponents();
-        crlUsuarios cu = new crlUsuarios();
-        cu.actualizarRegistros();
+        iUsuarios iu = Fabrica.getCrlUsuarios();
+        iu.actualizarRegistros();
         List<String> l = new ArrayList<String>();
         l.add("--Seleccione una--");
         List<String> listaEspectaculos = new ArrayList<String>();
@@ -542,11 +542,11 @@ public class RegistroEspectadorFuncion extends javax.swing.JFrame {
             modelo.add(0,"No hay suficientes registros canjeables");
             this.seleccionarCanjeables.setModel(modelo);
         }else{
-            List<Registro> canjeables = iu.listarCanjeables(this.listadoDeEspectadores.getSelectedItem().toString());
+            List<DtRegistro> canjeables = iu.listarCanjeables(this.listadoDeEspectadores.getSelectedItem().toString());
             DefaultListModel<String> modelo = new DefaultListModel<String>();
             int pos = 0;
-            for(Registro i :canjeables){
-                modelo.add(pos, i.getFuncion().getNombre());
+            for(DtRegistro i :canjeables){
+                modelo.add(pos, i.getNombreFuncion());
                 pos++;
             }
             this.seleccionarCanjeables.setModel(modelo);

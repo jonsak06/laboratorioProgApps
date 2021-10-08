@@ -24,8 +24,7 @@ import root.interfaces.iUsuarios;
  *
  * @author tecnologo
  */
-public class crlUsuarios 
-{
+public class crlUsuarios implements iUsuarios{
 //    public List<DtUsuario> getDatos()
 //    {
 //        

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import root.datatypes.DtArtista;
+import root.datatypes.DtCategoria;
 import root.datatypes.DtEspectaculo;
 import root.datatypes.DtPlataforma;
 import root.fabrica.Fabrica;
@@ -315,7 +316,10 @@ public class AltaEspectaculo extends javax.swing.JFrame {
                 if(espectadoresMin>0 && espectadoresMin<espectadoresMax)
                 {
                     DtEspectaculo dtEspectaculo = new DtEspectaculo(id,tbNombre.getText(), tbDescripcion.getText(),duracion,espectadoresMin,espectadoresMax,tbUrl.getText(),costo,fecha);
-                    Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(), dtEspectaculo);
+                    DtCategoria dtc = new DtCategoria("Sin Categoria(creado por Admin)");
+                    List<String> cats = new ArrayList<String>();
+                    cats.add(dtc.getNombre());
+                    Fabrica.getCtrlEspectaculos().altaEspectaculo(cbListaPlataformas.getSelectedItem().toString(), cbListaArtistas.getSelectedItem().toString(),cats , dtEspectaculo,"path");
                     JOptionPane.showMessageDialog(null, "Espectaculo Guardado exitosamente!","Espectaculos", JOptionPane.DEFAULT_OPTION);
                     tbNombre.setText("");
                     tbDescripcion.setText("");

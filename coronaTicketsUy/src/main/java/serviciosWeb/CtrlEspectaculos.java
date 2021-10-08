@@ -21,7 +21,7 @@ import serviciosWeb.ManPlataformas;
  *
  * @author julio
  */
-public class CtrlEspectaculos  {
+public class CtrlEspectaculos  implements IEspectaculos {
     
     public CtrlEspectaculos(){}
     
