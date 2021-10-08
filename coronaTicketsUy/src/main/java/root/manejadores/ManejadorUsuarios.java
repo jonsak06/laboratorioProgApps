@@ -99,8 +99,6 @@ public class ManejadorUsuarios {
         return dtA;
     }
 
-    
-
 //    
 //    public static Usuario getUsuario(String nickname)
 //    {
@@ -272,13 +270,13 @@ public class ManejadorUsuarios {
         Artista vp = lista.getSingleResult();
         vp.setApellido(ar.getApellido());
         vp.setBiografia(ar.getBiografia());
-        vp.setCorreo(ar.getCorreo());
         vp.setImagen(ar.getImagen());
         vp.setNombre(ar.getNombre());
+        vp.setPasswd(ar.getPass());
         vp.setLinkWeb(ar.getLinkWeb());
+        vp.setDescripcion(ar.getDescripcion());
         em.persist(vp);
         em.getTransaction().commit();
-        em.getTransaction().begin();
         em.close();
         emf.close();
     }
@@ -294,7 +292,8 @@ public class ManejadorUsuarios {
         Espectador vp = lista.getSingleResult();
         vp.setApellido(es.getApellido());
         vp.setNombre(es.getNombre());
-        vp.setCorreo(es.getCorreo());
+        vp.setPasswd(es.getPass());
+        vp.setFechaNacimiento(es.getFechaNacimiento());
         em.persist(vp);
         em.getTransaction().commit();
         em.close();
@@ -549,7 +548,7 @@ public class ManejadorUsuarios {
         return dtA;
     }
 
-public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
+    public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -570,12 +569,12 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
             aux.add(i.getNickname());
         }
         for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())&&!i.getNickname().equals(nickname)) {
+            if (!aux.contains(i.getNickname()) && !i.getNickname().equals(nickname)) {
                 lDtU.add(i);
             }
         }
         for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())&&!i.getNickname().equals(nickname)) {
+            if (!aux.contains(i.getNickname()) && !i.getNickname().equals(nickname)) {
                 lDtU.add(i);
             }
         }
@@ -604,12 +603,12 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
             aux.add(i.getNickname());
         }
         for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())&&!i.getNickname().equals(nickname)) {
+            if (!aux.contains(i.getNickname()) && !i.getNickname().equals(nickname)) {
                 lDtU.add(i);
             }
         }
         for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())&&!i.getNickname().equals(nickname)) {
+            if (!aux.contains(i.getNickname()) && !i.getNickname().equals(nickname)) {
                 lDtU.add(i);
             }
         }
@@ -696,8 +695,8 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         emf.close();
 
     }
-    
-        public static void dejarDeSeguirUsuarioEs(String nickname, String seguido) {
+
+    public static void dejarDeSeguirUsuarioEs(String nickname, String seguido) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -736,8 +735,8 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         emf.close();
 
     }
-        
-           public static void dejarDeSeguirUsuarioAr(String nickname, String seguido) {
+
+    public static void dejarDeSeguirUsuarioAr(String nickname, String seguido) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
@@ -776,8 +775,9 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         emf.close();
 
     }
+
     //    
-            public static List<String> listarPaquetesParaEsp(String nickname, String nombreEspectaculo) {
+    public static List<String> listarPaquetesParaEsp(String nickname, String nombreEspectaculo) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         Espectador estemen = em.createNamedQuery("EspectadorporNick", Espectador.class).setParameter("nickname", nickname).getSingleResult();
@@ -797,8 +797,8 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         }
         return result;
     }
-    
-    public static List<DtPaqueteDeEspectaculos> getPaquetesDelUsuario(String nickname){
+
+    public static List<DtPaqueteDeEspectaculos> getPaquetesDelUsuario(String nickname) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         Espectador estemen = em.createNamedQuery("EspectadorporNick", Espectador.class).setParameter("nickname", nickname).getSingleResult();
@@ -806,25 +806,24 @@ public static List<DtUsuario> getUsuariosQueNoSiguesAr(String nickname) {
         emf.close();
         List<DtPaqueteDeEspectaculos> resultado = new ArrayList<DtPaqueteDeEspectaculos>();
         List<Compra> compras = estemen.getCompras();
-        for(Compra i:compras){
+        for (Compra i : compras) {
             resultado.add(i.getPaquete().getMyDt());
         }
         return resultado;
     }
-    
-    public static void comprarPaquete(String nickname, String nombrePaq){
+
+    public static void comprarPaquete(String nickname, String nombrePaq) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        Espectador estemen = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", nickname).getSingleResult();
-        PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName",PaqueteDeEspectaculos.class).setParameter("nombre", nombrePaq).getSingleResult();
+        Espectador estemen = em.createNamedQuery("EspectadorporNick", Espectador.class).setParameter("nickname", nickname).getSingleResult();
+        PaqueteDeEspectaculos paq = em.createNamedQuery("PaqueteByName", PaqueteDeEspectaculos.class).setParameter("nombre", nombrePaq).getSingleResult();
         long fecha = new java.util.Date().getTime();
         java.sql.Date date = new java.sql.Date(fecha);
-        Compra compra = new Compra(paq, date,estemen);
+        Compra compra = new Compra(paq, date, estemen);
         em.persist(compra);
         em.getTransaction().commit();
-        
-        
+
         em.close();
         emf.close();
     }
