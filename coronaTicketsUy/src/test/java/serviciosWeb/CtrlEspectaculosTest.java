@@ -565,5 +565,15 @@ public class CtrlEspectaculosTest {
         assertEquals(resEsp, result);
 
     }
+    
+    @Test
+    public void testListarTodasLAsFunciones2(){
+        String nombreEsp = "Llega a Casa";
+        CtrlEspectaculos instancia = new CtrlEspectaculos();
+        List<DtFuncion> result = instancia.listarTodasLasFunciones(nombreEsp);
+        List<DtFuncion> resEsp = null;
+        assertEquals(resEsp, result);
+
+    }
 //    
 }

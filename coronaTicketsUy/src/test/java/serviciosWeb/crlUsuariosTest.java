@@ -6,6 +6,9 @@ package serviciosWeb;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,7 +24,9 @@ import root.datatypes.DtPlataforma;
 import root.datatypes.DtRegistro;
 import root.datatypes.DtUsuario;
 import root.entidades.Artista;
+import root.entidades.Compra;
 import root.entidades.Espectador;
+import root.entidades.Registro;
 
 /**
  *
@@ -285,6 +290,29 @@ public class crlUsuariosTest {
 
     }
 
+        @Test
+    public void testExisteUsuario2() {
+        System.out.println("existeUsuario");
+        String nickname = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = true;
+        boolean result = instance.existeUsuario(nickname);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
+    }
+    
+    @Test
+    public void testExisteUsuario3() {
+        System.out.println("existeUsuario");
+        String nickname = "    ";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = false;
+        boolean result = instance.existeUsuario(nickname);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
+    }
     /**
      * // * Test of existeArtista method, of class crlUsuarios. //
      */
@@ -294,6 +322,18 @@ public class crlUsuariosTest {
         String nickname = "dmode";
         crlUsuarios instance = new crlUsuarios();
         boolean expResult = true;
+        boolean result = instance.existeArtista(nickname);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
+    }
+    
+    @Test
+    public void testExisteArtista2() {
+        System.out.println("existeArtista");
+        String nickname = "    ";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = false;
         boolean result = instance.existeArtista(nickname);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -315,58 +355,118 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
 
     }
+    
+        public void testExisteEspectador2() {
+        System.out.println("existeEspectador");
+        String nickname = "   ";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = false;
+        boolean result = instance.existeEspectador(nickname);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
 
-//    /**
-//     * Test of altaArtista method, of class crlUsuarios.
-//     */
-//    @Test
-//    public void testAltaArtista() {
-//        System.out.println("altaArtista");
-//        DtArtista ar = null;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.altaArtista(ar);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of altaEspectador method, of class crlUsuarios.
-//     */
-//    @Test
-//    public void testAltaEspectador() {
-//        System.out.println("altaEspectador");
-//        DtEspectador es = null;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.altaEspectador(es);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    }
+
+    /**
+     * Test of altaArtista method, of class crlUsuarios.
+     */
+    @Test
+    public void testAltaArtista() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtArtista modelo = em.createNamedQuery("ArtistaporNick",Artista.class).setParameter("nickname", "vpeople").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtArtista nuevo = new DtArtista(modelo.getLinkWeb(),modelo.getBiografia(),modelo.getDescripcion(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaArtista(nuevo);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        em2.getTransaction().begin();
+        Artista a = em2.createNamedQuery("ArtistaporNick",Artista.class).setParameter("nickname", "test").getSingleResult();
+        String result = a.getNickname();
+        em2.remove(a);
+        em2.getTransaction().commit();
+        em2.close();
+        emf2.close();
+        assertEquals("test", result);
+    }
+
+    /**
+     * Test of altaEspectador method, of class crlUsuarios.
+     */
+    @Test
+    public void testAltaEspectador() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtEspectador modelo = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "costas").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtEspectador nuevo = new DtEspectador(modelo.getCanjeables(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaEspectador(nuevo);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        em2.getTransaction().begin();
+        Espectador a = em2.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "test").getSingleResult();
+        String result = a.getNickname();
+        em2.remove(a);
+        em2.getTransaction().commit();
+        em2.close();
+        emf2.close();
+        assertEquals("test", result);
+    }
 //
 //    /**
 //     * Test of modificarArtista method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testModificarArtista() {
-//        System.out.println("modificarArtista");
-//        DtArtista ar = null;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.modificarArtista(ar);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testModificarArtista() {
+        System.out.println("modificarArtista");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtArtista modelo = em.createNamedQuery("ArtistaporNick",Artista.class).setParameter("nickname", "vpeople").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtArtista nuevo = new DtArtista(modelo.getLinkWeb(),modelo.getBiografia(),modelo.getDescripcion(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaArtista(nuevo);//ingreso artista para modificaciones 
+        DtArtista modificado = new DtArtista("www.test.com","test bio","test desc",modelo.getId(),modelo.getNombre(),modelo.getApellido(),"test corr","test","path",modelo.getFechaNacimiento(),"pass");
+        cu.modificarArtista(modificado);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        em2.getTransaction().begin();
+        Artista a = em2.createNamedQuery("ArtistaporNick",Artista.class).setParameter("nickname", "test").getSingleResult();
+        em2.remove(a);
+        em2.getTransaction().commit();
+        em2.close();
+        emf2.close();
+    }
 //
 //    /**
 //     * Test of modificarEspectador method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testModificarEspectador() {
-//        System.out.println("modificarEspectador");
-//        DtEspectador es = null;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.modificarEspectador(es);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testModificarEspectador() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtEspectador modelo = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "costas").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtEspectador nuevo = new DtEspectador(modelo.getCanjeables(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaEspectador(nuevo);//ingreso espectador para modificaciones 
+        DtEspectador modificado = new DtEspectador(modelo.getCanjeables(),modelo.getId(),"testNombre","testApell","testCorr","test","testImg",modelo.getFechaNacimiento(),"testPass");
+        cu.modificarEspectador(modificado);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        em2.getTransaction().begin();
+        Espectador a = em2.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "test").getSingleResult();
+        em2.remove(a);
+        em2.getTransaction().commit();
+        em2.close();
+        emf2.close();
+    }
 //
 //    /**
 //     * Test of getNoRegistrados method, of class crlUsuarios.
@@ -460,39 +560,69 @@ public class crlUsuariosTest {
 //    /**
 //     * Test of canjearRegistros method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testCanjearRegistros() {
-//        System.out.println("canjearRegistros");
-//        List<String> canjeables = null;
-//        String nickname = "";
-//        float costo = 0.0F;
-//        String nombreFuncion = "";
-//        int fdia = 0;
-//        int fmes = 0;
-//        int fanio = 0;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.canjearRegistros(canjeables, nickname, costo, nombreFuncion, fdia, fmes, fanio);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testCanjearRegistros() {
+        System.out.println("canjearRegistros");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtEspectador modelo = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "costas").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtEspectador nuevo = new DtEspectador(modelo.getCanjeables(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaEspectador(nuevo);
+        cu.registrarUsuario("test", "Bien de Familia - B", 500, 8, 10, 2021);
+        cu.registrarUsuario("test", "Bien de Familia - C", 500, 8, 10, 2021);
+        cu.registrarUsuario("test", "30 anios - 3", 450, 8, 10, 2021);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        Espectador e = em2.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "test").getSingleResult();
+        em2.close();
+        emf2.close();
+        List<String> canjeables = new ArrayList<String>();
+        for(Registro i : e.getRegistros()){
+            canjeables.add(i.getFuncion().getNombre());
+        }
+        cu.canjearRegistros(canjeables, "test", 0, "Springsteen on Broadway - iii", 8, 10, 2021);
+        EntityManagerFactory emf3 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em3 = emf3.createEntityManager();
+        Espectador e2 = em3.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "test").getSingleResult();
+        em3.getTransaction().begin();
+        for(Registro r:e2.getRegistros()){
+            em3.remove(r);
+        }
+        em3.remove(e2);
+        em3.getTransaction().commit();
+        em3.close();
+        emf3.close();
+    }
 //
 //    /**
 //     * Test of registrarUsuario method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testRegistrarUsuario() {
-//        System.out.println("registrarUsuario");
-//        String nickname = "";
-//        String nombreFuncion = "";
-//        float costo = 0.0F;
-//        int fdia = 0;
-//        int fmes = 0;
-//        int fanio = 0;
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.registrarUsuario(nickname, nombreFuncion, costo, fdia, fmes, fanio);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testRegistrarUsuario() {
+        System.out.println("registrarUsuario");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        DtEspectador modelo = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "costas").getSingleResult().getMyDt();
+        em.close();
+        emf.close();
+        DtEspectador nuevo = new DtEspectador(modelo.getCanjeables(),modelo.getId(),modelo.getNombre(),modelo.getApellido(),modelo.getCorreo(),"test",modelo.getImagen(),modelo.getFechaNacimiento(),modelo.getPass());
+        crlUsuarios cu = new crlUsuarios();
+        cu.altaEspectador(nuevo);
+        cu.registrarUsuario("test", "Bien de Familia - B", 500, 8, 10, 2021);
+        EntityManagerFactory emf2 = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em2 = emf2.createEntityManager();
+        em2.getTransaction().begin();
+        Espectador e = em2.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", "test").getSingleResult();
+        em2.remove(e.getRegistros().get(0));
+        em2.remove(e);
+        em2.getTransaction().commit();
+        em2.close();
+        emf2.close();
+        
+    }
 //
 //    /**
 //     * Test of getDatosEspectador method, of class crlUsuarios.
@@ -674,18 +804,29 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
 
     }
+    
+    @Test
+    public void testExisteCorreo2() {
+        System.out.println("existeCorreo");
+        String correo = "gcostas@gmail.com";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = true;
+        boolean result = instance.existeCorreo(correo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+
+    }
 //
 //    /**
 //     * Test of actualizarRegistros method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testActualizarRegistros() {
-//        System.out.println("actualizarRegistros");
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.actualizarRegistros();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testActualizarRegistros() {
+        System.out.println("actualizarRegistros");
+        crlUsuarios instance = new crlUsuarios();
+        instance.actualizarRegistros();
+        // TODO review the generated test code and remove the default call to fail.
+    }
 //
 //    /**
 //     * Test of getFuncionesNoRegistradas method, of class crlUsuarios.
@@ -723,6 +864,19 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
+    
+    @Test
+    public void testTienePaquetesParaEspectaculo2() {
+        System.out.println("tienePaquetesParaEspectaculo");
+         String nickname = "costas";
+        String nombreEspectaculo = "Bien de Familia";
+        crlUsuarios instance = new crlUsuarios();
+        boolean expResult = true;
+        boolean result = instance.tienePaquetesParaEspectaculo(nickname, nombreEspectaculo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 
 //    /**
 //     * Test of listarPaquetesParaEsp method, of class crlUsuarios.
@@ -734,6 +888,21 @@ public class crlUsuariosTest {
         String nombreEspectaculo = "Los Village Volvieron";
         crlUsuarios instance = new crlUsuarios();
         List<String> expResult = new ArrayList<String>();
+        List<String> result = instance.listarPaquetesParaEsp(nickname, nombreEspectaculo);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
+    
+    
+    @Test
+    public void testListarPaquetesParaEsp2() {
+        System.out.println("listarPaquetesParaEsp");
+        String nickname = "costas";
+        String nombreEspectaculo = "Bien de Familia";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("Paquete Latino");
         List<String> result = instance.listarPaquetesParaEsp(nickname, nombreEspectaculo);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -760,6 +929,24 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
+    
+        @Test
+    public void testGetFuncionesRegistrosNoUsados2() {
+        System.out.println("getFuncionesRegistrosNoUsados");
+        String nickname = "costas";
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("Springsteen on Broadway - iii");
+        expResult.add("Bien de Familia - C");
+        List<DtFuncion> result = ManejadorUsuarios.getFuncionesRegistrosNoUsados(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtFuncion i : result) {
+            namesResult.add(i.getNombre());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
+    
 //
 //    /**
 //     * Test of getUsuariosQueNoSiguesAr method, of class crlUsuarios.
@@ -770,7 +957,6 @@ public class crlUsuariosTest {
         String nickname = "vpeople";
         crlUsuarios instance = new crlUsuarios();
         List<String> expResult = new ArrayList<String>();
-        expResult.add("vpeople");
         expResult.add("dmode");
         expResult.add("clouper");
         expResult.add("tripleNelson");
@@ -816,6 +1002,26 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
+    
+    @Test
+    public void testGetUsuariosQueSiguesAr2() {
+        System.out.println("getUsuariosQueSiguesAr");
+        String nickname = "bruceTheBoss";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("vpeople");
+        expResult.add("dmode");
+        expResult.add("clouper");
+        expResult.add("house");
+        List<DtUsuario> result = instance.getUsuariosQueSiguesAr(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of getUsuariosQueSiguesEs method, of class crlUsuarios.
@@ -846,6 +1052,26 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
+    
+    @Test
+    public void testGetUsuariosQueSiguesEs2() {
+        System.out.println("getUsuariosQueSiguesEs");
+        String nickname = "waston";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("dmode");
+        expResult.add("clouper");
+        expResult.add("bruceTheBoss");
+        expResult.add("house");      
+        List<DtUsuario> result = instance.getUsuariosQueSiguesEs(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of getUsuariosQueNoSiguesEs method, of class crlUsuarios.
@@ -856,9 +1082,7 @@ public class crlUsuariosTest {
         String nickname = "costas";
         crlUsuarios instance = new crlUsuarios();
         List<String> expResult = new ArrayList<String>();
-        expResult.add("eleven11");
-        
-        expResult.add("costas");
+        expResult.add("eleven11");        
         expResult.add("waston");
         expResult.add("house");
         expResult.add("sergiop");
@@ -875,62 +1099,110 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
+    @Test
+    public void testGetUsuariosQueNoSiguesEs2() {
+        System.out.println("getUsuariosQueNoSiguesEs");
+        String nickname = "sergiop";
+        crlUsuarios instance = new crlUsuarios();
+        List<String> expResult = new ArrayList<String>();
+        expResult.add("dmode");
+        expResult.add("clouper");
+        expResult.add("bruceTheBoss");
+        expResult.add("tripleNelson");
+        expResult.add("dyangounchained");
+        expResult.add("alcides");
+        expResult.add("eleven11"); 
+        expResult.add("costas");
+        expResult.add("waston");
+        expResult.add("house");
+        expResult.add("cbochinche");
+        List<DtUsuario> result = instance.getUsuariosQueNoSiguesEs(nickname);
+        List<String> namesResult = new ArrayList<String>();
+        for (DtUsuario i : result) {
+            namesResult.add(i.getNickname());
+        }
+        assertEquals(expResult, namesResult);
+        // TODO review the generated test code and remove the default call to fail.
+        
+    }
 //
 //    /**
 //     * Test of seguirUsuarioEs method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testSeguirUsuarioEs() {
-//        System.out.println("seguirUsuarioEs");
-//        String nickname = "";
-//        String seguido = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.seguirUsuarioEs(nickname, seguido);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testSeguirUsuarioEs() {
+        System.out.println("seguirUsuarioEs");
+        String nickname = "costas";
+        String seguido = "waston";
+        crlUsuarios instance = new crlUsuarios();
+        instance.seguirUsuarioEs(nickname, seguido);
+        instance.dejarDeSeguirUsuarioEs(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
 //
 //    /**
 //     * Test of seguirUsuarioAr method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testSeguirUsuarioAr() {
-//        System.out.println("seguirUsuarioAr");
-//        String nickname = "";
-//        String seguido = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.seguirUsuarioAr(nickname, seguido);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testSeguirUsuarioAr() {
+        System.out.println("seguirUsuarioAr");
+        String nickname = "vpeople";
+        String seguido = "dmode";
+        crlUsuarios instance = new crlUsuarios();
+        instance.seguirUsuarioAr(nickname, seguido);
+        instance.dejarDeSeguirUsuarioAr(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
+    @Test
+    public void testSeguirUsuarioAr2() {
+        System.out.println("seguirUsuarioAr");
+        String nickname = "vpeople";
+        String seguido = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        instance.seguirUsuarioAr(nickname, seguido);
+        instance.dejarDeSeguirUsuarioAr(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
 //
 //    /**
 //     * Test of dejarDeSeguirUsuarioEs method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testDejarDeSeguirUsuarioEs() {
-//        System.out.println("dejarDeSeguirUsuarioEs");
-//        String nickname = "";
-//        String seguido = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.dejarDeSeguirUsuarioEs(nickname, seguido);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testDejarDeSeguirUsuarioEs() {
+        System.out.println("dejarDeSeguirUsuarioEs");
+        String nickname = "costas";
+        String seguido = "vpeople";
+        crlUsuarios instance = new crlUsuarios();
+        instance.dejarDeSeguirUsuarioEs(nickname, seguido);
+        instance.seguirUsuarioEs(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
 //
 //    /**
 //     * Test of dejarDeSeguirUsuarioAr method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testDejarDeSeguirUsuarioAr() {
-//        System.out.println("dejarDeSeguirUsuarioAr");
-//        String nickname = "";
-//        String seguido = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.dejarDeSeguirUsuarioAr(nickname, seguido);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testDejarDeSeguirUsuarioAr() {
+        System.out.println("dejarDeSeguirUsuarioAr");
+        String nickname = "vpeople";
+        String seguido = "bruceTheBoss";
+        crlUsuarios instance = new crlUsuarios();
+        instance.dejarDeSeguirUsuarioAr(nickname, seguido);
+        instance.seguirUsuarioAr(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
+    @Test
+    public void testDejarDeSeguirUsuarioAr2() {
+        System.out.println("dejarDeSeguirUsuarioAr");
+        String nickname = "vpeople";
+        String seguido = "costas";
+        crlUsuarios instance = new crlUsuarios();
+        instance.seguirUsuarioAr(nickname, seguido);
+        instance.dejarDeSeguirUsuarioAr(nickname, seguido);
+        // TODO review the generated test code and remove the default call to fail.
+    }
 //
     /**
      * Test of getPaquetesDelUsuario method, of class crlUsuarios.
@@ -952,19 +1224,32 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
         
     }
-//
+    
 //    /**
 //     * Test of comprarPaquete method, of class crlUsuarios.
 //     */
-//    @Test
-//    public void testComprarPaquete() {
-//        System.out.println("comprarPaquete");
-//        String nickname = "";
-//        String nombrePaq = "";
-//        crlUsuarios instance = new crlUsuarios();
-//        instance.comprarPaquete(nickname, nombrePaq);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testComprarPaquete() {
+        System.out.println("comprarPaquete");
+        String nickname = "cbochinche";
+        String nombrePaq = "Paquete Latino";
+        crlUsuarios instance = new crlUsuarios();
+        instance.comprarPaquete(nickname, nombrePaq);
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Espectador e = em.createNamedQuery("EspectadorporNick",Espectador.class).setParameter("nickname", nickname).getSingleResult();
+        for (Compra i: e.getCompras()){
+            em.remove(i);
+        }
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+        
+        // TODO review the generated test code and remove the default call to fail.
+    }
+    
+    //testeo extra por el cual no se paso
+
 //    
 }
