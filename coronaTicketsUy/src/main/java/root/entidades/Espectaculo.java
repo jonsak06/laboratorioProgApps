@@ -19,7 +19,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Espectaculo.findAll", query = "SELECT e FROM Espectaculo e"),
-    @NamedQuery(name = "Espectaculo.findByNombre", query = "SELECT e FROM Espectaculo e WHERE e.nombre = :nombre")})
+    @NamedQuery(name = "Espectaculo.findByNombre", query = "SELECT e FROM Espectaculo e WHERE e.nombre = :nombre"),
+    @NamedQuery(name = "Espectaculo.listarPorEstado", query = "SELECT e FROM Espectaculo e WHERE e.estado = :estado")})
 public class Espectaculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,7 +44,7 @@ public class Espectaculo implements Serializable {
         this.setURL(url);
         this.estado = EstadoEspectaculo.ACEPTADO;
         this.categoria = new ArrayList<Categoria>();
-        
+
     }
 
     public Espectaculo(String nombre, String descripcion, int duracion, int cantidadMaximaEspectadores, int cantidadMinimaEspectadores, String url, float costo, Date fechaDeRegistro, Plataforma plataforma, Artista artista) {
@@ -62,16 +63,6 @@ public class Espectaculo implements Serializable {
 
     }
     
-    @Column
-    private String imagen;
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
     
     @Column(name = "NOMBRE_ESP")
     private String nombre;
@@ -94,6 +85,16 @@ public class Espectaculo implements Serializable {
         this.estado = estado;
     }
 
+   @Column
+   private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
    
     
     @Lob
@@ -246,6 +247,8 @@ public class Espectaculo implements Serializable {
     public DtEspectaculo getMyDt()
     {
         DtEspectaculo dt = new DtEspectaculo(this.id, this.nombre, this.descripcion, this.duracion, this.cantidadMaximaEspectadores, this.cantidadMinimaEspectadores, this.url, this.costo, this.fechaDeRegistro);
+        String nombreArt = this.artista.getNombre()+" "+this.artista.getApellido();
+        dt.setNombreArtista(nombreArt);
         return dt;
     }
 

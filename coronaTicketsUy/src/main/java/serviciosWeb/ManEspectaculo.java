@@ -407,4 +407,26 @@ public class ManEspectaculo {
          return resultado;
     }
     
+    public static List<DtFuncion> listarTodasLasFunciones(String nombreEsp) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        TypedQuery<Espectaculo> consulta = em.createNamedQuery("Espectaculo.findByNombre", Espectaculo.class);
+        consulta.setParameter("nombre", nombreEsp);
+        Espectaculo e = consulta.getSingleResult();
+        if (e.getEstado() == EstadoEspectaculo.ACEPTADO) {
+            List<DtFuncion> lDtf = new ArrayList<DtFuncion>();
+            List<Funcion> funciones = e.getFunciones();
+            for (Funcion i : funciones) {
+                DtFuncion esteDt = new DtFuncion(i.getId(), i.getNombre(), i.getHoraInicio(), i.getFechaRegistro(), i.getFecha());
+                lDtf.add(esteDt);
+            }
+            em.close();
+            emf.close();
+            return lDtf;
+        } else {
+            return null;
+        }
+    }
+    
 }
