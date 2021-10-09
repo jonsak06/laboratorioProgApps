@@ -661,12 +661,12 @@ public class ManejadorUsuarios {
             aux.add(i.getNickname());
         }
         for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())) {
+            if (!aux.contains(i.getNickname())&& i.getNickname().equals(nickname)==false) {
                 lDtU.add(i);
             }
         }
         for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())) {
+            if (!aux.contains(i.getNickname())&& i.getNickname().equals(nickname)==false) {
                 lDtU.add(i);
             }
         }
@@ -695,12 +695,12 @@ public class ManejadorUsuarios {
             aux.add(i.getNickname());
         }
         for (DtArtista i : lAr) {
-            if (!aux.contains(i.getNickname())) {
+            if (!aux.contains(i.getNickname())&& i.getNickname().equals(nickname)==false) {
                 lDtU.add(i);
             }
         }
         for (DtEspectador i : lEs) {
-            if (!aux.contains(i.getNickname())) {
+            if (!aux.contains(i.getNickname())&& i.getNickname().equals(nickname)==false) {
                 lDtU.add(i);
             }
         }
