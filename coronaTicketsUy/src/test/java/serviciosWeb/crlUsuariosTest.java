@@ -1249,7 +1249,37 @@ public class crlUsuariosTest {
         // TODO review the generated test code and remove the default call to fail.
     }
     
-    //testeo extra por el cual no se paso
+    @Test
+    public void testgetUsuariosQueTeSiguenEs(){
+        String nickname = "house";
+        List<String> resEsp = new ArrayList<String>();
+        resEsp.add("bruceTheBoss");
+        resEsp.add("waston");
+        crlUsuarios cu = new crlUsuarios();
+        List<DtUsuario> res = cu.getUsuariosQueTeSiguenEs(nickname);
+        List<String> resultado = new ArrayList<String>();
+        for(DtUsuario u: res){
+            resultado.add(u.getNickname());
+        }
+        assertEquals(resEsp, resultado);
+    }
+    
+    @Test
+    public void testgetUsuariosQueTeSiguenAr(){
+        String nickname = "vpeople";
+        List<String> resEsp = new ArrayList<String>();
+        resEsp.add("clouper");
+        resEsp.add("bruceTheBoss");
+        resEsp.add("costas");
+        resEsp.add("sergiop");
+        crlUsuarios cu = new crlUsuarios();
+        List<DtUsuario> res = cu.getUsuariosQueTeSiguenAr(nickname);
+        List<String> resultado = new ArrayList<String>();
+        for(DtUsuario u: res){
+            resultado.add(u.getNickname());
+        }
+        assertEquals(resEsp, resultado);
+    }
 
 //    
 }
