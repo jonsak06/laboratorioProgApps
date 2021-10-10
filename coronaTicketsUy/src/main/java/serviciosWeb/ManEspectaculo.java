@@ -429,4 +429,17 @@ public class ManEspectaculo {
         }
     }
     
+        public static List<DtEspectaculo> listarEspectaculos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Espectaculo> esps = em.createNamedQuery("Espectaculo.findAll",Espectaculo.class).getResultList();
+        List<DtEspectaculo> dvEsps = new ArrayList();
+        for(Espectaculo e : esps) {
+            dvEsps.add(e.getMyDt());
+        }
+        em.close();
+        emf.close();
+        return dvEsps;
+    }
+    
 }

@@ -92,4 +92,18 @@ public class CtrlPaquetes implements iPaquetes {
         Espectaculo e = ManEspectaculo.getEspectaculo(nombreEspectaculo);
         return e.getMyDt();
     }
+    
+    public void agregarImagenPaquete(String nombrePaquete, String pathImg) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<PaqueteDeEspectaculos> consulta = em.createNamedQuery("PaqueteByName",PaqueteDeEspectaculos.class);
+        consulta.setParameter("nombre", nombrePaquete);
+        PaqueteDeEspectaculos p = consulta.getSingleResult();
+        em.getTransaction().begin();
+        p.setImagen(pathImg);
+        em.persist(p);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
 }

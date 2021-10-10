@@ -575,5 +575,26 @@ public class CtrlEspectaculosTest {
         assertEquals(resEsp, result);
 
     }
+    
+    @Test
+    public void testListarTodosEspectaculos(){
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PERSISTENCIA");
+        EntityManager em = emf.createEntityManager();
+        List<Espectaculo> esps = em.createNamedQuery("Espectaculo.findAll").getResultList();      
+        em.close();
+        emf.close();
+        List<String> resEsp = new ArrayList<String>();
+        for (Espectaculo i: esps){
+            resEsp.add(i.getNombre());
+        }
+        CtrlEspectaculos ce = new CtrlEspectaculos();
+        List<DtEspectaculo> resultado = ce.listarTodosLosEspectaculos();
+        List<String> result = new ArrayList<String>();
+        for(DtEspectaculo e: resultado){
+            result.add(e.getNombre());
+        }
+        assertEquals(resEsp, result);
+    }
+    
 //    
 }
