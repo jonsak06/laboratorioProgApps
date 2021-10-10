@@ -596,5 +596,11 @@ public class CtrlEspectaculosTest {
         assertEquals(resEsp, result);
     }
     
+    @Test 
+    public void testGetPlataforma(){
+        Plataforma p = ManPlataformas.getPlataforma("Youtube");
+        assertEquals("Youtube", p.getNombre());
+    }
+    
 //    
 }
