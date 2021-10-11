@@ -60,6 +60,9 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
         LbPaquetes = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tbEspectaculo = new javax.swing.JTable();
+        desc1 = new javax.swing.JLabel();
+        url = new javax.swing.JLabel();
+        desc2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,27 +143,47 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane3)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbPlataforma)
-                                .addGap(20, 20, 20)
-                                .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(LbFunciones)
-                            .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LbPaquetes)
-                            .addComponent(LbEspectaculo))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lbPlataforma)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LbEspectaculo))
+                                .addGap(0, 491, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(304, 304, 304)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(desc1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(LbFunciones))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LbPaquetes)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(desc2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,11 +194,15 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbPlataforma))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LbEspectaculo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(url, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                    .addComponent(desc1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LbFunciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,6 +210,8 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
                 .addComponent(LbPaquetes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(desc2, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btSalir)
                 .addContainerGap())
@@ -229,11 +258,16 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
     private void tbPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPaquetesMouseClicked
         // TODO add your handling code here:
         int index = tbPaquetes.getSelectedRow();
+        int k = this.tbPaquetes.getSelectedRow();
+        this.desc2.setText("<html>"+"Descripcion: "+this.tbPaquetes.getValueAt(k,1).toString()+"</html>");
         
     }//GEN-LAST:event_tbPaquetesMouseClicked
 
     private void tbEspectaculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEspectaculoMouseClicked
         // TODO add your handling code here:
+        int k = this.tbEspectaculo.getSelectedRow();
+        this.desc1.setText("<html>"+"Descripcion: "+this.tbEspectaculo.getValueAt(k,1).toString()+"</html>");
+        this.url.setText("<html>"+"URL: "+this.tbEspectaculo.getValueAt(k,5).toString()+"</html>");
         int indexE = tbEspectaculo.getSelectedRow();
         List<DtPaqueteDeEspectaculos> paquetes=Fabrica.getCrlUsuarios().listarPaquetesEspectaculosDeArtista("", espectaculos.get(indexE).getNombre());
         List<DtFuncion> funciones=Fabrica.getCrlUsuarios().listarFuncionesEspectaculosDeArtista("", espectaculos.get(indexE).getNombre());
@@ -315,6 +349,8 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JLabel LbPaquetes;
     private javax.swing.JButton btSalir;
     private javax.swing.JComboBox<String> cbPlataformas;
+    private javax.swing.JLabel desc1;
+    private javax.swing.JLabel desc2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -323,5 +359,6 @@ public class ConsultaEspectaculo extends javax.swing.JFrame {
     private javax.swing.JTable tbEspectaculo;
     private javax.swing.JTable tbFunciones;
     private javax.swing.JTable tbPaquetes;
+    private javax.swing.JLabel url;
     // End of variables declaration//GEN-END:variables
 }

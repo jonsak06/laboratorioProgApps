@@ -8,6 +8,7 @@ package root.entidades;
 import root.datatypes.DtEspectador;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.*;
@@ -53,7 +54,7 @@ public class Espectador extends Usuario {
         canjeables = 0;
 //        this.actualizarRegistros();
         for (Registro i :this.registros){
-            if(i.getEstado()!=EstadoRegistro.USADO){
+            if(i.getEstado()!=EstadoRegistro.USADO && i.getCosto()!=0){
             canjeables = canjeables + 1;
             }
         }
@@ -63,6 +64,8 @@ public class Espectador extends Usuario {
     }
 
     public Espectador() {
+        this.compras = new ArrayList<Compra>();
+        
     }
 
     public Espectador(String nick, String nombre, String apellido, String email, int dnac, int mnac, int ynac){
@@ -73,6 +76,9 @@ public class Espectador extends Usuario {
         this.setNickname(nick);
         this.setNombre(nombre);
         this.setImagen("PATH");
+        this.compras = new ArrayList<Compra>();
+
+
         
     }
     
@@ -88,20 +94,21 @@ public class Espectador extends Usuario {
         this.registros.add(i+1,r);
     }
     
-    @OneToMany
+    
+    @OneToMany(mappedBy = "espectador")
     private List<Compra> compras;
     public List<Compra> getCompras() {
         return compras;
     }
 
-    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
+    public Espectador(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento, String pass) {
         super(nombre, apellido, correo, nickname, imagen, fechaNacimiento);
         this.canjeables=0;
+        this.setPasswd(pass);
     }
 
     public void addCompra(Compra c) {
-        int i = this.compras.size();
-        this.compras.add(i+1, c);
+        this.compras.add(c);
     }
     @Override
     public int hashCode() {
@@ -133,7 +140,7 @@ public class Espectador extends Usuario {
         this.calcularCanjeables();
         
     
-        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento());
+        DtEspectador dt = new DtEspectador(this.getCanjeables(), this.id, this.getNombre(), this.getApellido(), this.getCorreo(), this.getNickname(), this.getImagen(), this.getFechaNacimiento(),this.getPasswd());
         return dt; 
     }
     

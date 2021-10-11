@@ -22,6 +22,7 @@ public class DtEspectaculo {
     private String url;
     private float costo;
     private Date fechaDeRegistro;
+    private String plataforma;
 
     public DtEspectaculo(){}
     public DtEspectaculo(Long id, String nombre, String descripcion, int duracion, int cantidadMaximaEspectadores, int cantidadMinimaEspectadores, String url, float costo, Date fechaDeRegistro) {
@@ -35,6 +36,21 @@ public class DtEspectaculo {
         this.costo = costo;
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    
+    private String nombreArtista;
+
+    public String getNombreArtista() {
+        return nombreArtista;
+    }
+
+    public void setNombreArtista(String nombreArtista) {
+        this.nombreArtista = nombreArtista;
+    }
+    
+    public void setPlataforma(String plataforma) {
+        this.plataforma = plataforma;
+    }
+    
 
     public Long getId() {
         return id;
@@ -70,6 +86,10 @@ public class DtEspectaculo {
 
     public Date getFechaDeRegistro() {
         return fechaDeRegistro;
+    }
+    
+    public String getPlataforma() {
+        return plataforma;
     }
     
 }

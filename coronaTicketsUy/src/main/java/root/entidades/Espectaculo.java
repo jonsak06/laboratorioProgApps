@@ -8,6 +8,7 @@ package root.entidades;
 import root.datatypes.DtEspectaculo;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -18,7 +19,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Espectaculo.findAll", query = "SELECT e FROM Espectaculo e"),
-    @NamedQuery(name = "Espectaculo.findByNombre", query = "SELECT e FROM Espectaculo e WHERE e.nombre = :nombre")})
+    @NamedQuery(name = "Espectaculo.findByNombre", query = "SELECT e FROM Espectaculo e WHERE e.nombre = :nombre"),
+    @NamedQuery(name = "Espectaculo.listarPorEstado", query = "SELECT e FROM Espectaculo e WHERE e.estado = :estado")})
 public class Espectaculo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,9 @@ public class Espectaculo implements Serializable {
         this.setNombre(nombre);
         this.setPlataforma(p);
         this.setURL(url);
-        
+        this.estado = EstadoEspectaculo.ACEPTADO;
+        this.categoria = new ArrayList<Categoria>();
+
     }
 
     public Espectaculo(String nombre, String descripcion, int duracion, int cantidadMaximaEspectadores, int cantidadMinimaEspectadores, String url, float costo, Date fechaDeRegistro, Plataforma plataforma, Artista artista) {
@@ -54,6 +58,9 @@ public class Espectaculo implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
         this.plataforma = plataforma;
         this.artista = artista;
+        this.estado = EstadoEspectaculo.ACEPTADO;
+        this.categoria = new ArrayList<Categoria>();
+
     }
     
     
@@ -65,6 +72,30 @@ public class Espectaculo implements Serializable {
     public void setNombre(String nombre){
         this.nombre = nombre;           
     }
+    
+    @Column(name = "ESTADO_ESPECTACULO")
+    @Enumerated(value = EnumType.STRING)
+    private EstadoEspectaculo estado;
+
+    public EstadoEspectaculo getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoEspectaculo estado) {
+        this.estado = estado;
+    }
+
+   @Column
+   private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+   
     
     @Lob
     @Column(name = "DESCR_ESP")
@@ -128,6 +159,17 @@ public class Espectaculo implements Serializable {
     }
     public void setFechaRegistro(java.sql.Date f){
         this.fechaDeRegistro = f;
+    }
+    
+    @ManyToMany
+    private List<Categoria> categoria;
+
+    public List<Categoria> getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(List<Categoria> categoria) {
+        this.categoria = categoria;
     }
     
 //    @Column(name = "PLATAFORMA")
@@ -205,7 +247,12 @@ public class Espectaculo implements Serializable {
     public DtEspectaculo getMyDt()
     {
         DtEspectaculo dt = new DtEspectaculo(this.id, this.nombre, this.descripcion, this.duracion, this.cantidadMaximaEspectadores, this.cantidadMinimaEspectadores, this.url, this.costo, this.fechaDeRegistro);
+        String nombreArt = this.artista.getNombre()+" "+this.artista.getApellido();
+        dt.setNombreArtista(nombreArt);
+        dt.setPlataforma(this.plataforma.getNombre());
         return dt;
     }
+
+   
     
 }

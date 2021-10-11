@@ -8,20 +8,57 @@ package root.entidades;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.*;
+import java.util.List;
+import root.datatypes.DtUsuario;
 
 /**
  *
  * @author tecnologo
  */
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED)
+
 public abstract class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    @Column
+    private String passwd;
+    
+    @ManyToMany(mappedBy = "siguiendo")
+    private List<Usuario> seguidores;
 
+    public void setSeguidores(List<Usuario> seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public void setSiguiendo(List<Usuario> siguiendo) {
+        this.siguiendo = siguiendo;
+    }
+    
+
+    public List<Usuario> getSeguidores() {
+        return seguidores;
+    }
+
+    public List<Usuario> getSiguiendo() {
+        return siguiendo;
+    }
+    
+    
+    @ManyToMany
+    private List<Usuario> siguiendo;
+    
+    
+    public void setPasswd(String passwd){
+        this.passwd=passwd;
+    }
+    public String getPasswd(){
+        return this.passwd;
+    }
     @Column(name = "NOMBRE")
     private String nombre;
     
@@ -40,7 +77,7 @@ public abstract class Usuario implements Serializable {
     @Column(name = "FECHANACIMIENTO")
 //    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
-    Usuario(){}
+    public Usuario(){}
     public Usuario(String nombre, String apellido, String correo, String nickname, String imagen, Date fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -105,6 +142,7 @@ public abstract class Usuario implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
 
     @Override
     public int hashCode() {

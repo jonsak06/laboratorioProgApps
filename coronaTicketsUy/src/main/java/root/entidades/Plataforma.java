@@ -45,6 +45,16 @@ public class Plataforma implements Serializable {
         this.setUrl(url);
     }
   
+    @Column
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
     
     @Column(name = "NOMBRE")
     private String nombre;

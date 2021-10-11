@@ -30,6 +30,21 @@ public class Compra implements Serializable {
         this.id = id;
     }
     
+    public Compra(){}
+    
+    public Compra(PaqueteDeEspectaculos paq, int dia, int mes, int anio){
+    
+        this.paquete = paq;
+        java.sql.Date fecha = new java.sql.Date(anio-1899,mes-12,dia-31);
+        this.fecha = fecha;
+    }
+    
+    public Compra (PaqueteDeEspectaculos paq , Date fecha, Espectador esp){
+    this.espectador=esp;
+    this.fecha = fecha;
+    this.paquete = paq;
+    }
+    
     @Column(name = "FECHA_COMPRA")
     private Date fecha;
     public Date getFecha() {
@@ -57,6 +72,18 @@ public class Compra implements Serializable {
     public void setPaquete(PaqueteDeEspectaculos p) {
         this.paquete = p;
     }
+    
+    @ManyToOne
+    private Espectador espectador;
+
+    public Espectador getEspectador() {
+        return espectador;
+    }
+
+    public void setEspectador(Espectador espectador) {
+        this.espectador = espectador;
+    }
+    
     
     @Override
     public int hashCode() {

@@ -101,6 +101,17 @@ public class Funcion implements Serializable {
         this.nombre = nombre;           
     }
     
+    @Column
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     @Column(name = "HORA_INICIO")
 //    @Temporal(TemporalType.TIMESTAMP)
     private Timestamp horaInicio;

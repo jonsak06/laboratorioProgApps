@@ -40,6 +40,23 @@ public class DtRegistro {
     public EstadoRegistro getEstado() {
         return estado;
     }
-    
+     private String nombreFuncion;
+
+    public String getNombreFuncion() {
+        return nombreFuncion;
+    }
+
+    private java.sql.Date fechaFuncion;
+
+    public Date getFechaFuncion() {
+        return fechaFuncion;
+    }
+
+    public void setFechaFuncion(Date fechaFuncion) {
+        this.fechaFuncion = fechaFuncion;
+    }
+    public void setNombreFuncion(String nombreFuncion) {
+        this.nombreFuncion = nombreFuncion;
+    }
     
 }
