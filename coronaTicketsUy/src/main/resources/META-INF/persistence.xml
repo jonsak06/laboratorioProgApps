@@ -12,6 +12,9 @@
     <class>root.entidades.Compra</class>
     <class>root.entidades.Registro</class>
     <class>root.entidades.Categoria</class>
+    <class>root.entidades.Sorteo</class>
+    <class>root.entidades.Premio</class>
+    <class>root.entidades.Valoracion</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/labTaque?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
