@@ -5,7 +5,9 @@
  */
 package root.guis;
 
+
 import java.awt.Image;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.*;
 import java.io.Serializable;
@@ -22,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import root.datatypes.DtArtista;
 import root.datatypes.DtEspectador;
 import root.fabrica.Fabrica;
@@ -52,6 +56,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
         tfBiografia.setEnabled(false);
         tfLinkWeb.setEnabled(false);
         espectadores=Fabrica.getCrlUsuarios().getEspectadores();
+        
         for (int i=0; i<espectadores.size(); i++)
         {
             nicknames.add(espectadores.get(i).getNickname());
@@ -67,6 +72,8 @@ public class ModificarUsuario extends javax.swing.JFrame {
             tfNickname.setText(espectadores.get(0).getNickname());
             tfApellido.setText(espectadores.get(0).getApellido());
 //            tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
+            this.fechaNacimiento.setDate(espectadores.get(0).getFechaNacimiento());
+            this.fechaNacimiento.setVisible(true);
             this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
             ruta=espectadores.get(0).getImagen();
             if(espectadores.get(0).getImagen()!="")
@@ -357,31 +364,17 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 tfLinkWeb.setText(artistas.get(0).getLinkWeb());
                 this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
                 ruta=artistas.get(0).getImagen();
-                if(artistas.get(0).getImagen()!="PATH")
-                {
-                    if(artistas.get(0).getImagen()!="")
-                    {
-                        ruta=artistas.get(0).getImagen();
-                        Image mImagen = new ImageIcon(artistas.get(0).getImagen()).getImage();
-                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                        lImagen.setIcon(mIcono);
-                    }
-                    else
-                    {
-                        ruta="silueta.jpg";
+                       if (artistas.get(0).getImagen() != "PATH" && artistas.get(0).getImagen() != "") {
+                        lImagen.setIcon(null);
+                        lImagen.setText("<html><img src = \"" + artistas.get(0).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
+                    } else {
+                        lImagen.setText(null);
+                        ruta = "silueta.jpg";
                         Image mImagen = new ImageIcon(ruta).getImage();
                         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                         lImagen.setIcon(mIcono);
-                    }
-                }
-                else
-                {
-                    ruta="silueta.jpg";
-                    Image mImagen = new ImageIcon(ruta).getImage();
-                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                    lImagen.setIcon(mIcono);
 
-                }
+                    }
             }
         }
 
@@ -413,31 +406,18 @@ public class ModificarUsuario extends javax.swing.JFrame {
 //                tfCorreoElectronico.setText(espectadores.get(0).getCorreo());
                 this.cbUsuario.setModel(new DefaultComboBoxModel(nicknames.toArray()));
                 ruta=espectadores.get(0).getImagen();
-                if(espectadores.get(0).getImagen()!="PATH")
-                {
-                    if(espectadores.get(0).getImagen()!="")
-                    {
-                        ruta=espectadores.get(0).getImagen();
-                        Image mImagen = new ImageIcon(espectadores.get(0).getImagen()).getImage();
-                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                        lImagen.setIcon(mIcono);
-                    }
-                    else
-                    {
-                        ruta="silueta.jpg";
-                        Image mImagen = new ImageIcon(ruta).getImage();
-                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                        lImagen.setIcon(mIcono);
-                    }
-                }
-                else
-                {
-                    ruta="silueta.jpg";
-                    Image mImagen = new ImageIcon(ruta).getImage();
-                    ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                    lImagen.setIcon(mIcono);
+                    if (espectadores.get(0).getImagen().equals("PATH") == false && espectadores.get(0).getImagen().equals("") == false) {
+                        lImagen.setIcon(null);
+                        lImagen.setText("<html><img src = \"" + espectadores.get(0).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
+                    } else {
 
-                }
+                        lImagen.setText(null);
+                            ruta="silueta.jpg";
+                            Image mImagen = new ImageIcon(ruta).getImage();
+                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+                            lImagen.setIcon(mIcono);
+
+                        }
             }
         }
 
@@ -500,8 +480,6 @@ public class ModificarUsuario extends javax.swing.JFrame {
         } 
         
         
-        
-        
     }//GEN-LAST:event_btModificarActionPerformed
 
     private void cbUsuarioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbUsuarioItemStateChanged
@@ -532,79 +510,49 @@ public class ModificarUsuario extends javax.swing.JFrame {
                         tfLinkWeb.setText(artistas.get(i).getLinkWeb());
                     }
                     ruta=artistas.get(i).getImagen();
-                    if(artistas.get(i).getImagen()!="PATH")
-                    {
-                        if(artistas.get(i).getImagen()!="")
-                        {
-                            ruta=artistas.get(i).getImagen();
-                            Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
-                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                            lImagen.setIcon(mIcono);
-                        }
-                        else
-                        {
-                            ruta="silueta.jpg";
-                            Image mImagen = new ImageIcon(ruta).getImage();
-                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                            lImagen.setIcon(mIcono);
-                        }
-                    }
-                    else
-                    {
-                        ruta="silueta.jpg";
+                       if (artistas.get(i).getImagen() != "PATH" && artistas.get(i).getImagen() != "") {
+                        lImagen.setIcon(null);
+                        lImagen.setText("<html><img src = \"" + artistas.get(i).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
+                    } else {
+                        lImagen.setText(null);
+                        ruta = "silueta.jpg";
                         Image mImagen = new ImageIcon(ruta).getImage();
                         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                         lImagen.setIcon(mIcono);
 
                     }
-                    
-                    
+
                 }
             }
         }
-        
-        if( cbTipoUsuario.getSelectedItem().toString()=="Espectador")
-        {
-            for (int i=0; i<espectadores.size(); i++)
-            {
-                if(cbUsuario.getSelectedItem().toString()==espectadores.get(i).getNickname())
-                {
+
+        if (cbTipoUsuario.getSelectedItem().toString() == "Espectador") {
+            for (int i = 0; i < espectadores.size(); i++) {
+                if (cbUsuario.getSelectedItem().toString() == espectadores.get(i).getNickname()) {
                     this.fechaNacimiento.setDate(espectadores.get(i).getFechaNacimiento());
                     this.fechaNacimiento.setVisible(true);
                     tfNombre.setText(espectadores.get(i).getNombre());
                     tfNickname.setText(espectadores.get(i).getNickname());
                     tfApellido.setText(espectadores.get(i).getApellido());
 //                    tfCorreoElectronico.setText(espectadores.get(i).getCorreo());
-                    ruta=espectadores.get(i).getImagen();
-                    if(espectadores.get(i).getImagen()!="PATH")
-                    {
-                        if(espectadores.get(i).getImagen()!="")
-                        {
-                            ruta=espectadores.get(i).getImagen();
-                            Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
-                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                            lImagen.setIcon(mIcono);
-                        }
-                        else
-                        {
+                    ruta = espectadores.get(i).getImagen();
+                    if (espectadores.get(i).getImagen().equals("PATH") == false && espectadores.get(i).getImagen().equals("") == false) {
+                        lImagen.setIcon(null);
+                        lImagen.setText("<html><img src = \"" + espectadores.get(i).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
+                    } else {
+
+                        lImagen.setText(null);
                             ruta="silueta.jpg";
                             Image mImagen = new ImageIcon(ruta).getImage();
                             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
                             lImagen.setIcon(mIcono);
-                        }
-                    }
-                    else
-                    {
-                        ruta="silueta.jpg";
-                        Image mImagen = new ImageIcon(ruta).getImage();
-                        ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                        lImagen.setIcon(mIcono);
 
-                    }
+                        }
                            
                 }
             }
         }
+
 
        
     }//GEN-LAST:event_cbUsuarioItemStateChanged
@@ -642,10 +590,54 @@ public class ModificarUsuario extends javax.swing.JFrame {
                 Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             ruta = destino.toString();
+            subir(ruta);
+            
             Image mImagen = new ImageIcon(destino.toString()).getImage();
             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
+            lImagen.setText(null);
             lImagen.setIcon(mIcono);
         }
+    }                                        
+
+        private void subir(String ruta) {
+        FTPClient client = new FTPClient();
+        FileInputStream fis = null;
+
+        try {
+            client.connect("raspberrypijulio.ddns.net");
+            client.login("pi", "kilocura2");
+            client.changeWorkingDirectory("/DISCO1/ImagenesLab");
+
+            //
+            // Create an InputStream of the file to be uploaded
+            //
+            String filename = ruta;
+            fis = new FileInputStream(filename);
+//                client.setFileType(FTP.BINARY_FILE_TYPE);
+            client.setFileType(FTP.BINARY_FILE_TYPE);
+
+            client.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+            client.enterLocalPassiveMode();
+            //
+            // Store file to server
+            //
+            client.storeFile(filename, fis);
+            fis.close();
+            client.logout();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+                client.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
     }//GEN-LAST:event_btImagenActionPerformed
 
     /**
