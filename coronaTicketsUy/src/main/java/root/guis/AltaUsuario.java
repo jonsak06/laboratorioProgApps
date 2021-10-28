@@ -14,6 +14,7 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +26,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
 import root.datatypes.DtArtista;
 import root.datatypes.DtEspectador;
 import root.fabrica.Fabrica;
@@ -362,7 +365,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                Integer.parseInt(cbDia.getSelectedItem().toString()));
                 long id = 0;
-                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha, "pass");
+                DtEspectador es = new DtEspectador(0, id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "http://raspberrypijulio.ddns.net/ImagenesLab/"+ruta, fecha, "pass");
                 Fabrica.getCrlUsuarios().altaEspectador(es);
                 JOptionPane.showMessageDialog(null, "El espectador fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                 tfNombre.setText("");
@@ -386,7 +389,7 @@ public class AltaUsuario extends javax.swing.JFrame {
 //                    Integer.parseInt(cbMes.getSelectedItem().toString())-1, 
 //                    Integer.parseInt(cbDia.getSelectedItem().toString()));
                     long id = 0;
-                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), ruta, fecha, "pass");
+                    DtArtista ar = new DtArtista(tfLinkWeb.getText().trim(), tfBrebeBiografia.getText().trim(), tfDescripcionGen.getText().trim(), id, tfNombre.getText().trim(), tfApellido.getText().trim(), tfCorreoElectronico.getText().trim(), tfNickname.getText().trim(), "http://raspberrypijulio.ddns.net/ImagenesLab/"+ruta, fecha, "pass");
                     Fabrica.getCrlUsuarios().altaArtista(ar);
                     JOptionPane.showMessageDialog(null, "El artista fue creado", "Usuarios", JOptionPane.INFORMATION_MESSAGE);
                     tfNombre.setText("");
@@ -446,6 +449,7 @@ public class AltaUsuario extends javax.swing.JFrame {
                 Logger.getLogger(AltaUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
             ruta = destino.toString();
+            subir(ruta);
             Image mImagen = new ImageIcon(destino.toString()).getImage();
             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
             lImagen.setIcon(mIcono);
@@ -486,6 +490,45 @@ public class AltaUsuario extends javax.swing.JFrame {
                 new AltaUsuario().setVisible(true);
             }
         });
+    }
+        private void subir(String ruta){
+     FTPClient client = new FTPClient();
+            FileInputStream fis = null;
+
+            try {
+                client.connect("raspberrypijulio.ddns.net");
+                client.login("pi", "kilocura2");
+                client.changeWorkingDirectory("/DISCO1/ImagenesLab");
+
+                //
+                // Create an InputStream of the file to be uploaded
+                //
+                String filename = ruta;
+                fis = new FileInputStream(filename);
+//                client.setFileType(FTP.BINARY_FILE_TYPE);
+                client.setFileType(FTP.BINARY_FILE_TYPE);
+                        
+                client.setFileTransferMode(FTP.BINARY_FILE_TYPE);
+
+                client.enterLocalPassiveMode();
+                //
+                // Store file to server
+                //
+                client.storeFile(filename, fis);
+                fis.close();
+                client.logout();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (fis != null) {
+                        fis.close();
+                    }
+                    client.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
