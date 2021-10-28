@@ -27,6 +27,18 @@ public class Funcion implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    
+    @Column
+    private String imagen;
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -99,17 +111,6 @@ public class Funcion implements Serializable {
     }
     public void setNombre(String nombre){
         this.nombre = nombre;           
-    }
-    
-    @Column
-    private String imagen;
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
     }
     
     @Column(name = "HORA_INICIO")
@@ -186,9 +187,21 @@ public class Funcion implements Serializable {
         return "presentacion.Funcion[ id=" + id + " ]";
     }
     
+     @OneToOne(mappedBy = "funcion")
+    private Sorteo sorteo;
+
+    public Sorteo getSorteo() {
+        return sorteo;
+    }
+
+    public void setSorteo(Sorteo sorteo) {
+        this.sorteo = sorteo;
+    }
+    
     public DtFuncion getMyDt()
     {
         DtFuncion dt = new DtFuncion(this.id, this.nombre, this.horaInicio, this.fechaDeRegistro, this.fecha);
+        dt.setImagen(this.imagen);
         return dt;
     }
 }
