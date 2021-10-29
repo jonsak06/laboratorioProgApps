@@ -46,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
         iAltaUsuario = new javax.swing.JMenuItem();
         iModificarUsuario = new javax.swing.JMenuItem();
         iListarUsuarios = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         altaEspectaculo = new javax.swing.JMenuItem();
         consultaEspectaculo = new javax.swing.JMenuItem();
@@ -101,6 +102,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(iListarUsuarios);
+
+        jMenuItem1.setText("Administrador");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -345,6 +354,14 @@ public class Principal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_aceptarRechazarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+        AccesoRegistros nuevo = new AccesoRegistros();
+        nuevo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -371,6 +388,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -394,6 +412,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuPaquetes;
     private javax.swing.JMenuItem optionAgregarEspectaculo;
     private javax.swing.JMenuItem optionAltaPaquete;
