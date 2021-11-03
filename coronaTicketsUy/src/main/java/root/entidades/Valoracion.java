@@ -39,6 +39,15 @@ public class Valoracion implements Serializable {
         return hash;
     }
 
+    public Valoracion(Date fecha, int valor, Espectador espectador, Espectaculo espectaculo) {
+        
+        this.valor = valor;
+        this.espectador = espectador;
+        this.espectaculo = espectaculo;
+    }
+
+    
+
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -57,22 +66,13 @@ public class Valoracion implements Serializable {
         return "root.entidades.Valoracion[ id=" + id + " ]";
     }
     
-    @Column(name = "FECHA")
-    Date fecha;
     
     @Column(name = "VALOR")
     int valor;
 
-    public Date getFecha() {
-        return fecha;
-    }
 
     public int getValor() {
         return valor;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
 
     public void setValor(int valor) {
@@ -96,10 +96,13 @@ public class Valoracion implements Serializable {
     public void setEspectador(Espectaculo espectaculo) {
         this.espectaculo = espectaculo;
     }
+
+    public Valoracion() {
+    }
     
     public DtValoracion getMyDt()
     {
-        DtValoracion dt = new DtValoracion(this.id, this.fecha, this.valor);
+        DtValoracion dt = new DtValoracion(this.id, this.valor, this.espectador.getNickname(), this.espectaculo.getNombre());
         return dt;
     }
     

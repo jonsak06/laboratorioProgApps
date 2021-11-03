@@ -13,14 +13,36 @@ import java.sql.Date;
  */
 public class DtValoracion {
     private Long id;
-    private Date fecha;
     private int valor;
+    private String nicknameEspectador;
+    private String nombreEspectaculo;
 
-    public DtValoracion(Long id, Date fecha, int valor) {
+    public DtValoracion(Long id,  int valor, String nicknameEspectador, String nombreEspectaculo) {
         this.id = id;
-        this.fecha = fecha;
         this.valor = valor;
+        this.nicknameEspectador = nicknameEspectador;
+        this.nombreEspectaculo = nombreEspectaculo;
     }
+
+    public String getNicknameEspectador() {
+        return nicknameEspectador;
+    }
+
+    public void setNicknameEspectador(String nicknameEspectador) {
+        this.nicknameEspectador = nicknameEspectador;
+    }
+
+    
+
+    public String getNombreEspectaculo() {
+        return nombreEspectaculo;
+    }
+
+    public void setNombreEspectaculo(String nombreEspectaculo) {
+        this.nombreEspectaculo = nombreEspectaculo;
+    }
+
+    
 
     public Long getId() {
         return id;
@@ -30,13 +52,7 @@ public class DtValoracion {
         this.id = id;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
+    
 
     public int getValor() {
         return valor;
