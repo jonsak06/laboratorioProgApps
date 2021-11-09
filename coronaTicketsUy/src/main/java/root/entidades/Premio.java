@@ -60,6 +60,16 @@ public class Premio implements Serializable {
     
     @Column(name = "NOMBRE")
     private String nombre;
+
+    public Premio() {
+    }
+
+    public Premio(String nombre, String descripcion, Sorteo sorteo, Espectador espectador) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.sorteo = sorteo;
+        this.espectador = espectador;
+    }
     
     
     @Column(name = "DESCRIPCION")
@@ -102,6 +112,9 @@ public class Premio implements Serializable {
     public DtPremio getMyDt()
     {
         DtPremio dt = new DtPremio(this.id, this.nombre, this.descripcion);
+        dt.setNombreEspectaculo(this.sorteo.getFuncion().getEspectaculo().getNombre());
+        dt.setFechaSorteo(this.sorteo.fecha.getTime());
+        dt.setNombreFuncion(this.sorteo.getFuncion().getNombre());
         return dt;
     }
 }
