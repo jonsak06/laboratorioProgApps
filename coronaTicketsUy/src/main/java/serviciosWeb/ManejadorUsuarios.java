@@ -241,6 +241,7 @@ public class ManejadorUsuarios {
         vp.setNombre(es.getNombre());
         vp.setCorreo(es.getCorreo());
         vp.setPasswd(es.getPass());
+        vp.setImagen(es.getImagen());
         em.persist(vp);
         em.getTransaction().commit();
         em.close();

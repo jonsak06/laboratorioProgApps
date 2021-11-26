@@ -491,24 +491,14 @@ public class ListarUsuario extends javax.swing.JFrame {
                     });
                     
 
-                    if(artistas.get(i).getImagen()!="PATH")
+                    if(artistas.get(i).getImagen()!="PATH" && artistas.get(i).getImagen()!="")
                     {
-                        if(artistas.get(i).getImagen()!="")
-                        {
-                            Image mImagen = new ImageIcon(artistas.get(i).getImagen()).getImage();
-                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                            lImagen.setIcon(mIcono);
-                        }
-                        else
-                        {
-                            ruta="silueta.jpg";
-                            Image mImagen = new ImageIcon(ruta).getImage();
-                            ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                            lImagen.setIcon(mIcono);
-                        }
+                            lImagen.setIcon(null);
+                            lImagen.setText("<html><img src = \"" + artistas.get(i).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
                     }
                     else
-                    {
+                    {   
+                        lImagen.setText(null);
                         ruta="silueta.jpg";
                         Image mImagen = new ImageIcon(ruta).getImage();
                         ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
@@ -640,24 +630,15 @@ public class ListarUsuario extends javax.swing.JFrame {
                            }
                        });
 
-                        if(espectadores.get(i).getImagen()!="PATH")
+                        if(espectadores.get(i).getImagen().equals("PATH")==false && espectadores.get(i).getImagen().equals("")==false)
                         {
-                            if(espectadores.get(i).getImagen()!="")
-                            {
-                                Image mImagen = new ImageIcon(espectadores.get(i).getImagen()).getImage();
-                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                lImagen.setIcon(mIcono);
-                            }
-                            else
-                            {
-                                ruta="silueta.jpg";
-                                Image mImagen = new ImageIcon(ruta).getImage();
-                                ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
-                                lImagen.setIcon(mIcono);
-                            }
+                            lImagen.setIcon(null);
+                            lImagen.setText("<html><img src = \"" + espectadores.get(i).getImagen() + "\" width="+lImagen.getWidth()+" height="+lImagen.getHeight()+"></html>");
                         }
                         else
                         {
+                                                   
+                            lImagen.setText(null);
                             ruta="silueta.jpg";
                             Image mImagen = new ImageIcon(ruta).getImage();
                             ImageIcon mIcono = new ImageIcon(mImagen.getScaledInstance(lImagen.getWidth(), lImagen.getHeight(), Image.SCALE_SMOOTH));
@@ -725,6 +706,7 @@ public class ListarUsuario extends javax.swing.JFrame {
                 }
             }
         }
+        
         
     }//GEN-LAST:event_cbUsuarioItemStateChanged
 
